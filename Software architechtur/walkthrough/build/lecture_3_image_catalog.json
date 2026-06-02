@@ -1,0 +1,82 @@
+[
+  {
+    "page": 1,
+    "index": 1,
+    "xref": 13,
+    "width": 827,
+    "height": 221,
+    "bytes": 6049,
+    "classification": "likely_diagram",
+    "snippet": "Software Architecture (T630019402) Lecture #3, February 24, 2026 Jukka Ruohonen 1 / 83"
+  },
+  {
+    "page": 5,
+    "index": 1,
+    "xref": 49,
+    "width": 871,
+    "height": 830,
+    "bytes": 608616,
+    "classification": "likely_diagram",
+    "snippet": "Preliminaries (2/3) Figure 1: https://calteches.library.caltech.edu/51/2/CargoCult.pdf 5 / 83"
+  },
+  {
+    "page": 6,
+    "index": 1,
+    "xref": 60,
+    "width": 1150,
+    "height": 517,
+    "bytes": 35638,
+    "classification": "likely_diagram",
+    "snippet": "Preliminaries (3/3) Figure 2: https://sites.stat.columbia.edu/gelman/research/published/cargocult.pdf 6 / 83"
+  },
+  {
+    "page": 20,
+    "index": 1,
+    "xref": 293,
+    "width": 1341,
+    "height": 620,
+    "bytes": 154564,
+    "classification": "likely_diagram",
+    "snippet": "Integrability Tactics: Limit (2/13) \u25b6When using open source packages, Cox (2019) provides also many good practical suggestions, including with questions such as"
+  },
+  {
+    "page": 21,
+    "index": 1,
+    "xref": 302,
+    "width": 1262,
+    "height": 700,
+    "bytes": 69548,
+    "classification": "likely_diagram",
+    "snippet": "Integrability Tactics: Limit (3/13) Figure 10: https://scorecard.dev/ 21 / 83"
+  },
+  {
+    "page": 23,
+    "index": 1,
+    "xref": 316,
+    "width": 886,
+    "height": 748,
+    "bytes": 585136,
+    "classification": "likely_diagram",
+    "snippet": "Integrability Tactics: Limit (5/13) Figure 11: https://redmonk.com/kholterhoff/2026/02/03/ ai-slopageddon-and-the-oss-maintainers/ 23 / 83"
+  },
+  {
+    "page": 24,
+    "index": 1,
+    "xref": 327,
+    "width": 1223,
+    "height": 545,
+    "bytes": 806069,
+    "classification": "likely_diagram",
+    "snippet": "Integrability Tactics: Limit (6/13) Figure 12: https://www.betterup.com/workslop 24 / 83"
+  },
+  {
+    "page": 76,
+    "index": 1,
+    "xref": 1065,
+    "width": 1312,
+    "height": 532,
+    "bytes": 396310,
+    "classification": "likely_diagram",
+    "snippet": "Modifiability Patterns: Plugin (3/3) Figure 38: https://www.malwarebytes.com/blog/news/2026/01/ firefox-joins-chrome-and-edge-as-sleeper-extensions-spy-on-users"
+  }
+]

@@ -1,0 +1,12 @@
+# ExamPrep — repo-root .gitignore
+
+# Study package build artefacts
+AI/study/_shared/__pycache__/
+**/*.pyc
+**/__pycache__/
+
+# PM
+PM/
+
+# Local secrets (e.g. ElevenLabs API key)
+.env

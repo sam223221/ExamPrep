@@ -1,0 +1,19 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+dist-electron
+release
+out
+
+# Vite / tooling caches
+.vite
+coverage
+
+# Local overrides
+*.local
+
+# Editor / OS
+.DS_Store
+Thumbs.db

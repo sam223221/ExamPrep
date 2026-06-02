@@ -1,0 +1,1363 @@
+===== PAGE 1 =====
+Software Architecture
+(T630019402)
+Lecture #5, March 10, 2026
+Jukka Ruohonen
+1 / 80
+
+===== PAGE 2 =====
+Case #4.A Presentations
+▶Investigate the syzkaller/syzbot (as also done by Ruohonen &
+Rindell 2019) used to continuously fuzz the Linux kernel:
+https://syzkaller.appspot.com
+▶Can you say anything about the invalid cases?
+▶What can you say by investigating the graphing
+functionality provided on the dashboard, including with
+respect to fuzzing, open bugs, and coverage?
+• Presenting graphs would be nice but not mandatory
+▶Are all subsystems tested equally well?
+▶Has the kernel’s “health” been stable in overall?
+▶Any other insights you might want to share?
+2 / 80
+
+===== PAGE 3 =====
+Case #4.B Presentations
+▶CrowdStrike had a major incident in July 2024 and then
+Cloudflare in December 2025
+▶Read Internet sources about these incidents with respect to:
+• What were the causes?
+• What were the effects?
+• What do the incidents say about testability?
+• How about deployability?
+• What can be learned from the incidents?
+3 / 80
+
+===== PAGE 4 =====
+Today’s Lecture
+▶Today’s lecture is about availability as a distinct QA
+▶As already the case #4.B indicates, failing to ensure
+availability may have severe consequences, but there are many
+distinct ways to frame availability and its violations
+• Therefore, some of the topics will be revisited in later
+lectures addressing performance and scalability in particular
+4 / 80
+
+===== PAGE 5 =====
+Question
+How would you characterize availability?
+5 / 80
+
+===== PAGE 6 =====
+Framing Availability (1/6)
+Domain of
+Availability
+Security
+Reliability
+Maintainability
+...
+Characterized by
+The CIA triad
+Resilience,
+fault-tolerance
+Downtime due
+to periodic
+maintenance
+...
+Figure 1: What Other Domains Might Characterize Availability?
+6 / 80
+
+===== PAGE 7 =====
+Framing Availability (2/6)
+▶Availability generally means that a system is available to
+serve, use, deliver, or otherwise function whenever needed
+• A security perspective to availability adds that the system
+should be available for authorized parties only; in addition,
+there are again trade-offs between security and reliability
+▶From a reliability perspective, availability is related to the
+concept of a system failure, which is a deviation of the
+system from its specification (Bass et al. 2021)
+• Another closely related reliability concept is fault, which can
+be defined as the internal or external cause of a given failure
+7 / 80
+
+===== PAGE 8 =====
+Framing Availability (3/6)
+▶With the previous reliability concepts, availability can be seen
+as the ability of a system to prevent, mask, and repair
+faults, such that they do not become actual failures
+▶However, given the previous definition of a failure as a
+deviation from expected behavior, preventing, masking, and
+repairing faults require understanding about outage periods
+that exceed a required availability guarantees
+• Therefore, again, recall the measurability of QAs
+8 / 80
+
+===== PAGE 9 =====
+Framing Availability (4/6)
+Table 1: Example Requirements for Availability (Bass et al. 2021)
+Availability
+Downtime / 90 days
+Downtime / year
+90.0%
+21 hours, 36 minutes
+3 days, 15.6 hours
+90.9%
+2 hours, 10 minutes
+8 hours, 46 seconds
+99.99%
+12 minutes, 58 seconds
+52 minutes, 34 seconds
+99.999%
+1 minute, 18 seconds
+5 minutes, 15 seconds
+99.9999%
+8 seconds
+32 seconds
+▶Which would you consider as a sensible requirement for a
+general-purpose high-availability system?
+9 / 80
+
+===== PAGE 10 =====
+Framing Availability (5/6)
+▶More specifically, faults can be prevented (cf. good
+development practices and tools), removed (cf. fixing bugs),
+tolerated (cf. accept these as residual risks), and forecast
+• With these broad techniques, a system can achieve
+fault-tolerance, which is broadly what resilience is about
+▶Relevant questions include (but are not limited to): how to
+detect faults and how to prevent these; how frequent faults
+may be; what happens in case a fault triggers; how long can a
+system be unavailable; how to notify both faults and failures;
+and how to recover from these?
+10 / 80
+
+===== PAGE 11 =====
+Framing Availability (6/6)
+Deployment
+(system)
+Fault
+Trigger
+Repair
+(recovery)
+(a)
+Failure
+(b)
+A metric: 
+time-to-repair
+External or internal
+Figure 2: When Building Fault-Tolerant Systems, We Should Seek to
+Maximize the Probability for the Route (a), But If We End Up With the
+Route (b), We Should Seek to Minimize the Time-to-Repair Metric
+11 / 80
+
+===== PAGE 12 =====
+Faults, So Many Faults
+▶Hardware: disks, memory errors, CPU failures, power cuts,
+network equipment malfunction, natural disasters, and so on
+▶Software: bugs, memory leaks, deadlocks, infinite loops, ...
+▶Connectors: extensive latency, dropped packets, corrupted
+packets, fragmented packets, unreachable paths, etc.
+▶Operational failures: configuration errors, risk analysis
+failures, planning failures, and other human errors, etc.
+▶Systemic failures: escalations and cascades; even full-blown
+crises rather than mere failures
+12 / 80
+
+===== PAGE 13 =====
+Availability Scenarios
+Environment
+System
+(deployment)
+Source
+Response
+measure
+Event
+Response
+     Potential values to consider:
+External or internal
+People
+Software
+Hardware
+Physical environment
+      Potential values to consider:
+Fault 
+Crash
+Omission
+Incorrect timing
+Incorrect response
+     Potential values to consider:
+Log the fault, crash, etc.
+Notify people or other systems
+Recover from the event
+Disable the source causing the event
+Postpone operations until repair is ready
+Operate in degraded mode until repair is ready
+Fix or mask the fault, crash, etc.
+Potential values to consider:
+Time requirements for availability
+Time-to-detect a fault, crash, etc.
+Time-to-repair the fault, crash, etc.
+Time in a postponed mode
+Time in a degraded mode
+Proportion of faults prevented from
+becoming failures
+     Potential values to consider:
+Normal operation
+Startup or shutdown
+Repair state
+Degraded operation
+Overloaded operation
+   Potential values to consider:
+Entire system
+Set of machines
+Set of components
+Set of connectors
+Set of modules
+Set of classes
+Figure 3: Adopted and modified from Bass et al. (2021)
+13 / 80
+
+===== PAGE 14 =====
+Metrics (1/2)
+▶Although the time-to-repair was noted earlier, numerous other
+metrics are also possible, as seen from the previous figure
+▶Note that time-to-detect may be short in the availability
+context because the events have almost always visible
+consequences for users and others
+• However, when moving beyond availability alone,
+time-to-detect may be long; for instance, surveys indicate that
+even circa 100 days is required on average for organizations to
+detect data breaches (Ruohonen et al. 2024)
+▶From a fault-tolerance perspective, the perhaps most
+important metric is related to the proportion of faults
+detected but prevented from becoming actual failures
+14 / 80
+
+===== PAGE 15 =====
+Metrics (2/2)
+▶Although their applicability to software remains debated,
+classical reliability (forecasting) models assume that the
+growth rates of faults discovered decrease over time
+−4
+−2
+0
+2
+4
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+t
+y
+Linear
+Logistic
+Gompertz
+Figure 4: Adopted and modified from Ruohonen et al. (2025, Fig. 3)
+15 / 80
+
+===== PAGE 16 =====
+Availability Tactics
+Availability
+tactics
+Detect
+Recover
+Prevent
+   1. Monitor
+   2. Watchdogs
+   3. Ping and echo
+   4. Heartbeat
+   5. Timestamp
+   6. Sanity checking
+   7. Voting
+   8. Exception
+       detection 
+   9. Self-tests
+   1. Redundancy
+   2. Rollback
+   3. Exception
+       handling
+   4. Upgrade
+   5. Retry
+   6. Ignore
+   7. Degrade
+   8. Reconfigure
+   1. Isolate
+   2. Removal from
+       the system
+   3. Transactions
+   4. Predictive models
+   5. Exception
+       prevention
+   6. Increase  
+       competence
+Repair
+Reintroduce
+   1. Shadow
+   2. State re-
+       synchronization
+   3. Escalating
+       restart
+   4. Non-stop
+       forwarding
+Figure 5: Tactics for Availability (adopted from Bass et al. 2021)
+16 / 80
+
+===== PAGE 17 =====
+Availability Tactics: Detect 7→Monitor
+▶Monitoring is the overall tactic for detecting availability
+transgressions; a system’s “health” is continuously monitored,
+whether in terms of input/output operations, memory
+consumption, CPU capacity used, or network load
+▶If a fault or other malfunction is detected, a monitoring
+component can initiate different repair functions
+▶There is a trade-off with performance
+17 / 80
+
+===== PAGE 18 =====
+Availability Tactics: Detect 7→Watchdogs and Heartbeats
+Component A
+Watchdog
+timer
+Count
+(time)
+Component B
+Reset
+(Threshold
+ reached)
+Component A
+known to be alive
+Figure 6: Watchdog Timers in a Nutshell (and, by extension, heartbeats)
+18 / 80
+
+===== PAGE 19 =====
+Availability Tactics: Detect 7→Ping and Echo (1/2)
+Figure 7: The Classical Unix Tool
+19 / 80
+
+===== PAGE 20 =====
+Availability Tactics: Detect 7→Ping and Echo (2/2)
+Component A
+Component A known to be
+alive based on requests
+Component B
+Network
+Request
+Response
+In addition to reachability,
+round-trip-time (RTT) between
+components A and B can
+be deduced and measured
+Component A known to be
+dead if no requests
+("pings") are received after
+a predefined time period
+Figure 8: The Classical Unix Tool Extended
+20 / 80
+
+===== PAGE 21 =====
+Availability Tactics: Detect 7→Timestamps
+Event1
+Eventi
+Eventi+1
+Eventn
+Sequence
+number1
+Sequence
+numberi
+Sequence
+   numberi+1
+Sequence
+numbern
+Assign
+immediately
+after an event
+has occurred
+Because the sequence numbers (or timestamps) are monotonically increasing,
+inconsistencies are easy to detect; e.g., Sequence numberi > Sequence numberi+1.
+Figure 9: Why Sequence Numbers Might Be Preferred Over Timestamps?
+21 / 80
+
+===== PAGE 22 =====
+Availability Tactics: Detect 7→Sanity Checking (1/2)
+▶In general, sanity checking recapitulates what was said the
+fourth lecture about assertions; specific operations, states,
+inputs, and outputs are verified at runtime for their “sanity”
+▶For instance, a machine or a firewall (in reality, a kernel)
+receiving a classical (ICMP) echo request packet verifies its
+type (8 bits), checksum (16 bits), identifier (16 bits),
+sequence number (16 bits), and possibly custom payload
+(variable length) too
+• If there are mismatches or corruptions, the package is
+dropped and possibly logged
+22 / 80
+
+===== PAGE 23 =====
+Availability Tactics: Detect 7→Sanity Checking (2/2)
+▶A further example of sanity checking is cyclic redundancy
+check (CRC), which is a classical error-correction technique
+used in hardware and networking for detecting alterations
+• The term redundancy signifies that a check value is
+appended without adding new information
+▶If a given check value does not pass a verification check,
+corrective action (such as a retry) can be used
+▶While being about integrity, CRC checks are not like hashes
+• Nor should they be used for security purposes
+23 / 80
+
+===== PAGE 24 =====
+Availability Tactics: Detect 7→Voting (1/9)
+▶Voting (for a lack of a better term) involves comparing
+computational outputs from multiple components that should
+produce the exact same output, and if they are not producing
+the same output, deciding which output to use
+▶Examples of voting tactics include:
+1. Replication is the simplest technique: components are exact
+copies (replicas) of each other, and, hence, if one component
+fails, an output from any other component can be used
+• In addition to a performance trade-off (due to overhead),
+replication cannot protect against design or implementation
+errors due to a lack of diversity between the components
+24 / 80
+
+===== PAGE 25 =====
+Availability Tactics: Detect 7→Voting (2/9)
+2. Functional redundancy adds diversification; although
+functionally diversified components should still produce the
+exact same output for the same input, they may perform also
+other function beyond those used for voting
+3. Analytical redundancy allows diversity in both inputs and
+outputs; for instance, there are multiple ways to compute an
+altitude (sensors, radar altimeter, analytical geometry, etc.)
+• Sometimes it is a good idea to cast votes among diverse
+candidates also in engineering!
+25 / 80
+
+===== PAGE 26 =====
+Availability Tactics: Detect 7→Voting (3/9)
+Figure 10: https://spectrum.ieee.org/
+how-the-boeing-737-max-disaster-looks-to-a-software-developer
+26 / 80
+
+===== PAGE 27 =====
+Availability Tactics: Detect 7→Voting (4/9)
+▶Obviously, complexity increases with functional and
+particularly analytical redundancy and, therefore, ensuring
+consistency between instances can be hard
+▶When considering performance in addition to availability, an
+entirely different question is how to distribute work (load)
+among the components in a system
+• Again, complexity increases substantially also regarding
+performance when using diversified redundancy techniques
+27 / 80
+
+===== PAGE 28 =====
+Availability Tactics: Detect 7→Voting (5/9)
+Component
+(replica)
+Component
+(replica)
+Load
+balancer
+50% 
+of load
+50% 
+of load
+Component
+(replica)
+Component
+(replica)
+Load
+balancer
+100% 
+of load
+0% 
+of load
+Alive
+Alive
+Alive
+Dead
+Scenario A.
+("active-active")
+Scenario B.
+("active-passive" or "standby")
+Figure 11: A Simple Example of Load Balancing
+28 / 80
+
+===== PAGE 29 =====
+Availability Tactics: Detect 7→Voting (6/9)
+Figure 12: https://blog.apnic.net/2026/02/06/
+from-roots-to-reach-network-resilience-in-natural-disasters/
+29 / 80
+
+===== PAGE 30 =====
+Availability Tactics: Detect 7→Voting (7/9)
+Component
+(diversified)
+Component
+(diversified)
+Load
+balancer
+100% 
+of load
+0% 
+of load
+Alive
+Alive
+Scenario C.
+Component
+(diversified)
+0% 
+of load
+Alive
+Figure 13: Where and Why Might This Scenario Occur?
+30 / 80
+
+===== PAGE 31 =====
+Availability Tactics: Detect 7→Voting (8/9)
+▶A further concept is data redundancy; typically, data or parts
+of it are replicated across components and checksumming is
+used to detect corruptions
+• The application range from memory, disk drives, and file
+systems to databases and their tables
+▶At the level of hardware, dual modular redundancy or triple
+modular redundancy are often used
+• These are essential about low-level replication; for instance,
+there may be two or three identical logical gates computing
+the exact same Boolean operator
+31 / 80
+
+===== PAGE 32 =====
+Availability Tactics: Detect 7→Voting (9/9)
+Table 2: Majority Gate
+Row
+Input1
+Input2
+Input3
+Output
+1
+0
+0
+0
+?
+2
+0
+1
+0
+?
+3
+0
+0
+1
+?
+4
+0
+1
+1
+?
+5
+1
+0
+0
+?
+6
+1
+0
+1
+?
+7
+1
+1
+0
+?
+8
+1
+1
+1
+?
+▶Which rows pass the gate (i.e., output 1)?
+32 / 80
+
+===== PAGE 33 =====
+Availability Tactics: Detect 7→Exception Detection
+▶By exception detection, we go beyond programming languages
+▶At least the following can be theoretically distinguished:
+1. System exceptions are dependent on hardware and CPUs;
+the examples include division by zero and segmentation faults
+2. Parameter fences involve placing known patterns (e.g.,
+0xDEADBEEF) immediately after a variable-length parameter to
+allow runtime detection of overwrites
+3. Parameter typing refers to concrete classes implementing
+type-length-values specified in an abstract class; it can be used
+to enforce type safety even in languages without strong typing
+4. Timeout refers to a pattern already elaborated; an exception
+(or interrupt, etc.) is raised in case a component detects that
+another component has failed to meet its timing requirements
+33 / 80
+
+===== PAGE 34 =====
+Availability Tactics: Detect 7→Self-Tests (1/2)
+▶A self-test is a tactic that a machine (or a set of machines)
+either triggers periodically on its own or that is being
+triggered by another machine acting as a system monitor
+▶Something like periodic virus scans would be a good example
+▶However, self-tests can also related to maintenance; for
+instance, many Linux/Unix either run by default or can be
+configured to run regular checks about configuration
+consistency and related integrity checks, which are also used
+due to software updates discussed in the fourth lecture
+34 / 80
+
+===== PAGE 35 =====
+Availability Tactics: Detect 7→Self-Tests (2/2)
+Figure 14: https://man.netbsd.org/security.conf.5
+35 / 80
+
+===== PAGE 36 =====
+Availability Tactics: Repair 7→Redundancy (1/3)
+▶Redundancy, whether through replicated or diversified
+components, is the classical repairing tactic
+• To recall: if one fails, others can step in
+▶However, achieving redundancy even with replicas can be
+challenging due to difficulties to ensure data consistency
+▶Four consistency types can be enumerated:
+1. If high availability is required, eventual consistency can be
+guaranteed: whenever there are no updates, all replicated are
+merely assumed to eventually converge to the same data state
+36 / 80
+
+===== PAGE 37 =====
+Availability Tactics: Repair 7→Redundancy (2/3)
+2. Quorum consistency resembles the earlier take on majority
+voting: an update succeeds only in case a quorum (such a
+majority or 1/3:th of components) acknowledges the update
+• Something akin the Observer pattern could be used
+• Although polling is often discouraged – and often for a
+good reason, it too might be suitable in some contexts
+3. Synchronized consistency allows simultaneous writes at
+multiple data components but requires conflict resolution to
+handle concurrent updates
+4. Read-after-write consistency means that all subsequent
+reads after a write reflects that particular write, regardless
+whichever replica handles the read operation
+37 / 80
+
+===== PAGE 38 =====
+Availability Tactics: Repair 7→Redundancy (3/3)
+Consistency 
+Low
+High
+Availability
+High
+Low
+Eventual
+consistency
+Quorum
+consistency
+Synchronized
+and read-write
+consistency
+Figure 15: A Summary of the Consistency Types
+38 / 80
+
+===== PAGE 39 =====
+Availability Tactics: Repair 7→Rollbacks and Updates
+▶Rollbacks were introduced already in the previous lecture, but
+to recall: upon a failure is detected, a system can be rolled
+back to a known good state
+• But what is a known good state? If cyber security is
+considered, the answer is unfortunately often speculative
+▶• As always, there are also trade-offs; among them questions
+such as how far back should states be stored and how much
+is lost if rolling back to a faraway state?
+• These are classical questions stemming from backups
+▶Upgrades too were discussed during the fourth lecture
+39 / 80
+
+===== PAGE 40 =====
+Availability Tactics: Repair 7→Exception Handling (1/2)
+▶When caught, exceptions should be obviously handled
+▶Although it may sound easy, it is often not easy at all
+▶When considering either large distributed systems or
+specialized machines, careful thinking and designing about
+some fail-safe solutions are typically needed
+• For instance, what should a drone do if it loses a
+connection to its controller?
+40 / 80
+
+===== PAGE 41 =====
+Availability Tactics: Repair 7→Exception Handling (2/2)
+Figure 16: https://man.freebsd.org/cgi/man.cgi?query=KASSERT
+41 / 80
+
+===== PAGE 42 =====
+Availability Tactics: Repair 7→Retry (1/3)
+▶When there is a reason to believe that a fault might be only
+transient, the retry tactic is a sensible choice
+while i < max_retries; do
+rv = compute()
+if rv == SUCCESS
+return OK
+sleep(delay)
+i++
+return FAULT
+42 / 80
+
+===== PAGE 43 =====
+Availability Tactics: Repair 7→Retry (2/3)
+▶The previous simple retry example could be improved with
+exponential back-off, meaning that the sleeping delay
+between calls would increase as failures increase
+▶Another improvement might be a circuit breaker pattern:
+instead of returning FAULT after max retries is reached, the
+routine would wait longer and then try the loop again,
+perhaps only returning FAULT after a few such iterations
+• To avoid wasting resources, the rationale is to fail fast
+▶Sometimes it also a good idea to add timeouts to all
+availability-specific calls (memory, networking, etc.)
+▶Caching is a good idea too; it is covered in the next lecture
+43 / 80
+
+===== PAGE 44 =====
+Availability Tactics: Repair 7→Retry (3/3)
+Closed
+Open
+Success
+Failure
+Fail fast
+Half-open
+Failure
+Attempt
+reset
+Success
+Closed: requests are passed to a service and faults increase
+counters. If a counter exceed a threshold, the circuit breaker is
+tripped and transitions into the open state.
+Open: requests are not passed to a service. Instead, all faults
+are passed to clients immediately. If responsiveness is again
+gained or ping-echos indicate so, the circuit breaker transitions
+into the half-open state.
+Half-open: only a limited number of requests are passed to a
+service. If a service responds with successes, the circuit
+breaker transitions again into the closed state. But if requests
+still fail, the circuit breaker transitions back to the open state.
+Figure 17: A State Diagram for the Circuit Breaker Pattern (adopted
+from Montesi & Weber 2016, Fig. 1 and p. 2)
+44 / 80
+
+===== PAGE 45 =====
+Availability Tactics: Repair 7→Ignore
+▶While it is possible (but perhaps not sensible) to sometimes
+use the ignore tactic for basically just accepting a probability
+of a failure, there are many cases where ignoring via sanity
+checking is reasonable; cf.
+x = read_sensor(sensor_103)
+if x > 0
+return OK
+return FAULT
+45 / 80
+
+===== PAGE 46 =====
+Availability Tactics: Repair 7→Degrade and Reconfigure
+▶The graceful degradation tactic seeks to maintain the
+availability of most critical functions while degrading,
+suspending, or outright dropping less critical functions
+• For instance, in the face of a denial of service attack against
+a public transportation system, a payment system might be
+maintained at the expense of maps and related auxiliary things
+▶However, it is possible to also use the graceful degradation
+without ties to critical functions; e.g., serve the majority by
+denying requests for the minority; only serve some particular
+geographic locations; compute work in progress first without
+accepting new requests; etc.
+46 / 80
+
+===== PAGE 47 =====
+Availability Tactics: Repair 7→Reconfigure
+▶The reconfiguration tactic is about recovering from failures
+through reassigning responsibilities, loading alternative
+configurations, or something analogous
+• For instance, a server under denial of service might reload a
+configuration that drops HTTP but still allows SSH
+▶A good example would be a reconfiguration that slows things
+down once some critical threshold is reached
+• For instance, CPUs throttle them in case of overheating
+47 / 80
+
+===== PAGE 48 =====
+Availability Tactics: Reintroduce 7→Shadow
+▶Reintroduction occurs when a failed component is
+reintroduced after it has been repaired
+Component
+Dead
+Component
+Repaired but
+shadowed
+Component
+Alive and in
+full operation
+Predefined
+time period
+with monitoring
+Failure
+detected
+Figure 18: The Shadow Tactic in a Nutshell
+48 / 80
+
+===== PAGE 49 =====
+Availability Tactics: Reintroduce 7→State Re-sync.
+Component
+(replica)
+Component
+(replica)
+Load
+balancer
+100% 
+of load
+0% 
+of load
+Alive
+Dead
+Standby in operation
+Periodic synchronization 
+(with, e.g., CRC checks or hash functions)
+Component
+(replica)
+Component
+(replica)
+Load
+balancer
+70% 
+of load
+30% 
+of load
+Alive
+Alive
+Standby phasing out
+Migration
+Figure 19: An Illustration of State Re-synchronization
+49 / 80
+
+===== PAGE 50 =====
+Availability Tactics: Reintroduce 7→Escalating Restart
+Level 0
+Level 1
+Level 2
+Level 3
+Time
+Functionality
+5% of
+functions
+restarted
+25% of
+functions
+restarted
+60% of
+functions
+restarted
+100% of
+functions
+restarted
+Figure 20: An Illustration of Escalating Restart
+50 / 80
+
+===== PAGE 51 =====
+Availability Tactics: Reintroduce 7→Nonstop Forwarding
+Machine1
+Machine3
+Machine4
+Nonstop
+forwarding through
+route B that is alive
+Machine2
+No forwarding
+through route A
+because it is broken
+Machine5
+Machine6
+Machine7
+Machine8
+Figure 21: An Illustration of Nonstop Forwarding
+51 / 80
+
+===== PAGE 52 =====
+Availability Tactics: Prevent 7→Isolate (1/4)
+▶Isolation is a general tactic for both security and availability
+▶Recall the notion of blast radius from the fourth lecture
+• If machines and their components, or some of them, are
+isolated from each other, a blast radius may not cover the
+entire system; important machines or components may still
+work even in case most are down
+• A concept of sharding is often used in this context
+▶The blast radius concept correlates with a more general
+concept of cascading failures; a single failure somewhere in a
+large system may – in the worst case scenario – cascade into
+the whole system, possibly taking it down
+52 / 80
+
+===== PAGE 53 =====
+Availability Tactics: Prevent 7→Isolate (2/4)
+Process
+Component
+Component
+Weak isolation
+Process
+Component
+Component
+Weaker isolation
+Process
+Component
+Machine
+Component
+Stronger isolation
+Machine
+Component
+Figure 22: Recall the Points from the First Lecture
+(“Isolation Is Related to Coupling but Not Equal to It”)
+53 / 80
+
+===== PAGE 54 =====
+Availability Tactics: Prevent 7→Isolate (3/4)
+▶When designing isolation, Adkins et al. (2020) recommend
+functional separation of different failure domains
+• The goal is to minimize a probability that a failure does not
+affect all components of a system at once
+▶They further emphasize data isolation; each failure domain
+needs its own data to be functionally independent
+• The goal is to minimize the propagation of corrupted or
+otherwise bad data from one failure domain to another
+• Note that “data” should be understood broadly here; it is a
+good idea to write also known good configurations to disk
+54 / 80
+
+===== PAGE 55 =====
+Availability Tactics: Prevent 7→Isolate (4/4)
+Failure 
+domain A
+Failure 
+domain B
+Fault or
+stressor
+Blast radius
+Contributed
+only 15%
+Contributed as
+much as 85%
+Figure 23: The Ideas of A/B Testing Apply Also to Reliability Engineering
+55 / 80
+
+===== PAGE 56 =====
+Availability Tactics: Prevent 7→Removal and Transactions
+▶The removal tactic essential recapitulates the general wisdom
+of redundancy; seek to ensure that a failed component can be
+safely removed altogether (and replaced if necessary)
+▶The tactics related to transactions build upon the classical
+but difficult ACID principle; seek to ensure atomicity,
+consistency, isolation, and durability
+Figure 24: https://man.freebsd.org/cgi/man.cgi?query=atomic
+56 / 80
+
+===== PAGE 57 =====
+Availability Tactics: Prevent 7→Predictive Models
+Monitoring
+component
+Monitored
+component
+Current
+time t
+Degraded health
+at time t+k
+Predictions with values such
+as session counts, throughput,
+latency, states (serving, idle,
+under maintenance, etc.)
+Probability
+of failure
+Figure 25: An Na¨ıve Illustration of Predictive Maintenance
+57 / 80
+
+===== PAGE 58 =====
+Availability Tactics: Prevent 7→Exception Prevention
+▶Of course, regarding exceptions, the best solution is to try to
+prevent them from firing to begin with
+▶However, it is difficult to provide universal guidelines on how
+to do that; the examples range from error-correction codes
+(CRC checks are a simple example here) used in networking
+and hardware to smart pointers in C++
+▶In general, a sensible guideline regarding programming is to
+avoid complex try-catch exception chains and generally
+minimize exception propagation chains
+58 / 80
+
+===== PAGE 59 =====
+Availability Tactics: Prevent 7→Increase Competence (1/2)
+▶We do generally endorse the KISS principle but sometimes it
+is not a good idea; oftentimes, slightly increasing complexity
+with fault-tolerance functionality is a good idea
+▶For instance, a poorly designed module needing a network
+might throw an exception (or worse) in case a given network
+happens to be down
+• By slightly increasing competence of the module, it could be
+redesigned to put itself into an idle state and wait for the
+network to come back
+▶But recall also the earlier point that sometimes it is better to
+also crash and burn loudly; hence, there are again trade-offs
+59 / 80
+
+===== PAGE 60 =====
+Availability Tactics: Prevent 7→Increase Competence (2/2)
+Figure 26: https://man.netbsd.org/kmem.9
+60 / 80
+
+===== PAGE 61 =====
+Availability Challenges
+▶While most what was said is easy on paper but difficult in
+practice, maintaining state is perhaps the most frequently
+encountered difficulty with availability and fault-tolerance
+• Therefore, if possible, seek to prefer stateless designs,
+including microservices and RESTful applications
+▶When moving beyond the Web and current hyperscalers,
+however, stateful systems are still often necessary
+• Therefore, a few further points about availability patterns
+61 / 80
+
+===== PAGE 62 =====
+Availability Patterns: Active Redundancy (1/2)
+Active
+component1
+Active
+componenti
+Active
+componentn
+Input
+handler
+All active components
+receive all inputs
+identically and in parallel
+Spare
+component1
+Spare
+componenti
+Spare
+componentn
+State is maintained
+synchronously with
+spare components
+Figure 27: An Illustration of Active (“Hot Spare”) Redundancy
+62 / 80
+
+===== PAGE 63 =====
+Availability Patterns: Active Redundancy (2/2)
+Active
+component1
+Active
+componenti
+Active
+componentn
+Input
+handler
+All active components
+receive all inputs
+identically and in parallel
+Spare
+component1
+Spare
+componenti
+Spare
+componentn
+State is maintained
+synchronously with
+spare components
+Figure 28: Since State Is Maintained, There Are Many Design Possibilities
+63 / 80
+
+===== PAGE 64 =====
+Availability Patterns: Data Redundancy (1/2)
+Client1
+Clienti
+Clientn
+Read-write
+component1
+Read-write
+component2
+Read 
+and write
+Read 
+and write
+Read 
+and write
+Replication
+Figure 29: Active Data Redundancy #1
+64 / 80
+
+===== PAGE 65 =====
+Availability Patterns: Data Redundancy (2/2)
+Client1
+Clienti
+Clientn
+Read-write
+component
+Read
+component2
+Read 
+and write
+Read
+Read
+Read
+component1
+Replication
+Figure 30: Active Data Redundancy #2: How It Helps Availability?
+65 / 80
+
+===== PAGE 66 =====
+Availability Patterns: Passive Redundancy
+Active
+component1
+Active
+componenti
+Active
+componentn
+Input
+handler
+All active components
+receive all inputs
+identically and in parallel
+Spare
+component1
+Spare
+componenti
+Spare
+componentn
+Periodic updates are
+used to maintain state
+with spare components
+Figure 31: An Illustration of Passive (“Warm Spare”) Redundancy
+66 / 80
+
+===== PAGE 67 =====
+Availability Patterns: Spare Redundancy
+Active
+component
+Spare
+component
+Created upon deployment 
+of the active component
+A. Initialization
+Active
+component
+B. Operation
+Spare
+component
+Inactive
+Failure
+State
+ change
+Active
+State 
+change
+Initial
+state
+Active
+component
+(A monitoring component required but not shown for brevity)
+Triggers
+Figure 32: An Illustration of Spare (or “Cold Spare”) Redundancy
+67 / 80
+
+===== PAGE 68 =====
+Availability Patterns: FIFO and LIFO Queueing
+▶Sometimes, a LIFO (“last in, first out”) queuing is better
+than FIFO (“first in, first out”) queuing
+• A FIFO processes requests as they arrive, whereas LIFO
+prioritizes more recent requests
+• For instance, using a FIFO can be useful to avoid scenarios
+where a large amount of clients are about to retry their
+requests; the retries themselves eat up resources even more
+68 / 80
+
+===== PAGE 69 =====
+Availability Patterns: Equitable Resource Allocation
+Many frequent
+small requests
+A few rare 
+large requests
+Request
+handler
+Pool for 
+small requests
+Pool for
+large requests
+...
+...
+Figure 33: An Illustration of Equitable Resource Allocation
+(sometimes also known as the “bulkheads pattern”)
+69 / 80
+
+===== PAGE 70 =====
+Availability Patterns: Dependencies
+▶Adkins et al. (2020) recommend consider dependencies when
+designing for availability (here, recall the points from the third
+lecture about different dependency concepts)
+▶For instance, redundancy could be engineered via isolating
+critical but low-dependency components; these are those
+particular components that have only minimal dependencies
+to failure domains of a system
+▶In addition, they give two practical advices:
+1. “Use data cached on local storage to avoid depending on a
+remote database”(cf. versus Supabase, anyone...?)
+2. With some components, deploy first with “older code and
+configs to avoid recent bugs in newer versions.”
+70 / 80
+
+===== PAGE 71 =====
+Availability Patterns: Taints and Quarantines
+▶A further pattern, which is related also to security, is about
+tainting: whenever a corruption is detected, the corrupted
+data should not be used and no actions should be derived
+from the corrupted data
+▶For these reasons too, the data isolation is important
+▶Yet, it is a good idea to quarantine the corrupted data
+• This is what for instance file systems and hard drives do
+71 / 80
+
+===== PAGE 72 =====
+Availability Patterns: Saga (1/3)
+▶The saga pattern divides transaction processing into local
+transactions: each local transaction completes its action
+atomically within a single component (or service)
+• It is similar to the batch-sequential pattern from the third
+lecture but with an addition of error correction
+▶Each local transaction updates its own database and notifies
+the subsequent local transaction about its completion
+▶The pattern is good for maintaining consistency of data, but
+complexity increases because if a local transaction fails,
+corrective transactions must be propagated
+72 / 80
+
+===== PAGE 73 =====
+Availability Patterns: Saga (2/3)
+Local transaction1
+Component
+Update
+Local transactioni
+Component
+Update
+Local transactionn
+Component
+Update
+Notify
+Notify
+Error
+Corrective transactions due to error at the local local transaction
+Figure 34: An Illustration of the Saga Pattern
+73 / 80
+
+===== PAGE 74 =====
+Availability Patterns: Saga (3/3)
+Saga log
+Begin saga
+Start booking hotel
+End booking hotel
+Start booking flight
+Abort saga
+Start canceling flight
+End canceling flight
+Start canceling hotel
+End canceling hotel
+End saga
+Hotel
+service
+Flight
+service
+Figure 35: An Illustration of Saga Failures (from D¨urr et al. 2021, Fig. 1)
+74 / 80
+
+===== PAGE 75 =====
+Availability Patterns: A Summary
+Stability of a network
+cannot be guaranteed
+Circuit breaker,
+bulkheads, fail fast,
+non-stop forwarding
+A network is fickle; 
+there are occasional
+communication failures
+Retry, cache, ignore
+Bandwidth cannot
+ satisfy the demand
+Circuit breaker,
+bulkheads, graceful
+degradation, throttling,
+timeouts
+There is a risk of
+inconsistent transactions
+Saga pattern,
+error-correction codes
+There is a risk of
+cascading failures
+Isolation, rollback
+Availability is generally
+of high priority
+Most of the patterns
+require redundancy in
+some form or another
+Figure 36: Even Though It Is Difficult to Provide Universal Guidelines,
+Some of the Patterns Correlate With Different Scenarios
+75 / 80
+
+===== PAGE 76 =====
+The Maintainability and Cost Trade-Offs
+“Today, systems often degrade without clear signals. Traces look fine,
+dashboards stay green, and yet performance quietly erodes. This shift is
+not just about scale. It reflects how modern systems accumulate
+complexity long before they actually need it.”
+“Teams respond by designing for edge cases they may never encounter.
+They build resilience against hypothetical traffic patterns while ignoring
+the operational cost of running the system today.”
+“Services exist primarily to justify their own abstractions. Configuration
+replaces code, and behavior is distributed across files, dashboards, and
+runtime flags. Understanding the system requires navigating
+documentation that is already out of date The architecture technically
+works, but only because people avoid touching it.”
+(quoted from Williams 2026)
+76 / 80
+
+===== PAGE 77 =====
+Questions?
+77 / 80
+
+===== PAGE 78 =====
+Case #5
+▶Although no longer maintained, Hystrix was at one point a
+fault-tolerance framework used by Netflix
+▶Study the framework and its documentation
+(https://github.com/Netflix/Hystrix)
+• What were their scenarios?
+• What tactics they used?
+• How about patterns?
+78 / 80
+
+===== PAGE 79 =====
+Thank you
+Questions?
+79 / 80
+
+===== PAGE 80 =====
+Additional References
+1. Ruohonen, J & Hjerppe, K. & von Zastrow, M. (2024): An Exploratory Case
+Study on Data Breach Journalism, ARES 2024, pp. 1–9, ACM,
+https://dl.acm.org/doi/pdf/10.1145/3664476.3670456
+2. Ruohonen, J & Hyrynsalmi, S. & Lepp¨anen, V. (2015): The Sigmoidal Growth
+of Operating System Security Vulnerabilities: An Empirical Revisit. Computers
+& Security 55, pp. 1–20., https://doi.org/10.1016/j.cose.2015.07.001
+3. Montesi, F. & Weber, J. (2016): Circuit Breakers, Discovery, and API Gateways
+in Microservices. https://arxiv.org/pdf/1609.05830
+4. D¨urr, K. & Lichtenth¨aler, R. & Wirtz, G. (2021): An Evaluation of Saga
+Pattern Implementation Technologies. ZEUS Workshop, pp. 1–9,
+https://ceur-ws.org/Vol-2839/paper12.pdf
+5. Williams, A. (2026): How Over-Engineering Became the New Technical Debt in
+Distributed Systems. Communications of the ACM,
+https://cacm.acm.org/blogcacm/
+how-over-engineering-became-the-new-technical-debt-in-distributed-systems
+80 / 80

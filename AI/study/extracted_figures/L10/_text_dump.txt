@@ -1,0 +1,1843 @@
+=== Page 1 (PDF index 0) ===
+Introduction to Machine 
+Learning
+Serkan Ayvaz
+
+
+=== Page 2 (PDF index 1) ===
+Machine learning
+Definition
+Getting a computer to do well on a task 
+without explicitly programming it
+Improving performance on a task based on 
+experience
+
+
+=== Page 3 (PDF index 2) ===
+
+
+=== Page 4 (PDF index 3) ===
+Unsupervised Learning
+Learning about a dataset without labels
+• Clustering
+• Finding outliers
+• Generating new examples
+• Filling in missing data
+
+
+=== Page 5 (PDF index 4) ===
+Reinforcement 
+learning
+A set of states
+A set of actions
+A set of rewards
+Goal:  take actions to change the state so that you 
+receive rewards
+You don’t receive any data – you have to explore the 
+environment yourself to gather data as you go
+
+
+=== Page 6 (PDF index 5) ===
+Example: 
+chess
+States are valid states of 
+the chess board
+Actions at a given time are 
+valid possible moves
+Positive rewards for taking 
+pieces, negative rewards 
+for losing them
+
+
+=== Page 7 (PDF index 6) ===
+Why is RL 
+difficult?
+Stochastic
+•
+Make the same move twice, the opponent might not do the 
+same thing
+•
+Rewards also stochastic (opponent does or doesn’t take 
+your piece)
+Temporal credit assignment problem
+•
+Did we get the reward because of this move?  Or because 
+we made good tactical decisions somewhere in the past?
+Exploration-exploitation trade-off
+•
+If we found a good opening, should we use this?
+•
+Or should we try other things, hoping for something better?
+
+
+=== Page 8 (PDF index 7) ===
+Supervised 
+learning
+Labeling: Define a mapping from input to output
+Model learns the mapping from paired 
+input/output data examples
+
+
+=== Page 9 (PDF index 8) ===
+What is a supervised learning model?
+An equation relating input (age) to output (height)
+Search through family of possible equations to find one that fits training data well
+
+
+=== Page 10 (PDF index 9) ===
+Terms
+Regression = continuous numbers as output
+Classification = discrete classes as output
+Two class and multiclass classification treated 
+differently
+Univariate = one output
+Multivariate = more than one output
+
+
+=== Page 11 (PDF index 10) ===
+Regression
+• Univariate regression problem 
+(one output, real value)
+• Fully connected network
+
+
+=== Page 12 (PDF index 11) ===
+Text classification
+• Binary classification problem 
+(two discrete classes)
+• Transformer network
+
+
+=== Page 13 (PDF index 12) ===
+Music genre 
+classification
+• Multiclass classification 
+problem (discrete classes, >2 
+possible values)
+• Recurrent neural network 
+(RNN)
+
+
+=== Page 14 (PDF index 13) ===
+Image 
+classification
+• Multiclass classification 
+problem (discrete classes, >2 
+possible classes)
+• Convolutional network
+
+
+=== Page 15 (PDF index 14) ===
+Image 
+segmentation
+• Multivariate binary 
+classification problem (many 
+outputs, two discrete classes)
+• Convolutional encoder-decoder 
+network
+
+
+=== Page 16 (PDF index 15) ===
+Translation
+
+
+=== Page 17 (PDF index 16) ===
+A Classification task
+
+
+=== Page 18 (PDF index 17) ===
+Classification: 
+Definition
+Given a collection of records (training set )
+•
+Each record contains a set of attributes, one of the attributes 
+is the class.
+Find a model  for class attribute as a function of the values of 
+other attributes.
+Goal: previously unseen records should be assigned a class as 
+accurately as possible.
+•
+A test set is used to determine the accuracy of the model. 
+Usually, the given data set is divided into training and test 
+sets, with training set used to build the model and test set 
+used to validate it.
+
+
+=== Page 19 (PDF index 18) ===
+Illustrating Classification Task
+Apply 
+Model
+Induction
+Deduction
+Learn 
+Model
+Model
+Tid 
+Attrib1 
+Attrib2 
+Attrib3 
+Class 
+1 
+Yes 
+Large 
+125K 
+No 
+2 
+No 
+Medium 
+100K 
+No 
+3 
+No 
+Small 
+70K 
+No 
+4 
+Yes 
+Medium 
+120K 
+No 
+5 
+No 
+Large 
+95K 
+Yes 
+6 
+No 
+Medium 
+60K 
+No 
+7 
+Yes 
+Large 
+220K 
+No 
+8 
+No 
+Small 
+85K 
+Yes 
+9 
+No 
+Medium 
+75K 
+No 
+10 
+No 
+Small 
+90K 
+Yes 
+10 
+ 
+Tid 
+Attrib1 
+Attrib2 
+Attrib3 
+Class 
+11 
+No 
+Small 
+55K 
+? 
+12 
+Yes 
+Medium 
+80K 
+? 
+13 
+Yes 
+Large 
+110K 
+? 
+14 
+No 
+Small 
+95K 
+? 
+15 
+No 
+Large 
+67K 
+? 
+10 
+ 
+Test Set
+Learning
+algorithm
+Training Set
+
+
+=== Page 20 (PDF index 19) ===
+Classification Techniques
+Rule-based Methods
+Distance-similarity based methods(Nearest-Neighbor)
+Decision Tree based Methods
+Probabilistic Methods(Naïve Bayes and Bayesian Belief Networks)
+Support Vector Machines
+Artificial Neural Networks
+Ensemble Methods (Bagging - Boosting)
+Random Forest
+AdaBoost, CatBoost, XGBoost, etc.
+
+
+=== Page 21 (PDF index 20) ===
+Decision Trees
+
+
+=== Page 22 (PDF index 21) ===
+Example of a Decision Tree
+Tid
+Refund
+Marital
+Status
+Taxable
+Income
+Cheat
+1
+Yes
+Single
+125K
+No
+2
+No
+Married
+100K
+No
+3
+No
+Single
+70K
+No
+4
+Yes
+Married
+120K
+No
+5
+No
+Divorced
+95K
+Yes
+6
+No
+Married
+60K
+No
+7
+Yes
+Divorced
+220K
+No
+8
+No
+Single
+85K
+Yes
+9
+No
+Married
+75K
+No
+10
+No
+Single
+90K
+Yes
+10
+Refund
+MarSt
+TaxInc
+YES
+NO
+NO
+NO
+Yes
+No
+Married 
+Single, Divorced
+< 80K
+> 80K
+Splitting Attributes
+Training Data
+Model:  Decision Tree
+
+
+=== Page 23 (PDF index 22) ===
+Another Example of Decision Tree
+Tid
+Refund
+Marital
+Status
+Taxable
+Income
+Cheat
+1
+Yes
+Single
+125K
+No
+2
+No
+Married
+100K
+No
+3
+No
+Single
+70K
+No
+4
+Yes
+Married
+120K
+No
+5
+No
+Divorced
+95K
+Yes
+6
+No
+Married
+60K
+No
+7
+Yes
+Divorced
+220K
+No
+8
+No
+Single
+85K
+Yes
+9
+No
+Married
+75K
+No
+10
+No
+Single
+90K
+Yes
+10
+MarSt
+Refund
+TaxInc
+YES
+NO
+NO
+NO
+Yes
+No
+Married 
+Single, 
+Divorced
+< 80K
+> 80K
+There could be more than one tree that 
+fits the same data!
+
+
+=== Page 24 (PDF index 23) ===
+Decision Tree Classification Task
+Apply 
+Model
+Induction
+Deduction
+Learn 
+Model
+Model
+Tid 
+Attrib1 
+Attrib2 
+Attrib3 
+Class 
+1 
+Yes 
+Large 
+125K 
+No 
+2 
+No 
+Medium 
+100K 
+No 
+3 
+No 
+Small 
+70K 
+No 
+4 
+Yes 
+Medium 
+120K 
+No 
+5 
+No 
+Large 
+95K 
+Yes 
+6 
+No 
+Medium 
+60K 
+No 
+7 
+Yes 
+Large 
+220K 
+No 
+8 
+No 
+Small 
+85K 
+Yes 
+9 
+No 
+Medium 
+75K 
+No 
+10 
+No 
+Small 
+90K 
+Yes 
+10 
+ 
+Tid 
+Attrib1 
+Attrib2 
+Attrib3 
+Class 
+11 
+No 
+Small 
+55K 
+? 
+12 
+Yes 
+Medium 
+80K 
+? 
+13 
+Yes 
+Large 
+110K 
+? 
+14 
+No 
+Small 
+95K 
+? 
+15 
+No 
+Large 
+67K 
+? 
+10 
+ 
+Test Set
+Tree
+Induction
+algorithm
+Training Set
+Decision 
+Tree
+
+
+=== Page 25 (PDF index 24) ===
+Apply Model to Test Data
+Refund
+MarSt
+TaxInc
+YES
+NO
+NO
+NO
+Yes
+No
+Married 
+Single, Divorced
+< 80K
+> 80K
+Refund Marital 
+Status 
+Taxable 
+Income 
+Cheat 
+No 
+Married 
+80K 
+? 
+10 
+ 
+Test Data
+Start from the root of tree.
+
+
+=== Page 26 (PDF index 25) ===
+Apply Model to Test Data
+Refund
+MarSt
+TaxInc
+YES
+NO
+NO
+NO
+Yes
+No
+Married 
+Single, Divorced
+< 80K
+> 80K
+Refund Marital 
+Status 
+Taxable 
+Income 
+Cheat 
+No 
+Married 
+80K 
+? 
+10 
+ 
+Test Data
+
+
+=== Page 27 (PDF index 26) ===
+Apply Model to Test Data
+Refund
+MarSt
+TaxInc
+YES
+NO
+NO
+NO
+Yes
+No
+Married 
+Single, Divorced
+< 80K
+> 80K
+Refund Marital 
+Status 
+Taxable 
+Income 
+Cheat 
+No 
+Married 
+80K 
+? 
+10 
+ 
+Test Data
+
+
+=== Page 28 (PDF index 27) ===
+Apply Model to Test Data
+Refund
+MarSt
+TaxInc
+YES
+NO
+NO
+NO
+Yes
+No
+Married 
+Single, Divorced
+< 80K
+> 80K
+Refund Marital 
+Status 
+Taxable 
+Income 
+Cheat 
+No 
+Married 
+80K 
+? 
+10 
+ 
+Test Data
+
+
+=== Page 29 (PDF index 28) ===
+Apply Model to Test Data
+Refund
+MarSt
+TaxInc
+YES
+NO
+NO
+NO
+Yes
+No
+Married 
+Single, Divorced
+< 80K
+> 80K
+Refund Marital 
+Status 
+Taxable 
+Income 
+Cheat 
+No 
+Married 
+80K 
+? 
+10 
+ 
+Test Data
+
+
+=== Page 30 (PDF index 29) ===
+Apply Model to Test Data
+Refund
+MarSt
+TaxInc
+YES
+NO
+NO
+NO
+Yes
+No
+Married 
+Single, Divorced
+< 80K
+> 80K
+Refund Marital 
+Status 
+Taxable 
+Income 
+Cheat 
+No 
+Married 
+80K 
+? 
+10 
+ 
+Test Data
+Assign Cheat to “No”
+
+
+=== Page 31 (PDF index 30) ===
+Decision Tree Classification Task
+Apply 
+Model
+Induction
+Deduction
+Learn 
+Model
+Model
+Tid 
+Attrib1 
+Attrib2 
+Attrib3 
+Class 
+1 
+Yes 
+Large 
+125K 
+No 
+2 
+No 
+Medium 
+100K 
+No 
+3 
+No 
+Small 
+70K 
+No 
+4 
+Yes 
+Medium 
+120K 
+No 
+5 
+No 
+Large 
+95K 
+Yes 
+6 
+No 
+Medium 
+60K 
+No 
+7 
+Yes 
+Large 
+220K 
+No 
+8 
+No 
+Small 
+85K 
+Yes 
+9 
+No 
+Medium 
+75K 
+No 
+10 
+No 
+Small 
+90K 
+Yes 
+10 
+ 
+Tid 
+Attrib1 
+Attrib2 
+Attrib3 
+Class 
+11 
+No 
+Small 
+55K 
+? 
+12 
+Yes 
+Medium 
+80K 
+? 
+13 
+Yes 
+Large 
+110K 
+? 
+14 
+No 
+Small 
+95K 
+? 
+15 
+No 
+Large 
+67K 
+? 
+10 
+ 
+Test Set
+Tree
+Induction
+algorithm
+Training Set
+Decision 
+Tree
+
+
+=== Page 32 (PDF index 31) ===
+Decision Tree 
+Induction
+Many Algorithms:
+• Hunt’s Algorithm (one of the earliest)
+• CART
+• ID3, C4.5
+• SLIQ,SPRINT
+
+
+=== Page 33 (PDF index 32) ===
+General Structure of Hunt’s Algorithm
+Let Dt be the set of training 
+records that reach a node t
+General Procedure:
+•
+If Dt contains records that belong the 
+same class yt, then t is a leaf node 
+labeled as yt
+•
+If Dt is an empty set, then t is a leaf node 
+labeled by the default class, yd
+•
+If Dt contains records that belong to more 
+than one class, use an attribute test to 
+split the data into smaller subsets. 
+Recursively apply the procedure to each 
+subset.
+Tid Refund Marital 
+Status 
+Taxable 
+Income 
+Cheat 
+1 
+Yes 
+Single 
+125K 
+No 
+2 
+No 
+Married 
+100K 
+No 
+3 
+No 
+Single 
+70K 
+No 
+4 
+Yes 
+Married 
+120K 
+No 
+5 
+No 
+Divorced 95K 
+Yes 
+6 
+No 
+Married 
+60K 
+No 
+7 
+Yes 
+Divorced 220K 
+No 
+8 
+No 
+Single 
+85K 
+Yes 
+9 
+No 
+Married 
+75K 
+No 
+10 
+No 
+Single 
+90K 
+Yes 
+10 
+ 
+Dt
+?
+
+
+=== Page 34 (PDF index 33) ===
+Hunt’s Algorithm
+Don’t 
+Cheat
+Refund
+Don’t 
+Cheat
+Don’t 
+Cheat
+Yes
+No
+Refund
+Don’t 
+Cheat
+Yes
+No
+Marital
+Status
+Don’t 
+Cheat
+Cheat
+Single,
+Divorced
+Married
+Taxable
+Income
+Don’t 
+Cheat
+< 80K
+>= 80K
+Refund
+Don’t 
+Cheat
+Yes
+No
+Marital
+Status
+Don’t 
+Cheat
+Cheat
+Single,
+Divorced
+Married
+Tid
+Refund
+Marital
+Status
+Taxable
+Income
+Cheat
+1
+Yes
+Single
+125K
+No
+2
+No
+Married
+100K
+No
+3
+No
+Single
+70K
+No
+4
+Yes
+Married
+120K
+No
+5
+No
+Divorced
+95K
+Yes
+6
+No
+Married
+60K
+No
+7
+Yes
+Divorced
+220K
+No
+8
+No
+Single
+85K
+Yes
+9
+No
+Married
+75K
+No
+10
+No
+Single
+90K
+Yes
+10
+
+
+=== Page 35 (PDF index 34) ===
+Tree Induction
+Greedy strategy.
+• Split the records based on an attribute test that 
+optimizes certain criterion.
+Issues
+• Determine how to split the records
+• How to specify the attribute test condition?
+• How to determine the best split?
+• Determine when to stop splitting
+
+
+=== Page 36 (PDF index 35) ===
+Splitting Based on Nominal and Ordinal 
+Attributes
+Multi-way split: Use as many partitions as distinct values. 
+Binary split:  Divides values into two subsets. Need to find optimal partitioning.
+What about this split?
+Size
+Small
+Medium
+Large
+Size
+{Small, 
+Medium}
+{Large}
+OR
+Size
+{Small, 
+Large}
+{Medium}
+CarType
+Family
+Sports
+Luxury
+CarType
+{Family, 
+Luxury}
+{Sports}
+
+
+=== Page 37 (PDF index 36) ===
+Splitting Based on Continuous Attributes
+Different ways of handling
+•
+Discretization to form an ordinal 
+categorical attribute
+•
+ Static – discretize once at the 
+beginning
+•
+ Dynamic – ranges can be found by 
+equal interval bucketing, equal 
+frequency bucketing (percentiles), or 
+clustering.
+•
+Binary Decision: (A < v) or (A  v)
+•
+ consider all possible splits and finds 
+the best cut
+•
+ can be more compute intensive
+Taxable
+Income
+> 80K?
+Yes
+No
+Taxable
+Income?
+(i) Binary split
+(ii) Multi-way split
+< 10K
+[10K,25K)
+[25K,50K)
+[50K,80K)
+> 80K
+
+
+=== Page 38 (PDF index 37) ===
+How to determine the Best Split
+Own
+Car?
+C0: 6
+C1: 4
+C0: 4
+C1: 6
+C0: 1
+C1: 3
+C0: 8
+C1: 0
+C0: 1
+C1: 7
+Car
+Type?
+C0: 1
+C1: 0
+C0: 1
+C1: 0
+C0: 0
+C1: 1
+Student
+ID?
+...
+Yes
+No
+Family
+Sports
+Luxury
+c1
+c10
+c20
+C0: 0
+C1: 1
+...
+c11
+Before Splitting: 10 records of class 0,
+ 
+ 
+10 records of class 1
+Which test condition is the best?
+
+
+=== Page 39 (PDF index 38) ===
+How to determine the Best Split
+C0: 5
+C1: 5
+Greedy approach: 
+•
+Nodes with homogeneous class distribution are preferred
+Need a measure of node impurity:
+C0: 9
+C1: 1
+Non-homogeneous,
+High degree of impurity
+Homogeneous,
+Low degree of impurity
+
+
+=== Page 40 (PDF index 39) ===
+Measures of Node Impurity
+❑Gini Index
+❑Entropy
+❑Misclassification error
+
+
+=== Page 41 (PDF index 40) ===
+How to Find the Best Split
+C0 
+N10 
+C1 
+N11 
+ 
+ 
+B?
+Yes
+No
+Node N3
+Node N4
+A?
+Yes
+No
+Node N1
+Node N2
+Before Splitting:
+C0 
+N20 
+C1 
+N21 
+ 
+ 
+C0 
+N30 
+C1 
+N31 
+ 
+ 
+C0 
+N40 
+C1 
+N41 
+ 
+ 
+C0 
+N00 
+C1 
+N01 
+ 
+ 
+M0
+M1
+M2
+M3
+M4
+M12
+M34
+Gain = M0 – M12 vs  M0 – M34
+
+
+=== Page 42 (PDF index 41) ===
+Measure of Impurity: GINI
+Gini Index for a given node t :
+(NOTE: p( j | t) is the relative frequency of class j at node t).
+•
+Maximum (1 - 1/nc) when records are equally distributed among all 
+classes, implying least interesting information
+•
+Minimum (0.0) when all records belong to one class, implying most 
+interesting information
+
+−
+=
+j
+t
+j
+p
+t
+GINI
+2
+)]
+|
+(
+[
+1
+)
+(
+C1
+0
+C2
+6
+Gini=0.000
+C1
+2
+C2
+4
+Gini=0.444
+C1
+3
+C2
+3
+Gini=0.500
+C1
+1
+C2
+5
+Gini=0.278
+
+
+=== Page 43 (PDF index 42) ===
+Examples for computing GINI
+C1 
+0 
+C2 
+6 
+ 
+ 
+C1 
+2 
+C2 
+4 
+ 
+ 
+C1 
+1 
+C2 
+5 
+ 
+ 
+P(C1) = 0/6 = 0     P(C2) = 6/6 = 1
+Gini = 1 – P(C1)2 – P(C2)2 = 1 – 0 – 1 = 0 
+
+−
+=
+j
+t
+j
+p
+t
+GINI
+2
+)]
+|
+(
+[
+1
+)
+(
+P(C1) = 1/6          P(C2) = 5/6
+Gini = 1 – (1/6)2 – (5/6)2 = 0.278
+P(C1) = 2/6          P(C2) = 4/6
+Gini = 1 – (2/6)2 – (4/6)2 = 0.444
+
+
+=== Page 44 (PDF index 43) ===
+Splitting Based on GINI
+Used in CART, SLIQ, SPRINT.
+When a node p is split into k partitions (children), the quality 
+of split is computed as,
+ 
+ 
+where, 
+ni = number of records at child i,
+    
+ 
+ 
+n = number of records at node p.
+
+=
+=
+k
+i
+i
+split
+i
+GINI
+n
+n
+GINI
+1
+)
+(
+
+
+=== Page 45 (PDF index 44) ===
+Binary Attributes: Computing GINI 
+Index
+Splits into two partitions
+Effect of Weighing partitions: 
+◼Larger and Purer Partitions are sought for.
+B?
+Yes
+No
+Node N1
+Node N2
+ 
+Parent 
+C1 
+6 
+C2 
+6 
+Gini = 0.500 
+ 
+Gini(N1) 
+= 1 – (5/7)2 – (2/7)2 
+= 0.408  
+Gini(N2) 
+= 1 – (1/5)2 – (4/5)2 
+= 0.320
+Gini(Children) 
+= 7/12 * 0.408 + 
+   5/12 * 0.320
+= 0.371
+
+
+=== Page 46 (PDF index 45) ===
+Continuous Attributes: Computing Gini Index
+Use Binary Decisions based on one value
+Several Choices for the splitting value
+•
+Number of possible splitting values 
+= Number of distinct values
+Each splitting value has a count matrix 
+associated with it
+•
+Class counts in each of the partitions, A < v and 
+A  v
+Simple method to choose best v
+•
+For each v, scan the database to gather count 
+matrix and compute its Gini index
+•
+Computationally Inefficient! Repetition of work.
+Tid Refund Marital 
+Status 
+Taxable 
+Income 
+Cheat 
+1 
+Yes 
+Single 
+125K 
+No 
+2 
+No 
+Married 
+100K 
+No 
+3 
+No 
+Single 
+70K 
+No 
+4 
+Yes 
+Married 
+120K 
+No 
+5 
+No 
+Divorced 95K 
+Yes 
+6 
+No 
+Married 
+60K 
+No 
+7 
+Yes 
+Divorced 220K 
+No 
+8 
+No 
+Single 
+85K 
+Yes 
+9 
+No 
+Married 
+75K 
+No 
+10 
+No 
+Single 
+90K 
+Yes 
+10 
+ 
+Taxable
+Income
+> 80K?
+Yes
+No
+
+
+=== Page 47 (PDF index 46) ===
+Continuous Attributes: Computing Gini 
+Index...
+For efficient computation: for each attribute,
+•
+Sort the attribute on values
+•
+Linearly scan these values, each time updating the count matrix and 
+computing gini index
+•
+Choose the split position that has the least gini index
+Cheat
+No
+No
+No
+Yes
+Yes
+Yes
+No
+No
+No
+No
+Taxable Income
+60
+70
+75
+85
+90
+95
+100
+120
+125
+220
+55
+65
+72
+80
+87
+92
+97
+110
+122
+172
+230
+<=
+>
+<=
+>
+<=
+>
+<=
+>
+<=
+>
+<=
+>
+<=
+>
+<=
+>
+<=
+>
+<=
+>
+<=
+>
+Yes
+0
+3
+0
+3
+0
+3
+0
+3
+1
+2
+2
+1
+3
+0
+3
+0
+3
+0
+3
+0
+3
+0
+No
+0
+7
+1
+6
+2
+5
+3
+4
+3
+4
+3
+4
+3
+4
+4
+3
+5
+2
+6
+1
+7
+0
+Gini
+0.420
+0.400
+0.375
+0.343
+0.417
+0.400
+0.300
+0.343
+0.375
+0.400
+0.420
+Split Positions
+Sorted Values
+
+
+=== Page 48 (PDF index 47) ===
+Alternative Splitting Criteria based 
+on INFO
+Entropy at a given node t:
+(NOTE: p( j | t) is the relative frequency of class j at node t).
+•
+Measures homogeneity of a node. 
+•
+Maximum (log nc) when records are equally distributed among all classes 
+implying least information
+•
+Minimum (0.0) when all records belong to one class, implying most 
+information
+•
+Entropy based computations are similar to the GINI index computations
+
+−
+=
+j
+t
+j
+p
+t
+j
+p
+t
+Entropy
+)
+|
+(
+log
+)
+|
+(
+)
+(
+
+
+=== Page 49 (PDF index 48) ===
+Examples for computing Entropy
+C1 
+0 
+C2 
+6 
+ 
+ 
+C1 
+2 
+C2 
+4 
+ 
+ 
+C1 
+1 
+C2 
+5 
+ 
+ 
+P(C1) = 0/6 = 0     P(C2) = 6/6 = 1
+Entropy = – 0 log 0 – 1 log 1 = – 0 – 0 = 0 
+P(C1) = 1/6          P(C2) = 5/6
+Entropy = – (1/6) log2 (1/6) – (5/6) log2 (1/6) = 0.65
+P(C1) = 2/6          P(C2) = 4/6
+Entropy = – (2/6) log2 (2/6) – (4/6) log2 (4/6) = 0.92
+
+−
+=
+j
+t
+j
+p
+t
+j
+p
+t
+Entropy
+)
+|
+(
+log
+)
+|
+(
+)
+(
+2
+
+
+=== Page 50 (PDF index 49) ===
+Splitting Criteria based on Classification 
+Error
+Classification error at a node t :
+Measures misclassification error made by a node. 
+•
+Maximum (1 - 1/nc) when records are equally distributed among all 
+classes, implying least interesting information
+•
+Minimum (0.0) when all records belong to one class, implying most 
+interesting information
+)
+|
+(
+max
+1
+)
+(
+t
+i
+P
+t
+Error
+i
+−
+=
+
+
+=== Page 51 (PDF index 50) ===
+Examples for Computing Error
+C1 
+0 
+C2 
+6 
+ 
+ 
+C1 
+2 
+C2 
+4 
+ 
+ 
+C1 
+1 
+C2 
+5 
+ 
+ 
+P(C1) = 0/6 = 0     P(C2) = 6/6 = 1
+Error = 1 – max (0, 1) = 1 – 1 = 0 
+P(C1) = 1/6          P(C2) = 5/6
+Error = 1 – max (1/6, 5/6) = 1 – 5/6 = 1/6
+P(C1) = 2/6          P(C2) = 4/6
+Error = 1 – max (2/6, 4/6) = 1 – 4/6 = 1/3
+)
+|
+(
+max
+1
+)
+(
+t
+i
+P
+t
+Error
+i
+−
+=
+
+
+=== Page 52 (PDF index 51) ===
+Comparison among Splitting Criteria
+For a 2-class problem:
+
+
+=== Page 53 (PDF index 52) ===
+Stopping Criteria for Tree Induction
+Stop expanding a node when all the records belong to the same 
+class
+Stop expanding a node when all the records have similar 
+attribute values
+Early termination
+using hyperparametes such as 
+max_depth,
+min_samples_leaf, min_samples_split, 
+etc.
+
+
+=== Page 54 (PDF index 53) ===
+Decision Tree Based Classification
+Advantages:
+• Inexpensive to construct
+• Extremely fast at classifying unknown records
+• Easy to interpret for small-sized trees
+• Accuracy is comparable to other classification 
+techniques for many simple data sets
+
+
+=== Page 55 (PDF index 54) ===
+Practical Issues of 
+Classification
+Underfitting and Overfitting
+Missing Values
+Costs of Classification
+
+
+=== Page 56 (PDF index 55) ===
+Underfitting and Overfitting
+Overfitting
+Underfitting: when model is too simple, both training and test errors are large 
+Overfitting: when model is 
+more complex than necessary.
+Training error no longer 
+provides a good estimate of 
+how well the tree will perform 
+on unseen records
+
+
+=== Page 57 (PDF index 56) ===
+Overfitting due to Noise 
+Decision boundary is distorted by noise point
+
+
+=== Page 58 (PDF index 57) ===
+Overfitting due to Insufficient Examples
+-Lack of data points in the lower half of the diagram makes it difficult to 
+predict correctly the class labels of that region 
+-Insufficient number of training records in the region causes the 
+decision tree to predict the test examples using other training records that 
+are irrelevant to the classification task
+
+
+=== Page 59 (PDF index 58) ===
+How to Address 
+Overfitting
+Pre-Pruning (Early Stopping Rule)
+•
+Stop the algorithm before it becomes a fully-grown tree
+•
+Typical stopping conditions for a node:
+•  Stop if all instances belong to the same class
+•  Stop if all the attribute values are the same
+•
+More restrictive conditions:
+•  Stop if number of instances is less than some user-specified 
+threshold
+•  Stop if class distribution of instances are independent of the 
+available features (e.g., using chi 2 test)
+•  Stop if expanding the current node does not improve 
+impurity
+    measures (e.g., Gini or information gain).
+
+
+=== Page 60 (PDF index 59) ===
+How to Address Overfitting…
+Post-pruning
+• Grow decision tree to its entirety
+• Trim the nodes of the decision tree in a bottom-up 
+fashion
+• If generalization error improves after trimming, 
+replace sub-tree by a leaf node.
+• Class label of leaf node is determined from 
+majority class of instances in the sub-tree
+• Can use MDL or Cost complexity pruning (ccp-
+alpha) for post-pruning
+
+
+=== Page 61 (PDF index 60) ===
+Thanks for your
+attention
+

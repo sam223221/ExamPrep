@@ -1,0 +1,1338 @@
+===== PAGE 1 =====
+Software Architecture
+(T630019402)
+Lecture #8, April 14, 2026
+Jukka Ruohonen
+1 / 85
+
+===== PAGE 2 =====
+Survey (1/4)
+▶There is now a feedback survey on itslearning
+▶Although it is not anonymous, I would appreciate if you would
+answer as it helps me to plan for the next year
+▶As we are in a university, after all, if enough answer, it also
+gives some interesting data
+2 / 85
+
+===== PAGE 3 =====
+Survey (2/4)
+0
+5
+10
+Expected Grade
+Actual Grade
+0
+5
+10
+Medians
+Figure 1: The First Tentative Hypothesis (yet not fully accurate)
+3 / 85
+
+===== PAGE 4 =====
+Survey (3/4)
+0
+2
+4
+6
+8
+10
+Attended Lectures
+Actual Grade
+0
+5
+10
+Linear regression
+Figure 2: The Second Hypothesis (yet not fully accurate)
+4 / 85
+
+===== PAGE 5 =====
+Survey (4/4)
+0
+2
+4
+6
+8
+10
+Attended Lectures
+Actual Grade
+0
+5
+10
+Linear regression
+Figure 3: The Second Hypothesis Adjusted (yet still not fully accurate)
+5 / 85
+
+===== PAGE 6 =====
+Case #7
+▶Design an alert system with Prometheus for providing instant
+notifications to a system administrator in case two or more
+Kubernetes nodes or pods become dead while in operation
+• Illustrate the design with two architectural views: one
+addressing the design at the side of Kubernetes and the other
+at the Prometheus’ side
+• The design does not have to be 100% accurate technically;
+rather, consider that it would be a blueprint that you would
+provide as a software architect to an implementation team
+• Rationalize also other QAs, such as complexity
+6 / 85
+
+===== PAGE 7 =====
+A Few Short Mock-up Questions Again (1/7)
+What Does the Amdahl’s Law Say About Scalability?
+7 / 85
+
+===== PAGE 8 =====
+A Few Short Mock-up Questions Again (2/7)
+Resource
+utilization
+Time
+t0
+t1
+?
+?
+?
+Threshold
+t2
+?
+?
+t3
+Figure 4: (a) What the Question Marks Might Denote in Terms of a
+Circuit Breaker Measuring Resource Utilization, and (b) How Would You
+Calculate the Time Spent During the Circuit Breaker’s States?
+8 / 85
+
+===== PAGE 9 =====
+A Few Short Mock-up Questions Again (3/7)
+System1
+Machine2
+Machine1
+Orchestrator
+(machine)
+System2
+Service discovery
+(machine)
+(?)
+(1)
+Machine3
+(1)
+(1)
+(4)
+(2)
+(3)
+(4)
+Figure 5: (a) What (1), (2), (3), (4), and (?) Might Denote, and
+(b) What Might Be the Case With Machine1?
+9 / 85
+
+===== PAGE 10 =====
+A Few Short Mock-up Questions Again (4/7)
+DNS
+1. Q: MX of domain.tld?
+    A: {  m = [ mx1.domain.tld,
+         mx2.domain.tld,
+           mx3.domain.tld ],
+                       p = [ 25, 10, 50 ] } 
+      A: [ 1.2.3.4, 1.2.3.5 ]
+3. SMTP (1.2.3.4)
+2. Q: A of mx2.domain.tld?
+Figure 6: (a) Why the Client Picked mx2.domain.tld, (b) Which
+Architectural Pattern Is Present in the Choice, (c) Why the Client Picked
+1.2.3.4, and (d) Which Architectural Pattern Is Present in This Choice?
+10 / 85
+
+===== PAGE 11 =====
+A Few Short Mock-up Questions Again (5/7)
+Machine1
+Machine3
+Machine4
+(2)
+Machine2
+(1)
+Machine5
+Machine6
+Machine7
+Machine8
+(3)
+Figure 7: (a) What Architectural Tactic Is Used in the Diagram,
+(b) What (1), (2), and (3) Might Denote, and (c) What Might Be
+Logically Deduced About Latency Between Them?
+11 / 85
+
+===== PAGE 12 =====
+A Few Short Mock-up Questions Again (6/7)
+Design
+effort
+Sprints
+0
+n
+?
+?
+Figure 8: (a) What Might Have Happened in This Agile Project, and
+(b) What the Question Marks Might Denote to Make It Explicit?
+12 / 85
+
+===== PAGE 13 =====
+A Few Short Mock-up Questions Again (7/7)
+?
+Prioritize
+consistency
+Prioritize
+availability
+CP
+AP
+A. What are 
+the pros and cons?
+B. What are 
+the pros and cons?
+Figure 9: (a) Please Explain What the Question Mark Represents, and
+(b) Answer to A and B With Six Sentences at Most
+13 / 85
+
+===== PAGE 14 =====
+Today’s Lecture
+▶Today’s lecture is about safety and security as distinct QAs
+▶Though – given that many (or even most) of the safety tactics
+and patterns are similar (or even identical) with those for
+availability and fault-tolerance, safety is considered only briefly
+• Rather, it is important to understand safety’s fundamental
+relation to the impact dimension
+▶Then, cyber security is covered also in the next lecture
+• It is assumed that you already know (as you should) the
+fundamentals, starting from the CIA triad
+14 / 85
+
+===== PAGE 15 =====
+Question
+How would you define safety and
+why is it different from security?
+15 / 85
+
+===== PAGE 16 =====
+Safety
+▶Safety “is concerned with a system’s ability to avoid straying
+into states that cause or lead to damage, injury, or loss of life
+to actors in its environment” (Bass et al. 2021)
+▶The definition does not say anything about why a system is
+entering into a dangerous state; hence, a conventional way to
+separate safety from security is that the latter always involves
+an actor who intentionally seeks to cause damage or harm
+▶Further note that insecurity may cause safety issues, but
+the reverse is more difficult to deduce about (or even untrue
+according to some people)
+16 / 85
+
+===== PAGE 17 =====
+Safety Scenarios
+Environment
+System
+(deployment)
+Source
+Response
+measure
+Event
+Response
+     Potential values to consider:
+User action
+Data source (sensor, software, etc.)
+Time source (clock)
+      Potential values to consider:
+Omission (a value never arrives,
+a function is never called, etc.)
+Commission (a function executes
+incorrectly, a device produces a
+spurious event or data, etc.).
+Timing (data arrives too late or
+too early, event arrives at wrong
+rate or in wrong order, etc.).
+     Potential values to consider:
+Avoid an unsafe state
+Recover from an unsafe state
+Continue in degraded or safe mode
+Shutdown gracefully or otherwise
+Switch to manual operation
+Switch to a backup system
+Notify appropriate entities
+Log entries into unsafe states
+Potential values to consider:
+Share of entries to unsafe states
+Share of avoided entries to unsafe states
+Recovery time from unsafe states
+Time in degraded  or safe mode
+Time in shutdown state
+Time in manual operation
+     Potential values to consider:
+Normal operation
+Emergency mode
+Peak load mode
+Overload mode
+Degraded operation mode
+   Potential values to consider:
+Normal and safety-critical
+portions of a system or
+deployment
+Figure 10: Adopted and modified from Bass et al. (2021)
+17 / 85
+
+===== PAGE 18 =====
+Safety Tactics (1/2)
+Safety
+tactics
+Avoidance
+Containment
+Recovery
+   1. Substitution
+   2. Predictive models
+   1. Sanity check 
+   2. Comparison
+   3. Timeout
+   4. Monitoring
+   5. Timestamps
+   1. Isolate
+   2. Removal from
+       the system
+   3. Transactions
+   4. Predictive models
+   5. Exception
+       prevention
+   6. Increase  
+       competence
+Detection
+Redundancy
+   1. Replication
+   2. Analytical 
+       redundancy
+   3. Functional
+       redundancy   
+Limit impact
+   1. Masking
+   2. Abort
+   3. Degradation
+Barrier
+   1. Firewall
+   2. Barrier
+Figure 11: Adopted and modified from Bass et al. (2021)
+18 / 85
+
+===== PAGE 19 =====
+Safety Tactics (2/2)
+▶Thus, all of the tactics have already been covered, although
+perhaps with a slightly different terminology
+• For instance, the barrier tactic is about limiting the
+propagation of unsafe states, and the firewall is a
+security-specific variant noted already in the second lecture
+▶Of the impact-limiting tactics, aborting is the de facto tactic
+for safety, but recall also the earlier points about fail-safe,
+fail-fast, or crash and panic
+19 / 85
+
+===== PAGE 20 =====
+Safety Patterns (1/2)
+▶Also many of the patterns for safety are similar to what has
+already been covered
+• For instance, isolation applies also to safety; normal (or
+non-safety-critical) components (machines) should be
+separated from safety-critical components (machines)
+▶In addition, the monitor-actuator pattern can be mentioned
+as an example; it is generally a mixture of redundancy,
+sanity-checking, the barrier tactic, assertions, and alike
+20 / 85
+
+===== PAGE 21 =====
+Safety Patterns (2/2)
+Software
+actuator
+Monitor
+Hardware
+actuator
+Verify
+If OK, send
+A.
+Software
+actuator
+Monitor
+Hardware
+actuator
+Verify
+If OK, send
+B.
+If FAULT, abort
+Figure 12: Two Sketches for the Monitor-Actuator Pattern
+21 / 85
+
+===== PAGE 22 =====
+Security Scenarios (1/3)
+Environment
+System
+(deployment)
+Source
+Response
+measure
+Event
+Response
+     Potential values to consider:
+Insider an organization
+Outside of an organization
+Human, machine, AI
+Known, unknown, etc.
+      Potential values to consider:
+Confidentiality (unauthorized
+access to data, systems, or
+assets in general)
+Integrity (unauthorized
+modification of assets; tampering)
+Availability (preventing authorized
+persons, systems, or other
+entities from accessing assets)
+     Potential values to consider:
+Appropriate security controls
+Authentication, authorization, encryption
+Logging and traceability
+Incident management and damage control
+Potential values to consider:
+Accuracy of attack detection
+Extent of the blast radius
+Time-to-discover
+Time-to-notify stakeholders
+Time-to-recover
+Amount of financial losses
+Extent of legal consequences
+Post-incident analysis
+     Potential values to consider:
+Online or offline
+Physical or network access
+With specified protections
+Fully or partially operational
+Pre-incident or post-incident
+   Potential values to consider:
+System
+Network
+Data
+Other resources
+Figure 13: Adopted and modified from Bass et al. (2021)
+22 / 85
+
+===== PAGE 23 =====
+Security Scenarios (2/3)
+▶Thus, the scenarios are quite different from those of other QAs
+▶Of the sources, it is worth emphasizing that the noun “actor”
+used earlier is still ultimately a human being, although AI and
+agents perhaps makes demarcations blurry in the future
+• Someone (or somebodies) still control a botnet, and so on
+▶Although not covered in this course, it also important to
+emphasize the distinction between internal and external
+sources; regarding the former, there are also insider threats
+▶As there is thus quite a lot to cover, we keep the focus on
+cyber security in relation to software architectures
+23 / 85
+
+===== PAGE 24 =====
+Security Scenarios (3/3)
+Figure 14: https://xkcd.com/538/
+24 / 85
+
+===== PAGE 25 =====
+Security Tactics (1/2)
+Security
+tactics
+Detect
+Resist
+React
+Intrusions
+Service denials
+Integrity   
+violations
+Anomalies
+Threat modeling
+Authentication
+Authorization
+Isolate
+Minimize attack
+surface
+Limit resources
+Encrypt
+Isolate
+Validate input
+Change
+credentials
+Revoke access
+Restrict access
+Inform actors
+Recover
+Audit
+Non-repudiation
+Inform stake-
+holders
+Minimize 
+damage
+Figure 15: Adopted and modified from Bass et al. (2021)
+25 / 85
+
+===== PAGE 26 =====
+Security Tactics (2/2)
+▶For this lecture, we will first exemplify the detect group with
+Security Information and Event Management (SIEM) systems
+▶Denial of service was already covered to a sufficient degree
+▶Intrusion detection systems (IDS) are not covered, although it
+is worth mentioning a lot of research in this area, including
+particularly with respect to deep learning models and AI
+▶Afterwards, the focus is on input validation and attack surface
+minimization as well as briefly on authentication and
+authorization, all addressed in the LLM/Agentic AI context
+26 / 85
+
+===== PAGE 27 =====
+Security Tactics: Detect 7→SIEM/SOC (1/4)
+▶SIEMs are essentially about managing security information of
+various kinds and integrating it to a management platform
+• The information to a SIEM may come from internal
+sources (such as IDS systems, spam filters, firewall logs, and
+many other systems, logs, and audit trails) as well as external
+sources (such as threat and vulnerability feeds)
+▶A term security operations center (SOC) is more or less
+used as a synonym to SIEM systems
+27 / 85
+
+===== PAGE 28 =====
+Security Tactics: Detect 7→SIEM/SOC (2/4)
+Log
+broker
+Dynamic data
+from internal and
+external sources
+Log
+filter
+Filter
+broker
+(Read and write ports omitted for brevity; brokers
+are used for emphasizing many-to-many relations)
+Raw
+archiver
+Archive
+Normalizer
+Normalized
+broker
+Normalizer
+Enricher
+Cache
+Enriched
+broker
+Enriched
+filter
+Enriched
+archiver
+Event
+broker
+Event
+archiver
+GUI
+  (More components)  
+Alert
+broker
+Email,
+SMS, etc.
+  (More components)  
+Figure 16: Adopted and simplified from Laue et al. (2022, Fig. 2)
+28 / 85
+
+===== PAGE 29 =====
+A Question
+What Pattern Is Used in the Previous Design?
+29 / 85
+
+===== PAGE 30 =====
+Another Question
+Where Might the Bottleneck in the Previous Design
+Be, and What Quality Attribute It Might Represent?
+30 / 85
+
+===== PAGE 31 =====
+Security Tactics: Detect 7→SIEM/SOC (3/4)
+Figure 17: https://www.usenix.org/system/files/sec22-alahmadi.pdf
+31 / 85
+
+===== PAGE 32 =====
+Security Tactics: Detect 7→SIEM/SOC (4/4)
+▶To address the issues, automation is being increased
+▶As discussed by Vakulov (2026), operators of SIEMs/SOCs
+have two primary functions: (1) to determine whether events
+are malicious, and (2) for true positives, execute appropriate
+action (e.g., blocking a host or isolating a machine)
+▶Although automation via (1) still carries a lot of false
+positives, Vakulov (2026) argues that the workload of humans
+can be reduced also via (2) by increasing operational
+autonomy (e.g., execution of routine responses), providing
+analytical assistance (e.g., event prioritization), and
+delegating decisions (e.g., the system provides
+recommendations or even executes responses by itself)
+32 / 85
+
+===== PAGE 33 =====
+LLM and Agentic Security (1/4)
+▶OWASP’s (2024) somewhat old top-10 seems still reasonable:
+1. Prompt injection
+2. Information disclosure
+3. Supply-chains
+4. Data and model poisoning
+5. Improper output validation
+6. Excessive agency
+7. Prompt leakage
+8. Embedding weaknesses
+9. Misinformation
+10. Unbounded resource consumption
+▶Note that these may (even often) overlap, as soon seen
+33 / 85
+
+===== PAGE 34 =====
+LLM and Agentic Security (2/4)
+OpenAI, Anthropic,
+and other LLM clients
+Gateway
+System
+Rate limiting, 
+budget caps, routing,
+authentication, etc.
+Firewalls, 
+IDS, etc.
+Internet
+Local area network
+Figure 18: Where Is the Risk?
+34 / 85
+
+===== PAGE 35 =====
+LLM and Agentic Security (3/4)
+Figure 19: https://blog.pypi.org/posts/
+2026-04-02-incident-report-litellm-telnyx-supply-chain-attack/
+35 / 85
+
+===== PAGE 36 =====
+LLM and Agentic Security (4/4)
+▶When it comes to unwanted information disclosure, data can
+leak also by traditional means, including in the AI industry
+Figure 20: https://www.theguardian.com/technology/2026/apr/
+01/anthropic-claudes-code-leaks-ai
+36 / 85
+
+===== PAGE 37 =====
+Input Validation (1/7)
+▶An overwhelming majority (perhaps around something like
+99%) of attacks involve malicious input in a way or another
+• Recall that a TCP/IP packet is input to a machine too
+▶Therefore, always, always seek to validate input from
+untrusted sources; for that to be possible, you need to
+understand your system’s external-facing components and
+the propagation of inputs through the system
+37 / 85
+
+===== PAGE 38 =====
+Input Validation (2/7)
+System
+Machine1
+Machine2
+Component11
+Component21
+Component22
+Component12
+Figure 21: How to Improve the Security of the System?
+38 / 85
+
+===== PAGE 39 =====
+Input Validation (3/7)
+System
+Machine1
+Machine2
+Component11
+Component21
+Component22
+Component12
+Figure 22: How to Still Improve the Security of the System?
+39 / 85
+
+===== PAGE 40 =====
+Input Validation (4/7)
+System
+Machine1
+Machine2
+Component11
+Component21
+Component22
+Component12
+Figure 23: A Single Input Channel and Two Validating Components
+40 / 85
+
+===== PAGE 41 =====
+Input Validation (5/7)
+▶The previous examples are not only about input as such but
+about the principle of attack surface minimization
+▶In general, the more there are inputs through external-facing
+components, the larger the attack surface
+▶Other QAs, such as complexity, affect also (or in particular
+from a security perspective) the external-facing components
+• If in the previous figure Component11 has a million lines of
+code, say, the minimization of the input channels themselves
+may not necessarily matter
+41 / 85
+
+===== PAGE 42 =====
+Input Validation (6/7)
+Figure 24: How to Not Do It (from https://ccunpacked.dev/)
+42 / 85
+
+===== PAGE 43 =====
+Input Validation (7/7)
+External
+input
+Enforcer
+1. Input x
+6. Error
+Validator
+2. Validate x
+5. Ok or Error
+System
+6. x given  Ok
+Specification
+registry
+3. get given  x
+4. Specification
+Figure 25: Input Validation With Three Components
+43 / 85
+
+===== PAGE 44 =====
+Question
+Where is the Risk in the Previous Figure?
+44 / 85
+
+===== PAGE 45 =====
+Another Question
+What Should the Enforcer Enforce With
+the Error in the Previous Figure?
+45 / 85
+
+===== PAGE 46 =====
+Design Principles for Input Validation (1/9)
+▶To put output validation aside for a moment, Arce et al.
+(2014) recommend to consider the following:
+1. Design and use a centralized validation component, but
+audit the component carefully and prefer well-known libraries
+2. Transform data into a canonical form; be aware of different
+encodings (cf. %-encoding in the Web, UTF-8, etc.)
+3. Recall that inputs often depend on states
+4. Audit all “nearby code” around inputs
+5. Prefer strongly typed and memory-safe languages
+46 / 85
+
+===== PAGE 47 =====
+Input Validation (2/9)
+Agent2
+w
+r
+Enforcer
+Agent1
+w
+r
+Enforcer
+w
+r
+If not ok, 
+cancel and log
+If not ok, 
+cancel and log
+Same instance
+Figure 26: The Pipe and Filter Pattern (or the Batch-Sequential Pattern)
+With Input (and Output) Validation
+47 / 85
+
+===== PAGE 48 =====
+Design Principles for Input Validation (3/9)
+External
+input
+Enforcer
+Data, 
+control
+Error
+System
+Data given  Ok
+Not
+trusted
+Figure 27: In Addition, Arce et al. (2014) Recommend to Always
+Separate Data from Control Instructions and Never Process Control
+Instructions from Untrusted Sources
+48 / 85
+
+===== PAGE 49 =====
+Design Principles for Input Validation (4/9)
+Figure 28:
+https://www.ncsc.gov.uk/blog-post/prompt-injection-is-not-sql-injection
+49 / 85
+
+===== PAGE 50 =====
+Design Principles for Input Validation (5/9)
+Enforcer
+Consumer
+clients
+Business
+clients A
+Web
+application
+Business
+clients B
+Trust boundary
+Figure 29: They Also Recommend to Audit the Trust Boundaries
+50 / 85
+
+===== PAGE 51 =====
+Design Principles for Input Validation (6/9)
+Enforcer
+Consumer
+clients
+Business
+clients A
+Web
+application
+CDN
+Trust boundary
+JavaScript
+Figure 30: Where Is the Risk?
+51 / 85
+
+===== PAGE 52 =====
+Design Principles for Input Validation (7/9)
+Figure 31: https://www.w3.org/TR/sri-2/
+52 / 85
+
+===== PAGE 53 =====
+Design Principles for Input Validation (8/9)
+Figure 32: https://w3c.github.io/webappsec-csp/
+53 / 85
+
+===== PAGE 54 =====
+Design Principles for Input Validation (9/9)
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Changes
+0
+5000
+10000
+15000
+20000
+25000
+Frequency
+   Mean = 1.60
+   Median = 0.00
+   Std. dev. = 3.09
+   Unchanged = 69%
+Integrity changes
+0
+5000
+10000
+15000
+Frequency
+application/javascript
+text/javascript
+application/x-javascript
+MISSING
+application/json
+Top-5 Content-Types
+0
+10000
+20000
+30000
+Frequency
+text/plain
+text/html
+application/x-gzip
+text/x-c
+application/octet-stream
+Top-5 MIME types
+Figure 33: Changes of Dynamically Loaded External JavaScript Code in a
+Ten Day Polling Period of Circa 35 Thousand Popular Websites (from
+Ruohonen et al. 2018, Fig. 1)
+54 / 85
+
+===== PAGE 55 =====
+An Example of GitHub Actions (1/6)
+▶GitHub Actions are a good example about many of the
+previous points on input validation; they are development
+workflows that can run in response to various events (such as
+pull requests); they can be triggered by many actors; they can
+carry secrets; and they can run with different permissions
+▶Given the previous characterization, the attack surface is
+indeed large, and in response to recent incidents, Microsoft is
+currently, in 2026, seeking to improve their security
+55 / 85
+
+===== PAGE 56 =====
+An Example of GitHub Actions (2/6)
+▶As described by Ose & Glass (2026), an obvious starting point
+for reducing the attack surface is to define who can trigger
+workflows and which events are allowed to be triggered
+• These questions are about the restrict access tactic
+▶Does CoPilot or a LLM from GitHub Apps really need
+permissions for triggering all (or even any....) workflows?
+▶In terms of security engineering principles, defining these is
+about secure defaults, which, in most cases, should follow a
+“deny all” principle (“deny everything, then allow particular”)
+56 / 85
+
+===== PAGE 57 =====
+An Example of GitHub Actions (3/6)
+▶As further described by Ose & Glass (2026), the attack
+surface of GitHub Actions can also be reduced by increasing
+the granularity of permissions and access controls
+▶For this to be possible, the trust boundaries must be
+explicit; instead of having coarse repository-wide or
+organization-wide secrets, these are tied to specific workflows
+▶It must be also ensured that secrets are not inherited unless
+explicitly allowed (e.g., a secret can be scoped only to a
+specific path or a given workflow can has its own secret)
+• This connotes with the least privilege principle
+57 / 85
+
+===== PAGE 58 =====
+An Example of GitHub Actions (4/6)
+Authorization
+enforcer
+Agent
+(authenticated)
+AgentID: 1000
+(1) Request1:
+event 3
+(3) Request2:
+event k
+RequestLimit:2
+Validator
+(4) Deny:
+event != int
+(2) Deny:
+event not in
+AllowedEvents
+(5) Request3:
+event 1
+(6) Deny:
+requests >
+RequestLimit
+Specification
+registry
+(Omitted for brevity)
+(7): Update:
+delete AgentID
+from AllowedIDs
+AllowedEvents =
+[ 1, 9, 2, 5] for
+AgentID = 1000
+Figure 34: A Simplified Sketch for the Revoke Access Tactic
+58 / 85
+
+===== PAGE 59 =====
+An Example of GitHub Actions (5/6)
+▶Finally, Ose & Glass (2026) also note that they are also
+moving toward egress filtering for the CI/CD pipelines
+▶Theoretically, egress filtering is about output validation; in
+terms of GitHub, it means defining to which domain names or
+IP addresses connections can be made, which HTTP methods
+are allowed and with which TLS configurations, and so forth
+▶Egress filtering can be recommended also for meeting the
+CRA’s requirements because the regulation specifies that a
+device should not harm its operating networking environment
+59 / 85
+
+===== PAGE 60 =====
+An Example of GitHub Actions (6/6)
+Figure 35: https://www.theregister.com/2026/03/30/openai_
+chatgpt_dns_data_snuggling_flaw/
+60 / 85
+
+===== PAGE 61 =====
+Question
+How Many Trust Boundaries for
+Agentic AI Can You Quickly Name?
+61 / 85
+
+===== PAGE 62 =====
+Some (But Hardly All!) Trust Boundaries for Agentic AI
+1. User ↔Agent
+2. Agent ↔Tool
+3. Tool ↔Supply-chain
+4. Execution ↔Tool
+5. Agent ↔Content
+6. Execution ↔Content
+7. Runtime ↔Execution
+8. Host ↔Runtime
+9. Memory ↔Runtime
+10. Host & memory ↔Kernel
+11.
+...
+62 / 85
+
+===== PAGE 63 =====
+Another Question
+If You Look at the Previous List Again,
+What Trust Boundaries Would You Say Are
+Relatively New in Terms of Cyber Security?
+63 / 85
+
+===== PAGE 64 =====
+With Agents (and RAGs), What Really is Executable?
+Figure 36: https://www.theregister.com/2026/03/25/ai_agents_
+supply_chain_attack_context_hub/
+64 / 85
+
+===== PAGE 65 =====
+Rethinking About the OWASP’s Top-10 (1/2)
+▶Thus, we should stop for a moment to really rethink the
+earlier top-10 listing because it is possible to think about
+sequences leading to execution, such as “Agent →Get
+[malicious] content 7→Get a [malicious] tool based on the
+[malicious] content →Execute the [malicious] tool”
+▶But how to categorize data poisoning then? Is it the malicious
+content that is poisoned? Or should we consider also malware
+disguised as legitimate tools as data poisoning of sorts?
+65 / 85
+
+===== PAGE 66 =====
+Rethinking About the OWASP’s Top-10 (2/2)
+Agentic
+web browser 
+(or crawler)
+Host
+User
+(1) Input validation 
+(prompt injection guards)
+(2) Get content
+(3) Send content
+(4) Display
+(process)
+content
+Figure 37: What Could Go Wrong and How to Try to Make it Better?
+66 / 85
+
+===== PAGE 67 =====
+Rethinking About the OWASP’s Top-10 (3/3)
+▶Yet, with recent introduction of so-called agentic skills, the
+trust boundaries extend further; e.g., (1) Agent ↔Task,
+(2) Task ↔Skill, (3) Execution ↔Skill
+▶As described by Didi & Zavodchik (2026) from Akamai, these
+skills for AI agents bring a whole group new attack vectors
+• Among these is also skill-to-skill propagation (and, hence,
+execution propagation), and, therefore, the earlier point about
+extending the batch-sequential pattern is a good idea
+• They also demonstrate the weaknesses of service discovery
+pattern, including with respect to software supply-chains
+67 / 85
+
+===== PAGE 68 =====
+Rethinking Agents as Distributed Systems
+▶All of the points from the previous three lectures apply
+▶For instance, how other agents can detect a crash of an agent
+and continue their work without the crashed agent?
+▶How about synchronization: if one agent writes to a file
+(e.g., fixes a bug) and other agent reads from the file?
+▶How about the CAP theorem; when a partitioning occurs,
+how can agents synchronize their states without losing their
+work in the process?
+▶As far as I understand, all these are still unsolved issues (from
+a scientific perspective) at the time of lecturing
+68 / 85
+
+===== PAGE 69 =====
+Input and Identities (1/5)
+▶The GitHub Actions case is illuminating in a sense that it
+shows that identities for authentication must be extended
+beyond human users; workflows, tools, hosting services, and
+other elements should also come with identities
+▶Yet, Sierra (2026) argues for the following two sensible design
+principles for authorization in agentic AI systems:
+1. “Authorization must not depend on the model’s interpretation
+of the request.” ( =⇒potential prompt injection)
+2. “Authorization must be enforced by deterministic system
+controls at trust boundaries” ( =⇒an agent cannot authorize
+another agent and trust boundaries must be made explicit)
+69 / 85
+
+===== PAGE 70 =====
+Input and Identities (2/5)
+▶Note that in cyber security identities must always satisfy
+non-repudiation; actions cannot be disputed by an actor and
+origins of data come with proof about the integrity of the data
+• Hence, why logging is done for security purposes
+▶In terms of agentic AI, non-repudiation generally means that
+it should be possible to bound all actions to a real user with
+clear provenance
+70 / 85
+
+===== PAGE 71 =====
+Input and Identities (3/5)
+Human
+(identity)
+Agentic
+Identities
+Binding
+(non-repudiation)
+Authentication:
+Scoped permissions
+for scoped services
+with no inheritance
+and rapid expiry of
+credentials and
+permissions, etc.
+Scoped
+secret
+(token)
+Authorization:
+Execution gating via
+validating identities and
+sessions as well as
+requested tools,
+resources, risk-
+categorized data, etc.
+Scoped
+secret with a
+scoped
+permission
+for a scoped
+service
+Mutual TLS (mTLS) everywhere,
+ seek to minimize reliance on
+static secrets, etc.
+Assume that most inputs lead to
+execution and that all inputs
+become adversarial over time
+(a.k.a. zero trust)
+Continuous monitoring
+Figure 38: Some Tentative Principles for Securing AI Agents (Sierra 2026)
+71 / 85
+
+===== PAGE 72 =====
+Input and Identities (4/5)
+Figure 39: https://datatracker.ietf.org/doc/
+draft-hartman-credential-broker-4-agents/
+72 / 85
+
+===== PAGE 73 =====
+Input and Identities (5/5)
+Agent runtime
+Agent1
+(original)
+Agent2
+(specified)
+Who, what, why,
+and time-to-live
+for the request
+Policy infrastructure
+Authentication
+Authorization
+In addition: scoping, risk
+scoring, expiry (lease)
+management, etc.
+Audit
+trail
+Credential
+vault
+Privilege
+vault
+Short-lived and scoped secret (token)
+Figure 40: Further Emerging Ideas for Agent Security (loosely adopted
+from the previous CB4A draft standard)
+73 / 85
+
+===== PAGE 74 =====
+Input and Privileges (1/8)
+▶As already noted, the principle of least privileges means
+that a software should only operate with the minimal
+privileges it requires for its functioning
+• Theoretically, it too can be seen as an attack surface
+minimization technique; a restricted process with minimal
+privileges can do much less harm than an unrestricted one
+▶The principle is particularly important when processing input
+from untrusted sources!
+▶Note that these principles align with the performance tactic of
+bound execution (i.e., limits, caps, thresholds, etc.)
+74 / 85
+
+===== PAGE 75 =====
+Input and Privileges (2/8)
+▶Dropping privileges after a process has started is a common
+and old security design technique (Chen et al. 2002)
+• It was allegedly first used by Bernstein with qmail in 1997;
+thereafter, many Unix/Linux programs and services have been
+refactored to drop privileges from the root user
+▶However, not all programs and services can entirely drop the
+root privilege; therefore, another technique is to separate
+privileges by isolating all risky areas to non-root process(es)
+• A beautiful example of the technique is Postfix
+75 / 85
+
+===== PAGE 76 =====
+Input and Privileges (3/8)
+Start a 
+process as a
+superuser
+Drop privileges
+to a restricted
+user
+Run as a
+restricted user
+Privilege drop
+Start a 
+process as a
+superuser
+Start a restricted
+process
+Restricted
+process
+processes all
+risky operations
+Privilege separation
+Inter-process
+communication
+(IPC)
+Figure 41: Privilege Drop and Separation in a Nutshell
+76 / 85
+
+===== PAGE 77 =====
+Input and Privileges (4/8)
+Server
+Local
+pickup
+16 other
+processes
+Client
+Queue
+Local
+delivery
+External
+transports
+Privileged
+Unprivileged
+(several users)
+Network
+Input
+Core
+Output
+Figure 42: Privilege Drop and Separation in Postfix (Venema 2010)
+77 / 85
+
+===== PAGE 78 =====
+Input and Privileges (5/8)
+▶The same classical – and battle-tested – principles can be
+applied also to containers and Kubernetes pods covered in the
+previous lecture; for instance, Kubernetes (2026) can be
+configured akin to:
+kind: Pod
+metadata:
+name: example-pod
+spec:
+securityContext:
+runAsUser: 1000
+runAsGroup: 2000
+[...]
+78 / 85
+
+===== PAGE 79 =====
+Input and Privileges (6/8)
+Cluster
+Node1
+Pod11
+Agent11
+(container)
+Agent12
+(container)
+runAsUser: 1000
+runAsGroup: 2000
+Node2
+Pod21
+Agent21
+(container)
+runAsUser: 2000
+runAsGroup: 2000
+mTLS
+Message
+queue
+Figure 43: Privilege Drop with Kubernetes
+79 / 85
+
+===== PAGE 80 =====
+Input and Privileges (7/8)
+Figure 44: https://man.openbsd.org/pledge
+80 / 85
+
+===== PAGE 81 =====
+Input and Privileges (8/8)
+▶Once you have implemented the least privilege principle,
+Adkins et al. (2020) from Google recommend testing your
+implementation with respect to “of privileges” (i.e., verifying
+the implementation) and “with privileges” (i.e., verifying the
+implementation’s execution)
+▶In addition, they recommend considering a breakglass
+mechanism; sometimes someone may need to intentionally
+break your security mechanisms in the face of emergencies
+(e.g., a physician may need to break access controls in
+emergency situations in order to save a patients’ lives)
+81 / 85
+
+===== PAGE 82 =====
+Questions?
+82 / 85
+
+===== PAGE 83 =====
+Case #8
+▶Sketch a faulty distributed system with which three AI agents
+collaborate over a network. One agent should analyze code
+and write bug reports; another agent should do bug fixes and
+make pull requests; and the third agent should approve and
+merge the requests. The emphasis is on the adjective faulty;
+the sketch should demonstrate at least three architectural
+security weaknesses and two other architectural weaknesses
+related to other quality attributes addressed thus far in the
+course. You can elaborate the weaknesses in writing (and
+orally in the class), with diagrams, or both.
+83 / 85
+
+===== PAGE 84 =====
+Additional References (1/2)
+1. Laue, T. & Klecker, T. & Kleiner, C. & Detken, K-O. (2022): A SIEM
+Architecture for Advanced Anomaly Detection. Open Journal of Big Data 6 (1):
+26–42, https://serwiss.bib.hs-hannover.de/frontdoor/deliver/index/
+docId/2321/file/laue_etal2022-siem_arch_anomaly_detection.pdf
+2. Arce, I. et al.
+(2014): Avoiding the Top 10 Software Security Design Flaws.
+IEEE, https://ieeecs-media.computer.org/media/technical-activities/
+CYBSI/docs/Top-10-Flaws.pdf
+3. Ruohonem, J. & Salovaara, J. & Lepp¨anen, V. (2018): On the Integrity of
+Cross-Origin JavaScripts. IFIP SEC, https://arxiv.org/pdf/1809.05628
+4. Ose, G. & Glass, S. (2026): What’s Coming to our GitHub Actions 2026
+Security Roadmap. GitHub, Inc.
+https://github.blog/news-insights/product-news/
+whats-coming-to-our-github-actions-2026-security-roadmap/
+5. OWASP (2024): OWASP Top 10 for LLM Applications 2025. https:
+//genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/
+84 / 85
+
+===== PAGE 85 =====
+Additional References (2/2)
+1. Vakulov, A. (2026): Delegating Decisions in Security Operations.
+Communications o the ACM, https://cacm.acm.org/blogcacm/
+delegating-decisions-in-security-operations/
+2. Sierra, P. D. (2026): AI Security: Identity and Access Control. Red Hat Blog,
+https:
+//www.redhat.com/en/blog/ai-security-identity-and-access-control,
+3. Didi, T. & Zavodchik, M. (2026): The Top 10 Threats Related to Agent Skills.
+Akamai Security Blog, https://www.akamai.com/blog/security/2026/mar/
+top-10-threats-related-agent-skills
+4. Chen, H. & Wagner, D. & Dean, D. (2002): Setuid Demystified. USENIX
+Security Symposium, pp. 1–21, https://www.usenix.org/legacy/
+publications/library/proceedings/sec02/full_papers/chen/chen.pdf
+5. Venema, W. (2010): Postfix, Past Present and Future. Invited talk at USENIX
+Security Symposium,
+https://www.usenix.org/legacy/event/lisa10/tech/slides/venema.pdf
+6. Kubernetes (2026): Configure a Security Context for a Pod or Container.
+https://kubernetes.io/docs/tasks/configure-pod-container/
+security-context/
+85 / 85

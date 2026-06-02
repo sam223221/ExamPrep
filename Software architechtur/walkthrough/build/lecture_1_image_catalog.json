@@ -1,0 +1,145 @@
+[
+  {
+    "page": 1,
+    "index": 1,
+    "xref": 13,
+    "width": 827,
+    "height": 221,
+    "bytes": 6049,
+    "ext": "png",
+    "likely_diagram": true,
+    "snippet": "Software Architecture (T630019402) Lecture #1, February 10, "
+  },
+  {
+    "page": 11,
+    "index": 1,
+    "xref": 96,
+    "width": 300,
+    "height": 395,
+    "bytes": 61496,
+    "ext": "jpeg",
+    "likely_diagram": true,
+    "snippet": "Textbooks: Bass et al. (2021) Figure 2: https://www.oreilly."
+  },
+  {
+    "page": 12,
+    "index": 1,
+    "xref": 105,
+    "width": 592,
+    "height": 877,
+    "bytes": 377377,
+    "ext": "png",
+    "likely_diagram": true,
+    "snippet": "Textbooks: Lano & Tehrani (2023) Figure 3: https://link.spri"
+  },
+  {
+    "page": 13,
+    "index": 1,
+    "xref": 114,
+    "width": 675,
+    "height": 906,
+    "bytes": 618907,
+    "ext": "png",
+    "likely_diagram": true,
+    "snippet": "Textbooks: Richards (2015) Figure 4: https://www.oreilly.com"
+  },
+  {
+    "page": 14,
+    "index": 1,
+    "xref": 125,
+    "width": 570,
+    "height": 758,
+    "bytes": 31143,
+    "ext": "png",
+    "likely_diagram": true,
+    "snippet": "Textbooks: Budgen (2007) Figure 5: https://www.pearson.de/97"
+  },
+  {
+    "page": 15,
+    "index": 1,
+    "xref": 134,
+    "width": 636,
+    "height": 923,
+    "bytes": 137540,
+    "ext": "png",
+    "likely_diagram": true,
+    "snippet": "Textbooks: Nagl & Westfechtel (2024) Figure 6: https://link."
+  },
+  {
+    "page": 16,
+    "index": 1,
+    "xref": 143,
+    "width": 661,
+    "height": 810,
+    "bytes": 427749,
+    "ext": "png",
+    "likely_diagram": true,
+    "snippet": "Textbooks: Adkins et al. (2020) Figure 7: https://google.git"
+  },
+  {
+    "page": 17,
+    "index": 1,
+    "xref": 153,
+    "width": 718,
+    "height": 910,
+    "bytes": 1369386,
+    "ext": "png",
+    "likely_diagram": true,
+    "snippet": "Textbooks: Fairbanks (2010) Figure 8: https://www.georgefair"
+  },
+  {
+    "page": 23,
+    "index": 1,
+    "xref": 191,
+    "width": 3201,
+    "height": 1965,
+    "bytes": 4588171,
+    "ext": "jpeg",
+    "likely_diagram": true,
+    "snippet": "Not Like This; Not Like Art, Really Figure 9: https://en.wik"
+  },
+  {
+    "page": 24,
+    "index": 1,
+    "xref": 200,
+    "width": 4608,
+    "height": 3456,
+    "bytes": 3257891,
+    "ext": "jpeg",
+    "likely_diagram": true,
+    "snippet": "While Still Art Too, More Like This, Perhaps Figure 10: http"
+  },
+  {
+    "page": 25,
+    "index": 1,
+    "xref": 209,
+    "width": 923,
+    "height": 801,
+    "bytes": 349019,
+    "ext": "png",
+    "likely_diagram": true,
+    "snippet": "But Definitely Not Like This! Figure 11: https://pubpeer.com"
+  },
+  {
+    "page": 48,
+    "index": 1,
+    "xref": 545,
+    "width": 124,
+    "height": 101,
+    "bytes": 7234,
+    "ext": "png",
+    "likely_diagram": false,
+    "snippet": "An Example System (3/4) Server (component) Server Flight ser"
+  },
+  {
+    "page": 49,
+    "index": 1,
+    "xref": 600,
+    "width": 124,
+    "height": 101,
+    "bytes": 7234,
+    "ext": "png",
+    "likely_diagram": false,
+    "snippet": "An Example System (4/4) Cloud Internet Reserve flights and h"
+  }
+]

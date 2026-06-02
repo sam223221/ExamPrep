@@ -1,0 +1,119 @@
+[
+  {
+    "page": 1,
+    "index": 1,
+    "xref": 13,
+    "w": 827,
+    "h": 221,
+    "bytes": 6049,
+    "snippet": "Software Architecture (T630019402) Lecture #8, April 14, 2026 Jukka Ruohonen 1 / 85"
+  },
+  {
+    "page": 24,
+    "index": 1,
+    "xref": 411,
+    "w": 448,
+    "h": 274,
+    "bytes": 27330,
+    "snippet": "Security Scenarios (3/3) Figure 14: https://xkcd.com/538/ 24 / 85"
+  },
+  {
+    "page": 31,
+    "index": 1,
+    "xref": 487,
+    "w": 1335,
+    "h": 587,
+    "bytes": 195625,
+    "snippet": "Security Tactics: Detect 7\u2192SIEM/SOC (3/4) Figure 17: https://www.usenix.org/system/files/sec22-alahmadi.pdf 31 / 85"
+  },
+  {
+    "page": 35,
+    "index": 1,
+    "xref": 528,
+    "w": 1249,
+    "h": 462,
+    "bytes": 40706,
+    "snippet": "LLM and Agentic Security (3/4) Figure 19: https://blog.pypi.org/posts/ 2026-04-02-incident-report-litellm-telnyx-supply-chain-attack/ 35 / 85"
+  },
+  {
+    "page": 36,
+    "index": 1,
+    "xref": 538,
+    "w": 1075,
+    "h": 513,
+    "bytes": 81930,
+    "snippet": "LLM and Agentic Security (4/4) \u25b6When it comes to unwanted information disclosure, data can leak also by traditional means, including in the AI industry Figure 2"
+  },
+  {
+    "page": 42,
+    "index": 1,
+    "xref": 620,
+    "w": 1065,
+    "h": 836,
+    "bytes": 717508,
+    "snippet": "Input Validation (6/7) Figure 24: How to Not Do It (from https://ccunpacked.dev/) 42 / 85"
+  },
+  {
+    "page": 49,
+    "index": 1,
+    "xref": 721,
+    "w": 1060,
+    "h": 833,
+    "bytes": 165475,
+    "snippet": "Design Principles for Input Validation (4/9) Figure 28: https://www.ncsc.gov.uk/blog-post/prompt-injection-is-not-sql-injection 49 / 85"
+  },
+  {
+    "page": 52,
+    "index": 1,
+    "xref": 776,
+    "w": 1068,
+    "h": 897,
+    "bytes": 125174,
+    "snippet": "Design Principles for Input Validation (7/9) Figure 31: https://www.w3.org/TR/sri-2/ 52 / 85"
+  },
+  {
+    "page": 53,
+    "index": 1,
+    "xref": 785,
+    "w": 978,
+    "h": 685,
+    "bytes": 83695,
+    "snippet": "Design Principles for Input Validation (8/9) Figure 32: https://w3c.github.io/webappsec-csp/ 53 / 85"
+  },
+  {
+    "page": 60,
+    "index": 1,
+    "xref": 905,
+    "w": 932,
+    "h": 326,
+    "bytes": 43241,
+    "snippet": "An Example of GitHub Actions (6/6) Figure 35: https://www.theregister.com/2026/03/30/openai_ chatgpt_dns_data_snuggling_flaw/ 60 / 85"
+  },
+  {
+    "page": 64,
+    "index": 1,
+    "xref": 931,
+    "w": 1086,
+    "h": 427,
+    "bytes": 65831,
+    "snippet": "With Agents (and RAGs), What Really is Executable? Figure 36: https://www.theregister.com/2026/03/25/ai_agents_ supply_chain_attack_context_hub/ 64 / 85"
+  },
+  {
+    "page": 72,
+    "index": 1,
+    "xref": 1013,
+    "w": 933,
+    "h": 615,
+    "bytes": 104706,
+    "snippet": "Input and Identities (4/5) Figure 39: https://datatracker.ietf.org/doc/ draft-hartman-credential-broker-4-agents/ 72 / 85"
+  },
+  {
+    "page": 80,
+    "index": 1,
+    "xref": 1136,
+    "w": 1266,
+    "h": 533,
+    "bytes": 84790,
+    "snippet": "Input and Privileges (7/8) Figure 44: https://man.openbsd.org/pledge 80 / 85"
+  }
+]

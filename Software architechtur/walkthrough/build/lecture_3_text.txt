@@ -1,0 +1,1479 @@
+===== PAGE 1 =====
+Software Architecture
+(T630019402)
+Lecture #3, February 24, 2026
+Jukka Ruohonen
+1 / 83
+
+===== PAGE 2 =====
+Case #2 Presentations
+▶Pick your favorite LLM (or if you do not have access use
+SDU’s Copilot instance; https://copilot.sdu.dk)
+▶Use it to “elicit” QAs; prompt it to prioritize them and to
+provide brief justifications and rationales for them
+▶You can try whether templates might help
+▶The case is:
+“We are going to install about 500 sensors to our two large
+premises for helping to optimize electricity costs by shutting
+lightning in rooms whenever there is sufficient daylight. The
+sensors will be provided by three different vendors. We are a
+research institution and want to use the sensors also to collect
+continuous streams of big data that can be used in research
+for studying automated energy efficiency of buildings.”
+2 / 83
+
+===== PAGE 3 =====
+Today’s Lecture
+▶Today’s lecture starts the exposition of different QAs by
+focusing first on integrability as a distinct attribute
+• The term’s etymology perhaps comes from calculus; the
+adjective integrable means “capable of being integrated”1
+▶Then, modifiability is elaborated as the second distinct QA
+• The adjective modifiable is defined analogously to the
+adjective integrable; it means “capable of being modified”2
+1 https://www.merriam-webster.com/dictionary/integrable
+2 https://www.merriam-webster.com/dictionary/modifiable
+3 / 83
+
+===== PAGE 4 =====
+Preliminaries (1/3)
+“This approach is all about combining unrelated, often previously
+unknown software artifacts by joining them with ‘duct tape and
+glue code’. Depending on the viewpoint and desired connotation,
+such development is referred to as opportunistic design,
+opportunistic reuse, ad hoc reuse, scavenging, software mashups,
+mashware, or sometimes even ‘frankensteining’. The resulting
+approach bears the imprint of cargo cult development or cargo cult
+programming – the ritual inclusion of program structures for
+reasons that the programmers do not fully understand.”
+(Taivalsaari et al. 2025, pp. 1–2; original citations omitted from
+the direct quotation presented)
+4 / 83
+
+===== PAGE 5 =====
+Preliminaries (2/3)
+Figure 1: https://calteches.library.caltech.edu/51/2/CargoCult.pdf
+5 / 83
+
+===== PAGE 6 =====
+Preliminaries (3/3)
+Figure 2:
+https://sites.stat.columbia.edu/gelman/research/published/cargocult.pdf
+6 / 83
+
+===== PAGE 7 =====
+A Note on Terminology Again
+▶Today and in the subsequent lectures, architectural tactics
+refer to high-level design choices, whereas architectural
+patterns are smaller and less abstract designs
+• This terminology comes from Bass et al. (2021), but, once
+again, it is not universally shared – Fairbanks (2020) uses the
+term architectural styles in place of architectural tactics
+▶One way to think about architectural patterns is to consider
+the generalizability of traditional, module-level design patterns
+to a level of components and whole systems
+7 / 83
+
+===== PAGE 8 =====
+Recapitulations from the Second Lecture (1/2)
+Design
+model
+Component1
+Componentn
+Componenti
+In-house
+(developed)
+External
+(dependency)
+More
+control,
+better
+knowledge
+Less
+control,
+lesser
+knowledge
+Is
+Is
+Is
+Likely
+inhibits
+Likely
+inhibits
+Likely
+exhibits
+Figure 3: Refining the Basic Concepts
+8 / 83
+
+===== PAGE 9 =====
+Recapitulations from the Second Lecture (2/2)
+Design
+model
+Component1
+Componentn
+Componenti
+In-house
+(developed)
+External
+(dependency)
+More
+control,
+better
+knowledge
+Less
+control,
+lesser
+knowledge
+Is
+Is
+Is
+Likely
+inhibits
+Likely
+inhibits
+Likely
+exhibits
+Evolution (time)
+Inhibits
+Design and
+development
+Deployment
+...
+Figure 4: Refining the Basic Concepts Further
+9 / 83
+
+===== PAGE 10 =====
+Evaluating Integrability (1/6)
+▶Bass et al. (2021) suggest evaluating each component Ci in a
+system S with two criteria:
+1. Size: the number of potential dependencies between the
+interfaces of Ci and S;
+2. Distance: the difficulty of resolving differences of each of the
+dependencies.
+▶Of these, size is a rather objective metric because we should
+be able to at least approximate a metric such as σ = Pn
+i=1 Ci
+for a system with n = |S| components
+• Yet, a definition for a dependency is needed
+10 / 83
+
+===== PAGE 11 =====
+Evaluating Integrability (2/6)
+▶Latendresse et al. (2022) list the following dependency types:
+1. Run-time dependency is needed to run a program
+2. Development dependency is needed to develop a program
+3. Installed dependency is needed during installation
+4. Depth is a dependency’s level in a dependency tree
+5. Transitive dependency is a dependency with a depth > 1
+6. Context refers to a context in which a dependency is used
+11 / 83
+
+===== PAGE 12 =====
+Evaluating Integrability (3/6)
+▶However, the previous dependency types all operate at the
+module-level; that is, they are about source code
+▶Therefore, Bass et al. (2021) also suggest to differentiate
+between such “syntactic dependencies (cf. “calls”,
+“inherits”, “uses an interface”, etc.) and “semantic
+dependencies” (such as connectors via protocols, file
+formats, standards, meta-data, etc.)
+▶In addition, elements can be coupled temporally or through
+resources available to a machine or a system
+12 / 83
+
+===== PAGE 13 =====
+Evaluating Integrability (4/6)
+Machine
+Process1
+Thread11   
+Thread12   
+Processi
+Threadi1   
+Threadi2  
+Processn
+Threadn1 
+Threadnm   
+Connector
+Figure 5: How Are the Processes and Threads Coupled via Resources?
+13 / 83
+
+===== PAGE 14 =====
+Evaluating Integrability (5/6)
+▶Thus, we cannot consider only code-level interfaces, which is
+also the reason for using the generic connector concept
+▶Bass et al. (2021) propose five distance concepts:
+1. Syntactic distance: any two connected components via a
+connector must agree upon the number and type of data
+elements being shared (e.g., versus integers vs. floating points,
+XML vs. JSON, machine-readable vs. binary, and so forth)
+2. Data semantic distance: any two connected components via
+a connector must agree upon the semantics of data elements
+shared (e.g., versus seconds vs. nanoseconds, kilometers vs.
+miles, Celsius scale vs. Kelvin scale, etc.)
+14 / 83
+
+===== PAGE 15 =====
+Evaluating Integrability (6/6)
+▶The remaining three distance concepts are:
+3. Behavioral semantic distance: any two connected
+components via a connector must agree upon behavior (e.g.,
+versus startup vs. shutdown, a state A vs. a state B, client vs.
+server, shared resource used by thread A vs. thread B, etc.)
+4. Temporal distance: any two components must agree upon
+time (e.g., versus 10 Hz vs. 100 Hz, latency of 100
+milliseconds vs. 10 milliseconds, a day vs. a week, etc.)
+5. Resource distance: any two components must agree upon
+any resources shared (e.g., shared memory, shared CPU time,
+shared disk space, shared networking bandwidth, etc.)
+15 / 83
+
+===== PAGE 16 =====
+Integrability Scenarios (1/2)
+Environment
+System
+(deployment)
+Source
+Response
+measure
+Event
+Response
+Where does the 
+event come from?
+What is the
+event? What
+kind of
+integrations 
+are present?
+How will it
+respond to the
+event?
+How is the 
+response 
+measured?
+What state the system
+has when the event
+occurs?
+Which parts are
+involved in the
+integration?
+Figure 6: A Scenario Template for Integrability
+16 / 83
+
+===== PAGE 17 =====
+Integrability Scenarios (2/2)
+Environment
+System
+(deployment)
+Source
+Response
+measure
+Event
+Response
+     Potential values to consider:
+Component stakeholders
+Component marketplace
+Component vendors
+      Potential values to consider:
+Add a new component
+Integrate a new version of
+an existing component
+Integrate existing
+components in a new way
+     Potential values to consider:
+Changes are { completed, integrated, tested, deployed, ...}
+Components in a new setup are successfully connected
+Components in a new configuration do not violate resource
+or other limits, security or other guarantees, etc.
+Potential values to consider:
+Number of components changed
+Percentage of code changed
+Tests failed / passed
+Money spent
+Time required
+     Potential values to consider:
+Development
+Integration
+Deployment (production)
+   Potential values to consider:
+Entire system
+Set of components
+Component meta-data
+Component configuration
+Figure 7: A Scenario Template for Integrability (continued)
+17 / 83
+
+===== PAGE 18 =====
+Integrability Tactics
+Integrability
+tactics
+Limit
+Adapt
+Coordinate
+   1. Avoid
+   2. Bundle
+   3. Encapsulate:
+Isolate
+Abstract
+Use standards
+Discover
+Tailor interface
+Configure
+behavior
+Orchestrate
+Manage
+resources
+Figure 8: Tactics for Integrability (modified from Bass et al. 2021)
+18 / 83
+
+===== PAGE 19 =====
+Integrability Tactics: Limit (1/13)
+▶The most obvious tactic is to avoid a dependency
+• The same point applies to a risk-based approach; maybe a
+given dependency is just too risky not only in terms
+interoperability but also other QAs (e.g., number of other
+dependencies it brings, security, vendor lock-in, etc.)?
+▶A second tactic is to bundle a dependency into your local tree
+instead of managing it via a package manager
+• While there are trade-offs, some prefer bundling (Cox 2019)
+▶The third tactic involves different ways to encapsulate the
+dependency – understood in the present context generally as
+an introduction of some connector through which elements
+must always communicate
+19 / 83
+
+===== PAGE 20 =====
+Integrability Tactics: Limit (2/13)
+▶When using open source packages, Cox (2019) provides also
+many good practical suggestions, including with questions
+such as: what does a package’s bug tracker show; does the
+package have reported vulnerabilities; do you know anything
+about the people maintaining the package?
+• However, be aware what Feynman said (p. 5), i.e. cf.:
+Figure 9: https://cmustrudel.github.io/papers/icse2026fakestars.pdf
+20 / 83
+
+===== PAGE 21 =====
+Integrability Tactics: Limit (3/13)
+Figure 10: https://scorecard.dev/
+21 / 83
+
+===== PAGE 22 =====
+Integrability Tactics: Limit (4/13)
+▶The OpenSSF’s Scorecard contains various machine-verifiable
+checks for open source software projects, such as those about
+known vulnerabilities, testing practices, security policies, code
+reviews, code signing, and many others
+▶For the present purposes, the notion of pinned dependencies
+is important; these refer to those dependencies that are
+attached to known versions that are verifiable via hash
+functions instead of plain package names
+• These help to mitigate so-called type-squatting
+22 / 83
+
+===== PAGE 23 =====
+Integrability Tactics: Limit (5/13)
+Figure 11: https://redmonk.com/kholterhoff/2026/02/03/
+ai-slopageddon-and-the-oss-maintainers/
+23 / 83
+
+===== PAGE 24 =====
+Integrability Tactics: Limit (6/13)
+Figure 12: https://www.betterup.com/workslop
+24 / 83
+
+===== PAGE 25 =====
+Integrability Tactics: Limit (7/13)
+Subject
+attach(o)
+detach(o)
+notify()
+Observer
+update()
+1
+*
+For each o that has called attach(o), 
+call o.update() to notify the instance
+An Observer instance calls 
+attach(this) and detach(this) to 
+attach or detach itself itself, respectively
+1
+*
+Figure 13: Observer Pattern: Does It Limit Dependencies?
+25 / 83
+
+===== PAGE 26 =====
+Integrability Tactics: Limit (8/13)
+Publisher1
+Publisheri
+Publishern
+Broker
+(event bus)
+Either via custom protocols
+(typically via TCP, as in Apache
+Kafka) or standardized protocols
+(such as MQTT used for IoT)
+Subscriberj
+Subscriberm
+Subscriber1
+Publish
+Publish
+Publish
+Dispatch
+Dispatch
+Dispatch
+Figure 14: Publish-Subscribe Pattern: Does It Limit Dependencies?
+26 / 83
+
+===== PAGE 27 =====
+Question
+What Was Said in the Previous Lecture About
+Things Related to the Previous Figure?
+27 / 83
+
+===== PAGE 28 =====
+Integrability Tactics: Limit (9/13)
+Publisher1
+Publisheri
+Publishern
+Broker
+(event bus)
+Subscriberj
+Subscriberm
+Subscriber1
+Publish
+big things
+continuously
+Publish
+small things
+rarely
+Dispatch
+Broker has no scheduler and thusa
+Subscriber1 and Subscriberj are
+notareceiving everything due to Publisher1's
+things eating the bandwidth.
+Publishern's things are
+not reaching the brokera
+due to Publisher1.
+Figure 15: Broadcasting Can Be a Poor Choice
+28 / 83
+
+===== PAGE 29 =====
+Integrability Tactics: Limit (10/13)
+Table 1: The Observer and Publish-Subscribe Patterns
+Feature
+Observer
+Publish-Subscribe
+Latency
+• Low (lower)
+• High (higher)
+Logging
+• Easy (but with overhead)
+• Easy (but with overhead)
+Coupling
+• Tight coupling;
+a subject
+must store direct references to
+all observer instances
+• Loose coupling; publishers
+and subscribers are unaware of
+each other
+Communication
+• Direct; a subject calls update
+typically synchronously
+• Indirect; a broker dispatches
+messages to subscribers
+Fault tolerance
+• If observers fail, they may af-
+fect a subject
+• As a broker decouples partic-
+ipants, failures are isolated
+Domains
+• Graphical user interfaces, the
+model-view-controller, etc.
+•
+Microservices,
+distributed
+systems, IoT, etc.
+29 / 83
+
+===== PAGE 30 =====
+Integrability Tactics: Limit (11/13)
+▶Besides potential latency issues, the publish-subscribe
+pattern has some other built-in drawbacks, among which are:
+1. Usually, a subscriber cannot be sure how long it takes to
+receive a published message via a broker sent by a publisher
+2. Often, a publisher cannot be sure whether a subscriber has
+received a message (unless a broker provides the functionality)
+3. Given that messages are typically sent asynchronously,
+determinism cannot be usually guaranteed because an
+order at which methods are called can vary
+4. Testability QA may suffer because testing can be hard
+5. Security QA may suffer too because end-to-end encryption
+cannot be provided due to publishers and subscribers not
+knowing about each other
+• However, there is a trade-off because security may improve
+due to encapsulation via isolation techniques
+30 / 83
+
+===== PAGE 31 =====
+Integrability Tactics: Limit (12/13)
+Virtual or physical machine
+Container1
+(process)
+Service1
+(component)
+Logging
+library
+Log file
+(disk)
+Container2
+(process)
+Service2
+(component)
+Logging
+library
+Periodic pull
+Virtual or physical  machine
+Append-only
+Container3
+(process)
+Service3
+(component)
+Log
+aggregator
+Service4
+(component)
+Message
+broker
+Publish
+Log
+storage
+Dispatch
+Virtual or physical  machine
+Service5
+(component)
+Message
+broker
+Log
+storage
+Dispatch
+Publish at low frequency to store into
+an isolated permanent storage
+(write)
+(write)
+*
+1
+1
+1
+Figure 16: A Logging Design for Micro-Services (from OWASP 2025)
+31 / 83
+
+===== PAGE 32 =====
+Question
+What is inconsistent in the previous figure?
+32 / 83
+
+===== PAGE 33 =====
+Integrability Tactics: Limit (13/13)
+▶The use of standards is a generally good integrability tactic
+• It can also avoid vendor lock-in noted in the first lecture
+▶Furthermore, many of the previous points about encapsulation
+can be used for other restrictions, such as limiting network
+destinations (e.g., for IoT devices) to which a component is
+allowed to connect via whitelists
+▶At the process-level of an OS, it is also possible to limit
+computing resources available for any given process
+▶Some operating systems further provide interfaces to limit
+the available system calls to a process
+33 / 83
+
+===== PAGE 34 =====
+Integrability Tactics: Adapt (1/2)
+▶A discovery service is a classical architectural pattern; the
+examples include the DNS and DHCP protocols
+• The idea is similar to the publish-subscribe pattern;
+machines discover services without knowledge of each other
+▶Tailoring is a tactic that adds or removes capabilities (e.g.,
+translations between formats, buffering, computing resource
+limits, prepared statements to avoid SQL injections, etc.)
+from components without changing them
+▶Finally, configuration is similar to tailoring but typically
+occurs either at build time (cf. conditional compilation), a
+system’s startup (e.g., via configuration files), or runtime
+(e.g., via a specific protocol)
+34 / 83
+
+===== PAGE 35 =====
+Integrability Tactics: Adapt (2/2)
+▶Regarding discovery service pattern: as clients do not typically
+know what is offered and by whom, they typically broadcast
+their discovery requests, as is the case in the DHCP protocol
+DHCP client
+DHCP server
+"Discover"
+(broadcast)
+"Offer"
+"Request"
+"Acknowledge"
+Figure 17: A High-Level Illustration of the Architectural Essence of the
+Dynamic Host Configuration Protocol (DHCP)
+35 / 83
+
+===== PAGE 36 =====
+Integrability Tactics: Coordinate (1/4)
+▶Orchestration is a tactic that reduces dependencies by
+centralizing these two a given component of a system
+• Note the dangers akin to the “god class” anti-pattern
+▶Finally, a general tactic to manage resources involves an
+intermediary that grants or denies access to computing
+resources, possibly imposing also limits to them
+• Thread pools are a decent example
+• At the level deployments, the tactic is closely related to the
+discovery service and configuration tactics
+▶All of the previous can be combined too
+36 / 83
+
+===== PAGE 37 =====
+Integrability Tactics: Coordinate (2/4)
+System1
+Machine1
+Machine2
+Machine3
+Orchestrator
+(machine)
+System2
+Service discovery
+(machine)
+(2)
+(3)
+Data
+(5)
+(4)
+(1) Event
+Figure 18: If (1), (2), (3), (4), and (5) Would Occur Consecutively, What
+Might They Denote When Keeping the Notation in Mind?
+37 / 83
+
+===== PAGE 38 =====
+Integrability Tactics: Coordinate (3/4)
+System1
+Machine1
+Machine2
+Machine3
+Orchestrator
+(machine)
+System2
+Service discovery
+(machine)
+(2)
+(3)
+Data
+(5)
+(4)
+(1) Event
+(a)
+(a)
+(a)
+(b)
+Figure 19: If We Would Add Meta-Data to Help Orchestration and
+Service Discovery, What Examples Might the Cases (a) and (b) Hold?
+38 / 83
+
+===== PAGE 39 =====
+Integrability Tactics: Coordinate (4/4)
+{
+"tag"
+: "(a)",
+"id"
+: "machine_2",
+"cpus"
+: "4",
+"ram"
+: "16GB",
+"ram_min"
+: "8GB",
+...
+}
+{
+"tag"
+: "(b)",
+"id"
+: "data",
+"desc"
+: "write_store",
+...
+}
+39 / 83
+
+===== PAGE 40 =====
+Integrability Patterns (1/5)
+▶The encapsulation tactics range from full-fledged sandboxing
+solutions (as used, e.g., in today’s web browsers or Java’s
+virtual machine, JVM) to smaller wrappers
+▶Wrappers are also about tailoring interfaces
+Original
+module
+Wrapper 
+module
+Interface
+Provides n 
+interfaces
+Provides m < n
+interfaces
+All calls routed
+to the wrapper
+module
+Figure 20: A Wrapper in a Nutshell
+40 / 83
+
+===== PAGE 41 =====
+Integrability Patterns (2/5)
+▶Unlike a wrapper, which is dependent on a module, a bridge
+is a more general pattern that independently translates some
+“required” assumptions of a component to some “provided”
+assumptions of another component (Bass et al. 2021)
+▶The terminology comes from low-level hardware designs; e.g.,
+the standardized Peripheral Component Interconnect (PCI)
+standard uses the concepts of bridges, buses, and devices
+41 / 83
+
+===== PAGE 42 =====
+Integrability Patterns (3/5)
+CPU
+Main 
+memory
+Host bus
+Host
+bridge
+PCI
+bridge
+PCI bus 0
+PCI
+devices
+PCI
+devices
+PCI bus 1
+Connector
+Figure 21: PCI Bridges and Buses (simplified from the old data sheet
+provided by Texas Instruments 1999, Fig. 3–1)
+42 / 83
+
+===== PAGE 43 =====
+Integrability Patterns (4/5)
+Client
+RESTful
+bridge
+Discovery via GET /servers
+Server1
+(a)
+(b)
+Interaction via POST /server1
+Serveri
+Servern
+(b)
+Figure 22: An Illustration of a Bridge via REST
+43 / 83
+
+===== PAGE 44 =====
+Integrability Patterns (5/5)
+▶A mediator is a pattern that closely resembles bridges; in
+general, the distinction is that a mediator determines the
+“required” assumptions at runtime
+Mediate
+Get state
+Object1
+Mediator
+Object2
+Call
+Figure 23: A Mediator in a Nutshell
+▶Service-oriented architectures (SOAs) are also a pattern for
+integrability, although these are not discussed in this course as
+they have already been covered in other courses
+44 / 83
+
+===== PAGE 45 =====
+Question
+What might be the downsides of the patterns?
+45 / 83
+
+===== PAGE 46 =====
+Maintenance (1/3)
+▶Maintainability is a huge domain of its own, but, to begin
+with and in general, a system’s maintenance phase is usually
+seen to start upon putting a first release into production
+Staging tree
+Release tree
+Branching
+Release
+candidate1
+Release
+candidaten
+Release
+Selection
+Selection
+Production
+Deployment
+Maintenance
+phase
+Figure 24: A Fairly Conventional Framing of a Maintenance Phase
+46 / 83
+
+===== PAGE 47 =====
+Maintenance (2/3)
+▶Maintenance is costly; it is not uncommon to see industry
+reports saying that even up to about 80% of a system’s all
+costs could be due to maintenance
+▶Therefore, numerous fundamental considerations follow
+▶To begin with, is it really ready for production?
+• Does a software testing suite show a green light?
+• Have acceptance tests passed with stakeholders?
+• Have QAs been identified and appropriately dealt with?
+• As hinted by the previous figure on p. 46, can it even be
+deployed without substantial effort and failure risks?
+• · · ·
+47 / 83
+
+===== PAGE 48 =====
+Maintenance (3/3)
+▶Then, a fundamental choice is about the system’s expected
+lifetime; that is, how long will it be maintained?
+• Although some open source projects (such as, say, the Linux
+kernel) are constantly evolving, most commercial systems have
+a fixed lifetime (whether measured in years or decades)
+• The longer a support period, the more difficult and more
+costlier maintenance will be; patching bugs or vulnerabilities
+for a system released a decade ago is easier said than done!
+▶When it comes to modifiability as a SubQA of maintainability,
+the central prior questions are about anticipating changes
+48 / 83
+
+===== PAGE 49 =====
+Modifiability and Changes (1/6)
+▶When planning for modifiability (as per Bass et al. 2021):
+1. What can change? The answers require good understanding
+of a system and its surrounding environment; the factors to
+consider include, but are not limited to, requirements, including
+those from law, machines (including hardware), internal
+environment (such as a cloud computing platform), external
+environment (including, e.g., protocols), and the system itself
+and other QAs (such as performance, scalability, etc.)
+Requirements
+Law
+Label
+ Ripple
+Implementation
+Label
+ Ripple
+Label
+Text
+   Paper's scope  
+Change
+Processes personal data
+Politics
+Figure 25: Ripple Effects (adopted from Ruohonen et al. 2025, Fig. 1)
+49 / 83
+
+===== PAGE 50 =====
+Modifiability and Changes (2/6)
+2. How likely are changes? An estimate is needed, although it
+is highly dependent on a system and its environment (cf., e.g.,
+“not that likely in the domain of safety-critical systems”)
+3. What is likely to change? In theory, everything can change,
+but not everything can be changed; hence, decisions are
+needed about will be supported and what will not
+4. Where are changes likely to be made? At least the
+following are possible: source code (e.g., fixing post-release
+bugs, etc.), compilation (e.g., conditional compilation and
+compiler flags, etc.), configuration (including end-user
+configuration of a system), and internal deployment
+environment (e.g., a hosting service), among other things
+50 / 83
+
+===== PAGE 51 =====
+Modifiability and Changes (3/6)
+5. Who is likely to make changes? Answers range from
+developers to end-users, stakeholders, and third-parties
+6. What is the cost to make changes? Note that an answer
+covers two dimensions: a cost of making a modification (such
+as changing source code) and a cost of designing and
+introducing features to make a system more modifiable
+• Therefore: even in case improving modifiability during
+development-time would incur substantial costs, it may still
+decrease the overall costs particularly in case changes are
+expected to be frequent
+51 / 83
+
+===== PAGE 52 =====
+Modifiability and Changes (4/6)
+▶But sometimes we cannot make changes even if we want to!
+▶Backwards compatibility (that is, interoperability with older
+binaries, versions, or other artifacts) is a design decision that
+helps to deal with software aging and legacy software
+• On the other hand, it induces large maintenance costs
+▶Also hardware may be designed to be backward compatible
+(such as with the x86 instruction set architecture)
+▶Many programming languages are also designed to be
+backward compatible, which affects their evolution as well as
+the evolution of software written in a given language
+52 / 83
+
+===== PAGE 53 =====
+Modifiability and Changes (5/6)
+Alternatives for introducing incompatible changes
+"Experimental 
+preview"
+v. 0.1
+v. 1.0
+"Aggressive
+obsolescence"
+v. 1.0
+v. 1.1
+"Two in production"
+v.2.0
+v. 3.0
+"Limited lifetime
+guarantee"
+v. 4.1
+v. 4.2
+"Lifetime 
+guarantee"
+v. 8.0
+Decide whether to keep
+backwards compatability
+API
+documentation
+Document
+deprecated
+elements
+Visible in
+Version IDs
+"Major.minor.patch"
+Can use
+Called
+Semantic versioning scheme
+v. 9.0
+Figure 26: Introducing Incompatible Changes (adopted L¨ubke et al. 2019)
+53 / 83
+
+===== PAGE 54 =====
+Modifiability and Changes (6/6)
+1.2.3
+1.2.4
+1.3.0
+Compatible extension
+(e.g., a small  new feature)
+Compatible update
+(e.g., a set of bug fixes)
+2.0.0
+Incompatible change 
+(e.g., a major API restructuring)
+Versions 1.2.3 and 2.0.0 are not
+compatible with each other
+Figure 27: Further Incompatible Changes (adopted L¨ubke et al. 2019)
+54 / 83
+
+===== PAGE 55 =====
+Change Types (1/3)
+▶Some frequently encountered change types include the
+following four broad categories (Bass et al. 2021):
+1. Changes caused by scalability are often encountered; there
+will be a lecture on this topic, and, thus, for the present
+purposes, it suffices to say that scalability means
+“accommodating more of something”
+2. Changes caused by not following a principle of location
+independence are common too; adhering to the principle
+generally means that a location will be easy to modify for a
+machine in a distributed system
+• In distributed systems many machines and their components
+interact but their deployment locations are not often known
+prior to a deployment and runtime operations
+55 / 83
+
+===== PAGE 56 =====
+Change Types (2/3)
+3. Changes caused by variability are common; anything from
+requirements and code to tests and documentation may
+change, and, thus, one should design with variability in mind
+• Product lines are a good example
+Common artifacts
+(requirements, code, tests, documentation, etc.)
+Product line
+Has
+Product1
+Productn
+...
+Should share but with variability in mind
+Custom artifacts
+Has
+...
+Figure 28: An Illustration of Product Lines
+56 / 83
+
+===== PAGE 57 =====
+Change Types (3/3)
+4. Changes caused by not having designed a system with
+portability in mind are frequent too
+• Thus, one should seek to minimize dependencies to any
+given single internal environment, such as, say, a particular
+video game console in the video game industry
+• Note that making a decision about backwards compatibility
+is fundamental and should be done with utmost care; many
+such decisions made decades ago (cf. the C language, x86
+instruction set architecture, Microsoft Windows, etc.)
+continue to affect the whole computing world
+57 / 83
+
+===== PAGE 58 =====
+Modifiability Tactics (1/2)
+Modifiability
+tactics
+Reduce coupling
+Increase cohesion
+Defer binding
+   More or less the
+same as for the
+   integrability tactics 
+Split modules
+Redistribute
+responsibilities
+Registries
+Parameters
+Polymorphism
+Figure 29: Tactics for Modifiability (modified from Bass et al. 2021)
+58 / 83
+
+===== PAGE 59 =====
+Modifiability Tactics (2/2)
+▶When designing with modifiability in mind, we generally seek
+to localize changes and prevent ripple effects
+Component1
+Component3
+Component2
+Component4
+Component5
+Component6
+Component7
+Component8
+Change
+Ripple
+effect
+Figure 30: A Ripple Effect: In Which Component Should We Focus?
+59 / 83
+
+===== PAGE 60 =====
+Modifiability Tactics: Increase Cohesion
+▶To recall the basic design principle of object-oriented (OO)
+programming: modules should be cohesive and loosely coupled
+▶Therefore, whenever a module is not cohesive, meaning that it
+deals with some different responsibilities, it should be split
+into two or more modules
+▶However, when two or more modules deal with the same
+responsibility, they should be unified into a single module
+• But recall the single responsibility principle
+▶Although these are common module-level design tactics, they
+generalize also to the component-level, as becomes also clear
+during the later lectures
+60 / 83
+
+===== PAGE 61 =====
+Cohesion and Coupling Tactics Analytically
+                                                          Restrict
+                                                                    dependencies
+                                                                    Encapsulate
+                    
+                                   
+                                        Combine 
+                
+Split                                            
+A and B
+B
+A
+B
+A
+A and B
+                                   
+                                   
+                                  Use an 
+                                          intermediary 
+             
+C
+A
+A
+B
+C
+A
+B
+C
+D
+A
+B
+C
+X
+D
+Module
+Interface
+Coupling
+Module
+A
+B
+C
+X
+Y
+A
+B
+C
+Z
+X
+Y
+Figure 31: Five Modifiability Tactics
+61 / 83
+
+===== PAGE 62 =====
+Modifiability Tactics: Defer Binding (1/4)
+▶The defer binding tactic generally means that one should make
+definite choices as late as possible in a development cycle
+▶Bass et al. (2021) illustrate this tactic by noting that a
+function f (x) that contains an assertion that some b = 1
+must hold is less general than a parameterized function f (x, b)
+• For instance, f (·) could denote a deployment scenario and x
+a given component among a system’s many components
+▶With this notation in mind, a sensible recommendation would
+be to start developing with something like f (x, b = 1) in mind,
+recognizing b = 1 is something that is planned even though it
+may change later on during development or deployment
+62 / 83
+
+===== PAGE 63 =====
+Modifiability Tactics: Defer Binding (2/4)
+▶In addition to OO-related ideas, such as using polymorphism,
+modifiability can be often increased by using shared
+repositories or shared registries
+• The sysctl command and the /proc directory in Linux
+would be good examples alongside analogous one in Windows
+▶That said, the idea of shared registries applies also to
+development; both modifiability and reusability can be often
+increased by pushing completed artifacts (from requirements
+to documentation) in a project to a shared repository and
+then pulling artifacts from there in other projects
+63 / 83
+
+===== PAGE 64 =====
+Modifiability Tactics: Defer Binding (3/4)
+▶More generally, modifiability can be increased by designing
+modules to allow configuration at runtime via configuration
+files, specific services delivering configurations, and flags
+• But a software’s runtime has different stages; often, it may
+be a good idea to only do start-up time binding, such that a
+configuration is only loaded upon a module’s or a
+component’s starting time
+▶But do not go overboard; something like the Spring
+framework for Java is a debatable design in this regard
+▶A common alternative is compile-time binding
+64 / 83
+
+===== PAGE 65 =====
+Modifiability Tactics: Defer Binding (4/4)
+Compiling
+Start-up
+Runtime
+Time
+#IFDEF
+DEBUG
+config.xml
+GUI, command line,
+signals from other
+processes, etc.
+Stages
+Figure 32: Different Bindings at Different Stages
+65 / 83
+
+===== PAGE 66 =====
+Modifiability Tactics: Graceful Extension
+Componentj
+Original
+interface
+Componenti
+Componentj
+Original
+interface
+Componenti
+Extended
+interface
+Componentk
+Componentj
+Original
+interface
+Componenti
+Extended
+interface
+Componentk
+Mediator
+Original interface
+Extending the interface
+Using an intermediary
+Figure 33: Tactics for Interface Evolution (from Bass et al. 2021)
+66 / 83
+
+===== PAGE 67 =====
+Modifiability Tactics: Graceful Deprecation
+Version 1
+Version 2
+Version 3
+Deprecation period
+Deprecate
+functionality in
+version 1
+Remove
+functionality in
+version 1
+Version 
+1 and 2
+are still
+compatible
+Figure 34: Adopted form L¨ubke et al. (2019, Fig. 7)
+67 / 83
+
+===== PAGE 68 =====
+Question
+Can You Recall an Example Where Graceful
+Deprecation Was Not Honored or Followed?
+68 / 83
+
+===== PAGE 69 =====
+More General Modifiability Principles
+▶Bass et al. (2021) suggest the following general principles:
+1. Principle of least surprise: interfaces should behave
+consistently and match the caller’s expectations
+2. Small interface principle: two interacting interfaces should
+exchange as little as possible
+3. Don’t repeat yourself principle: avoid offering redundant
+ways to achieve the same goal
+4. Uniform access principle: do not leak implementation details
+to the interface; resources should be available in the same way
+regardless how they are implemented
+• If there are no consistency requirements, a caller does not
+need to know whether a resource is served from a cache or via
+a fresh fetch, for instance
+69 / 83
+
+===== PAGE 70 =====
+Modifiability Patterns: Publish-Subscribe
+▶The publish-subscribe pattern is good also for modifiability
+p
+s
+Publish port
+instance
+Subscribe
+port instance
+Connector
+Component
+Broker (event bus)
+Component1
+p
+s
+Component2
+p
+Component3
+s
+Figure 35: A Different View to the Publish-Subscribe Pattern (adopted
+from Fairbanks 2010, Fig. 14.6); How Could the Figure Be Improved?
+70 / 83
+
+===== PAGE 71 =====
+Modifiability Patterns: Layering
+▶The layering pattern noted already in the first lecture is a
+further good choice for increasing modifiability
+• When properly designed, changes can be done at lower
+layers without changing the upper layers
+• Lower levels may also be potentially reused
+• The downsides include performance concerns in case calls
+traverse many layers; portability concerns regarding the lower
+layers; and potentially constraining development in case
+developers of upper layers do not (yet) have abstractions and
+functionalities implementd at lower levels
+71 / 83
+
+===== PAGE 72 =====
+Modifiability Patterns: Client-Server
+▶The classical client-server pattern is a good choice for
+increasing modifiability already because only loose coupling is
+present, including with respect to evolution and developing a
+given client and a given server implementation
+• Also: there is no coupling between clients once deployed
+▶The client-server pattern is a sensible choice also for
+scalability reasons; as long as the server-side has capacity, the
+client-side can continuously scale
+▶The drawbacks include dependence on a network and its
+protocols as well as potential security concerns, including with
+respect to confidentiality, integrity, and availability
+72 / 83
+
+===== PAGE 73 =====
+Modifiability Patterns: MVC
+▶When properly designed, the classical model-view-controller
+(MVC) pattern promotes modifiability too because views
+and controllers do not depend on each other
+Model
+View
+Controller
+1
+1
+*
+*
+Figure 36: An Illustration of the MVC Pattern
+73 / 83
+
+===== PAGE 74 =====
+Modifiability Patterns: Plugin (1/3)
+▶A so-called plugin pattern is also a good choice for
+increasing modifiability; the idea simply is that a system’s core
+functionality can be modified and increased through plugins
+that use a common connector (Bass et al. 2021)
+• It is sometimes also known as a micro-kernel pattern
+▶As coupling is mostly limited to the given connector, an
+obvious benefit is that one team or organization can develop
+the core functionality, whereas others (including also
+end-users) can develop the plugins
+▶Drawbacks include security and privacy concerns; functionality
+is increased by executing arbitrary code
+74 / 83
+
+===== PAGE 75 =====
+Modifiability Patterns: Plugin (2/3)
+Plug-in
+component1
+Plug-in
+component2
+Plug-in
+component3
+Plug-in
+component4
+"Micro-kernel"
+(a.k.a. the core
+component)
+Registry
+Queries about the
+availability and functionality
+of the plugin components
+Unlike in micro-services,
+the connectors are
+typically via direct
+method calls.
+Figure 37: The Somewhat Ill-Named “Micro-Kernel” Pattern
+75 / 83
+
+===== PAGE 76 =====
+Modifiability Patterns: Plugin (3/3)
+Figure 38: https://www.malwarebytes.com/blog/news/2026/01/
+firefox-joins-chrome-and-edge-as-sleeper-extensions-spy-on-users
+76 / 83
+
+===== PAGE 77 =====
+Modifiability Patterns: Pipe-and-Filter
+▶Also the pipe-and-filter pattern pattern can be used to
+increase modifiability because functionalities can be spread
+across multiple filters connected through pipes
+w
+Filter1
+w
+r
+Filter2
+r
+Filter3
+w
+w
+Filter4
+r
+r
+w
+r
+Filter5
+r
+w
+Read port
+instance
+Write port
+instance
+Pipe
+Component
+Figure 39: The Pipe-and-Filter Pattern (from Fairbanks 2010, Fig. 14.3)
+77 / 83
+
+===== PAGE 78 =====
+Modifiability Patterns: Batch-Sequential
+▶Also the so-called batch-sequential pattern promotes
+modifiability; it is similar to the pipe-and-filter pattern but
+each stage completes its operation before writing its output
+Stage3
+w
+r
+Stage4
+r
+w
+Read port
+instance
+Write port
+instance
+Connector
+Component
+Stage1
+w
+r
+Stage2
+w
+r
+Figure 40: The Pipe-and-Filter Pattern (from Fairbanks 2010, Fig. 14.4)
+78 / 83
+
+===== PAGE 79 =====
+Questions?
+79 / 83
+
+===== PAGE 80 =====
+Case #3
+▶Consider Fig. 4 in case-3.pdf3
+▶What kind of an architecture you think it is in overall?
+▶Which symbols (A to D) might belong to a deployment?
+▶Do you recognize any styles and patterns used and where?
+▶Why might they use multiple databases?
+▶How would you simplify it with a different view?
+• A drawing would be preferable but not necessary
+3 https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10081336
+80 / 83
+
+===== PAGE 81 =====
+Thank you
+Questions?
+81 / 83
+
+===== PAGE 82 =====
+Additional References (1/2)
+1. Taivalsaari, A. & Mikkonen, T. & Pautasso, C. (2025): On the Future of
+Software Reuse in the Era of AI Native Software Engineering. Archived
+manuscript, https://arxiv.org/pdf/2508.19834
+2. Latendresse, J. & Mujahid, S. & Costa, D. E. & ShihabAuthors, E. (2023): Not
+All Dependencies are Equal: An Empirical Study on Production Dependencies in
+NPM. Proceedings of the 37th IEEE/ACM International Conference on
+Automated Software Engineering (ASE 2022), pp. 1–12,
+https://arxiv.org/pdf/2207.14711
+3. Cox, R. (2019): Our Software Dependency Problem. Unpublished essay,
+https://research.swtch.com/deps.pdf
+4. OWASP (2025): Microservices Security Cheat Sheet.
+https://cheatsheetseries.owasp.org/cheatsheets/Microservices_
+Security_Cheat_Sheet
+82 / 83
+
+===== PAGE 83 =====
+Additional References (2/2)
+1. Texas Instruments (1999): PCI2250 PCI-to-PCI Bridge.
+https://www.ti.com/lit/ds/symlink/pci2250.pdf?ts=1767440009050
+2. Ruohonen, J. & Hjerppe, K. & Kang, E.-Y. (2025): A Mapping Analysis of
+Requirements Between the CRA and the GDPR. IEEE 33rd International
+Requirements Engineering Conference Workshops (REW 2025), IEEE,
+pp. 215–222, https://arxiv.org/pdf/2503.01816
+3. L¨ubke, D. & Zimmermann, O. & Pautasso, C. & Zdun, U. & Stocker, M.
+(2019): Interface Evolution Patterns: Balancing Compatibility and Extensibility
+Across Service Life Cycles. The 24th European Conference on Pattern
+Languages of Programs, pp. 1–24,
+https://dl.acm.org/doi/abs/10.1145/3361149.3361164
+83 / 83

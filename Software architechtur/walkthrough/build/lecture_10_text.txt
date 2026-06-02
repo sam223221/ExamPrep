@@ -1,0 +1,1005 @@
+===== PAGE 1 =====
+Software Architecture
+(T630019402)
+Lecture #10, April 28, 2026
+Jukka Ruohonen
+1 / 73
+
+===== PAGE 2 =====
+On the Exam, Again
+▶As already announced on itslearning, the exam will allow the
+use of smartphones for digitalizing drawings
+▶Otherwise, both the exam and re-exam have 16 questions
+▶There are 1, 2, 3, 4, and 5 point questions
+▶The exam and re-exam both have a maximum of 34 points,
+and, therefore, to pass the course with a grade 2, you will
+need 17 points at minimum
+▶Anything that has appeared in the lectures may appear in the
+exam – if you have not attended and only read the slides
+afterwards, you must also understand what is in the slides and
+further show ability to apply what is in the slides
+2 / 73
+
+===== PAGE 3 =====
+Today’s Lecture
+▶Today’s lecture is about usability and power consumption
+as distinct quality attributes
+▶Usability is important to cover because it is quite distinct
+from other QAs, being fundamentally a non-technical QA
+▶Power consumption is increasingly important not least because
+of sustainability and the climate change, but in this course
+it is covered as a QA because it allows to recapitulate some
+earlier QAs and illustrate the trade-offs involved
+3 / 73
+
+===== PAGE 4 =====
+Question
+How would you characterize usability?
+4 / 73
+
+===== PAGE 5 =====
+Framing Usability (1/6)
+▶“Usability is concerned with how easy it is for the user to
+accomplish a desired task and the kind of user support that
+the system provides” (Bass et al. 2021, boldfacing added)
+▶The above definition is rather traditional in a sense that it
+emphasizes tasks; hence, alternatively, also concepts such as
+enjoyment, satisfaction, and joy could be emphasized
+▶Yet, note that all these have antonyms too; computers and IT
+in general are known to also cause frequent frustration and
+even anger among users
+5 / 73
+
+===== PAGE 6 =====
+Framing Usability (2/6)
+Task
+Interruption
+Situational mediators:
+Level of goal commitment /
+importance
+Severity of interruption
+Strength of desire /
+anticipation of expectations
+Dispositional mediators:
+Computer experience
+Psychological factors
+Mood
+Immediate frustration
+Emotional outcome
+Figure 1: Computer Frustration Model (Hertzum & Hornæk 2023, Fig. 1)
+6 / 73
+
+===== PAGE 7 =====
+Framing Usability (3/6)
+▶Regarding the “traditional”, task-oriented framing, the
+technology acceptance model (TAM) pioneered by Davis
+(1989) has been widely adopted for modeling adoption
+willingness among users
+▶Although the TAM model has been also criticized and
+extended, it could be argued that it is among the few theories
+in information systems research that stood the test of time
+in terms of its general theoretical building blocks
+• Hence, note also that information systems != software
+engineering as a scientific discipline
+7 / 73
+
+===== PAGE 8 =====
+Framing Usability (4/6)
+External
+variables (e.g.,
+socio-economic)
+Perceived
+usefulness
+Perceived
+ease of use
+Attitude
+toward using
+Intention to use
+Actual use
+Framed around tasks;
+does it help people at
+their work?
+Framed toward
+usability, including
+its different sub-QAs
+Notice that the TAM model is
+interesting scientifically and
+statistically because the causality
+assumption is not straightforward
+Figure 2: The TAM Model (Davis 1989)
+8 / 73
+
+===== PAGE 9 =====
+Framing Usability (5/6)
+Figure 3: https://xkcd.com/2141/
+9 / 73
+
+===== PAGE 10 =====
+Framing Usability (6/6)
+Philosophy,
+theoretical roots
+UZ
+UI
+UX
+What the comic is
+saying is that
+vagueness and
+ambiguity grows in
+this direction
+The TAM model
+operates here
+The computer frustration model feeds
+back to the psychological etc. dimension
+Usability in this dimension can be directly measured
+by software engineering techniques, while only
+proxy variables (cf. likes, clicks, time spent, etc.) are
+available for indirectly measuring the other
+dimensions via software engineering techniques.
+Figure 4: Thinking About the Concepts Analytically
+10 / 73
+
+===== PAGE 11 =====
+Usability Breakdown
+Usability
+Discoverability
+Learnability
+Efficiency
+Simplicity
+Understandability
+Flexibility
+(adaptability)
+...
+Note that most
+(or even all?) of
+these sub-QAs
+correlate with
+other
+Includes also the
+ability to recover
+from errors
+Figure 5: Some Sub-QAs for the Main Usability QA
+11 / 73
+
+===== PAGE 12 =====
+Rethinking the TAM Model (1/2)
+Actual use
+Frequent incomprehensible 
+error messages
+Outdated documentation and
+LLM-powered customer service
+Frequent interruptions 
+causing frustration
+Intention to
+abandon use
+Could be a causality assumption?
+Actual
+abandonment
+Figure 6: Thus, Recall Customer Retention Too!
+12 / 73
+
+===== PAGE 13 =====
+Rethinking the TAM Model (2/2)
+▶Thus, it can be argued that one should seek to maximize the
+TAM’s usability and usefulness dimensions and minimize
+negative dimensions involved
+▶Regarding the TAM’s usefulness (task) dimension, Bass et al.
+(2021) recommend to provide cancel, undo, pause/resume,
+and automation functionalities
+▶Regarding the TAM’s ease of use (usability) dimension,
+personalization would be a good example for a tactic
+13 / 73
+
+===== PAGE 14 =====
+Usability Patterns: Memento (1/2)
+▶The so-called memento pattern can be used to implement
+different undo functionalities
+▶While simple – like all design patterns are (or should be), it is
+useful to note because it correlates with the rollback tactic
+from the fourth lecture
+▶Analytically, it can be seen to somewhat resemble also the
+claim-check pattern from the sixth lecture
+14 / 73
+
+===== PAGE 15 =====
+Usability Patterns: Memento (2/2)
+# A partial serialization-based memento with R.
+#
+fn <- "a_part_of_a_heavy_computation.RData";
+if (exists(as.character(substitute(part.a))) == 0) {
+if (file.exists(fn) == TRUE) {
+part.a <- load(fn);
+# This takes a second.
+} else {
+part.a <- compute.a();
+# This took two days.
+save(part.a, file = fn);
+}
+}
+15 / 73
+
+===== PAGE 16 =====
+Usability Patterns: MVC
+▶A recap from the third lecture
+Model
+View
+Controller
+1
+1
+*
+*
+The notation is
+there for a reason
+WordPress templates, skins, and
+whatnot, which can be rolled without
+touching the model and the controller
+Figure 7: An Illustration of the MVC Pattern, Again
+16 / 73
+
+===== PAGE 17 =====
+Usability Patterns: Observer (1/2)
+▶Another recap from the third lecture
+Model
+attach(o)
+detach(o)
+statistics()
+View
+statistics()
+1
+*
+For each o that has called attach(o), 
+call o.statistics() to gather statistics
+A view (a.k.a. observer) instance calls 
+attach(this) and detach(this) to 
+attach or detach itself itself, respectively
+1
+*
+Figure 8: What Might a Rationale for This Design Be?
+17 / 73
+
+===== PAGE 18 =====
+Usability Patterns: Observer (2/2)
+Model
+statistics()
+ABtesting()
+View B
+statistics()
+1
+1
+For each o that has called attach(o),
+call o.statistics() to gather
+statistics in order to perform A/B testing 
+View A
+statistics()
+1
+1
+So, what really is a
+"view"? Say, in this
+example there might be
+some "main view"
+(such as a WordPress
+template), whereas the
+View A and View B
+could be some fine-
+grained alterations to it.
+Figure 9: Yet Another Recap
+18 / 73
+
+===== PAGE 19 =====
+Yet, Usability for Whom? (1/4)
+Usability
+End-users
+System
+administrators
+Consumers
+Professionals
+...
+Developers
+...
+Programmers
+Architects
+...
+"are" (DevOps)
+"are also" (thus,
+be careful when
+operating with
+or building
+taxonomies)
+Figure 10: Like With Writing: Know Your Audience
+19 / 73
+
+===== PAGE 20 =====
+Yet, Usability for Whom? (2/4)
+Usability
+Discoverability
+Learnability
+Efficiency
+Simplicity
+Understandability
+Flexibility
+(adaptability)
+Architect
+Figure 11: (a) Which Might Matter and (b) Are There Synonyms?
+20 / 73
+
+===== PAGE 21 =====
+Yet, Usability for Whom? (3/4)
+Reference
+architecture
+Discoverability
+Learnability
+Efficiency
+Simplicity
+Understandability
+Flexibility
+(adaptability)
+Architect
+Figure 12: We Could Use These Concepts to Evaluate Reference
+Architectures and Their Documentation, Among Other Things
+21 / 73
+
+===== PAGE 22 =====
+Yet, Usability for Whom? (4/4)
+▶Following Silva et al. (2023), we might evaluate reference
+architectures – or our own architectures adopted for new
+settings – via different suitability metrics
+▶A simple example (ibid.) would be y = A/B, where A is the
+number of components in a reference architecture that fitted
+well into a given domain and B the total number of
+components in the actual, implemented architecture
+22 / 73
+
+===== PAGE 23 =====
+On Usability Metrics
+▶Usability is difficult to evaluate; often, something like focus
+groups, laboratory experiments, observatory studies, or related
+study setups are required for robust evidence
+▶Yet, you can automate some evaluations
+Figure 13: https://pypi.org/project/textstat/
+23 / 73
+
+===== PAGE 24 =====
+Yes, Some Scientists and Engineers Pride Their Writing
+Figure 14: https://stylepedia.net/style/
+24 / 73
+
+===== PAGE 25 =====
+Personas (1/5)
+▶So-called personas are a popular way to model usability (and
+other) requirements especially when you do not have means or
+resources to do customer surveys or when you do not even
+know your customer segment
+▶In essence: like in role playing games, try create typical
+“characters” (personas) mimicking your future users
+▶Might be a good target for a LLM?
+25 / 73
+
+===== PAGE 26 =====
+Personas (2/5)
+Me
+Age: ...
+Nationality: Finnish
+Teaches: Software Architecture, etc.
+Research topics: cyber security, etc.
+Has read: paper #1, #2, #3, ...
+Uses: Linux
+Likes: CLI
+....
+Someone
+else
+Age: ...
+Nationality: Canadian
+Teaches: Sociology ABC, etc.
+Research topics: education, etc.
+Has read: paper #1, #2, #3, ...
+Uses: Windows
+Likes: GUI
+....
+....
+If the task would be to design a recommender system for scientific papers, what would these two personas tell you?
+Figure 15: Two Personas and a Question
+26 / 73
+
+===== PAGE 27 =====
+Personas (3/5)
+Figure 16: https://www.semanticscholar.org/
+27 / 73
+
+===== PAGE 28 =====
+Personas (4/5)
+Figure 17: https://www.semanticscholar.org/
+28 / 73
+
+===== PAGE 29 =====
+Personas (5/5)
+▶While it works well, they do not understand my “persona”; cf.
+$ query -q "software architecture teaching" \
+-topCitedMax 10 -f BibTeX --withDOI \
+--AllPDFsIfAvailableAsOpenAccess
+$ query -q "software architecture teaching" \
+--getRSSfeed --withRelatedPapers 3 \
+--withPersonalization --maxPerDay 10
+▶Thus, you can also quickly lose users without understanding
+their needs and what they consider the TAM model’s
+usefulness and ease of use to be
+29 / 73
+
+===== PAGE 30 =====
+Ethics of Usability (1/3)
+▶Yet, what is being maximized is not always entirely clear....
+Figure 18: Ruohonen et al. (2026; forthcoming; should be online soon)
+30 / 73
+
+===== PAGE 31 =====
+Ethics of Usability (2/3)
+▶Though, it is becoming a little clearer
+Figure 19: https://www.theguardian.com/media/2026/mar/25/
+jury-verdict-us-first-social-media-addiction-trial-meta-youtube
+31 / 73
+
+===== PAGE 32 =====
+Ethics of Usability (3/3)
+▶Actually, it has long been clear
+Figure 20: https://www.deceptive.design/
+32 / 73
+
+===== PAGE 33 =====
+Exercise (20 minutes)
+▶Skim through the following award-winning paper:
+https://dl.acm.org/doi/pdf/10.1145/3359183
+▶Questions:
+1. What do they say about people’s cognitive biases?
+2. What can you say about the architecture in Fig. 1?
+3. Would you be able to re-implement their data collection
+process described in Subsection 4.2?
+4. What is your own experience with the dark patterns
+enumerated in Table 2?
+33 / 73
+
+===== PAGE 34 =====
+Question
+What Trade-Offs Usability Has?
+34 / 73
+
+===== PAGE 35 =====
+Usability and Power Consumption
+Responsiveness
+Power consumption
+optimization
+Efficiency
+Usability
+Affects
+Is a part of
+Is a part of
+Affects
+For instance, setting display
+brightness to 0% makes a mobile
+device unusable for a user.
+Figure 21: Optimizing Power Consumption viz Usability
+35 / 73
+
+===== PAGE 36 =====
+Sustainability (1/2)
+Figure 22: https://www.helsinki.fi/en/researchgroups/
+reimagining-public-values-in-algorithmic-futures/whats-new/
+dismantling-public-values-one-data-center-at-the-time
+36 / 73
+
+===== PAGE 37 =====
+Sustainability (2/2)
+▶Thus, sustainability and energy efficiency are hot topics also in
+technology politics of many countries
+▶When optimizing power consumption of a larger system, such
+as a data center, architectural choices are what matter rather
+than the optimization of software running in the system
+▶Therefore, in what follows, the focus is on a narrow framing
+toward power consumption, which is important for many
+consumer devices in particular but also elsewhere
+• In addition, the focus is on patterns and tactics rather than
+fine-grained optimizations at the level of detailed design
+37 / 73
+
+===== PAGE 38 =====
+An x86 Example (1/9)
+▶The concept of throttling from the previous lecture is
+somewhat misleading because nowadays, on x86 64 at least, it
+is used for emergency situations involving overheating
+• In essence, it bluntly reduces the clock tick of CPUs
+▶Instead, both AMD and Intel nowadays seek to limit the power
+consumption of CPUs via so-called P-states and C-states
+• Others (such as ARM-vendors) do it too but the
+terminology might be slightly different at the hardware level
+38 / 73
+
+===== PAGE 39 =====
+An x86 Example (2/9)
+CPU1 
+"package"
+CPU
+   core11
+CPU
+   core1k
+CPU
+   core1n
+CPUi 
+"package"
+CPU
+   corei1
+CPU
+   coreik
+CPU
+   corein
+P0 state: full performance
+(e.g., 2.9 GHz)
+Pm state: lowest performance
+(e.g., 500 MHz)
+P0
+Pm
+P1
+Pm-1
+...
+Supplied 
+by a 
+BIOS 
+(ACPI)
+Figure 23: An Illustration of “Per-CPU-Package P-states”
+39 / 73
+
+===== PAGE 40 =====
+An x86 Example (3/9)
+CPU1 
+"package"
+CPU
+   core11
+CPU
+   core1k
+CPU
+   core1n
+CPUi 
+"package"
+CPU
+   corei1
+CPU
+   coreik
+CPU
+   corein
+P0
+Pm
+P1
+Pm-1
+...
+Pm-2
+P2
+Figure 24: An Illustration of “Per-CPU-Core P-states”
+40 / 73
+
+===== PAGE 41 =====
+An x86 Example (4/9)
+Figure 25: https://github.com/fenrus75/powertop
+41 / 73
+
+===== PAGE 42 =====
+An x86 Example (5/9)
+CPU1 
+"package"
+CPU
+   core11
+CPU
+   core1k
+CPU
+   core1n
+CPUi 
+"package"
+CPU
+   corei1
+CPU
+   coreik
+CPU
+   corein
+C0 state: full performance
+(nothing disabled)
+Cm state: lowest performance
+(many things, such as timers
+and some caches, disabled)
+P0
+Pm
+P1
+Pm-1
+...
+Supplied 
+by a 
+BIOS 
+(ACPI)
+Figure 26: An Illustration of “Per-CPU-Package C-states”
+42 / 73
+
+===== PAGE 43 =====
+An x86 Example (6/9)
+Figure 27: https://github.com/fenrus75/powertop
+43 / 73
+
+===== PAGE 44 =====
+An x86 Example (7/9)
+Figure 28: https://github.com/fenrus75/powertop
+44 / 73
+
+===== PAGE 45 =====
+An x86 Example (8/9)
+▶Thus, is hardware that wakes up CPUs and prevents them
+from entering into deeper C-states, and not only due to user
+input with the laptop, but also due to seldom used hardware
+(cf. USB) being unnecessarily 100% powered up
+▶Therefore, kernels try to shutoff as much hardware as possible
+▶You can also tune a lot further yourself
+• Say, /tmp and /var/tmp on a Linux/Unix laptop could be
+mounted as memory-based tmpfs instead of using a disk
+45 / 73
+
+===== PAGE 46 =====
+An x86 Example (9/9)
+Figure 29: https://linux.die.net/man/8/hdparm
+▶While much power can be saved by shutting things off, the
+earlier screenshots indicates that display in a laptop is actually
+the most power-hungry hardware component
+• Hence, also better hardware is required, and if batteries
+would see revolutionary innovations, the optimization
+trade-offs involved might not even perhaps be worth it?
+46 / 73
+
+===== PAGE 47 =====
+Question
+Which Tactic from the Past Lectures Might Be Used
+to Analytically Characterize P-states and C-states?
+47 / 73
+
+===== PAGE 48 =====
+Another Question
+With Which Tactic(s) from the Past Lectures Does
+Power Consumption Optimization Contradict?
+48 / 73
+
+===== PAGE 49 =====
+Power Consumption Analytically (1/2)
+▶The previous example further highlights that power
+consumption can be analytically seen to contain two parts:
+“computing power” and “idle power”
+• Even when shutting down hardware, the idle power has a
+lower bound; at the extreme, it is what is minimally needed to
+run a device or a larger system
+▶When considering larger systems with i = 1, 2, . . . , n
+machines, Ahmad & Vijaykumar (2010) further consider:
+Total poweri = computing poweri + idle poweri
++ cooling poweri + power lossi
+49 / 73
+
+===== PAGE 50 =====
+Power Consumption Analytically (2/2)
+System
+Machine1:
+100% functions;
+100% resource use
+Redundancy machines
+Machine2:
+25% functions;
+0% resource use
+Machine2:
+10% functions;
+0% resource use
+In addition, note that the power required to cool the system varies
+due to varying levels of hardware disabled and resources used.
+Figure 30: Optimization Can Be Challenging Already with Small Systems!
+50 / 73
+
+===== PAGE 51 =====
+Graceful Shutdown
+▶When a power runs out on a battery-powered device, an
+operating system should gracefully shutdown the device
+▶It is useful to provide warnings to users beforehand
+▶In addition, some operating systems and their configurations
+(such as those powering mobile phones) may gracefully
+shutdown functionalities when a battery is low
+• Hence, “graceful shutdown” != “graceful degradation”
+• Also: “graceful degradation” != “forceful degradation”
+51 / 73
+
+===== PAGE 52 =====
+Question
+What Example from the Past Lectures Could Be
+Used for the “Forceful Degradation” Notion?
+52 / 73
+
+===== PAGE 53 =====
+Graceful Degradation (1/2)
+Graceful
+shutdown
+Level 1
+Level 2
+Level 3
+Battery
+Functionality
+25% of
+functions
+operating
+60% of
+functions
+operating
+100% of
+functions
+operating
+100%
+0%
+Figure 31: Graceful Degradation Revisited
+53 / 73
+
+===== PAGE 54 =====
+Graceful Degradation (2/2)
+Graceful
+shutdown
+Level 1
+Level 2
+Level 3
+Battery
+Functionality
+100%
+0%
+(a)
+(a)
+(b)
+(b)
+The user plugged the AC adapter
+when the device was at Level 1 and
+thus the device reverted from the
+route (a) to using the escalating
+restart tactic via route (b).
+Figure 32: Mixing Two Tactics
+54 / 73
+
+===== PAGE 55 =====
+Preloading (1/2)
+Level 3
+Level A
+Level B
+Level C
+Time
+Level of
+preloading
+100% of
+functions
+(re)started
+25% 
+preloaded
+60% 
+preloaded
+100% 
+preloaded
+Figure 33: Using the Escalating Restart Tactic for Preloading
+55 / 73
+
+===== PAGE 56 =====
+Preloading (2/2)
+▶Preloading can save power because startup is typically
+resource-intensive in many contexts
+• As it helps with responsiveness too, it can be seen as a
+way to deal with the earlier trade-off too (Hort et al. 2022)
+▶Analogously, it may sometimes be reasonable to never fully
+terminate lightweight processes even in case a user requests so
+▶What is being preloaded differs; on a mobile device it could be
+applications, while in cloud computing it might be data
+▶Predictive analytics can be used to determine what should
+be preloaded; e.g., on a mobile device, only a user’s frequently
+used applications (based on historical data) could be preloaded
+56 / 73
+
+===== PAGE 57 =====
+Question
+In Which Context Preloading Was
+Recommended Also in the Previous Lectures?
+57 / 73
+
+===== PAGE 58 =====
+Offloading and Prefetching Are Common Tactics Too (1/2)
+System
+Machine
+Machine
+Machine
+Machine
+Offloading
+Prefetching
+Figure 34: Two Concepts, Na¨ıvely
+58 / 73
+
+===== PAGE 59 =====
+Offloading and Prefetching Are Common Tactics Too (2/2)
+Figure 35: https://www.sigarch.org/
+fourth-data-prefetching-championship-part-i/
+59 / 73
+
+===== PAGE 60 =====
+Optimizations More Generally (1/2)
+▶From the previous exposition, we can deduce a general rule of
+thumb for developers seeking to optimize power consumption:
+try to minimize software’s actions that interfere with
+optimizations already done for hardware; hence, e.g.,
+• Do not cause unnecessary interrupts that lead to hardware
+wake-ups (cf. notifications, polling, etc.)
+• Do not unnecessarily utilize a disk and a network
+• Use preloading, prefetching, and offloading when reasonable
+• Try to avoid garbage collector runs (Hort et al. 2022)
+• Note that memory is hardware too, and, therefore, many
+classical bug types (such as memory leaks) are often also
+power optimization bugs (ibid.)
+60 / 73
+
+===== PAGE 61 =====
+Optimizations More Generally (2/2)
+▶Research shows that programming languages affect power
+consumption; software written in C consumes much less power
+than software written in Python, and so forth
+▶Thus, there is a further, more general trade-off
+• But is it worth it? Do the other trade-offs, such as those
+related to security, outweigh this particular trade-off?
+▶Trade-offs are what must be assessed also during reviewing
+software architectures and making decisions about them
+61 / 73
+
+===== PAGE 62 =====
+New QAs (1/2)
+▶Sometimes software architects may need to introduce a new
+QA for which no existing body of knowledge exists
+▶Due to technological and other changes, it could even be
+argued that new QAs are even quite often needed
+• How to integrate AI/LLMs/Agents/whatnot into an existing
+enterprise software architecture? How to modernize a legacy
+architecture without redoing it from scratch? And so forth.
+▶Unsurprisingly, Bass et al. (2021) recommend starting with
+different scenarios (cf. sources, events, environments, systems
+and deployments, responses, and response measures)
+62 / 73
+
+===== PAGE 63 =====
+New QAs (2/2)
+▶After having some scenarios for new architecturally significant
+requirements from stakeholders or elsewhere (such as law),
+Bass et al. (2021) suggest to:
+1. Are existing scenarios, tactics, and patterns transferable,
+possibly with some modifications, to satisfy the new QA?
+2. What does academic literature say about the new QA? How
+about industry “gray literature”, standards, and other sources?
+3. What stakeholders, experts, and others say about the new QA?
+▶Note that if you can “solve” the new QA before others or
+better than others, it can also be a business advantage
+• On the other hand: sometimes you might consider a
+reference architecture if the QA affects many companies
+63 / 73
+
+===== PAGE 64 =====
+Evaluating Architectures and Designs (1/6)
+▶Architecture evaluation is a “process of determining the
+degree to which an architecture is fit for the purpose for which
+it is intended” (Bass et al 2021)
+▶Architecture evaluation is also a risk reduction action
+• Whether it is about cyber security risks or business risks,
+risks must be identified, and after they have been identified,
+addressing the risks is a cost/benefit action (ibid.)
+• Note that the noun “cost” should be understood loosely;
+thus, recall the notion of acceptable risks, which also implies
+that there are sometimes unacceptable risks
+64 / 73
+
+===== PAGE 65 =====
+Evaluating Architectures and Designs (2/6)
+▶Bass et al. (2021) recommend:
+1. A group of reviewers “individually ensure that they
+understand the current state of the architecture”
+2. The reviewer group determines beforehand evaluation criteria
+(incl. metrics if possible) to guide the review
+3. “For each scenario, each reviewer should determine whether
+the scenario is satisfied”
+4. The reviewers seek to capture potential problems and identify
+risks exposed during the prior scenario-based step
+▶Although a plural form is used above, a single architect may
+also conduct reviews, and further note that outsiders may be
+involved in a peer review by multiple professionals
+65 / 73
+
+===== PAGE 66 =====
+Evaluating Architectures and Designs (3/6)
+▶While a sensible recommendation, scenarios are only one
+available option; custom evaluation criteria are often used too
+▶Falessi et al. (2010) list numerous factors – among these are:
+1. Is a design documented and was it reviewed?
+2. What business factors influenced a design?
+3. What is a design’s return on investment?
+4. Was a design’s security implications addressed?
+5. How useful a design is to other software engineers?
+6. How much implementation freedom does a design constrain?
+7. How the development team behind a design was composed?
+66 / 73
+
+===== PAGE 67 =====
+Evaluating Architectures and Designs (4/6)
+▶The previous points apply also to scientific research; thus, it
+should be understood that software architecture is a research
+domain in software engineering as a scientific discipline
+▶For instance, ACM defines four criteria for evaluating artifacts
+(documentation, consistency, completeness, and execution)
+Figure 36: https://www.acm.org/publications/policies/
+artifact-review-and-badging-current
+67 / 73
+
+===== PAGE 68 =====
+Evaluating Architectures and Designs (5/6)
+▶Rams (2023), a famous industrial designer, formulated ten
+principles for good industrial design, some of which resonate
+well also with software design (and some perhaps not):
+1. Innovative: a design always aligns with technology, and can
+thus never be an end in itself
+2. Usefulness: a good design is useful, but not only in terms of
+functionality, but also in terms of aesthetic quality and
+psychological aspects
+3. A good design is aesthetic
+4. Understandability: a good design clarifies a product’s goals,
+structure, and functionality
+5. Honesty: a good design does not manipulate users
+6. A good design is thorough to the last detail
+7. A good design is environmentally friendly
+8. A good design involves as little design as possible
+68 / 73
+
+===== PAGE 69 =====
+Evaluating Architectures and Designs (6/6)
+▶The output from an evaluation should be documented
+▶Bass et al. (2021) recommend to focus on:
+1. A concise overall presentation of the architecture
+2. Articulation of business or other goals
+3. Prioritization of quality attributes based on scenarios
+4. A set of risks, including acceptable risks and non-risks
+5. Mapping of architectural decisions to quality attributes
+6. Articulation of trade-offs and decisions thereto
+▶For reusability and rigor, it may be sometimes a good idea to
+document in tabular form (e.g., having architectural decisions
+as rows and risks, trade-offs, and impacts as columns)
+69 / 73
+
+===== PAGE 70 =====
+Exercise (20 minutes)
+▶Skim through the following award-winning, modern classic in
+computer science from 1983:
+https://dl.acm.org/doi/epdf/10.1145/800217.806614
+▶Questions:
+1. What design principles can you identify?
+2. Which points you like and can agree with?
+3. Anything you disagree with? If so, why?
+70 / 73
+
+===== PAGE 71 =====
+Questions?
+71 / 73
+
+===== PAGE 72 =====
+Additional References (1/2)
+1. Hertzum, M. & Hornæk (2023): Frustration: Still a Common User Experience.
+ACM Transactions on Computer-Human Interaction 30(3),
+https://dl.acm.org/doi/pdf/10.1145/3582432
+2. Davis, F. D. (1989): Perceived Usefulness, Perceived Ease of Use, and User
+Acceptance of Information Technology Available to Purchase. MIS Quarterly
+13(3), https://doi.org/10.2307/249008
+3. Silva, S. (2023): Quality Metrics in Software Architecture. ICSA,
+https://doi.org/10.1109/ICSA56044.2023.00014
+4. Ahmad, F. & Vijaykumar, T. N. (2010): Joint Optimization of Idle and Cooling
+Power in Data Centers While Maintaining Response Time. ACM SIGPLAN
+Notices, https://dl.acm.org/doi/pdf/10.1145/1735971.1736048
+72 / 73
+
+===== PAGE 73 =====
+Additional References (2/2)
+1. Hort, M. & Kechagia, M. & Sarro, F. & Harman, M. (2022): A Survey of
+Performance Optimization for Mobile Applications. IEEE Transactions on
+Software Engineering, https://doi.org/10.1109/TSE.2021.3071193
+2. Falessi, D. & Ali Babar, M. & Cantone, G. & Kruchten, P. (201): Empirically
+Assessing Software Architecture Research: Challenges and Lessons Learned,
+Empirical Software Engineering 15(3), pp. 250–276,
+https://arxiv.org/pdf/1701.06000
+3. Rams, D. (2023): Dieter Rams and the 10 Principles for a Good Design.
+Domus, https://www.domusweb.it/en/from-the-archive/2023/03/14/
+dieter-rams-and-the-10-principles-for-a-good-design.html
+73 / 73

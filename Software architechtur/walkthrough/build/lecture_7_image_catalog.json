@@ -1,0 +1,65 @@
+[
+  {
+    "page": 1,
+    "idx": 1,
+    "xref": 13,
+    "width": 827,
+    "height": 221,
+    "bytes": 6049,
+    "snippet": "Software Architecture (T630019402) Lecture #7, April 7, 2026 Jukka Ruohonen 1 / 72 "
+  },
+  {
+    "page": 7,
+    "idx": 1,
+    "xref": 54,
+    "width": 973,
+    "height": 730,
+    "bytes": 431182,
+    "snippet": "A Few Short Mock-up Questions (1/9) Figure 1: Please Name At Most Two Fundamental Things This Figure Might Represent from a Software Architecture Perspective? 7 / 72 "
+  },
+  {
+    "page": 39,
+    "idx": 1,
+    "xref": 541,
+    "width": 1418,
+    "height": 630,
+    "bytes": 83429,
+    "snippet": "Kubernetes: Monitoring (1/2) \u25b6Prometheus can be recommended for monitoring Kubernetes and many other large systems, including commercial clouds Figure 20: https://prometheus.io/ 39 / 72 "
+  },
+  {
+    "page": 42,
+    "idx": 1,
+    "xref": 581,
+    "width": 1080,
+    "height": 585,
+    "bytes": 64430,
+    "snippet": "Load Balancing Revisited: DNS (2/6) Figure 22: Two A Record (IPv4 Address) Queries for Netflix 42 / 72 "
+  },
+  {
+    "page": 48,
+    "idx": 1,
+    "xref": 715,
+    "width": 1109,
+    "height": 153,
+    "bytes": 33861,
+    "snippet": "Load Balancing Revisited: CDNs (2/5) \u25b6CDNs are configured via DNS: a host aliases its DNS records (typically A for IPv4 and AAAA for IPv6) for those of a CDN operator; hence, clients are routed to the"
+  },
+  {
+    "page": 51,
+    "idx": 1,
+    "xref": 779,
+    "width": 1104,
+    "height": 733,
+    "bytes": 42776,
+    "snippet": "Load Balancing Revisited: CDNs (5/5) \u25b6Though, CDNs may conflict with other QAs, such as usability for clients, and the situation has recently become worse due to the AI crawlers noted in the previous "
+  },
+  {
+    "page": 67,
+    "idx": 1,
+    "xref": 975,
+    "width": 1130,
+    "height": 599,
+    "bytes": 71527,
+    "snippet": "Performance and Scalability Diagnosis (4/4) \u25b6Therefore, retrospective reasoning and triaging are often required; what is the impact; how many users are affected; is the problem local or global; is it "
+  }
+]

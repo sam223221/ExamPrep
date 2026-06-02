@@ -1,0 +1,1610 @@
+===== PAGE 1 =====
+Software Architecture
+(T630019402)
+Lecture #4, March 3, 2026
+Jukka Ruohonen
+1 / 88
+
+===== PAGE 2 =====
+An Announcement
+▶The lecture on 24 March is canceled due to a conference,
+and there is no lecture on 31 March due to the Easter break
+▶Therefore, some of the lectures in April are presumably (but
+not necessarily) more packed than initially planned
+2 / 88
+
+===== PAGE 3 =====
+Case #3 Presentations
+▶Consider Fig. 4 in case-3.pdf1
+▶What kind of an architecture you think it is in overall?
+▶Which symbols (A to D) might belong to a deployment?
+▶Do you recognize any styles and patterns used and where?
+▶Why might they use multiple databases?
+▶How would you simplify it with a different view?
+• A drawing would be preferable but not necessary
+1 https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10081336
+3 / 88
+
+===== PAGE 4 =====
+Today’s Lecture
+▶Today we continue the previous lecture’s theme by focusing
+on testability and deployability as distinct quality attributes
+• Testability is the “susceptibility to testing”2, and the
+adjective “susceptible” means that something is “capable of
+submitting to an action, process, or operation”3
+• Deployability is not a well-recognized word according to
+online dictionaries, but we can understand it to mean that a
+developed system can be actually deployed for production with
+a predictable and acceptable amount of time and effort (Bass
+et al. 2021)
+2 https://www.merriam-webster.com/dictionary/testability
+3 https://www.merriam-webster.com/dictionary/susceptible
+4 / 88
+
+===== PAGE 5 =====
+Question
+How do you understand testability?
+5 / 88
+
+===== PAGE 6 =====
+Testability (1/2)
+▶Bass et al. (2021) characterize testability as “the ease with
+which software can be made to demonstrate its faults”
+• Note that their characterization frames testability to
+software verification and not validation of requirements
+• Know your history; it was Boehm (1984) who originally
+made the distinction between software validation (“building
+the right product”) and the verification (“building the
+product right”) of the software developed
+• Furthermore, their characterization assumes that a software
+has at least one fault, which is theoretically a problematic
+standpoint but still acceptable to convey the message
+6 / 88
+
+===== PAGE 7 =====
+Testability (2/2)
+▶Ammann & Offutt (2008, p. 284) motivate the importance of
+testability with the following four points:
+1. If testability is low, developers know that testing alone will not
+do a good job at verifying; something else is needed
+• But what that something else would even be?
+2. Therefore, “any approach that improves testability will almost
+certainly be worth the investment”
+3. If testability is high, test results increase confidence about
+software quality
+4. “In cases where testability is low and resistant to improvement,
+and where alternative means of verification are impractical, the
+test engineer has a solid argument to take to management
+that the artifact poses an undue amount of risk”
+7 / 88
+
+===== PAGE 8 =====
+Testability Scenarios
+Environment
+System
+(deployment)
+Source
+Response
+measure
+Event
+Response
+     Potential values to consider:
+In-house developers
+External testers
+Stakeholders
+Third-parties and end-users
+      Potential values to consider:
+Unit tests
+Fuzz tests
+Integration tests
+Acceptance tests
+Penetration tests
+Performance tests
+... tests
+     Potential values to consider:
+Tests did { pass, fail, did not complete, ...}
+Audit did { pass, fail }
+Execution traces of test failures were captured
+State was controlled and captured
+Potential values to consider:
+Approximate overage
+Heuristics for stop criteria
+Time required
+Money spent
+Setup costs for testing
+     Potential values to consider:
+Development
+Integration
+Deployment (production)
+   Potential values to consider:
+Entire system
+Set of machines
+Set of components
+Set of modules
+Set of classes
+Figure 1: Adopted and modified from Bass et al. (2021)
+8 / 88
+
+===== PAGE 9 =====
+Testing and the Separation of Concerns
+Figure 2:
+https://www.cs.utexas.edu/~EWD/transcriptions/EWD04xx/EWD447.html
+9 / 88
+
+===== PAGE 10 =====
+Testing and Verification
+Figure 3:
+https://www.cs.utexas.edu/~EWD/transcriptions/EWD02xx/EWD288.html
+10 / 88
+
+===== PAGE 11 =====
+On the Stop Criterion
+▶Even with a system with almost perfect testability, the
+fundamental and unresolved issue concerning coverage and
+stop criterion is present; when to stop testing?
+▶Some heuristics (e.g., via coverage.py) could be used for
+deducing an answer in practice
+▶The question is classical in academic research; one way to
+approach it is with statistical reliability engineering models,
+such as those based on the non-homogenous Poisson process
+▶Further note that tests cause maintenance overhead too
+11 / 88
+
+===== PAGE 12 =====
+Testing (1/6)
+Program
+Input
+Oracle
+Output
+Internal state
+Fail
+Pass
+OR
+Figure 4: It Makes Sense But Why Is It Not Sufficient?
+12 / 88
+
+===== PAGE 13 =====
+Testing (2/6)
+▶There are many oracle variants (Barr et al. 2015):
+1. Specified oracles are what we often thinking testing to be
+about; 1 + 1 = 2, f (x) > 0 ∀x, and so forth and so on
+2. Pseudo-oracles are often understood as alternative versions
+developed independently, but, in theory, reference architectures
+could also be seen as pseudo-oracles
+3. Implicit oracles are something we know based on our general
+software engineering knowledge; a crash of a system is clearly a
+bug, a buffer overflow is clearly a bug, and so forth and so on
+4. Derived oracles are something about right and wrong
+behavior based on external artifacts (such as requirements,
+protocols, standards, user feedback, runtime behavior, etc.)
+13 / 88
+
+===== PAGE 14 =====
+Testing (3/6)
+Program
+Internal statej
+Fail
+While true, do:
+Input
+generator
+Inputi
+Crash,
+panic, etc.
+May
+trigger
+Seed
+Seedk
+Figure 5: It Makes Sense But Why Is It Not Sufficient?
+14 / 88
+
+===== PAGE 15 =====
+Testing (4/6)
+Program
+Internal statej
+Fail
+While true, do:
+Input
+generator
+Inputi
+Crash,
+panic, etc.
+May
+trigger
+Seed
+Seedk
+If get.time() > threshold:
+Fail
+Deadlock, etc.
+Figure 6: A Skeleton View to Fuzzing
+15 / 88
+
+===== PAGE 16 =====
+Testing (5/6)
+Program
+Internal statej
+Fail
+While true, do:
+Input
+generator
+Inputi
+Crash,
+panic, etc.
+May
+trigger
+Seed
+Seedk
+If get.time() > thresholda:
+Fail
+Deadlock, etc.
+If get.load() > 
+thresholdb:
+Fail
+Unacceptable
+performance-QA
+If get.latency() >
+thresholdc:
+Fail
+Unacceptable
+performance-QA
+Figure 7: A Skeleton Fuzzer with Performance Checks
+16 / 88
+
+===== PAGE 17 =====
+Testing (6/6)
+▶Code sanitizers are a good example of dynamic testing;
+these are tools that detects bugs in the form of undefined or
+otherwise suspicious behavior (e.g., deadlocks, memory leaks,
+etc.) via a compiler inserting instrumentation code at runtime
+• Many userland and kernel space fuzzers rely on these too;
+Adkins et al. (2020) (“the open access Google book from the
+first lecture”) present a good introduction
+Figure 8: https://docs.kernel.org/dev-tools/kasan.html
+17 / 88
+
+===== PAGE 18 =====
+Testability Tactics (1/2)
+▶From the previous figures we can deduce that testability
+improves if we can control a program’s input and the state,
+which we should also record for debugging purposes
+▶Another set of tactics is about limiting complexity
+• Not only is a complex program (or a whole system) likely to
+contain many faults but complexity also decreases testability
+18 / 88
+
+===== PAGE 19 =====
+Testability Tactics (2/2)
+Testability
+tactics
+Control and observe
+input and state
+Limit complexity
+  1. Input generation   
+  2. Record and play
+  3. Special interfaces
+  4. Localized storage
+  5. Assertions
+  6. Sandboxes
+Source code
+Determinism
+Figure 9: Tactics for Testability (from Bass et al. 2021)
+19 / 88
+
+===== PAGE 20 =====
+Testability Tactics: Input and State (1/8)
+▶The input generation tactic involves many automated
+testing techniques beyond fuzzing, such as mutation testing
+• When doing conventional unit testing and alike, one should
+seek to design inputs to be sensible for verification, avoiding
+trivial cases but covering boundary cases
+• When operating with standards or protocols, seeking
+100% coverage can be recommend with respect to what is
+explicitly said in a given standard or a protocol
+20 / 88
+
+===== PAGE 21 =====
+Testability Tactics: Input and State (2/8)
+▶The record and play tactic conveys the important message
+that test results should be reproducible
+• This requirement may seem deceivingly simple when
+thinking about unit tests and their oracles, but reproducibility
+is one of the grand challenges, including with fuzzing and
+nowadays also emerging LLM-based testing
+▶When designing a testing framework, one should try to make
+it record all states for a given input
+• With distributed systems, one should also try to localize
+storage for keeping a state of a whole system
+21 / 88
+
+===== PAGE 22 =====
+Testability Tactics: Input and State (3/8)
+0
+100
+200
+300
+400
+500
+Closed bugs
+Time-to-fix (days)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Cumulative probability
+Linux (n = 1344)
+FreeBSD (n = 19)
+NetBSD (n = 19)
+OpenBSD (n = 59)
+Figure 10: Effort Required to Fix Kernel Bugs Found via Continuous
+Automated Fuzzing (adopted from Ruohonen & Rindell 2019, Fig. 2)
+22 / 88
+
+===== PAGE 23 =====
+Testability Tactics: Input and State (4/8)
+▶Specialized interfaces are often needed for testing internals
+• get() and set() for important variables, attributes, etc.
+• report() for states, print debug() for verbose output,
+and reset() for restoring a pristine state
+• However, these also enlarge attack surfaces and may
+confuse others, and thus conditional compilation (or
+outsourcing to a specific opt-in component) is a good idea
+#ifdef TESTING
+assert(system.report() == STATE_SHUTDOWN)
+if system.get_init() != 1:
+system.exit(INIT_FAILED)
+#endif
+23 / 88
+
+===== PAGE 24 =====
+Testability Tactics: Input and State (5/8)
+▶Assertions are a good way to verify runtime behavior
+• They also improve testability; they usually output debug
+information, fuzzers are very good at triggering them, etc.
+▶Typically, one uses them to verify (a) inputs (preconditions)
+and (b) outputs (postconditions), but sometimes it is useful
+to also assert (c) intermediate states
+▶They can be also extended for instance into:
+ASSERT_FUTURE_STATE(10 seconds) == SYSTEM_SHUTDOWN
+ASSERT_PROBABILITY(RANDOM_FOREST, test_set) > 0.7
+24 / 88
+
+===== PAGE 25 =====
+Testability Tactics: Input and State (6/8)
+▶A sandbox (for a lack of a better term) is a good idea; tests
+can be run in their own isolated environment that do not
+interfere with the actual system
+▶Increasingly – with DevOps and related practices soon
+discussed, tests are continuously run during automated
+integration and test deployments
+• Operating systems are a good example in a sense that an
+execution pipeline may be something alike:
+for i times a day:
+build system →install system →run tests
+where a successful build and an installation (into virtual
+machine typically) are prerequisites for running a test suite
+25 / 88
+
+===== PAGE 26 =====
+Testability Tactics: Input and State (7/8)
+2012
+2014
+2016
+2018
+2020
+2022
+2024
+2026
+0
+2000
+4000
+6000
+8000
+10000
+12000
+Frequency
+amd64: all test cases
+Monthly mean
+Monthly median
+2012
+2014
+2016
+2018
+2020
+2022
+2024
+2026
+0
+50
+100
+150
+200
+Frequency
+amd64: failed test cases
+Monthly mean
+Monthly median
+2012
+2014
+2016
+2018
+2020
+2022
+2024
+2026
+0
+2000
+4000
+6000
+8000
+10000
+12000
+Frequency
+i386: all test cases
+Monthly mean
+Monthly median
+2012
+2014
+2016
+2018
+2020
+2022
+2024
+2026
+0
+50
+100
+150
+200
+Frequency
+i386: failed test cases
+Monthly mean
+Monthly median
+Figure 11: Test Cases and Failed Tests for Two Instruction Set
+Architectures in NetBSD (from Ruohonen & Tiwari 2025, Fig. 2)
+26 / 88
+
+===== PAGE 27 =====
+Testability Tactics: Input and State (8/8)
+2012
+2014
+2016
+2018
+2020
+2022
+2024
+2026
+0
+100
+200
+300
+400
+500
+Frequency
+build failed (monthly sums)
+amd64
+i386
+2012
+2014
+2016
+2018
+2020
+2022
+2024
+2026
+0
+50
+100
+150
+200
+250
+Frequency
+tests failed (monthly sums)
+amd64
+i386
+2012
+2014
+2016
+2018
+2020
+2022
+2024
+2026
+0
+50
+100
+150
+Frequency
+install failed (monthly sums)
+amd64
+i386
+Figure 12: Monthly Sums of Build, Test Suite, and Installation Failures in
+NetBSD’s Two Architectures (from Ruohonen & Tiwari 2025, Fig. 3)
+27 / 88
+
+===== PAGE 28 =====
+Testability Tactics: Limit Complexity (1/3)
+▶In general, limiting complexity contains many of the same
+techniques that were discussed in the previous lectures; from
+encapsulation to reducing dependencies
+▶Therefore, what is more important to emphasize that both
+systems and tests should ideally be deterministic
+• However, they often are not for various reasons; there is a
+certain stochastic element present in large systems
+• For this reason, the NetBSD’s test suite uses an oracle that
+has also flags for individual tests resembling cases such as
+“expected failure due to a known extremely difficult bug” and
+“sometimes fails in ARM64 and MIPS for unknown reason”
+28 / 88
+
+===== PAGE 29 =====
+Testability Tactics: Limit Complexity (2/3)
+▶To control the stochastic element, including with respect to
+development processes, regression testing is commonly used
+• In the context of software testing, a regression is something
+that used to work but no longer works; hence, when fixing
+such a bug, it is a good idea to add a regression test to
+ensure the bug is noticed if it occurs again
+▶Regression tests are also about documentation about a
+system, which is also one way to limit complexity
+• Without regression tests, do you think the NetBSD
+developers would remember all bugs from the early 2010s?
+29 / 88
+
+===== PAGE 30 =====
+Testability Tactics: Limit Complexity (3/3)
+▶If you know some parts are prone to regressions, it is a good
+idea to focus on those; knowing what and where to test is
+important for covering hot spots and not wasting resources
+drivers
+fs
+arch
+net
+others
+kernel
+sound
+mm
+block
+lib
+crypto
+security
+0
+100
+200
+300
+400
+500
+600
+Frequency
+Mean across subsystems = 78
+Median across subsystems = 42
+drivers
+fs
+arch
+net
+others
+kernel
+sound
+mm
+block
+lib
+crypto
+security
+0
+100
+200
+300
+400
+500
+600
+Mean
+Figure 13: Regression Bugs in the Linux Kernel Across Its Subsystems
+Between 2021 and 2024 (from Ruohonen & Alami 2024, Fig. 3)
+30 / 88
+
+===== PAGE 31 =====
+Testability Patterns: Dependency Injection
+▶Dependency injection means that a function or object
+receives other functions or objects it requires (instead of
+creating them itself)
+▶It helps (unit) testing because also test instances can be
+injected, and these can be further control and monitor a state
+▶Overhead and small complexity increases are the trade-offs
+def __init__(self, x) -> None:
+self.__x = x
+# <-- dependency injection
+31 / 88
+
+===== PAGE 32 =====
+Testability Patterns: Strategy Pattern
+▶When using the strategy pattern, an abstract method is
+present but the desired functionality can be chosen at runtime
+▶The pattern may simplify things, but readability may suffer
+f(type, x):
+switch(type):
+case RANDOM_FOREST:
+api::random_forest(x)
+case SUPPORT_VECTOR_MACHINE:
+api::svm(x)
+...
+default:
+assert(1 == 2)
+32 / 88
+
+===== PAGE 33 =====
+Testability Patterns: Intercepting Filter Pattern
+▶The intercepting filter pattern injects pre- and
+post-processing filters to a function; these are executed before
+and after the function’s own primary method is called
+def __init__(self, pre, post):
+self.__pre = pre
+self.__post = post
+def __f(self, x):
+if self.__pre != None:
+self.__pre(x)
+z = self.__g(x)
+if self.__post != None:
+self.__post(z)
+33 / 88
+
+===== PAGE 34 =====
+Testability Patterns: Type Safety
+▶The type safety pattern means that one should use strongly
+typed languages or type annotations with weakly typed
+languages; these help at testing via static analyzers and can
+be used for instance in taint analysis
+def f(x: int, y: int) -> int:
+#
+# The assert is here to remark that the
+# annotations are not enforced in Python.
+#
+assert type(x) == int
+return x + y
+34 / 88
+
+===== PAGE 35 =====
+Testability Patterns: LLMs (1/7)
+▶The best practices are still being worked on, but again recall
+Feynman from the previous lecture and at least use a
+non-LLM tool (e.g., static analyzer) to check outputs
+A vibe coder asked a LLM “to generate automated tests to isolate
+functions but did not accept them at face value, noting: ‘I don’t
+think that’s quite right—it’s saying all the tests are passing, but it
+probably wrote the tests [so it can pass].”’ Those vibe coders
+relying heavily on LLMs requested “summaries and assessments of
+terminal output and also prioritize issues: ‘Is this error important?
+Do we need to fix it?’” Then, “after reading the model’s suggested
+fix, they expressed skepticism: ‘Why would that be the issue?’”
+(Chou et al. 2025, p. 15)
+35 / 88
+
+===== PAGE 36 =====
+Testability Patterns: LLMs (2/7)
+Generate
+(LLM)
+Verify
+(LLM)
+Output
+Fail
+Pass
+OR
+Agent
+Agent
+Figure 14: Not a Good Idea but Maybe in the Future?
+36 / 88
+
+===== PAGE 37 =====
+Testability Patterns: LLMs (3/7)
+Find
+(LLM)
+Verify
+(LLM)
+Output
+FP
+TP
+OR
+Agent
+Agent
+Repair
+(LLM)
+Agent
+Figure 15: Another Bad Idea Currently but Maybe in the Future?
+37 / 88
+
+===== PAGE 38 =====
+Testability Patterns: LLMs (4/7)
+▶At the moment, it would seem reasonable to argue that LLMs
+have indeed eased the producing of code, but, at the same
+time, technical debt is growing rapidly
+▶Recently, Bouzoukas (2026) used a specific term verification
+debt to underline that verifying and testing LLM output is a
+pressing challenge at the moment
+• Note also that security debt is a “sub-debt” here; LLMs
+are known to produce insecure code with a high probability,
+and this debt is not only yours because LLMs are increasingly
+used throughout software supply-chains, whether closed
+source or open source
+38 / 88
+
+===== PAGE 39 =====
+Testability Patterns: LLMs (5/7)
+Figure 16: https://www.theregister.com/2026/02/24/ai_finding_bugs/
+39 / 88
+
+===== PAGE 40 =====
+Testability Patterns: LLMs (6/7)
+Figure 17: https://github.com/google/oss-fuzz
+40 / 88
+
+===== PAGE 41 =====
+Testability Patterns: LLMs (7/7)
+Generate
+(LLM)
+Static analysis,
+unit tests,
+integration 
+tests, etc.
+Output
+Fail
+Pass
+OR
+Agent
+Thus, recall that
+unit tests are not
+sufficient alone!
+Re-generate
+OR
+Fix
+(manually)
+Figure 18: To Be on the Safe Side, I Would Recommend Keeping
+Validation Separate from LLMs Also When “Vibe Coding”
+41 / 88
+
+===== PAGE 42 =====
+Testability Patterns: There Is Much More! (1/2)
+11%
+26%
+17%
+25%
+23%
+55%
+50%
+47%
+63%
+54%
+48%
+41%
+30%
+15%
+12%
+8%
+26%
+20%
+36%
+33%
+47%
+30%
+38%
+45%
+Coding standards
+Approved tools
+Static analysis
+Deprecation of unsafe
+functions
+Security specific
+hardening sprints
+External interface
+review
+Security reviews with
+automated tools
+Documentation of
+security solutions
+100
+50
+0
+50
+100
+Very low
+Low
+Moderate
+High
+Very high
+Figure 19: Rindell et al. (2021, Fig. 6)
+42 / 88
+
+===== PAGE 43 =====
+Question
+Which Ones You Think a LLM Could Do?
+43 / 88
+
+===== PAGE 44 =====
+Testability Patterns: There Is Much More! (2/2)
+18%
+20%
+25%
+32%
+29%
+35%
+77%
+58%
+47%
+57%
+40%
+34%
+32%
+29%
+14%
+13%
+12%
+11%
+25%
+40%
+41%
+35%
+41%
+51%
+10%
+30%
+42%
+Security specific test
+cases
+Fuzz testing
+Penetration testing
+Dynamic analysis
+Attack surface review
+Review security testing
+plans
+Code reviews during
+testing
+Automated testing tools
+Development time process
+security audits
+100
+50
+0
+50
+100
+Very low
+Low
+Moderate
+High
+Very high
+Figure 20: Rindell et al. (2021, Fig. 8)
+44 / 88
+
+===== PAGE 45 =====
+Question
+Which Ones You Think a LLM Could Do?
+45 / 88
+
+===== PAGE 46 =====
+Deployability
+▶Traditionally — and, depending on a domain, sometimes still
+today, release engineering was a cumbersome process; a
+release was planned and tested for a long time
+▶From the late 2000s onward, so-called continuous software
+engineering emerged, among them continuous integration
+and continuous delivery
+• A concept of rapid releases is also sometimes used
+▶Recall the definition; it should be possible to deploy a system
+with predictable and acceptable amount of time and effort
+• This point underlines what was said earlier about QAs as
+measurable or even falsifiable attributes
+• Besides reduced time and effort, the continuous software
+engineering practices have improved also predictability
+46 / 88
+
+===== PAGE 47 =====
+Continuous Integration and Continuous Deployment
+▶Continuous integration means that a system being
+developed is continuously (e.g., daily) built and tested, such
+as that a working version is always available
+▶If a system is further deployed into production on a regular
+basis (e.g., monthly), a further concept of continuous
+deployment is often used
+▶The notion of DevOps covers both (and possibly more)
+▶These continuous practices require separating different
+environments each other; e.g., “development environment
+→integration environment →staging environment
+→production environment”
+47 / 88
+
+===== PAGE 48 =====
+Deployment Pipelines (1/4)
+Commit
+Commit
+Merge
+Merge
+Integrate,
+build
+Run tests,
+deploy
+Defer longer
+running tests
+Generate
+Feedback
+Generate
+Figure 21: An Illustration of Continuous Integration and Deployment
+(adopted from Duvall et al. 2007, Fig. 4-6)
+48 / 88
+
+===== PAGE 49 =====
+Deployment Pipelines (2/4)
+▶As a QA, deployability with a pipeline should be measurable
+▶Bass et al. (2021) suggest to consider the following:
+1. Cycle time: how long does it take to progress through a given
+deployment pipeline (i.e., from the development to the
+deployment environment)?
+2. Traceability: is it possible to trace forward (from the
+development to the deployment environment) and backwards
+(from the deployment to the development environment)?
+3. Repeatability: is the whole process reproducible; does it
+always give the same outcome with the same artifacts?
+• Easier said than done even with respect to builds alone!
+49 / 88
+
+===== PAGE 50 =====
+Deployment Pipelines (3/4)
+Figure 22: https://reproducible-builds.org/
+50 / 88
+
+===== PAGE 51 =====
+Deployment Pipelines (4/4)
+▶There are alternatives to GitHub (and everything else for that
+matter if you bother to look around for a moment)
+Figure 23: https://about.gitea.com/
+51 / 88
+
+===== PAGE 52 =====
+Deployability Scenarios
+Environment
+System
+(deployment)
+Source
+Response
+measure
+Event
+Response
+     Potential values to consider:
+Stakeholders and end-users
+System administrators
+Operations personnel
+Product owners
+Component marketplaces
+      Potential values to consider:
+New element is ready
+(e.g., due to bug or
+vulnerability fixes)
+New element is
+approved for deployment
+A rollback of existing
+elements
+     Potential values to consider:
+Integration was { success, failure, ...}
+Deployment was { success, failure, ...}
+Monitoring indicated { no problems, problems, ...}
+Potential values to consider:
+Number, size, and complexity of
+elements deployed
+Time and money required
+New defects introduced
+Setup costs for pipelines
+Cycle time, traceability, and repeatability
+     Potential values to consider:
+Development environment
+Integration environment
+Staging environment
+Deployment environment
+   Potential values to consider:
+Entire system
+Set of machines
+Set of components
+Set of modules
+Set of classes
+Figure 24: Adopted and modified from Bass et al. (2021)
+52 / 88
+
+===== PAGE 53 =====
+Deployability Tactics
+Deployability
+tactics
+Manage
+pipeline
+Manage
+deployment
+  1. Separate builds   
+  2. Scale roll-outs
+  3. Script deployment
+  4. Rollback
+Interactions
+Feature toggle
+Secure defaults
+Figure 25: Tactics for Deployability
+53 / 88
+
+===== PAGE 54 =====
+Deployability Tactics: Manage Pipeline (1/4)
+Componenti
+Big ball of mud
+(component)
+Before
+Modulej
+After
+Refactor
+Modulen
+Trigger a build if
+any module
+changes
+Each module is
+built separately
+but in parallel
+Figure 26: Separate Builds (adopted from Duvall et al. 2007, Fig. 4-7)
+54 / 88
+
+===== PAGE 55 =====
+Deployability Tactics: Manage Pipeline (2/4)
+▶When operating with large systems, it is a good idea to scale
+deploying incrementally to subsets of end-user population
+• This practice is also known as canary testing
+▶Sheehy & Reed (2025) recommend having a solid plan for
+verifying deployment failures as well as for measuring and
+documenting these with predefined health metrics
+• Only when these indicate no problems for a subset of
+end-users (or endpoints), a full roll-out should be done
+• With particularly large systems, it may be reasonable to
+define multiple subsets according to some criteria (e.g.,
+different geographic locations, different configurations, etc.)
+55 / 88
+
+===== PAGE 56 =====
+Deployability Tactics: Manage Pipeline (3/4)
+▶For the scaling to be possible, deploying should be scripted
+• Although some manual configuration is still typically
+required, automate as much as possible
+▶When health metrics indicate problems, it is important to
+have a rollback functionality; it should be possible to revert
+back to the previously deployed version of a system
+• This functionality correlates with the traceability and
+repeatability requirements; for a rollback to be possible, all
+configurations and variability characteristics should be tracked
+56 / 88
+
+===== PAGE 57 =====
+Deployability Tactics: Manage Pipeline (4/4)
+Figure 27: https://man.freebsd.org/cgi/man.cgi?query=zfs-rollback
+57 / 88
+
+===== PAGE 58 =====
+Deployability Tactics: Manage Deployment (1/4)
+Client
+Bridge
+(proxy)
+Connector
+Server1
+Connector
+Serveri
+Servern
+Connector
+Connector
+Version
+(configuration)k
+Version
+(configuration)j
+Version
+(configuration)s
+Runs 
+with
+Runs 
+with
+Runs 
+with
+Figure 28: Multiple Servers with Different Versions (or Configurations)
+58 / 88
+
+===== PAGE 59 =====
+Deployability Tactics: Manage Deployment (2/4)
+▶For verification and measurement purposes, it may be a good
+idea to have a feature toggle functionality that allows
+enabling or disabling features at runtime
+• A “kill-switch” is an example
+▶However, deployments into production should always come
+with safe and secure defaults, meaning that functional
+features should be off by default, whereas security features
+should be on by default (Ruohonen 2025)
+59 / 88
+
+===== PAGE 60 =====
+Deployability Tactics: Manage Deployment (3/4)
+Figure 29: https://www.gitops.tech/
+60 / 88
+
+===== PAGE 61 =====
+Deployability Tactics: Manage Deployment (4/4)
+▶The continuous software engineering practices, including
+DevOps and GitOps, convey a general message that one
+should automate as much as possible, and doing continuous
+monitoring, log-analysis, and analytics once automated
+• Hence, there are also further related notions such as
+“pipeline as code” and “infrastructure as code”
+▶Recently, as outlined by Wei et al. (2025), further concepts
+have emerged, such as “compliance as code”, “security as
+code”, “configuration as code”, and “network as code”
+▶Do you think “everything as code” might be the future?
+61 / 88
+
+===== PAGE 62 =====
+Deployability Patterns: Microservices (1/2)
+▶Microservices are a good example as a deployment pattern
+• Though, to raise generalizability, in what follows a term
+server is sometimes used in place of a service
+▶The benefits include:
+1. Distributed development and deployment: in theory, teams
+can deploy their own services without a need to consider
+programming language choices or software evolution (insofar as
+required and provided interface remain compatible)
+=⇒Reduced integration errors due to interoperability issues
+and shortened time-to-market
+2. Scaling is easy at least on paper because new service instances
+can be added dynamically and also supply can be matched to
+demand dynamically
+62 / 88
+
+===== PAGE 63 =====
+Deployability Patterns: Microservices (2/2)
+▶The drawbacks include:
+1. Overhead is larger than with in-memory connectors
+2. Synchronization can be challenging for complex transactions
+3. Freedom of teams to choose programming languages and
+other technologies increase the complexity of a whole system
+4. Responsibilities and level of granularity of services can e
+challenging to design
+5. Catalogs (incl. SBOMs) of services cause overhead
+63 / 88
+
+===== PAGE 64 =====
+Deployability Patterns: Rolling Upgrades (1/8)
+Client
+Bridge
+(proxy)
+Connector
+Server
+Connector
+Version
+(configuration)old
+100%
+runs with
+*
+1
+1
+*
+*
+1
+Figure 30: Rolling Upgrades #1 (Bass et al. 2021)
+64 / 88
+
+===== PAGE 65 =====
+Deployability Patterns: Rolling Upgrades (2/8)
+Client
+Bridge
+(proxy)
+Connector
+Server
+Connector
+Version
+(configuration)old
+100%
+runs with
+*
+1
+1
+*
+*
+1
+Server
+Version
+(configuration)new
+*
+1
+50%
+deployed
+Figure 31: Rolling Upgrades #2 (Bass et al. 2021)
+65 / 88
+
+===== PAGE 66 =====
+Deployability Patterns: Rolling Upgrades (3/8)
+Client
+Bridge
+(proxy)
+Connector
+Server
+Connector
+Version
+(configuration)old
+100%
+runs with
+*
+1
+1
+*
+*
+1
+Server
+Version
+(configuration)new
+*
+1
+100%
+deployed
+Figure 32: Rolling Upgrades #3 (Bass et al. 2021)
+66 / 88
+
+===== PAGE 67 =====
+Deployability Patterns: Rolling Upgrades (4/8)
+Client
+Bridge
+(proxy)
+Connector
+Server
+Connector
+Version
+(configuration)old
+100%
+runs with
+*
+1
+1
+*
+*
+1
+Server
+Version
+(configuration)new
+*
+1
+100%
+runs with
+Figure 33: Rolling Upgrades #4 (Bass et al. 2021)
+67 / 88
+
+===== PAGE 68 =====
+Deployability Patterns: Rolling Upgrades (5/8)
+Client
+Bridge
+(proxy)
+Connector
+Connector
+*
+1
+1
+*
+Server
+Version
+(configuration)new
+*
+1
+100%
+runs with
+Figure 34: Rolling Upgrades #5 (Bass et al. 2021)
+68 / 88
+
+===== PAGE 69 =====
+Deployability Patterns: Rolling Upgrades (6/8)
+Client
+Bridge
+(proxy)
+Connector
+Server
+Connector
+Version
+(configuration)old
+100%
+runs with
+*
+1
+1
+*
+*
+1
+Server
+Version
+(configuration)new
+*
+1
+50%
+runs with
+50%
+of traffic
+50%
+of traffic
+1
+*
+Figure 35: Alternative Rolling Upgrades #1 (Bass et al. 2021)
+69 / 88
+
+===== PAGE 70 =====
+Deployability Patterns: Rolling Upgrades (7/8)
+Client
+Bridge
+(proxy)
+Connector
+Server
+Connector
+Version
+(configuration)old
+100%
+runs with
+*
+1
+1
+*
+*
+1
+Server
+Version
+(configuration)new
+*
+1
+100%
+runs with
+10%
+of traffic
+90%
+of traffic
+1
+*
+Figure 36: Alternative Rolling Upgrades #2 (Bass et al. 2021)
+70 / 88
+
+===== PAGE 71 =====
+Deployability Patterns: Rolling Upgrades (8/8)
+Client
+Bridge
+(proxy)
+Connector
+*
+1
+Server
+Version
+(configuration)new
+*
+1
+100%
+runs with
+100%
+of traffic
+1
+*
+Figure 37: Alternative Rolling Upgrades #3 (Bass et al. 2021)
+71 / 88
+
+===== PAGE 72 =====
+Deployability Patterns: A/B Testing (1/2)
+Client
+Server
+Connector
+*
+*
+Feature A
+Feature B
+50% of
+requests
+for a time t
+50% of
+requests
+for a time t
+Figure 38: An Illustration of A/B Testing #1
+72 / 88
+
+===== PAGE 73 =====
+Deployability Patterns: A/B Testing (2/2)
+Client
+Server
+Connector
+*
+*
+Feature B
+100% of requests
+after statistical
+testing (e.g., t-tests)
+Figure 39: An Illustration of A/B Testing #2
+73 / 88
+
+===== PAGE 74 =====
+Deployability Patterns: Legal Requirements (1/2)
+▶The new Cyber Resilience Act (CRA) of the European
+Union, which will be enforced from 2027 onward, requires
+providing security updates for a product’s whole life cycle
+▶In addition, it says that these should be done automatically
+whenever possible and wanted by a customer
+▶Furthermore, it mandates the good practice that, whenever
+possible, security updates should be separated from
+functional updates that bring new features
+74 / 88
+
+===== PAGE 75 =====
+Deployability Patterns: Legal Requirements (2/2)
+Security
+updates
+Updates
+Secure delivery
+(incl. integrity)
+Functional
+updates
+Where technically feasible;
+otherwise both update types
+Manual
+delivery
+Automatic
+delivery
+(1) Where applicable, 
+(2) opted in, and
+(3) no postponing or it has ended;
+(4) otherwise manual delivery route (b)
+(a)
+(b)
+Notification
+Figure 40: The CRA’s Requirements for Security Updates (adopted from
+Ruohonen et al. 2025, Fig. 5)
+75 / 88
+
+===== PAGE 76 =====
+Deployability Patterns: Release Engineering (1/2)
+▶The DevOps practices and particularly continuous deployment
+may lead to a false conclusion or false impression that
+everything would be continuously deployed everywhere
+▶Therefore, recall what was said in the earlier lecture about
+product lines and branching of releases
+▶In many cases, multiple releases may operate in parallel, and
+these may have varying support periods
+• Operating systems are good example; often there is a
+so-called long-term support (LTS) version and many
+versions with shorter support periods
+• Typically, the LTS versions do not see new features
+76 / 88
+
+===== PAGE 77 =====
+Deployability Patterns: Release Engineering (2/2)
+Major
+release 1
+Major
+release 2
+Release
+End-of-life
+...
+Minor
+release 1.x
+Every five
+years, e.g.
+Release
+Patch
+ release 1.x.y
+Whenever
+necessary
+Release
+Every six
+months, e.g.
+Figure 41: The Semantic Versioning Scheme Revisited
+77 / 88
+
+===== PAGE 78 =====
+Deployability Patterns: Deployment Testing (1/4)
+Figure 42: https://www.usenix.org/publications/loginonline/
+running-disaster-recovery-plan-tabletop-exercises
+78 / 88
+
+===== PAGE 79 =====
+Deployability Patterns: Deployment Testing (2/4)
+Figure 43: https://principlesofchaos.org/
+79 / 88
+
+===== PAGE 80 =====
+Deployability Patterns: Deployment Testing (3/4)
+Experiment
+operation
+Experiment
+design
+1. Steady state
+3. Blast radius
+2. Hypothesis
+Experiment
+execution
+Observation
+and analysis
+Choose
+fault or stressor
+Figure 44: Setup for Chaos Engineering and Tabletop Experiments
+80 / 88
+
+===== PAGE 81 =====
+Deployability Patterns: Deployment Testing (4/4)
+Figure 45: https://chaostoolkit.org/
+81 / 88
+
+===== PAGE 82 =====
+Questions?
+82 / 88
+
+===== PAGE 83 =====
+Case #4.A (choose either this case or the case B)
+▶Investigate the syzkaller/syzbot (as also done by Ruohonen &
+Rindell 2019) used to continuously fuzz the Linux kernel:
+https://syzkaller.appspot.com
+▶Can you say anything about the invalid cases?
+▶What can you say by investigating the graphing
+functionality provided on the dashboard, including with
+respect to fuzzing, open bugs, and coverage?
+• Presenting graphs would be nice but not mandatory
+▶Are all subsystems tested equally well?
+▶Has the kernel’s “health” been stable in overall?
+▶Any other insights you might want to share?
+83 / 88
+
+===== PAGE 84 =====
+Case #4.B (choose either this case or the case A)
+▶CrowdStrike had a major incident in July 2024 and then
+Cloudflare in December 2025
+▶Read Internet sources about these incidents with respect to:
+• What were the causes?
+• What were the effects?
+• What do the incidents say about testability?
+• How about deployability?
+• What can be learned from the incidents?
+84 / 88
+
+===== PAGE 85 =====
+Thank you
+Questions?
+85 / 88
+
+===== PAGE 86 =====
+Additional References (1/3)
+1. Boehm, B. W. (1984): Verifying and Validating Software Requirements and
+Design Specifications. IEEE Software (1)(1), pp. 75–88,
+https://doi.org/10.1109/MS.1984.233702
+2. Ammann, P. & Offutt, J. (2008): Introduction to Software Testing. Cambridge
+University Press, http://www.cambridge.org/9780521880381
+3. Barr, E. T. & Harman, M. & McMinn, P. & Shahbaz, M. & Yoo, S. (2015):
+The Oracle Problem in Software Testing: A Survey. IEEE Transactions on
+Software Engineering 41(5), pp. 507–525,
+https://doi.org/10.1109/TSE.2014.2372785
+4. Ruohonen, J. & Rindell, K (2019): Empirical Notes on the Interaction Between
+Continuous Kernel Fuzzing and Development. International Symposium on
+Software Reliability Engineering Workshops (ISSREW 2019), IEEE, pp.
+276–281, https://arxiv.org/pdf/1909.02441
+5. Ruohonen, J. & Tiwari, A. (2025): Empirical Derivations from an Evolving Test
+Suite. A pre-print under review, https://arxiv.org/pdf/2511.00915
+86 / 88
+
+===== PAGE 87 =====
+Additional References (2/3)
+1. Ruohonen, J. & Alami, A. (2024): Fast Fixes and Faulty Drivers: An Empirical
+Analysis of Regression Bug Fixing Times in the Linux Kernel.
+https://arxiv.org/pdf/2411.02091
+2. Chou, Y-H. et al. (2025): Building Software by Rolling the Dice: A Qualitative
+Study of Vibe Coding. A pre-print, https://arxiv.org/pdf/2512.22418
+3. Bouzoukas, K. (2026): Verification Debt: When Generative AI Speeds Change
+Faster Than Proof. Communications of the ACM (Blog),
+https://cacm.acm.org/blogcacm/
+verification-debt-when-generative-ai-speeds-change-faster-than-proof/,
+4. Rindell, K. et al. (2021): Security in Agile Software Development: A
+Practitioner Survey. Information and Software Technology 131, p. 106488,
+https://doi.org/10.1016/j.infsof.2020.106488
+5. Duvall, P. M. & Matyas, S. & Glover, A. (2007): Continuous Integration.
+Addison-Wesley, https://martinfowler.com/books/duvall.html
+87 / 88
+
+===== PAGE 88 =====
+Additional References (3/3)
+1. Sheehy, J. & Reed, J. (2025): Moving Faster by Not Breaking Things —Or
+How Not to Blow Up the Internet. ACM Queue 23(4),
+https://queue.acm.org/detail.cfm?id=3762988
+2. Ruohonen, J. (2025): SoK: The Design Paradigm of Safe and Secure Defaults.
+Journal of Information Security and Applications 90, pp. 103989,
+https://doi.org/10.1016/j.jisa.2025.103989
+3. Ruohonen, J. & Hjerppe, K. & Kang, E-Y. (2025): A Mapping Analysis of
+Requirements Between the CRA and the GDPR. IEEE 33rd International
+Requirements Engineering Conference Workshops (REW 2025), IEEE,
+pp. 215–222, https://arxiv.org/pdf/2503.01816
+4. Wei, H. & Madhavji, N. & Steinbacher, J. (2025): Understanding Everything as
+Code: A Taxonomy and Conceptual Model.
+https://arxiv.org/pdf/2507.05100
+88 / 88

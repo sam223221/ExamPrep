@@ -1,0 +1,12 @@
+weasyprint==62.3
+markdown==3.6
+pymdown-extensions==10.9
+markdown-katex==202406.1035
+Pygments==2.18.0
+jupyter==1.0.0
+nbconvert==7.16.4
+PyMuPDF==1.24.9
+Pillow==10.4.0
+# pydyf is a transitive dependency of weasyprint; weasyprint==62.3 requires
+# pydyf<0.11 but pip's resolver may install a newer version. Pin explicitly.
+pydyf==0.10.0

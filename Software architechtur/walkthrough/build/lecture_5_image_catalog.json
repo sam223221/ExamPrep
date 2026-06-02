@@ -1,0 +1,74 @@
+[
+  {
+    "page": 1,
+    "index": 1,
+    "xref": 13,
+    "w": 827,
+    "h": 221,
+    "bytes": 6049,
+    "page_snippet": "Software Architecture (T630019402) Lecture #5, March 10, 2026 Jukka Ruohonen 1 / 80"
+  },
+  {
+    "page": 19,
+    "index": 1,
+    "xref": 234,
+    "w": 859,
+    "h": 401,
+    "bytes": 71323,
+    "page_snippet": "Availability Tactics: Detect 7\u2192Ping and Echo (1/2) Figure 7: The Classical Unix Tool 19 / 80"
+  },
+  {
+    "page": 26,
+    "index": 1,
+    "xref": 319,
+    "w": 1755,
+    "h": 549,
+    "bytes": 87240,
+    "page_snippet": "Availability Tactics: Detect 7\u2192Voting (3/9) Figure 10: https://spectrum.ieee.org/ how-the-boeing-737-max-disaster-looks-"
+  },
+  {
+    "page": 29,
+    "index": 1,
+    "xref": 359,
+    "w": 1276,
+    "h": 795,
+    "bytes": 685053,
+    "page_snippet": "Availability Tactics: Detect 7\u2192Voting (6/9) Figure 12: https://blog.apnic.net/2026/02/06/ from-roots-to-reach-network-re"
+  },
+  {
+    "page": 35,
+    "index": 1,
+    "xref": 415,
+    "w": 934,
+    "h": 675,
+    "bytes": 102958,
+    "page_snippet": "Availability Tactics: Detect 7\u2192Self-Tests (2/2) Figure 14: https://man.netbsd.org/security.conf.5 35 / 80"
+  },
+  {
+    "page": 41,
+    "index": 1,
+    "xref": 465,
+    "w": 999,
+    "h": 537,
+    "bytes": 80231,
+    "page_snippet": "Availability Tactics: Repair 7\u2192Exception Handling (2/2) Figure 16: https://man.freebsd.org/cgi/man.cgi?query=KASSERT 41 "
+  },
+  {
+    "page": 56,
+    "index": 1,
+    "xref": 673,
+    "w": 1162,
+    "h": 302,
+    "bytes": 50598,
+    "page_snippet": "Availability Tactics: Prevent 7\u2192Removal and Transactions \u25b6The removal tactic essential recapitulates the general wisdom "
+  },
+  {
+    "page": 60,
+    "index": 1,
+    "xref": 722,
+    "w": 957,
+    "h": 632,
+    "bytes": 106405,
+    "page_snippet": "Availability Tactics: Prevent 7\u2192Increase Competence (2/2) Figure 26: https://man.netbsd.org/kmem.9 60 / 80"
+  }
+]

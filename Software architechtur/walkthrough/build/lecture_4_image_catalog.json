@@ -1,0 +1,167 @@
+[
+  {
+    "page": 1,
+    "index": 1,
+    "xref": 13,
+    "width": 827,
+    "height": 221,
+    "channels": 3,
+    "cs_channels": 3,
+    "png_bytes": 6049,
+    "page_text_snippet": "Software Architecture (T630019402) Lecture #4, March 3, 2026 Jukka Ruohonen 1 / 88"
+  },
+  {
+    "page": 9,
+    "index": 1,
+    "xref": 100,
+    "width": 1257,
+    "height": 247,
+    "channels": 3,
+    "cs_channels": 3,
+    "png_bytes": 61291,
+    "page_text_snippet": "Testing and the Separation of Concerns Figure 2: https://www.cs.utexas.edu/~EWD/transcriptions/EWD04xx/EWD447.html 9 / 88"
+  },
+  {
+    "page": 9,
+    "index": 2,
+    "xref": 101,
+    "width": 1085,
+    "height": 259,
+    "channels": 3,
+    "cs_channels": 3,
+    "png_bytes": 61720,
+    "page_text_snippet": "Testing and the Separation of Concerns Figure 2: https://www.cs.utexas.edu/~EWD/transcriptions/EWD04xx/EWD447.html 9 / 88"
+  },
+  {
+    "page": 10,
+    "index": 1,
+    "xref": 112,
+    "width": 1107,
+    "height": 146,
+    "channels": 3,
+    "cs_channels": 3,
+    "png_bytes": 32066,
+    "page_text_snippet": "Testing and Verification Figure 3: https://www.cs.utexas.edu/~EWD/transcriptions/EWD02xx/EWD288.html 10 / 88"
+  },
+  {
+    "page": 10,
+    "index": 2,
+    "xref": 113,
+    "width": 1093,
+    "height": 213,
+    "channels": 3,
+    "cs_channels": 3,
+    "png_bytes": 48313,
+    "page_text_snippet": "Testing and Verification Figure 3: https://www.cs.utexas.edu/~EWD/transcriptions/EWD02xx/EWD288.html 10 / 88"
+  },
+  {
+    "page": 17,
+    "index": 1,
+    "xref": 247,
+    "width": 949,
+    "height": 234,
+    "channels": 3,
+    "cs_channels": 3,
+    "png_bytes": 35703,
+    "page_text_snippet": "Testing (6/6) \u25b6Code sanitizers are a good example of dynamic testing; these are tools that detects bugs in the form of undefined or otherwise suspicious behavio"
+  },
+  {
+    "page": 39,
+    "index": 1,
+    "xref": 469,
+    "width": 1197,
+    "height": 794,
+    "channels": 3,
+    "cs_channels": 3,
+    "png_bytes": 145807,
+    "page_text_snippet": "Testability Patterns: LLMs (5/7) Figure 16: https://www.theregister.com/2026/02/24/ai_finding_bugs/ 39 / 88"
+  },
+  {
+    "page": 40,
+    "index": 1,
+    "xref": 477,
+    "width": 875,
+    "height": 484,
+    "channels": 3,
+    "cs_channels": 3,
+    "png_bytes": 94927,
+    "page_text_snippet": "Testability Patterns: LLMs (6/7) Figure 17: https://github.com/google/oss-fuzz 40 / 88"
+  },
+  {
+    "page": 50,
+    "index": 1,
+    "xref": 596,
+    "width": 943,
+    "height": 680,
+    "channels": 3,
+    "cs_channels": 3,
+    "png_bytes": 62271,
+    "page_text_snippet": "Deployment Pipelines (3/4) Figure 22: https://reproducible-builds.org/ 50 / 88"
+  },
+  {
+    "page": 51,
+    "index": 1,
+    "xref": 606,
+    "width": 1259,
+    "height": 441,
+    "channels": 3,
+    "cs_channels": 3,
+    "png_bytes": 131802,
+    "page_text_snippet": "Deployment Pipelines (4/4) \u25b6There are alternatives to GitHub (and everything else for that matter if you bother to look around for a moment) Figure 23: https://"
+  },
+  {
+    "page": 57,
+    "index": 1,
+    "xref": 706,
+    "width": 937,
+    "height": 572,
+    "channels": 3,
+    "cs_channels": 3,
+    "png_bytes": 79201,
+    "page_text_snippet": "Deployability Tactics: Manage Pipeline (4/4) Figure 27: https://man.freebsd.org/cgi/man.cgi?query=zfs-rollback 57 / 88"
+  },
+  {
+    "page": 60,
+    "index": 1,
+    "xref": 745,
+    "width": 1145,
+    "height": 652,
+    "channels": 3,
+    "cs_channels": 3,
+    "png_bytes": 81770,
+    "page_text_snippet": "Deployability Tactics: Manage Deployment (3/4) Figure 29: https://www.gitops.tech/ 60 / 88"
+  },
+  {
+    "page": 78,
+    "index": 1,
+    "xref": 1120,
+    "width": 1169,
+    "height": 497,
+    "channels": 3,
+    "cs_channels": 3,
+    "png_bytes": 56728,
+    "page_text_snippet": "Deployability Patterns: Deployment Testing (1/4) Figure 42: https://www.usenix.org/publications/loginonline/ running-disaster-recovery-plan-tabletop-exercises 7"
+  },
+  {
+    "page": 79,
+    "index": 1,
+    "xref": 1130,
+    "width": 981,
+    "height": 473,
+    "channels": 3,
+    "cs_channels": 3,
+    "png_bytes": 49089,
+    "page_text_snippet": "Deployability Patterns: Deployment Testing (2/4) Figure 43: https://principlesofchaos.org/ 79 / 88"
+  },
+  {
+    "page": 81,
+    "index": 1,
+    "xref": 1165,
+    "width": 1258,
+    "height": 634,
+    "channels": 3,
+    "cs_channels": 3,
+    "png_bytes": 67057,
+    "page_text_snippet": "Deployability Patterns: Deployment Testing (4/4) Figure 45: https://chaostoolkit.org/ 81 / 88"
+  }
+]

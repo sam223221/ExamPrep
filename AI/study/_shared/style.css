@@ -1,0 +1,224 @@
+/* AI Exam Prep — PDF stylesheet
+ * Used by study/render.py via WeasyPrint to render every lecture chapter
+ * and the master index to a print-quality PDF. See spec section 10.
+ *
+ * Design intent: a textbook-feel serif body with clean sans headings,
+ * generous line-height for readability, and explicit page-break behaviour
+ * so figures, tables, and code blocks don't shred across pages.
+ */
+
+/* ---------- Page setup ---------- */
+
+@page {
+  size: A4;
+  margin: 2cm;
+  @bottom-center {
+    content: counter(page) " / " counter(pages);
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    font-size: 9pt;
+    color: #666;
+  }
+}
+
+/* ---------- Body ---------- */
+
+body {
+  font-family: "Source Serif Pro", "Charter", "Georgia", serif;
+  font-size: 11pt;
+  line-height: 1.45;
+  color: #1a1a1a;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  display: block;
+}
+
+/* Prevent paragraphs from leaving an orphan line at the top or bottom of a page. */
+p {
+  orphans: 3;
+  widows: 3;
+  margin: 0 0 0.6em 0;
+}
+
+/* ---------- Headings ---------- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  font-weight: 600;
+  line-height: 1.25;
+  page-break-after: avoid;
+  margin: 1.2em 0 0.5em 0;
+}
+
+h1 {
+  color: #1a2238;
+  font-size: 20pt;
+  margin-top: 0;
+  border-bottom: 2px solid #1a2238;
+  padding-bottom: 0.2em;
+}
+
+h2 {
+  color: #1a2238;
+  font-size: 15pt;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.15em;
+}
+
+h3 {
+  color: #344563;
+  font-size: 12.5pt;
+}
+
+h4, h5, h6 {
+  color: #344563;
+  font-size: 11pt;
+}
+
+/* ---------- Links ---------- */
+
+a {
+  color: #1a2238;
+  text-decoration: none;
+  border-bottom: 1px dotted #1a2238;
+}
+
+a:hover {
+  border-bottom-style: solid;
+}
+
+/* ---------- Code ---------- */
+
+code {
+  font-family: "JetBrains Mono", "Consolas", "Menlo", monospace;
+  font-size: 9.5pt;
+  background: #f5f5f7;
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+  color: #1a1a1a;
+}
+
+pre {
+  font-family: "JetBrains Mono", "Consolas", "Menlo", monospace;
+  font-size: 9.5pt;
+  background: #f5f5f7;
+  padding: 0.5em;
+  border-radius: 4px;
+  line-height: 1.35;
+  overflow-x: auto;
+  page-break-inside: avoid;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* ---------- Math (KaTeX output classes) ---------- */
+
+.katex-display,
+.math.display {
+  display: block;
+  text-align: center;
+  margin: 0.8em 0;
+  page-break-inside: avoid;
+}
+
+.katex,
+.math.inline {
+  vertical-align: baseline;
+}
+
+/* ---------- Figures ---------- */
+
+img {
+  max-width: 100%;
+  height: auto;
+  page-break-inside: avoid;
+}
+
+figure {
+  margin: 1em auto;
+  text-align: center;
+  page-break-inside: avoid;
+}
+
+figcaption {
+  font-style: italic;
+  font-size: 9.5pt;
+  color: #555;
+  margin-top: 0.3em;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- Tables ---------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.8em 0;
+  font-size: 10.5pt;
+  page-break-inside: avoid;
+}
+
+th, td {
+  border: 0.5pt solid #ddd;
+  padding: 0.35em 0.6em;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  font-weight: 600;
+  background: #f0f0f3;
+}
+
+/* ---------- Blockquotes ---------- */
+
+blockquote {
+  border-left: 3px solid #1a2238;
+  padding-left: 1em;
+  margin: 0.8em 0;
+  color: #444;
+  font-style: italic;
+}
+
+blockquote p {
+  margin: 0.3em 0;
+}
+
+/* ---------- Lists ---------- */
+
+ul, ol {
+  margin: 0.4em 0 0.8em 1.4em;
+  padding: 0;
+}
+
+li {
+  margin: 0.15em 0;
+}
+
+/* ---------- Horizontal rule ---------- */
+
+hr {
+  border: 0;
+  border-top: 0.5pt solid #ccc;
+  margin: 1.5em 0;
+}
+
+/* ---------- Cheat-sheet section ---------- */
+
+.cheat-sheet {
+  page-break-before: always;
+  background: #fafafa;
+  padding: 0.5em;
+}
+
+.cheat-sheet h2 {
+  margin-top: 0;
+}

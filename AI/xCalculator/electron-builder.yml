@@ -1,0 +1,25 @@
+appId: fo.vita.xcalculator
+productName: xCalculator
+copyright: Copyright © 2026 Vita
+
+directories:
+  output: release
+  buildResources: build
+
+# Pack the built renderer (dist/) and the compiled Electron bundles (dist-electron/).
+files:
+  - dist/**/*
+  - dist-electron/**/*
+  - package.json
+
+asar: true
+
+win:
+  target:
+    - target: portable
+      arch:
+        - x64
+
+portable:
+  # Single double-clickable executable; no installer, runs offline.
+  artifactName: xCalculator.exe

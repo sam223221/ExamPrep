@@ -1,0 +1,1416 @@
+===== PAGE 1 =====
+Software Architecture
+(T630019402)
+Lecture #1, February 10, 2026
+Jukka Ruohonen
+1 / 84
+
+
+===== PAGE 2 =====
+The Lecturer
+▶Assistant Professor at SDU since 2024
+▶Ph.D. (Dr. Sc.) from the University of Turku in Finland
+▶Research experiences and interests cover cyber security,
+empirical software engineering, data mining, Internet
+measurements, technology policies, and the European Union,
+among other things
+2 / 84
+
+
+===== PAGE 3 =====
+Content
+▶“The course gives an overview of the area of software
+architecture. The course covers software architecture topics
+such as software architecture requirements, tactics and
+patterns, views and evaluation. The course will also cover
+how to combine tactics and patterns to meet requirements by
+an architectural strategy that address tensions among
+different software architectural qualities.”
+3 / 84
+
+
+===== PAGE 4 =====
+Learning Objectives – Knowledge, Skills, and Competences
+▶A closer look at the course description reveals that software
+architecture requirements, tactics and patterns, views,
+strategies, and their evaluation are approached from a process
+perspective rather than a purely technical perspective
+• Thus, examples and exercises are on the theoretical side
+▶In particular, a student will be able to “apply software
+architecture methods to address tensions among different
+software architectural qualities and settle the tensions in a
+concrete design”
+• That is, there are fundamental trade-offs present
+4 / 84
+
+
+===== PAGE 5 =====
+Teaching Method, Pedagogy, and Examination
+▶The course description says that the teaching method involves
+“lectures, laboratory exercises, and project work”
+• However: as the topic does not really lend itself to
+laboratory exercise nor project work because we are essentially
+trying to learn software architecture as a process, including
+with respect to large-scale systems taking years to complete,
+the pedagogical approach taken follows case-based learning;
+a case or few are presented for a discussion in each lecture
+▶The evaluation and grading are based on a written exam but
+they too are based on a similar pedagogical approach
+• If you cannot or will not attend lectures, be prepared for
+out-class reading as passing the course will be otherwise hard
+5 / 84
+
+
+===== PAGE 6 =====
+Structure of the Lectures
+Lecture1
+Case(s)1
+Follow-up1
+Lecture2
+Case(s)2
+Follow-up2
+Lecture3
+Case(s)3
+...
+Figure 1: The Sequential Structure
+▶As soon as possible, assign yourself to groups of at most 6
+persons and record your assignments in the groups.xls file
+provided on itslearning (under “resources”)
+▶Then, a randomly picked group presents (max. 15 min.)
+the first case assigned today during the start of the second
+lecture, and a group discussion follows
+6 / 84
+
+
+===== PAGE 7 =====
+A Note on Repetition
+▶Out of necessity, particularly the early lectures contain some
+content that has been partially covered in other courses
+• Though, some repetition is always good for learning
+▶It is assumed that you already know standard modeling
+frameworks, visualization styles and diagram types, and
+associated tools, including the uniform modeling language
+(UML) and its various versions, component diagrams, and C4
+• The lectures will mostly operate at the component-level but
+with a focus on semantics rather than syntax
+7 / 84
+
+
+===== PAGE 8 =====
+Notes on Diagrams (1/2)
+▶The point about semantics applies also for the exercises and
+exam; as long as you are consistent, you can use whatever
+style or even invent your own (as long as you provide
+definitions, elaborations, add legends to diagrams, etc.)
+• It is likely that the exam allows a new functionality to upload
+drawings, so you can draw by hand too, which is much nicer!
+▶The point generalizes also more broadly; some of the
+textbooks soon noted are very strict about syntax
+• If you present to such an audience, state that you use UML
+2.0 or whatever standard or framework and their versions
+▶However, a couple of the textbooks recommend against using
+UML or other frameworks with fancy syntax; most people do
+not know a given syntax and the meaning of all weird symbols
+8 / 84
+
+
+===== PAGE 9 =====
+Notes on Diagrams (2/2)
+▶As for tools, personally I nowadays mostly use draw.io1
+▶Sometimes I also use text-to-diagram tools2, which can
+generate diagrams rapidly and which also provide some rigor
+as you can verify a logic non-visually
+• Of these, PlantUML can be recommended
+▶Graphviz3 is worth checking out too
+▶For science and LATEX enthusiasts, TikZ4 can do anything
+1 https://draw.io
+2 https://xosh.org/text-to-diagram/
+3 https://graphviz.org/
+4 https://tikz.net/
+9 / 84
+
+
+===== PAGE 10 =====
+A Note on the Course’s Progression
+▶Traditionally and internationally, there have been two primary
+pedagogical ways to teach a course on software architecture:
+the “traditional one” (from designs to implementations and
+operations) and the “reverse one” (from operations and
+implementations through reverse engineering to designs)
+▶However, for this course, I follow a mixed approach, starting
+from “supposedly somewhat familiar” topics and slowly
+progressing toward “supposedly rather unfamiliar” topics,
+incrementally including also rarely covered yet I believe
+interesting topics from a software engineering perspective
+• That said, do not rely on this topical overall schedule for
+strategic grading – as said, it will be a non-linear mixture of
+topics, all of which you should master for a good grade
+10 / 84
+
+
+===== PAGE 11 =====
+Textbooks: Bass et al. (2021)
+Figure 2: https://www.oreilly.com/library/view/
+software-architecture-in/9780136885979/
+11 / 84
+
+
+===== PAGE 12 =====
+Textbooks: Lano & Tehrani (2023)
+Figure 3:
+https://link.springer.com/book/10.1007/978-3-031-44143-1
+12 / 84
+
+
+===== PAGE 13 =====
+Textbooks: Richards (2015)
+Figure 4: https://www.oreilly.com/library/view/
+software-architecture-patterns/9781491971437/
+13 / 84
+
+
+===== PAGE 14 =====
+Textbooks: Budgen (2007)
+Figure 5: https://www.pearson.de/9781405890250
+14 / 84
+
+
+===== PAGE 15 =====
+Textbooks: Nagl & Westfechtel (2024)
+Figure 6:
+https://link.springer.com/book/10.1007/978-3-031-51335-0
+15 / 84
+
+
+===== PAGE 16 =====
+Textbooks: Adkins et al. (2020)
+Figure 7: https://google.github.io/
+building-secure-and-reliable-systems/raw/toc.html
+16 / 84
+
+
+===== PAGE 17 =====
+Textbooks: Fairbanks (2010)
+Figure 8: https://www.georgefairbanks.com/book/
+17 / 84
+
+
+===== PAGE 18 =====
+Textbooks: Availability
+▶Of the textbooks listed:
+1. Bass et al. (2021) is available from the library as a paper copy
+2. Lano & Tehrani (2023) as well as Nagl & Westfechtel (2024)
+are available as online copies via the SDU’s library (if you do
+not know how to use the library, now is a good time to learn!)
+3. Adkins et al. (2020) is available online by clicking the link
+4. Others you need to seek (via the library!)
+18 / 84
+
+
+===== PAGE 19 =====
+Questions?
+19 / 84
+
+
+===== PAGE 20 =====
+Question
+How would you define software architecture?
+20 / 84
+
+
+===== PAGE 21 =====
+An Example Definition
+▶Clements et al. (2010, quoted from Fairbanks 2010, p. 16)
+provides the following definition: a “software architecture of a
+computing system is the set of structures needed to reason
+about the system, which comprise software elements,
+relations among them, and properties of both”
+▶Although terminology varies slightly from an author to
+another and from a standard to another, the definition
+contains the basic ingredients with which the lectures operate:
+systems, structures, elements, relations, and properties
+• A little more precise definitions are provided later (on p. 39)
+21 / 84
+
+
+===== PAGE 22 =====
+Six Truisms (adopted from Bass et al. 2021)
+1. A software architecture is an abstraction
+2. A software architecture is about engineering and not art
+3. A software architecture is software design, but not all software
+designs are about software architectures
+4. Every software system has an architecture
+5. Not all software architectures are good
+6. There are often (but not necessarily always) both
+requirements and constraint for software architectures, which
+further usually require some domain expertise
+22 / 84
+
+
+===== PAGE 23 =====
+Not Like This; Not Like Art, Really
+Figure 9: https://en.wikipedia.org/wiki/Sydney_Opera_House#
+/media/File:Sydney_Australia._(21339175489).jpg
+23 / 84
+
+
+===== PAGE 24 =====
+While Still Art Too, More Like This, Perhaps
+Figure 10: https://en.wikipedia.org/wiki/Brutalist_
+architecture#/media/File:Norfolk_Terrance_5.jpg
+24 / 84
+
+
+===== PAGE 25 =====
+But Definitely Not Like This!
+Figure 11:
+https://pubpeer.com/publications/1E1C921D2EF134F284CFEE56349184
+25 / 84
+
+
+===== PAGE 26 =====
+Not Like This Either!
+Developer
+User
+ interface
+Architecture
+Designs
+Defines
+Figure 12: User Interfaces Are Not Architectures!
+26 / 84
+
+
+===== PAGE 27 =====
+While It May Sometimes Be True, It Is Generally a Fallacy
+“Does architecture still matter? With the rise of cloud
+infrastructures, microservices, frameworks, and reference
+architectures for every conceivable domain and quality attribute,
+one might think that architectural knowledge is hardly needed
+anymore. All the architect of today needs to do is select from the
+rich array of tools and infrastructure alternatives out there,
+instantiate and con gure them, and voila! An architecture.”
+(Bass et al. 2021)
+27 / 84
+
+
+===== PAGE 28 =====
+Software Design and Software Architecture
+Design
+Architecture
+Implementation
+Requirements
+Constraints
+Domain
+knowledge
+ Tensions
+ Tensions
+ Tensions
+Quality
+attributes
+Sometimes known as
+"detailed design"
+Figure 13: Extended from Budgen (2007, Fig. 1.7, p. 16)
+28 / 84
+
+
+===== PAGE 29 =====
+Software Architecture and Detailed Design
+“Defining architecture as the set of structures needed to reason
+about a system is useful in that it focuses attention on the purpose
+of the architecture (reasoning), but problematic in that it blurs the
+line between architecture and detailed design. It is simpler and
+more clear to say that architecture is the macroscopic parts of the
+design, such as modules and how they are connected, leaving
+detailed design to cover everything else.” (Fairbanks 2010, p. 17)
+29 / 84
+
+
+===== PAGE 30 =====
+Quality Attributes for Software Architectures (1/3)
+Requirements
+Constraints
+Domain
+knowledge
+ Tensions
+ Tensions
+ Tensions
+Quality
+attributes
+Other
+factors
+30 / 84
+
+
+===== PAGE 31 =====
+Quality Attributes for Software Architectures (2/3)
+▶Thus, when designing a software architecture (but not the
+whole implementation), one seeks to fulfill quality attributes
+• Although these are usually dependent on non-functional
+requirements, constraints, and domain knowledge,
+functionality itself (i.e., functional requirements) matters less
+• For instance, a customer might have a non-functional
+requirement that availability is of utmost importance, and,
+hence, a software architect’s task would then be to guarantee
+availability via a suitable architecture under given constraints
+(such as hardware, financial resources, potential data
+localization requirements for on-premise deployments, etc.)
+31 / 84
+
+
+===== PAGE 32 =====
+Quality Attributes for Software Architectures (3/3)
+▶Like many (but not all) conventional requirements, also
+quality attributes should be prioritized; hence, in the previous
+example availability should be the top-ranked attribute (due
+to “utmost importance”) even though we would still want,
+say, maintainability with a some priority as a quality attribute
+▶Therefore, an evaluation of an architecture is best done by
+considering the prioritized quality attributes
+▶A good architecture allows incremental implementation to
+avoid a need to integrate everything at once
+▶However, an architecture — whether good or bad – also
+always constraints the implementation
+32 / 84
+
+
+===== PAGE 33 =====
+Two Types of Constraints
+Design
+Architecture
+Implementation
+Constraints
+Quality
+attributes
+Constraints
+Inhibit or
+exhibit
+Figure 14: What Might Be an Example Constraint for an Implementation?
+33 / 84
+
+
+===== PAGE 34 =====
+Requirements and Software Architecture (1/4)
+Requirements
+(non-functional)
+Architecture
+(design)
+General
+Detailed
+Independent
+Dependent
+Implementation dependence
+Level of
+detail
+Figure 15: The Basic Twin Peaks Model (adopted from Cleland-Huang et
+al. 2013, Fig. A)
+34 / 84
+
+
+===== PAGE 35 =====
+Requirements and Software Architecture (2/4)
+Requirements
+(non-functional)
+Architecture
+(design)
+General
+Detailed
+Independent
+Dependent
+Implementation dependence
+Level of
+detail
+Figure 16: The “Design Alternatives” Twin Peaks Model (adopted from
+Cleland-Huang et al. 2013, Fig. B)
+35 / 84
+
+
+===== PAGE 36 =====
+Requirements and Software Architecture (3/4)
+Requirements
+(non-functional)
+Architecture
+(design)
+General
+Detailed
+Independent
+Dependent
+Implementation dependence
+Level of
+detail
+Figure 17: The “Mountain Range” Twin Peaks Model (adopted from
+Cleland-Huang et al. 2013, Fig. C)
+36 / 84
+
+
+===== PAGE 37 =====
+Requirements and Software Architecture (4/4)
+▶When considering the typical “mountain range” twin peaks
+model, the left-hand side usually contains many non-functional
+requirements that should be transferred to quality attributes
+▶Regarding the right-hand side, however, it is usually
+recommended to enhance architectural reuse (including via
+tactics and patterns) by minimizing design alternatives and
+their vocabularies (two or three might be more than enough)
+▶In addition, keeping it simple is always a good idea,
+including with respect to documentation, communication with
+stakeholders, confidence, interoperability, and shorter selection
+time between the design alternatives sketched
+37 / 84
+
+
+===== PAGE 38 =====
+Terminology (1/4)
+▶Although there exists no universally accepted terminology for
+software architectures, some key concepts are still shared
+▶For instance, Bass et al. (2021) separate (a1) components,
+(a2) connectors, (a3) modules, and (a4) allocation structures,
+whereas Lano & Tehrani (2023) separate (b1) components,
+(b2) connectors, and (b3) configurations
+• In what follows, the terminology adopted is based on a
+mixture of their concepts with some clarifying framings
+38 / 84
+
+
+===== PAGE 39 =====
+Terminology (2/4)
+▶In this course, the following ten concepts are used:
+1. Module is a large unit of code; Java’s packages are the closest
+reference point in terms of programming languages
+2. Interface connects two or more modules
+3. Component is a large collection of source code modules and
+other elements in a software stack from servers to databases
+4. Process is a Unix-like operating system (OS) process
+5. Machine is a physical or virtual machine running an OS
+6. System contains one or more machines with components
+7. Deployment is a system that is running in production
+8. Environment is a surrounding for a deployment
+9. Element is either a module, a component, a process, a
+machine, a system, or a deployment
+10. Connector connects elements via established channels
+39 / 84
+
+
+===== PAGE 40 =====
+Terminology (3/4)
+Component1
+Module11
+Module12
+Module13
+Module14
+Component2
+Module21
+Module22
+Module23
+Module24
+Connector
+Interface
+Element1
+Element2
+Connector
+Figure 18: An Illustration of the Basic Concepts
+40 / 84
+
+
+===== PAGE 41 =====
+Terminology (4/4)
+▶Do not expect a 1:1 correspondence between components and
+modules; many components may be running in parallel even
+though they are built from the very same modules
+▶A component contains one or more processes at run-time
+• A container is also a process even though a restricted one
+▶Given the definitions, a small system might be a component
+composed of two processes in a virtual machine on your laptop
+• However, in this course we are interested more in large
+distributed systems whose deployments may operate with
+even millions of machines
+▶The term connector is a catch-all capturing everything
+(including interfaces) with which elements talk to each other
+41 / 84
+
+
+===== PAGE 42 =====
+A Machine from a CPU and Memory Viewpoint
+Machine
+CPU1                                
+(core)       
+L1 cache1   
+CPUi                                
+(core)       
+L1 cachei   
+CPUn                                
+(core)       L1 cachen   
+L2 cache1
+L3 cache
+Shared main memory
+L2 cachen
+...
+Connector
+42 / 84
+
+
+===== PAGE 43 =====
+A System from a CPU and Memory Viewpoint
+System
+Machine1
+CPU1                               
+Caches1 
+Main 
+memory1 
+Machinei
+CPUi                               
+Cachesi 
+Main 
+memoryi 
+Machinen
+CPUn                               
+Cachesn 
+Main 
+memoryn 
+Connector
+43 / 84
+
+
+===== PAGE 44 =====
+Structures
+▶Bass et al. (2021) use the term structure as a catch-all for
+connecting elements via relations (i.e., connectors)
+▶Even though we do not operate at the level of hardware,
+the previous two examples demonstrate that even the central
+processing unit (CPU) level can be conceptualized as a
+structure via the same terminology and visual notation
+▶Most of the time we will operate at the component-level
+because it gives the most flexibility to describe systems
+• The module-level is reserved for the rare cases when we
+operate at the level of code and programming languages
+44 / 84
+
+
+===== PAGE 45 =====
+Component Structures
+▶With component structures, we are interested in fundamental
+questions such as: what are the major executing components
+and how do they interact; which parts of a system can be
+replicated; how does data process through a system; and are
+there opportunities for parallel or concurrent execution?
+▶Thus, component structures are key units of an architecture
+▶They should be cohesive, use encapsulation, allow
+reusability, substitution, and independent deployment,
+and they should generally be composable into larger systems
+• Note that the two previous low-level CPU examples already
+used these concepts, including encapsulation
+45 / 84
+
+
+===== PAGE 46 =====
+An Example System (1/4)
+Server
+(component)                                                    
+Server
+Flight
+services
+Hotel
+rooms
+Reserve
+flights and
+hotel rooms
+Reserve 
+flights
+Reserve 
+hotel rooms
+Client
+(component)
+Required
+interface
+Provided
+interface
+Figure 19: A Component Diagram for a Client-Server System
+46 / 84
+
+
+===== PAGE 47 =====
+An Example System (2/4)
+Server
+(component)                                                    
+Server
+Flight
+services
+Hotel
+rooms
+Reserve
+flights and
+hotel rooms
+Reserve 
+flights
+Reserve 
+hotel rooms
+Client
+(component)
+Required
+interface
+Provided
+interface
+*     ...     3
+Figure 20: Another Component Diagram for the Client-Server System
+47 / 84
+
+
+===== PAGE 48 =====
+An Example System (3/4)
+Server
+(component)                                                    
+Server
+Flight
+services
+Hotel
+rooms
+Reserve
+flights and
+hotel rooms
+Reserve 
+flights
+Reserve 
+hotel rooms
+*     ...     3
+Figure 21: A “Pseudo Component Diagram” for the Client-Server System
+48 / 84
+
+
+===== PAGE 49 =====
+An Example System (4/4)
+Cloud
+Internet
+Reserve
+flights and
+hotel rooms
+Figure 22: Another Diagram for the Client-Server System
+49 / 84
+
+
+===== PAGE 50 =====
+Views (1/5)
+▶The previous four example diagrams illustrate different views
+to the example client-server system
+• Specifically, Fig. 20 is a small refinement of Fig. 19, whereas
+Figs. 20, 21, and 22 are designations of each other
+▶Views are simply different representations of one or more
+structures; hence, a view of the most important components
+and their connectors can be augmented (if needed) with one
+or more views of the associated module structures
+▶However, it should be understood that documentation is not
+only for internal use; architectural views are important also
+when buying and selling software
+50 / 84
+
+
+===== PAGE 51 =====
+Views (2/5)
+Table 1: Different View Operations (Fairbanks 2010, p. 256)
+Operation
+From-to
+Description
+Projection
+Model-Model
+Subset of details
+Partition
+Model-Models
+Subdividing a model
+Composition
+Models-Model
+Combining models
+Classification
+Type-Instance
+Categorization of instances
+Generalization
+Supertype-Subtype
+Subsuming relations
+Designation
+Model-Model
+Correspondence between models
+Refinement
+Model-Model
+Low-detail to high-detail
+Binding
+Model-Model
+Conforming to a pattern
+Dependency
+Model-Model
+Change to one model may imply
+change to another model
+51 / 84
+
+
+===== PAGE 52 =====
+Views (3/5)
+System
+Client                                                                        
+(component)                                                             
+Server                                                                       
+(component)                                                             
+Decomposition view
+System
+Client-server view
+Client1     
+Client2     
+Client3     
+Asynchronous
+connectors
+Synchronous
+connectors
+Server1     
+Figure 23: Further Two Views to the Client-Server System
+▶What is perhaps rather odd in the diagrams?
+52 / 84
+
+
+===== PAGE 53 =====
+Views (4/5)
+Server
+Client
+Synchronous
+Client
+Server
+Synchronous
+Request
+Response
+Server
+Client
+Synchronous
+<<synchronous>>
+Client
+Server
+Asynchronous
+Request
+Response
+Figure 24: Different Notations (adopted from Richards 2015, pp. 76–77)
+▶Which one you prefer?
+53 / 84
+
+
+===== PAGE 54 =====
+Views (5/5)
+Logical
+ view
+Development
+view
+Process
+view
+Physical
+view
+Scenarios
+End-users,
+functionality
+Developers,
+product owners
+Integrators,
+performance,
+scalability
+System engineers,
+topology, networks
+Figure 25: Four Basic Analytical Viewpoints (Kruchten 1995)
+54 / 84
+
+
+===== PAGE 55 =====
+The Substitution Principle (1/6)
+▶“Component B can be substituted for component A if:
+1. A’s provided interfaces are preserved by B (B has the same or
+more provided interfaces than A)
+2. The signature and expected behaviour of all operations of all
+provided interfaces of A are preserved by B
+3. B’s required interfaces are the same as or fewer than A’s – B
+cannot require more functionalities than A did, because the
+existing system context (of A) may not provide these.”
+(a direct quotation from Lano & Tehrani 2023, p. 26)
+55 / 84
+
+
+===== PAGE 56 =====
+The Substitution Principle (2/6)
+Server
+(component)                                                    
+Server
+Flight
+services
+Hotel
+rooms
+Reserve
+flights and
+hotel rooms
+Reserve 
+flights
+Reserve 
+hotel rooms
+Client
+(component)
+Required
+interface
+Provided
+interface
+Server
+(component)                                                    
+Server
+Flight
+services
+Hotel
+rooms
+Reserve
+flights and
+hotel rooms
+Reserve 
+flights
+Reserve 
+hotel rooms
+Client
+(component)
+A
+B
+Figure 26: Can Component B Substitute Component A?
+56 / 84
+
+
+===== PAGE 57 =====
+The Substitution Principle (3/6)
+Server
+(component)                                                    
+Server
+Hotel
+rooms
+Reserve
+flights and
+hotel rooms
+Reserve 
+hotel rooms
+Client
+(component)
+Required
+interface
+Provided
+interface
+Server
+(component)                                                    
+Server
+Flight
+services
+Hotel
+rooms
+Reserve
+flights and
+hotel rooms
+Reserve 
+flights
+Reserve 
+hotel rooms
+Client
+(component)
+A
+C
+Figure 27: Can Component C Substitute Component A?
+57 / 84
+
+
+===== PAGE 58 =====
+The Substitution Principle (4/6)
+Server
+(component)                                                    
+Server
+Hotel
+rooms
+Reserve
+hotel rooms
+Reserve 
+hotel rooms
+Client
+(component)
+Required
+interface
+Provided
+interface
+Server
+(component)                                                    
+Server
+Flight
+services
+Hotel
+rooms
+Reserve
+flights and
+hotel rooms
+Reserve 
+flights
+Reserve 
+hotel rooms
+Client
+(component)
+A
+D
+Figure 28: Can Component D Substitute Component A?
+58 / 84
+
+
+===== PAGE 59 =====
+The Substitution Principle (5/6)
+▶Liskov’s classical substitution principle generally means that if
+S is a sub-type of type T, then objects of type T can be
+replaced with objects of sub-type S without alterations
+• See Liskov & Wing (1994) for a classical take
+▶Lano & Tehrani (2023) extend the Liskov’s substitution
+principle to components and interfaces; in essence, any given
+implementation of any given interface should be entirely
+consistent with the interface’s specification
+59 / 84
+
+
+===== PAGE 60 =====
+The Substitution Principle (6/6)
+Replaced 
+component
+Replacing
+component
+"Any replaced
+required interface
+must be Liskov-
+substitutable for the
+replacing required
+interface"
+"Any provided interface of
+the replaced component
+must be preserved or
+replaced by a Liskov-
+substitutable interface of
+the replacing component"
+Figure 29: The Liskov Substitution for Component Substitution (adopted
+from Lano & Tehrani 2023, Fig. 2.3 and associated notes on p. 42)
+60 / 84
+
+
+===== PAGE 61 =====
+Cohesion and Non-Cohesion (1/2)
+Server
+(component)                                                    
+Server
+Flight
+services
+Hotel
+rooms
+Reserve
+flights and
+hotel rooms
+Reserve 
+flights
+Reserve 
+hotel rooms
+Client
+(component)
+Required
+interface
+Provided
+interface
+Marketing    
+Google
+Run ads
+Figure 30: Is the Server Component Cohesive?
+61 / 84
+
+
+===== PAGE 62 =====
+Cohesion and Non-Cohesion (2/2)
+▶The previous example is not only about cohesion (or a lack
+thereof) but also about the substitution principle because the
+provided marketing module requires an interface to Google
+▶Therefore, Bass et al. (2021) further emphasize that a
+software architecture should never depend on a particular
+vendor and its products, tools, and their versions
+• If a dependence is a must to a particular vendor (such as
+Google), an architecture should be designed so that changing
+to different versions of the vendor’s tools and their versions
+should be straightforward and inexpensive
+• Thus, an architecture should generally avoid vendor lock-in
+62 / 84
+
+
+===== PAGE 63 =====
+The Segregation Principle (1/2)
+▶The segregation principle generally means that components
+(and their modules) should not depend on components
+and connectors (and interfaces) they do not actually use
+• Unnecessary connectors (i.e., dependencies) signal wasted
+development effort and wasted resources when a system is
+deployed (in addition to other, such as legal, concerns)
+▶For in-house architectures, autonomous components are often
+preferable albeit with a trade-off that they may incur bloat as
+many components may implement the same functionality
+▶For suppliers of components, a fine-graded segregation of
+connectors (interfaces) is preferable over a single connector
+(interface) that would be forced upon all users
+63 / 84
+
+
+===== PAGE 64 =====
+The Segregation Principle (2/2)
+Server
+(component)                                                    
+Server
+Flight
+services
+Hotel
+rooms
+Reserve
+flights and
+hotel rooms
+Reserve 
+flights
+Reserve 
+hotel rooms
+Client
+(component)
+Required
+interface
+Provided
+interface
+Marketing    
+Google
+Run ads
+Do
+marketing
+Figure 31: Does the Server Component Follow the Segregation Principle?
+64 / 84
+
+
+===== PAGE 65 =====
+The Single Responsibility and Open-Closed Principles
+▶Lano & Tehrani (2023) outline two additional general-purpose
+principles for component structures:
+1. The single responsibility principle: each component should
+only have one reason to change, as ensured by a single
+responsibility carried out by each component
+2. The open-closed principle: whenever possible, components
+should be changed only by adding new functionality and not by
+modifying existing functionality
+▶When contemplating these principles, the running example of
+reserving flights and hotel rooms is arguably ill-designed to
+begin with; it should likely be the flight and hotel room
+services that provide interfaces required by the server
+• While keeping it simple was recommended (on p. 37), it
+might make sense to separate a distinct “business
+component” from the underlying server component, perhaps
+65 / 84
+
+
+===== PAGE 66 =====
+Module Structures (1/5)
+▶Module structures partition a system into modules, that is,
+implementation units, including at a level of source code
+• Hence, modules may range from layers and packages all the
+way to classes, files, functions, and variables
+▶In terms of interfaces between modules, one can think in
+terms of “is a” (inheritance-style) relations (or more generally
+“is a part of” relations) and in terms of “has a”
+(composition-style) relations
+▶Class diagrams – which, however, are not covered in this
+course – are a classical example of providing views to concrete
+implementations of modules
+66 / 84
+
+
+===== PAGE 67 =====
+Module Structures (2/5)
+▶Module structures allow asking questions such as: what are
+the functionalities between modules; how are modules isolated
+from each other; and how modules depend on each other?
+▶With respect to dependencies, a user module structure is
+often a useful abstraction to consider; which module uses or
+requires functionality from other modules?
+• The two reservation modules in the running client-server
+example can be seen to provide two use cases made available
+by the two required interfaces
+• When considering via a “is a sub-module of” type of a
+relation, they also interact with the main server module, thus
+abstracting a decomposition structure between the modules
+67 / 84
+
+
+===== PAGE 68 =====
+Module Structures (3/5)
+Server 
+(component)                                                       
+  
+Server
+Flight
+services
+Hotel
+rooms
+Reserve
+flights and
+hotel rooms
+Reserve 
+flights
+Reserve 
+hotel rooms
+Client
+(component)
+Required
+interface
+Provided
+interface
+"Is a sub-module of"
+"Is a sub-module of"
+Figure 32: The Ill-Designed Decomposition Structure Between Modules
+68 / 84
+
+
+===== PAGE 69 =====
+Module Structures (4/5)
+▶A data structure for modules is useful particularly for
+data-heavy systems, including today’s machine learning (ML)
+▶A structure query language (SQL) schema is often a good
+starting point in addition to broader considerations about
+one-to-one, one-to-many, and many-to-many relations
+Component      
+Data
+Connector
+Component                                        
+Algorithm1      
+Algorithmn      
+Data
+Voting      
+Interface
+Interface
+Figure 33: A Sketch for a Simple Ensemble Learning Architecture
+69 / 84
+
+
+===== PAGE 70 =====
+Module Structures (5/5)
+▶The previous na¨ıve ensemble learning architecture conveys the
+wisdom from Bass et al. (2021) that components (and their
+modules) that produce or store data should be separate from
+components (and their modules) that consume data
+• This separation improves modifiability because changes can
+be done at either side; for instance, it is much easier to add a
+new ML algorithm to the ML component because no changes
+are required at the database component
+• If both components still require changes (e.g., new data),
+the changes can be done incrementally via a staged upgrade
+70 / 84
+
+
+===== PAGE 71 =====
+Layered Structures (1/5)
+▶A layered structure for modules is a classical architectural
+choice; layers are cohesive implementation units allowing
+controlled interaction; in a strictly layered system, each layer
+is allowed to only interact with a single immediately
+neighboring layer ( =⇒no jumping over layers)
+▶Typically, each layer contains only a single component
+▶Operating systems are a classical layered architecture
+71 / 84
+
+
+===== PAGE 72 =====
+Layered Structures (2/5)
+                                                                                      Operating system
+Userland
+Userland programs
+Kernel
+Userland libraries
+System calls
+File systems,
+processes, etc.
+Buffering, 
+input/output, etc.
+Hardware
+Device drivers
+Interacts (asynchronous or synchronous)
+Figure 34: A Simplified Sketch for a Layered Operating System (adopted
+with simplifications from Bass et al. 2021, Fig. 1.7)
+72 / 84
+
+
+===== PAGE 73 =====
+Layered Structures (3/5)
+A question: why is a layered structure a generally
+good architecture for an operating system?
+73 / 84
+
+
+===== PAGE 74 =====
+Layered Structures (4/5)
+Business
+Manufacturing
+Monitoring
+Sensing
+Production
+Enterprise resource planning (ERP) system
+Manufacturing execution system (MES)
+Supervisory control and data acquisition system (SCADA)
+Programmable logic control (PLC) units
+Sensors
+Layer 4
+Layer 3
+Layer 2
+Layer 1
+Layer 0
+Figure 35: A Layered Architecture for Manufacturing Automation
+(adopted from Nagl & Westfechtel 2024, Fig. 4.4, p. 84)
+74 / 84
+
+
+===== PAGE 75 =====
+Layered Structures (5/5)
+▶The layered sketch for manufacturing automation also
+reiterates what was said earlier about parallelism
+• Although the sensors and PLC units maybe belong to the
+same hardware systems, the layers generally denote concrete
+hardware systems at different abstraction levels
+• Furthermore, there might be only a single ERP system, a
+single MES, and a single SCADA, but it would be likely that
+many PLC units and many sensors are part of the architecture
+• Each system might also run its own (possibly different)
+operating system and decompose the underlying layer-specific
+components into processes, containers, virtual machines,
+threads, and other elements to ensure quality attributes
+75 / 84
+
+
+===== PAGE 76 =====
+System and Enterprise Architectures (1/2)
+▶The sketch for manufacturing automation is also an example
+of a system architecture, which generally refers to the
+totality of hardware, software, and humans
+▶In contrast, an enterprise architecture concerns an
+organization’s processes, information flows, personnel,
+organizational units such as departments, and so forth
+• The encompassing quality attribution revolves around a
+question of how well an enterprise architecture supports the
+given organization’s goals
+• Note also that software architects themselves are a part of
+organizations even when designing enterprise architectures for
+other organizations
+76 / 84
+
+
+===== PAGE 77 =====
+System and Enterprise Architectures (2/2)
+Design
+Architecture
+Implementation
+Requirements
+Constraints
+Domain
+knowledge
+Budget due to public
+procurement constraints
+The system
+should be
+available
+24/7/365 to
+avoid risking
+patients lives
+Team has no
+experience
+in healthcare
+Quality
+attributes?
+Figure 36: A Sketch for Designing a Software Architecture for Healthcare
+Emergency System for Hospitals
+▶What might some of the quality attributes be?
+77 / 84
+
+
+===== PAGE 78 =====
+Software Architects (1/3)
+▶In general, a single software architect usually takes the lead
+• For larger projects, such as the sketches for the
+manufacturing automation and healthcare emergency systems,
+a team of architectures might be worthwhile (if not preferred)
+▶Obviously, software architect(s) should have good
+communication with both stakeholders and development-side
+team(s) to avoid impractical or undesirable architectures,
+including “ivory tower designs” (Bass et al. 2021)
+▶A question remains about how much time to devote into
+actual design; Fairbanks (2010) suggests yardsticks (such as
+“30% of working time”) as one potential solution
+78 / 84
+
+
+===== PAGE 79 =====
+Software Architects (2/3)
+▶By and large, software architects can be said to have generally
+senior roles in software engineering organizations
+▶According to a recent study of Ayas et al. (2024) based on
+job advertisements for micro-service software architect jobs,
+the primary qualities sought are (in the order of importance):
+1. Articulation and transferability of knowledge
+2. Stakeholder management
+3. Communication, presentation, and negotiation skills
+4. Problem solving and leadership
+5. Coaching and mentoring
+6. Capacity for personal development
+▶Of these, the boldfaced ones count heavily also in the exam
+79 / 84
+
+
+===== PAGE 80 =====
+Software Architects (3/3)
+▶The qualities in the job ads resonate with what was said
+earlier about documentation with views, including with
+respect to reasoning about costs and schedules
+• Thus, an architecture not only constraints (in a good or a
+bad way) an implementation but also affects the overall
+deliverable from a non-technical business perspective
+• A good architecture with sufficient documentation allows
+also knowledge transfers within a team, including the
+training of new team members with no prior knowledge
+▶Finally, the hardest-to-change decisions made while designing
+and implementing an architecture allow to a little paradoxically
+reason about and manage change as a system evolves
+80 / 84
+
+
+===== PAGE 81 =====
+Questions?
+81 / 84
+
+
+===== PAGE 82 =====
+Case #1
+▶Consider Hrvoje’s (2024) diagram about Linux
+• Online: https://zenodo.org/records/14179366
+• On itslearning as case-1.pdf
+▶What kind of an architecture it is?
+▶What views there are in the diagram?
+▶What components and connectors there are?
+▶Which components and connectors do you know?
+▶If you start from the applications on top (the black rectangle),
+can you explain how a package traverses through the
+components and connectors to a network interface?
+▶What other input and output connectors there are?
+▶Anything other interesting to comment and share?
+82 / 84
+
+
+===== PAGE 83 =====
+Thank you
+Questions?
+83 / 84
+
+
+===== PAGE 84 =====
+Additional References
+1. Cleland-Huang, J. & Hanmer, R. S. & Supakkul, S. & Mirakhorli, M. (2013):
+The Twin Peaks of Requirements and Architecture. IEEE Software 30(2),
+24–29, https://doi.org/10.1109/MS.2013.39
+2. Kruchten, B. (1995): The 4+1 View Model of Architecture. IEEE Software
+12(6), pp. 42–50, https://arxiv.org/pdf/2006.04975
+3. Liskov, B. H. & Wing, J. M. (1994): A Behavioral Notion of Subtyping. ACM
+Transactions on Programming Languages and Systems 16(6), pp. 1811–1841,
+https://doi.org/10.1145/197320.197383,
+4. Ayas, H, M. & Hebig, R. & Leitner, P. (2024): The Roles, Responsibilities, and
+Skills of Engineers in the Era of Microservices-Based Architectures. Proceedings
+of the 2024 IEEE/ACM 17th International Conference on Cooperative and
+Human Aspects of Software Engineering (CHASE 2024), pp. 13–23,
+https://dl.acm.org/doi/pdf/10.1145/3641822.3641871,
+5. Hrvoje, H. (2024): Entire Linux Network Stack Diagram. Zenodo,
+https://zenodo.org/records/14179366
+84 / 84
+

@@ -1,0 +1,700 @@
+Cluster Analysis
+
+            Serkan Ayvaz
+What is Cluster Analysis?
+
+Finding groups of objects such that the objects in a group
+will be similar (or related) to one another and different from
+(or unrelated to) the objects in other groups
+
+Intra-cluster              Inter-cluster
+distances are              distances are
+minimized                  maximized
+Notion of a Cluster can be Ambiguous
+
+How many clusters?  Six Clusters
+Two Clusters        Four Clusters
+Types of Clusterings
+
+A clustering is a set of clusters
+Important distinction between hierarchical and partitional
+sets of clusters
+Partitional Clustering
+· A division data objects into non-overlapping subsets (clusters)
+
+    such that each data object is in exactly one subset
+Hierarchical clustering
+· A set of nested clusters organized as a hierarchical tree
+Density based clustering
+· A set of clusters created based on density of data points
+Partitional Clustering
+
+Original Points         A Partitional Clustering
+Hierarchical Clustering
+
+p1         p3 p4
+       p2
+
+Traditional Hierarchical Clustering              p1 p2 p3 p4
+
+                                         Traditional Dendrogram
+
+p1         p3 p4
+       p2
+
+Non-traditional Hierarchical Clustering          p1 p2 p3 p4
+
+                                         Non-traditional Dendrogram
+Clustering Algorithms
+
+Partitional Clustering    K-means and its variants
+Hierarchical clustering
+Density Based clustering  Agglomerative(Bottom-up) clustering
+                          Top-Down clustering
+
+                          DB-SCAN
+K-means Clustering
+
+        Partitional clustering approach
+
+        · Each cluster is associated with a centroid (center point)
+        · Each point is assigned to the cluster with the closest centroid
+
+        Number of clusters, K, must be specified
+        The basic algorithm is very simple
+Issues and Limitations
+for K-means
+
+How to choose initial centers?
+How to choose K?
+How to handle Outliers?
+Clusters different in
+
+· Shape
+· Density
+· Size
+Two different K-means Clusterings
+
+                              3                                     Original Points
+
+                              2.5
+
+                              2
+
+                              1.5
+
+y                             1
+                                                 y
+                              0.5
+                                                                                                                   y
+                              0
+
+                                   -2 -1.5 -1 -0.5  0  0.5  1  1.5                                                    2
+
+                                                    x
+
+  3                                                                                                                     3
+2.5                                                                                                                   2.5
+
+  2                                                                                                                     2
+1.5                                                                                                                   1.5
+
+  1                                                                                                                     1
+0.5                                                                                                                   0.5
+
+  0                                                                                                                     0
+
+     -2 -1.5 -1 -0.5  0  0.5  1    1.5  2                                                                                  -2 -1.5 -1 -0.5  0  0.5  1  1.5  2
+
+                      x                                                                                                                     x
+
+     Optimal Clustering                                                                                                    Sub-optimal Clustering
+Importance of Choosing Initial
+Centroids
+
+y                           Iteration 413562
+
+     3
+   2.5
+
+     2
+   1.5
+
+     1
+   0.5
+
+     0
+
+   -2 -1.5 -1 -0.5  0  0.5                    1  1.5  2
+
+                    x
+                       Importance of Choosing Initial
+                                     Centroids
+
+y                           Iteration 1             y                           Iteration 2   y                           Iteration 3
+
+     3                                                   3                                         3
+   2.5                                                 2.5                                       2.5
+
+     2                                                   2                                         2
+   1.5                                                 1.5                                       1.5
+
+     1                                                   1                                         1
+   0.5                                                 0.5                                       0.5
+
+     0                                                   0                                         0
+
+   -2 -1.5 -1 -0.5  0  0.5               1  1.5  2             -2 -1.5 -1 -0.5 0 0.5 1 1.5 2     -2 -1.5 -1 -0.5  0  0.5               1  1.5  2
+
+                    x                                                                     x                       x
+
+y                           Iteration 4             y                           Iteration 5   y                           Iteration 6
+
+     3                                                   3                                         3
+   2.5                                                 2.5                                       2.5
+
+     2                                                   2                                         2
+   1.5                                                 1.5                                       1.5
+
+     1                                                   1                                         1
+   0.5                                                 0.5                                       0.5
+
+     0                                                   0                                         0
+
+   -2 -1.5 -1 -0.5  0  0.5               1  1.5  2             -2 -1.5 -1 -0.5 0 0.5 1 1.5 2     -2 -1.5 -1 -0.5  0  0.5               1  1.5  2
+
+                    x                                                                     x                       x
+Importance of Choosing Initial
+Centroids
+
+y                           Iteration 53142
+
+     3
+   2.5
+
+     2
+   1.5
+
+     1
+   0.5
+
+     0
+
+   -2 -1.5 -1 -0.5  0  0.5                   1  1.5  2
+
+                    x
+Importance of Choosing Initial
+Centroids
+
+                                          Iteration 1                                                 Iteration 2
+
+                   3                                                           3
+                 2.5                                                         2.5
+
+                   2                                                           2
+                 1.5                                                         1.5
+
+                   1                                                           1
+                 0.5                                                         0.5
+
+                   0                                                           0
+y
+                                y-2 -1.5 -1 -0.5 0  0.5  1  1.5  2                        -2 -1.5 -1 -0.5  0                                                     0.5  1  1.5  2
+
+                                                                          yx                               x
+                                                                                                                     y
+                                                                                                                                                                                          Iteration 5
+                                                                                                                                                              y
+                         Iteration 3                                         Iteration 4                                                                           3
+                                                                                                                                                                 2.5
+  3                                                   3
+2.5                                                 2.5                                                                                                            2
+                                                                                                                                                                 1.5
+  2                                                   2
+1.5                                                 1.5                                                                                                            1
+                                                                                                                                                                 0.5
+  1                                                   1
+0.5                                                 0.5                                                                                                            0
+
+  0                                                   0                                                                                                                  -2 -1.5 -1 -0.5 0 0.5 1 1.5 2
+
+-2 -1.5 -1 -0.5  0  0.5               1  1.5  2          -2 -1.5 -1 -0.5  0  0.5          1  1.5  2                                                                                                 x
+
+                 x                                                        x
+Solutions to Initial
+Centroids Problem
+
+·Multiple runs
+­ Helps, but probability is not on your side
+·Sample and use hierarchical clustering to determine initial centroids
+
+·Select more than k initial centroids and then select among these
+initial centroids
+­ Select most widely separated
+·Postprocessing
+
+·Bisecting K-means
+­ Not as susceptible to initialization issues
+Bisecting
+K-Means:
+
+                                                                                                                                           Picture Ref: https://en.wikipedia.org/wiki/Cluster_analysis
+What do to in high-dimensional
+data?
+
+                                                                                                                                    19
+
+                                                                                                                                                                           Picture Ref: https://bigsnarf.wordpress.com/2012/12/
+Hierarchical Clustering                                                             6      5
+
+ Produces a set of nested clusters organized as a                     4                 4
+ hierarchical tree                                             3                 5
+
+ Can be visualized as a dendrogram                                      2
+
+ · A tree like diagram that records the sequences of                             2
+     merges or splits
+                                                                  1
+ Do not have to assume any particular number of
+ clusters                                                      3           1
+
+ · Any desired number of clusters can be obtained by  0.2
+     `cutting' the dendogram at the proper level
+                                                      0.15
+
+                                                      0.1
+
+                                                      0.05
+
+                                                      0     1     3           2        5      4  6
+Hierarchical Clustering
+
+Two main types of hierarchical clustering
+· Agglomerative:
+
+    · Start with the points as individual clusters
+    · At each step, merge the closest pair of clusters until only one cluster
+
+        (or k clusters) left
+
+· Divisive:
+    · Start with one, all-inclusive cluster
+    · At each step, split a cluster until each cluster contains a point (or
+        there are k clusters)
+
+Traditional hierarchical algorithms use a similarity or distance matrix
+· Merge or split one cluster at a time
+Agglomerative Clustering Algorithm
+
+More popular hierarchical clustering technique.
+
+Basic algorithm is straightforward:
+
+1. Compute the proximity matrix
+
+2. Let each data point be a cluster
+
+3. Repeat
+
+4.  Merge the two closest clusters
+
+5.  Update the proximity matrix
+
+6. Until only a single cluster remains
+
+Key operation is the computation of the proximity of two
+clusters
+
+     · Different approaches to defining the distance between
+           clusters distinguish the different algorithms
+Cluster Example
+
+Distance Matrix              Co#2  Co#3  Co#4      Co#5     Resulting
+                                                   0.00     Dendogram
+                       Co#1  0.00  0.00  0.00
+                             2.29  1.48  4.83
+Company #1 0.00              1.99  4.94
+Company #2 1.49              4.82
+Company #3 3.42
+Company #4 1.81
+Company #5 5.05
+
+               1
+               2
+Company 3
+                4
+                5
+
+                   1         2           3               4  5
+
+                                         Distance
+   Starting Situation                        p1 p2 p3 p4 p5 . . .
+
+Start with clusters of individual      p1
+   points and a proximity matrix
+                                       p2
+                                       p3
+
+                                       p4
+                                       p5
+
+                                        .
+                                        .
+
+                                       . Proximity Matrix
+
+                ...
+
+p1  p2  p3  p4                     p9  p10 p11 p12
+Intermediate Situation                                  C1 C2 C3 C4 C5
+                                                 C1
+
+                                                 C2
+                                                 C3
+
+                                                                                                       C4
+
+After some merging steps, we have some clustersC5
+
+                                                                             Proximity Matrix
+
+        C3
+                                    C4
+
+C1                                      ...
+
+p1  p2  p3C5 p4                              p9  p10 p11 p12
+    C2
+Intermediate Situation                                   C1 C2 C3 C4 C5
+                                                  C1
+            We want to merge the two closest
+            clusters (C2 and C5) and update       C2
+            the proximity matrix.                 C3
+
+                                                  C4
+                                                  C5
+
+                                                       Proximity Matrix
+
+    C3
+                                C4
+
+C1
+
+          C5                        ...
+
+p1  Cp22  p3  p4                              p9  p10 p11 p12
+After Merging                                                                                       C2
+                                                                                                    U
+           The question is "How do we update                                               C1 C5 C3 C4
+           the proximity matrix?"
+                                                                                       C1  ?
+                                              C3
+                                                                          C4               ????
+
+                            C1                                                         C3  ?
+
+                                                                                       C4  ?
+
+                                                                                       Proximity Matrix
+
+                                                                              C2 U C5
+
+        C2 U C5
+
+                 ...
+
+p1  p2  p3  p4                                                                p9       p10 p11 p12
+How to Define Inter-Cluster Similarity
+
+      Similarity?                        p1 p2 p3 p4 p5 . . .
+
+                                   p1
+
+                                   p2
+                                   p3
+
+                                   p4
+
+ MIN                               p5
+
+ MAX                                   .
+
+ Group Average                         .
+
+ Distance Between Centroids            .  Proximity Matrix
+
+ Other methods driven by an objective
+    function
+
+ Ward's Method uses squared error
+How to Define Inter-Cluster Similarity
+
+                                   p1 p2 p3 p4 p5 . . .
+
+                             p1
+
+                             p2
+                             p3
+
+                             p4
+
+ MIN                         p5
+
+ MAX                               .
+
+ Group Average                     .
+
+                                   .  Proximity Matrix
+
+ Distance Between Centroids
+
+ Other methods driven by an
+
+objective function
+
+ Ward's Method uses squared error
+How to Define Inter-Cluster Similarity
+
+                                   p1 p2 p3 p4 p5 . . .
+
+                             p1
+
+                             p2
+                             p3
+
+                             p4
+
+ MIN                         p5
+
+ MAX                               .
+
+ Group Average                     .
+
+                                   .  Proximity Matrix
+
+ Distance Between Centroids
+
+ Other methods driven by an
+
+objective function
+
+ Ward's Method uses squared error
+How to Define Inter-Cluster Similarity
+
+                                   p1 p2 p3 p4 p5 . . .
+
+                             p1
+
+                             p2
+                             p3
+
+                             p4
+
+ MIN                         p5
+ MAX
+ Group Average                 .
+ Distance Between Centroids    .
+
+                              . Proximity Matrix
+
+ Other methods driven by an
+   objective function
+
+ Ward's Method uses squared error
+How to Define Inter-Cluster Similarity
+
+                                      p1 p2 p3 p4 p5 . . .
+
+                             p1
+
+                             p2
+
+                             p3
+
+                             p4
+
+ MIN                         p5
+
+ MAX                               .
+
+ Group Average                     .
+
+                                   .  Proximity Matrix
+
+ Distance Between Centroids
+
+ Other methods driven by an
+
+objective function
+
+ Ward's Method uses squared error
+Cluster Similarity: Ward's Method
+
+ Similarity of two clusters is based on the increase
+ in squared error when two clusters are merged
+
+ · Similar to group average if distance between points is distance
+     squared
+
+ Less susceptible to noise and outliers
+
+ Biased towards globular clusters
+
+ Hierarchical analogue of K-means
+
+ · Can be used to initialize K-means
+Hierarchical Clustering: Problems and
+Limitations
+
+Computational complexity in time and space
+
+Once a decision is made to combine two clusters, it
+cannot be undone
+
+No objective function is directly minimized
+
+Different schemes have problems with one or more of
+the following:
+
+    · Sensitivity to noise and outliers
+    · Difficulty handling different sized clusters and convex
+
+       shapes
+    · Breaking large clusters
+DBSCAN: Density-Based Clustering
+
+DBSCAN is a Density-Based Clustering algorithm
+
+Remark: In density based clustering we partition points into dense regions
+separated by not-so-dense regions.
+
+Important Questions:
+
+    · How do we measure density?
+    · What is a dense region?
+
+DBSCAN:
+
+    · Density at point p: number of points within a circle of radius Eps
+    · Dense Region: A circle of radius Eps that contains at least MinPts points
+DBSCAN
+
+Characterization of points
+· A point is a core point if it has more than a specified
+
+   number of points (MinPts) within Eps
+
+    · These points belong in a dense region and are at the interior
+       of a cluster
+
+· A border point has fewer than MinPts within Eps, but is in
+   the neighborhood of a core point.
+
+· A noise point is any point that is not a core point or a
+   border point.
+DBSCAN: Core, Border, and
+Noise Points
+DBSCAN: Core, Border and Noise
+Points
+
+Original Points                              Point types: core,
+                       Eps = 10, MinPts = 4  border and noise
+Density-Connected points
+
+Density edge                                        p
+
+· We place an edge between two core       q     p1
+   points q and p if they are within
+   distance Eps.
+
+Density-connected
+
+· A point p is density-connected to a  p               q
+
+point q if there is a path of edges
+
+from p to q                                  o
+DBSCAN Algorithm
+
+1. Label points as core, border and noise
+2. Eliminate noise points
+3. For every core point p that has not been assigned to a
+
+    cluster
+
+   · Create a new cluster with the point p and all the points that are
+        density-connected to p.
+
+4. Assign border points to the cluster of the closest core
+    point.
+DBSCAN: Determining Eps and MinPts
+
+Idea is that for points in a cluster, their kth nearest neighbors are at
+roughly the same distance
+Noise points have the kth nearest neighbor at farther distance
+So, plot sorted distance of every point to its kth nearest neighbor
+Find the distance d where there is a "knee" in the curve
+
+· Eps = d, MinPts = k
+
+                                                                                       Eps ~ 7-10
+                                                                                       MinPts = 4
+When DBSCAN Works Well
+
+Original Points  Clusters
+
+· Resistant to Noise
+· Can handle clusters of different shapes and sizes
+When DBSCAN Does NOT Work
+Well
+
+      Original Points      (MinPts=4, Eps=9.75).
+                           (MinPts=4, Eps=9.92)
+· Sensitive to Parameters
+·Varying densities
+· High-dimensional data
+Cluster Validity
+
+For cluster analysis, the question is how to evaluate the
+"goodness" of the resulting clusters?
+
+But "clusters are in the eye of the beholder"!
+
+Then why do we want to  To avoid finding patterns in noise
+evaluate them?          To compare clustering algorithms
+                        To compare two sets of clusters
+                        To compare two clusters
+Different Aspects of Cluster Validation
+
+                                                                                                    1. Determining the clustering tendency of a set of data, i.e.,
+                                                                                                             distinguishing whether non-random structure actually
+                                                                                                             exists in the data.
+
+                                                                                                    2. Comparing the results of a cluster analysis to externally
+                                                                                                             known results, e.g., to externally given class labels.
+
+                                                                                                    3. Evaluating how well the results of a cluster analysis fit the
+                                                                                                             data without reference to external information.
+
+                                                                                                                     - Use only the data
+
+                                                                                                    4. Comparing the results of two different sets of cluster
+                                                                                                             analyses to determine which is better.
+
+                                                                                                    5. Determining the `correct' number of clusters.
+                                                                                                             For 2, 3, and 4, we can further distinguish whether we want to
+                                                                                                             evaluate the entire clustering or just individual clusters.
+Final Comments on Cluster Validity
+
+    "The validation of clustering structures is the most difficult and frustrating part
+ of cluster analysis.
+
+    Without a strong effort in this direction, cluster analysis will remain a black art
+ accessible only to those true believers who have experience and great
+ courage."
+
+ Algorithms for Clustering Data, Jain and Dubes
+Thanks for your
+attention
+

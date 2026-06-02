@@ -1,0 +1,1144 @@
+===== PAGE 1 =====
+Software Architecture
+(T630019402)
+Lecture #9, April 21, 2026
+Jukka Ruohonen
+1 / 70
+
+===== PAGE 2 =====
+Case #8
+▶Sketch a faulty distributed system with which three AI agents
+collaborate over a network. One agent should analyze code
+and write bug reports; another agent should do bug fixes and
+make pull requests; and the third agent should approve and
+merge the requests. The emphasis is on the adjective faulty;
+the sketch should demonstrate at least three architectural
+security weaknesses and two other architectural weaknesses
+related to other quality attributes addressed thus far in the
+course. You can elaborate the weaknesses in writing (and
+orally in the class), with diagrams, or both.
+2 / 70
+
+===== PAGE 3 =====
+Survey Status Update
+▶11 responses thus far (17 April)
+▶Expected grades: 4 (n = 1), 7 (n = 6), and 10 (n = 4)
+▶Attended lectures ∈[2, 9] with a median of 3.5
+▶Cor(expected grades, attended lectures) ≃0.83
+▶Good points regarding the MCQ plan, thanks!
+3 / 70
+
+===== PAGE 4 =====
+A Few Short Mock-up Questions Again (1/7)
+What is the Difference Between Fail-Safe and Fail-Fast?
+4 / 70
+
+===== PAGE 5 =====
+A Few Short Mock-up Questions Again (2/7)
+Source
+Source
+Binary
+Binary
+A?
+B?
+Figure 1: (a) What the Figure Might Denote, and (b) What Concepts
+A and B Might Be for Making it Explicit?
+5 / 70
+
+===== PAGE 6 =====
+A Few Short Mock-up Questions Again (3/7)
+What Are Code Sanitizers and Why They Are Useful?
+6 / 70
+
+===== PAGE 7 =====
+A Few Short Mock-up Questions Again (4/7)
+Commit
+Commit
+(1)
+(1)
+(2)
+(3)
+Figure 2: (a) What the Figure Represents, and What (1), (2), and (3)
+Could Denote for Making it Explicit?
+7 / 70
+
+===== PAGE 8 =====
+A Few Short Mock-up Questions Again (5/7)
+What is the Difference Between a Fault and a Failure?
+8 / 70
+
+===== PAGE 9 =====
+A Few Short Mock-up Questions Again (6/7)
+Machine
+Container1
+UserID := 1000
+Agent1
+Container2
+UserID := 1000
+Agent2
+Retrieve
+bug reports
+Internet
+Send emails
+Internet
+Developer
+Figure 3: (a) What Design Tactic Is Already Done to Somewhat Secure
+the Design, (b) and What Might Be Done More? (Much so briefly.)
+9 / 70
+
+===== PAGE 10 =====
+A Few Short Mock-up Questions Again (7/7)
+Computing
+and power
+consumption
+Time
+t0
+t1
+A
+B
+A
+Threshold
+t2
+A
+B
+t3
+State A
+(normal)
+State B
+(throttling)
+A two-state
+circuit breaker
+For all i = 1, 2, ..., 24 CPUs uniformly:
+Figure 4: Could This Design Be Improved?
+10 / 70
+
+===== PAGE 11 =====
+Today’s Lecture
+▶Today’s lecture is again about cyber security
+▶Specifically, we continue the security engineering theme but
+now without the agentic context
+11 / 70
+
+===== PAGE 12 =====
+Question
+What Kind of Trade-Offs Security Might Have?
+12 / 70
+
+===== PAGE 13 =====
+Cyber Security Trade-Offs
+Security
+Risks
+(1)
+Security
+Costs
+(2)
+Security
+(3)
+Security
+Usability
+(4)
+...
+Performance
+Security
+Privacy
+(5)
+Figure 5: Five Example Trade-Offs With Cyber Security
+13 / 70
+
+===== PAGE 14 =====
+The Security Versus Reliability Trade-Off (1/2)
+▶Adkins et al. (2020) present the following: when “designing a
+system to handle failure, you must balance between
+optimizing for reliability by failing open (safe) and optimizing
+for security by failing closed (secure)”; i.e., you must solve:
+1. “To maximize reliability, a system should resist failures and
+serve as much as possible” in terms of access controls,
+firewalls, and alike; the philosophical default is “allow all”
+2. “To maximize security, a system should lock down fully in
+the face of uncertainty”; philosophically it is about “deny all”
+▶To solve the trade-off, they recommend that a nonnegotiable
+security posture must be greed upon in an organization
+14 / 70
+
+===== PAGE 15 =====
+The Security Versus Reliability Trade-Off (2/2)
+Figure 6: https://www.svk.se/om-kraftsystemet/
+om-transmissionsnatet/transmissionsnatskarta/
+• Would You Maximize Reliability or Security?
+15 / 70
+
+===== PAGE 16 =====
+Cyber Security as a Constraint (1/4)
+Design
+Architecture
+Implementation
+Constraints
+Security
+Constraints
+Exhibits
+Requirements
+Figure 7: What Might Be an Example Constraint Here?
+16 / 70
+
+===== PAGE 17 =====
+Cyber Security as a Constraint (2/4)
+Design
+Architecture
+Implementation
+Constraints
+Security
+Constraints
+Exhibits
+Requirements
+Attack surface
+minimization is a
+good example of a
+security constraint
+Figure 8: Should Something Else Be Constrained Too?
+17 / 70
+
+===== PAGE 18 =====
+Cyber Security as a Constraint (3/4)
+Design
+Architecture
+Implementation
+Constraints
+Security
+Constraints
+Exhibits
+Requirements
+Attack surface
+minimization is a
+good example of a
+security constraint
+Constraints
+Figure 9: What Might Be an Example Constraint Here?
+18 / 70
+
+===== PAGE 19 =====
+Cyber Security as a Constraint (4/4)
+Design
+Architecture
+Implementation
+Constraints
+Security
+Constraints
+Exhibits
+Requirements
+Attack surface
+minimization is a
+good example of a
+security constraint
+Constraints
+Programming language and library
+choices, coding standards, testing
+and code review practices, etc.
+Figure 10: Security Should Constraint also Detailed Design
+19 / 70
+
+===== PAGE 20 =====
+Microsoft’s SDL Model (1/9)
+Design
+Implementation
+Build
+Deploy
+Run
+Gate1
+Gate2
+Gate3
+Cloud,
+hybrid, on-premise,
+client, mobile, etc.
+Zero-trust: assume compromise by default, explicit trust boundaries, least privileges, etc.
+Figure 11: Microsoft’s (2026a) Current Version of its Security
+Development Lifecycle (SDL) Model
+20 / 70
+
+===== PAGE 21 =====
+Microsoft’s SDL Model (2/9)
+▶Regarding the three gates in the previous figure, Gate1 is there
+to provide checks and balances on development-time security
+practices (e.g., whether vulnerabilities have been introduced)
+• Note that developers’ operational security is important!
+▶Gate2 is there to ensure that no security issues arise from
+CI/CD pipelines and related development infrastructures
+▶Gate3 is there to emphasize the role of secure
+configurations, hardening, and related practices
+21 / 70
+
+===== PAGE 22 =====
+Microsoft’s SDL Model (3/9)
+▶The warning from Zimmermann (2019) is still valid and
+increasingly relevant regarding operational security of
+developers; social engineering is used for both package
+takeovers (e.g., seeking a maintainer role) and account
+takeovers (e.g., keys, repository credentials, etc.)
+Figure 12:
+https://opensourcemalware.com/blog/social-engineering-playbook
+22 / 70
+
+===== PAGE 23 =====
+Microsoft’s SDL Model (4/9)
+Figure 13: https://owasp.org/www-project-top-10-ci-cd-security-risks/
+23 / 70
+
+===== PAGE 24 =====
+Microsoft’s SDL Model (5/9)
+Figure 14: https://docs.github.com/en/repositories/
+configuring-branches-and-merges-in-your-repository/
+24 / 70
+
+===== PAGE 25 =====
+Microsoft’s SDL Model (6/9)
+▶In addition, OWASP recommends limiting auto-merge rules
+▶Furthermore and particularly importantly, they recommend
+prior approval of a CI/CD account for artifacts to flow
+through the whole CI/CD pipeline
+• In particular, prevent non-authorized accounts for triggering
+a production build and subsequent deployment
+• When dealing with production branches, prior approvals
+and reviews are in other words a good idea
+25 / 70
+
+===== PAGE 26 =====
+Microsoft’s SDL Model (7/9)
+Cluster
+Master node
+Developer
+Scanner node
+for common
+security issues
+Audit node
+If true
+positive, log
+and abort
+Worker node
+If true
+negative,
+deploy
+Pod
+New container
+New
+container
+Figure 15: One Option (Among Many) for Scanning Kubernetes Cluster
+26 / 70
+
+===== PAGE 27 =====
+Microsoft’s SDL Model (8/9)
+Developer
+Cluster
+(3) Update all nodes and
+containers affected
+Vulnerability
+database1
+Vulnerability
+databasen
+...
+(1) Period pull
+Node and 
+container registries
+(2) Scan
+after pull
+Yet, recall the PyPI's recommendations
+from the previous lecture; thus, consider
+dependency cooldowns and locked
+dependencies, among other things
+Figure 16: Another Option for Scanning Kubernetes Cluster
+27 / 70
+
+===== PAGE 28 =====
+Microsoft’s SDL Model (9/9)
+▶It is a good idea to run also hardening tools to check
+potential configuration vulnerabilities of a deployment
+• If the deployment’s configuration changes, these could be
+triggered automatically too
+▶These tools vary from a deployment context to another; for
+Kubernetes alone, there are probably more than ten such tools
+• For instance, Cheukov, Kubeaudit, KubeLinter, Kube-score,
+Kubesec, SLI-KUBE, Kube-bench, Kubescape, Trivy,
+Neuvector, StackRox, and probably many more
+28 / 70
+
+===== PAGE 29 =====
+Risks, Again (1/2)
+Developer
+Cluster
+(3) Update all nodes and
+containers affected
+Vulnerability
+database1
+Vulnerability
+databasen
+...
+(1) Period pull
+Node and 
+container registries
+(2) Scan
+after pull
+Social engineering and other
+aspects of the developer's
+operational security.
+Figure 17: What Additional Risks There Might Be and Where?
+29 / 70
+
+===== PAGE 30 =====
+Risks, Again (2/2)
+Figure 18: https://dl.acm.org/doi/pdf/10.1145/3449047
+30 / 70
+
+===== PAGE 31 =====
+Security During Design Phase (1/3)
+▶Microsoft (2026a) recommends four tasks:
+1. Identify relevant security standards
+2. Identify and define security requirements
+3. Define metrics for compliance reporting
+4. Create a process for security exception process
+▶Of these, (2) involves also defining constraints for detailed
+design and implementation (cf. top-vulnerability rankings)
+▶Of these, (4) means that you should have a process for
+documenting and approving any and all deviations from
+security standards and requirements
+• To do that, you must be able to determine what is the
+acceptable level of risk caused by a given deviation
+31 / 70
+
+===== PAGE 32 =====
+Security During Design Phase (2/3)
+Identify use cases,
+scenarios, and assets
+Create an 
+architecture overview
+With the overview,
+identify threats
+Identify, apply, and 
+track countermeasures
+What are the business
+functions and inputs;
+what are the assets that
+should be protected?
+At minimum: what are
+subsystem and trust
+boundaries, data follows
+via connectors?
+Analyze scenarios and
+the architecture from a
+perspective of an
+attacker, and then rate
+and prioritize the threats
+Review, document, and
+apply countermeasures
+and test these; and
+document and accept
+deviations made
+Figure 19: Threat Modeling Tasks (adopted from Microsoft 2026)
+32 / 70
+
+===== PAGE 33 =====
+Security During Design Phase (3/3)
+Figure 20: https://www.rfc-editor.org/rfc/rfc3552
+33 / 70
+
+===== PAGE 34 =====
+Trust Boundaries Revisited (1/3)
+Userland
+Kernel
+More 
+hardware
+Memory
+CPU
+Sometimes
+known as ring
+zero in security
+engineering
+The darker the color, the more privileged
+Figure 21: Low-Level Trust Boundaries (Protection Rings)
+34 / 70
+
+===== PAGE 35 =====
+Trust Boundaries Revisited (2/3)
+Machine1
+Component11
+Component12
+Machine2
+Component21
+Component22
+Trust
+relationship
+Trust
+boundaries
+Figure 22: A Simple Example of Trust Boundaries and Trust Relationships
+35 / 70
+
+===== PAGE 36 =====
+Trust Boundaries Revisited (3/3)
+Cluster (cloud)
+System
+Machine1
+Machine2
+On-premise
+Local area network
+WiFi access point
+Internet
+Figure 23: Where Are the Trust Boundaries?
+36 / 70
+
+===== PAGE 37 =====
+The Kill Chain: A Worked Example (1/8)
+System
+Machinei
+Containerj
+(Processj)
+uid = 1000
+An attacker has managed to
+exploit a vulnerability in the
+software running in
+Containerj and is thus now
+in control of Processj.
+Figure 24: How the Attack Would Perhaps Proceed?
+37 / 70
+
+===== PAGE 38 =====
+The Kill Chain: A Worked Example (2/8)
+System
+Machinei
+Containerj
+(Processj)
+uid = 0 (root)
+The attacker has managed
+to further conduct a
+privilege escalation attack
+by exploiting another
+vulnerability and is now
+running with root privileges
+and in control of Processj.
+Figure 25: How the Attack Would Now Likely Proceed?
+38 / 70
+
+===== PAGE 39 =====
+The Kill Chain: A Worked Example (3/8)
+System
+Machinei
+Processj
+uid = 0 (root)
+The attacker has managed to
+exploit yet another vulnerability
+now in the container system
+and is thus now in control
+of Processj that is no longer in
+any container. As the attacker
+has root privileges, she is
+effectively in control of the
+whole Machinei too.
+Figure 26: How the Attack Would Now Perhaps Proceed?
+39 / 70
+
+===== PAGE 40 =====
+The Kill Chain: A Worked Example (4/8)
+System
+Machinei
+An attacker has done
+reconnaissance about the system,
+scanning for other machines and
+seeking to understand the
+environment she is in.
+Machine1
+Machine2
+Machinen
+Knowledge of
+Knowledge of
+No knowledge of
+Figure 27: How the Attack Might Now Proceed?
+40 / 70
+
+===== PAGE 41 =====
+The Kill Chain: A Worked Example (5/8)
+System
+Machinei
+The attacker
+exploited the same
+vulnerability
+chain as previously
+and gained control
+of Machine1 too.
+After having
+control, she
+established a
+strong encrypted
+tunnel via a
+compromised
+proxy machine to
+her malicious
+system in the dark
+web. Then she
+transferred all data
+in Machine1 to
+Machinek, and
+closed the tunnel.
+Machine1
+In control of
+Internet                   
+System
+Machinek
+Compromised 
+machine (proxy)
+Encrypted
+tunnel
+Encrypted
+tunnel
+Figure 28: How the Attack Might Now Proceed?
+41 / 70
+
+===== PAGE 42 =====
+The Kill Chain: A Worked Example (6/8)
+System
+Machinei
+The attacker finally cleaned
+all her traces by tampering
+with the logging systems at
+Machine1  and Machinei.
+Machine1
+In control of
+Before leaving the system after
+having cleaned her traces, she
+installed a remote access trojan
+(RAT) to Machinei and Machine1.
+In control of
+Figure 29: Ending the Chain
+42 / 70
+
+===== PAGE 43 =====
+The Kill Chain: A Worked Example (7/8)
+▶The previous worked example illustrates various important
+points, among which are:
+1. Exploitation chains are often needed for a full compromise
+2. Privilege escalation is often needed for a full compromise
+3. It is difficult but possible to break isolation mechanisms
+4. Reconnaissance is needed for attackers to move laterally
+5. It is important to design logging well
+6. The zero trust model is important theoretically because it
+also demonstrates that simple and traditional “demilitarized
+zones” (DMZs) are not enough
+43 / 70
+
+===== PAGE 44 =====
+The Kill Chain: A Worked Example (8/8)
+System
+Machinei
+Machine1
+Machine2
+Machinen
+Trust   boundary
+DMZ
+Firewall
+IDS
+Figure 30: So, Perhaps the System (Deployment) Design Was Poor Too
+44 / 70
+
+===== PAGE 45 =====
+Validation Revisited (1/3)
+             
+        System                                                                                                                                                                   
+           
+Agent2
+w
+r
+Enforcer
+Agent1
+w
+r
+Enforcer
+w
+r
+If not ok, 
+cancel and log
+If not ok, 
+cancel and log
+Internet
+Figure 31: How It Might Be Improved?
+45 / 70
+
+===== PAGE 46 =====
+Validation Revisited (2/3)
+             
+        System                                                                                                                                                                   
+           
+Agent2
+w
+r
+Enforcer
+Agent1
+w
+r
+Enforcer
+w
+r
+If not ok, 
+cancel and log
+If not ok, 
+cancel and log
+Internet
+Figure 32: How It Might Be Still Improved?
+46 / 70
+
+===== PAGE 47 =====
+Validation Revisited (3/3)
+             
+        System                                                                                                                                                                   
+           
+Agent2
+w
+r
+Enforcer
+Agent1
+w
+r
+Enforcer
+w
+r
+If not ok, 
+cancel and log
+If not ok, 
+cancel and log
+              Egress network
+                 (output) filter
+w
+r
+Internet
+Thus, remember the DNS tunneling example from the
+previous lecture; "output validation" (a.k.a. egress filtering)
+applies also to networking. (Good firewalls can do that and
+so here it is just to make things explicit.)
+Figure 33: Thus, Recall the Zero Trust Principle w.r.t. Agent1 and Agent2
+47 / 70
+
+===== PAGE 48 =====
+Layering Works Also for the Zero-Trust Principle
+Access layer
+VPN
+gateway
+Internet
+Cloud
+Internet
+Policy layer
+On-premise layer
+Reverse
+proxy
+Figure 34: A Simple Zero-Trust Architecture (adopted from NCSC 2025)
+48 / 70
+
+===== PAGE 49 =====
+Sidecars and the Zero-Trust Principle (1/5)
+Cluster
+Pod1
+Business logic1
+(container)
+Pod2
+Business logic2
+(container)
+Pod3
+Business logic3
+(container)
+                                                                                                                                                     Pod4
+Container                                                                                                               
+Authorization
+Authentication
+Continuous authorization and fine-grained
+authentication to different services
+mTLS
+everywhere
+Figure 35: As the Zero-Trust Principle Promotes Continuous
+Authentication and Authorization, the Sidecar Pattern May Work Well
+49 / 70
+
+===== PAGE 50 =====
+Sidecars and the Zero-Trust Principle (2/5)
+Cluster
+Pod1
+Business logic1
+(container)
+Container
+Authentication
+Authorization
+Pod2
+Business logic2
+(container)
+Container
+Authentication
+Authorization
+Pod3
+Business logic3
+(container)
+Container
+Authentication
+Authorization
+Figure 36: For Security, This Design Might Sometimes Be Better
+50 / 70
+
+===== PAGE 51 =====
+Sidecars and the Zero-Trust Principle (3/5)
+Cluster
+                                                                                                                                                     Sidecar
+Container                                                                                                               
+Authorization
+Authentication
+Ingress gateway
+Egress gateway
+mTLS
+mTLS
+Consumer
+clients
+Business
+clients
+Internal
+clients
+In other words, the notion of scoping from the
+previous lecture can be applied for categorizing
+clients and their different trust levels.
+TLS
+TLS
+TLS
+External services
+TLS
+Also do egress filtering and
+possibly categorize requests
+to external services too.
+Figure 37: Also Output (Egress) Filtering Aligns With Sidecars
+51 / 70
+
+===== PAGE 52 =====
+Sidecars and the Zero-Trust Principle (4/5)
+Cluster
+                                                                                                                                                     Sidecar
+Container                                                                                                               
+Authorization
+Authentication
+Ingress gateway
+Honeypot
+mTLS
+Consumer
+clients
+Business
+clients
+Internal
+clients
+TLS
+TLS
+TLS
+mTLS
+Forensics
+mTLS
+Routing for
+suspicious
+clients
+Monitoring
+Figure 38: Cyber Security Is Also About Deception
+52 / 70
+
+===== PAGE 53 =====
+Sidecars and the Zero-Trust Principle (5/5)
+Cluster
+Pod1
+Business logic1
+(container)
+Pod2
+Business logic2
+(container)
+Pod3
+Business logic3
+(container)
+                                                                                                                                                     Pod4
+Container                                                                                                               
+Router
+Monitor
+mTLS
+Pod1 has been routed off due to
+a suspected compromise.
+Figure 39: Isolation Is Important Also During Actual Incidents
+53 / 70
+
+===== PAGE 54 =====
+On the Cyber Security Idiom of Confused Deputy
+Figure 40: Source: Wikipedia (public domain)
+54 / 70
+
+===== PAGE 55 =====
+Question
+What Tactic from the Previous Lectures Could Be
+Perhaps Used for Preventing a Monitoring
+Component Ending as a Confused Deputy?
+55 / 70
+
+===== PAGE 56 =====
+Recall Also the Complexity Trade-Off Once Again
+Figure 41: https://xkcd.com/2044/
+56 / 70
+
+===== PAGE 57 =====
+Classifying Data (1/2)
+▶Thus, as the zero trust principle assumes a compromise by
+default, encryption at rest and egress filtering can generally
+reduce a blast radius in terms of data exfiltration
+▶In addition to isolation, segmentation, the zero trust and least
+privilege principles, and other principles already covered,
+Microsoft (2026b) recommends to classify data based on its
+type, sensitivity, and risks
+• Obviously, governments and state actors do such
+classification heavily but their practices generalize in general
+57 / 70
+
+===== PAGE 58 =====
+Classifying Data (2/2)
+Public facing systems
+Web application
+server
+GDPR-request interface
+[R5, R6, R7, R8]
+Private systems
+GDPR-request
+service
+[R5, R6, R7, R8]
+Business logic
+service(s)
+Core personal
+data module
+[R5, R6, R7]
+Personal data
+event log
+[R4]
+Static analysis [R1]
+Restriction center*
+[R8]
+Consent center*
+[R3]
+* A separate personal data registry
+Private systems
+Figure 42: Personal Data Classification (Hjerppe 2019, Fig. 3)
+58 / 70
+
+===== PAGE 59 =====
+Side-Channels (May) Affect Also Cloud Computing
+Cluster
+Node1
+Pods
+Node2
+Pods
+Node3
+Pods
+Node4
+Pod
+Node5
+Pods
+Node6
+Pods
+Due to various side-channel vulnerabilities disclosed over the years, the
+malicious Node6 is inferring about Node1 without interacting it directly.
+Figure 43: While It Remains Unclear How Realistic the Attack Is, the
+Potential Is There Due to Numerous Side-Channel Vulnerabilities
+59 / 70
+
+===== PAGE 60 =====
+On Side-Channels More Generally
+▶While many side-channel attacks focus on bypassing the
+protection rings noted earlier (cf. CPUs, memory, caches,
+etc.), there are numerous other ways hardware leaks
+• Anything from timings and power consumption to acoustic
+noise and electromagnetic emissions
+▶It is difficult to defend against side-channel attacks, but in
+general, try to either plug the leak or add noise
+60 / 70
+
+===== PAGE 61 =====
+Connectors 7→Networking (1/7)
+▶Securing computer communications, data flows, and
+networking in general is obviously important and typically
+belongs to (preferably functional) security requirements
+▶A classical attack vector is man-in-the-middle (MitM)
+attacks, which can violate confidentiality (eavesdropping),
+integrity (intercepting and modifying data), and availability
+(intercepting and destroying or corrupting data)
+▶According Conti & Dragoni (2016), MitM attacks can be
+classified into those based on impersonation, given
+communication channels, and locations of attackers and
+targets in a network
+61 / 70
+
+===== PAGE 62 =====
+Connectors 7→Networking (2/7)
+▶Regarding communication channels, most of the Internet’s
+core layers are theoretically a target
+Table 1: Examples of Internet Protocols Against Which MitM Attacks
+Have Been Historically Conducted (Conti & Dragoni 2016, Table 1)
+OSI layer
+Protocols
+7. Application
+Border Gateway Protocol (BGP), Dynamic Host Con-
+figuration Protocol (DHCP), Domain Name Sys-
+tem (DNS)
+6. Presentation
+Transport Layer Security (TLS)
+4. Transport
+Internet Protocol (IP)
+2. Data link
+Address Resolution Protocol (ARP)
+62 / 70
+
+===== PAGE 63 =====
+Connectors 7→Networking (3/7)
+▶Conti & Dragoni (2016) recommend the following seven
+design principles for countering MitM attacks:
+1. Use strong mutual authentication for all endpoints
+2. Exchange private keys using a secure channel
+3. Use few secure channels for integrity verification
+4. Sign public keys by a certified authority
+5. Use certificate pinning
+6. Encrypt communication
+7. Continuously examine behavior of interacting endpoints
+according to an agreed interaction protocol
+▶Of these principles, note that (6) is meaningless in case there
+are fatal flaws with (1) and (2), and maybe (4) too
+▶Note also that (7) essentially reiterates the earlier points
+about input/output validation at the networking context
+63 / 70
+
+===== PAGE 64 =====
+Connectors 7→Networking (4/7)
+Install a
+certificate for all
+servers for
+establishing TLS
+Build
+and test server
+(on-premise)
+Deployment
+server serving
+clients (on-premise)
+HTTP
+HTTP
+HTTP
+HTTP
+Shared
+secrets
+Build and test
+analytics in a cloud
+Deployment
+analytics in a cloud
+Figure 44: What Is Wrong Here?
+64 / 70
+
+===== PAGE 65 =====
+Connectors 7→Networking (5/7)
+Build
+and test server
+(on-premise)
+Deployment
+server serving
+clients (on-premise)
+SSH
+SSH
+SSH
+SSH
+Shared
+secrets
+Build and test
+analytics in a cloud
+Deployment
+analytics in a cloud
+Install a
+certificate for all
+servers for
+establishing TLS
+Figure 45: What Might Be Still Wrong Here?
+65 / 70
+
+===== PAGE 66 =====
+Connectors 7→Networking (6/7)
+Build
+and test server
+(on-premise)
+Deployment
+server serving
+clients (on-premise)
+SSH/HTTPS
+SSH/HTTPS
+SSH/HTTPS
+SSH/HTTPS
+Build and test
+analytics in a cloud
+Deployment
+analytics in a cloud
+SSH for control,
+HTTPS for use
+HTTPS
+Figure 46: What Might Be Still Needed Here?
+66 / 70
+
+===== PAGE 67 =====
+Connectors 7→Networking (7/7)
+Build
+and test server
+(on-premise)
+Deployment
+server serving
+clients (on-premise)
+SSH/HTTPS
+SSH/HTTPS
+SSH/HTTPS
+SSH/HTTPS
+Build and test
+analytics in a cloud
+Deployment
+analytics in a cloud
+SSH for control,
+HTTPS for use
+HTTPS
+Integrity checks before
+pushing to production
+Figure 47: A Rather Typical Small CI/CD Setup
+67 / 70
+
+===== PAGE 68 =====
+Finally, A Note on Cryptography
+Machine1
+Machine2
+There are robust
+techniques for
+encrypting
+ data in transit.
+There are robust
+techniques also
+for encrypting
+ data at rest.
+However, data is only
+useful if it can be
+processed, which implies
+that a good design
+practice is to try to
+minimize the time data
+remains unencrypted
+during processing.
+Figure 48: Designing for Encryption
+68 / 70
+
+===== PAGE 69 =====
+Questions?
+69 / 70
+
+===== PAGE 70 =====
+Additional References
+1. Microsoft (2026a): Security Development Lifecycle (SDL) Practices.
+https://www.microsoft.com/en-us/securityengineering/sdl/practices
+2. Zimmermann & Staicu & Pradel (2019): Small World with High Risks: A Study
+of Security Threats in the npm Ecosystem. USENIX Security,
+https://www.usenix.org/system/files/sec19-zimmermann.pdf
+3. Microsoft (2026b): Security Design Principles. https://learn.microsoft.
+com/en-us/azure/well-architected/security/principles
+4. NCSC (2025): Network Architectures.
+https://www.ncsc.gov.uk/collection/device-security-guidance/
+infrastructure/network-architectures
+5. Hjerppe, K. & Ruohonen, J. & Lepp¨anen, V. (2019): The General Data
+Protection Regulation: Requirements, Architectures, and Constraints. RE 2019,
+IEEE, https://arxiv.org/pdf/1907.07498
+6. Conti, M. & Dragoni, N. (2016): A Survey of Man In The Middle Attacks.
+IEEE Communications Surveys & Tutorials 18(3), pp. 2027–2051,
+https://doi.org/10.1109/COMST.2016.2548426
+70 / 70
