@@ -1,0 +1,107 @@
+[
+  {
+    "id": "L05-Q1",
+    "topic": "Hill climbing: local vs global maximum",
+    "stem": "The curve below is a 1-D state-space landscape; the objective value f(s) is to be MAXIMISED. Steepest-ascent hill climbing starts at the marked state and at each step moves to the higher-valued immediate neighbour, stopping when no neighbour strictly improves. Where does it stop, and is that the global maximum?",
+    "options": {
+      "A": "It stops at state 7 (value 9), which is the global maximum.",
+      "B": "It stops at state 2 (value 5), a local maximum; it misses the global maximum at state 7 (value 9).",
+      "C": "It stops at state 0 (value 1) because the left neighbour is missing.",
+      "D": "It does not stop; it walks back and forth across the whole curve forever."
+    },
+    "answer": "B",
+    "explanation": "Starting at state 1 (value 3), the right neighbour state 2 (value 5) is higher, so it moves there. From state 2 (value 5) the only neighbours are state 1 (value 3) and state 3 (value 4) — both strictly lower — so hill climbing terminates at state 2, a LOCAL maximum of value 5. The GLOBAL maximum is at state 7 (value 9), separated by the valley at states 4-5, which the greedy climber cannot cross. This is the canonical 'gets stuck at a local maximum' failure.",
+    "figure": {
+      "type": "curve",
+      "caption": "1-D state-space landscape; objective value to be maximised. Hill climbing starts at the marked state.",
+      "points": [[0,1],[1,3],[2,5],[3,4],[4,2],[5,4],[6,7],[7,9],[8,6]],
+      "xlabel": "state",
+      "ylabel": "objective value",
+      "markers": [{"x":1,"y":3,"label":"start"}]
+    }
+  },
+  {
+    "id": "L05-Q2",
+    "topic": "Simulated annealing: acceptance probability",
+    "stem": "A simulated-annealing search MINIMISES an energy/cost E. From a state with E = 20, a random neighbour with E = 24 is proposed at temperature T = 2. Using the acceptance rule P = exp(-DeltaE / T) for a worsening move (where DeltaE = E_next - E_current > 0 is the cost increase), what is the probability this neighbour is accepted?",
+    "options": {
+      "A": "P = exp(-4/2) = exp(-2) ≈ 0.135",
+      "B": "P = exp(-2/4) = exp(-0.5) ≈ 0.607",
+      "C": "P = 1, because every proposed move is accepted",
+      "D": "P = exp(4/2) = exp(2) ≈ 7.39"
+    },
+    "answer": "A",
+    "explanation": "DeltaE = 24 - 20 = 4 (the cost goes UP, a worsening move). For a worsening move the probability is P = exp(-DeltaE/T) = exp(-4/2) = exp(-2) ≈ 0.135. Option B inverts the ratio; option C is only true for improving (downhill-in-cost) moves; option D gives a probability > 1, which is impossible. Equivalently, in maximisation terms Delta = f_next - f_current = -4 and P = exp(Delta/T) = exp(-2) ≈ 0.135 — the same number.",
+    "figure": null
+  },
+  {
+    "id": "L05-Q3",
+    "topic": "Simulated annealing: role of temperature",
+    "stem": "In a maximisation simulated annealing, a fixed downhill move with Delta = f(next) - f(current) = -3 is repeatedly proposed. Its acceptance probability is exp(Delta/T). Comparing temperature T = 100 against T = 1, which statement is correct?",
+    "options": {
+      "A": "At T = 100, P ≈ 0.05; at T = 1, P ≈ 0.97 — low T explores more aggressively.",
+      "B": "The probability is exactly 0.5 at both temperatures because Delta is negative.",
+      "C": "At T = 100, P = exp(-3/100) ≈ 0.97 (almost always accepted); at T = 1, P = exp(-3) ≈ 0.05 (almost never) — high T explores, low T behaves like greedy hill climbing.",
+      "D": "Both give P = 1 because downhill moves are always accepted regardless of T."
+    },
+    "answer": "C",
+    "explanation": "For Delta = -3: at T = 100, exp(-3/100) = exp(-0.03) ≈ 0.97, so the downhill move is almost always accepted (broad exploration). At T = 1, exp(-3/1) = exp(-3) ≈ 0.0498, so it is almost never accepted — the algorithm has effectively reduced to greedy hill climbing. As T -> 0+, exp(Delta/T) -> 0 for any worsening move. B reverses the effect of T; C and D contradict the formula (only improving moves are accepted with probability 1).",
+    "figure": null
+  },
+  {
+    "id": "L05-Q4",
+    "topic": "Local search: constant memory",
+    "stem": "Compared with breadth-first search on the 8-queens problem (one queen per column, giving 8^8 ≈ 1.68 x 10^7 states), why is plain hill climbing's memory requirement O(1) rather than growing with the state space?",
+    "options": {
+      "A": "Because hill climbing always finds the goal in one step, so it never needs to store more than the start.",
+      "B": "Because the objective function compresses all 8^8 states into a single number that is stored instead of states.",
+      "C": "Because hill climbing keeps the entire population of states but each one is only one byte.",
+      "D": "Because hill climbing stores only the single current state (it discards path information and never keeps a frontier or explored set), so memory does not grow with the number of states."
+    },
+    "answer": "D",
+    "explanation": "Local search keeps just ONE current state in memory and iteratively modifies it, ignoring path information entirely — there is no frontier or explored set to store, so memory is O(1) regardless of the 1.68 x 10^7 reachable states. BFS, by contrast, must store an exponentially growing frontier. A is false (it can take several steps and may not reach a goal at all); B confuses storing a state with storing its value; C describes population-based GA, not hill climbing (which keeps a single state).",
+    "figure": null
+  },
+  {
+    "id": "L05-Q5",
+    "topic": "Hill climbing on 8-queens: successors and objective",
+    "stem": "On the 8-queens board (one queen per column, h = number of attacking pairs, MINIMISED), the current board has h = 17. The successor function lets each column's queen move to any of the other 7 rows. How many successors are evaluated per step, and if the best successor has h = 12, what does steepest-ascent hill climbing do?",
+    "options": {
+      "A": "It evaluates 8 successors and stops immediately because 12 < 17.",
+      "B": "It evaluates 64 successors and stops because no move can reduce conflicts below 17.",
+      "C": "It evaluates 56 successors and moves to an h = 12 board, since fewer conflicts is better (an improvement of 5).",
+      "D": "It evaluates 56 successors but stays put, because moving a queen can only increase conflicts."
+    },
+    "answer": "C",
+    "explanation": "Each of the 8 columns has 7 alternative rows (the current row is excluded), giving 8 x 7 = 56 successors evaluated per step. Since h counts attacking pairs and is MINIMISED, h = 12 is better than h = 17 — an improvement of 5 conflicts — so the climber moves to that board. A miscounts successors (56, not 8) and the direction; B uses 8x8 = 64 and a false claim; D wrongly asserts no improvement exists.",
+    "figure": null
+  },
+  {
+    "id": "L05-Q6",
+    "topic": "Genetic algorithm: roulette-wheel selection",
+    "stem": "A GA population of 8 chromosomes has fitnesses (1, 2, 3, 1, 3, 5, 1, 2), total F = 18. The cumulative bounds give slices: c1 (0,1], c2 (1,3], c3 (3,6], c4 (6,7], c5 (7,10], c6 (10,15], c7 (15,16], c8 (16,18]. Using 'return the smallest i with F_i >= R', which chromosome does a draw of R = 5 select?",
+    "options": {
+      "A": "Chromosome 2, because its fitness 2 is the closest to 5 minus 3.",
+      "B": "Chromosome 3, because R = 5 falls in its slice (3, 6].",
+      "C": "Chromosome 6, because it has the highest fitness and the wheel favours the best.",
+      "D": "Chromosome 5, because R = 5 equals the chromosome index."
+    },
+    "answer": "B",
+    "explanation": "R = 5 satisfies F_3 = 6 >= 5 while F_2 = 3 < 5, so the smallest i with F_i >= R is i = 3 — R lands in chromosome 3's slice (3, 6]. Roulette-wheel selection picks proportionally to fitness via the cumulative interval, NOT always the fittest (C is the classic 'roulette always picks the best' trap). A invents an unrelated rule; D confuses the random number with an index.",
+    "figure": null
+  },
+  {
+    "id": "L05-Q7",
+    "topic": "Genetic algorithm: single-point crossover",
+    "stem": "Single-point crossover is applied to parents P1 = 1010000000 and P2 = 1001011111 with the cut point after bit position 3 (bits are 1-indexed left-to-right; child1 takes P1's prefix then P2's suffix). What is child1?",
+    "options": {
+      "A": "1011011111",
+      "B": "1001000000",
+      "C": "1000000000",
+      "D": "1010011111"
+    },
+    "answer": "A",
+    "explanation": "Cutting after position 3 splits each parent into a 3-bit prefix and a 7-bit suffix. Child1 = P1[1..3] ++ P2[4..10] = '101' ++ '1011111' = 1011011111. Option C (1000000000) is child2 (P2 prefix '100' + P1 suffix '0000000'). B and D mix the segments incorrectly. Mutation is applied afterward (a separate per-gene bit flip with small probability m), so it does not affect the crossover output itself.",
+    "figure": null
+  }
+]

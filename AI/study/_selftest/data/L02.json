@@ -1,0 +1,100 @@
+[
+  {
+    "id": "L02-Q1",
+    "topic": "rational agent / expected utility",
+    "stem": "A vacuum agent is in a Dirty cell. Its suction motor is unreliable: action Suck leaves the cell Clean with probability 0.8 and Dirty with probability 0.2. The utility function assigns U(Clean) = 10 and U(Dirty) = 0. What is the expected utility of Suck, E[U | Suck]?",
+    "options": {
+      "A": "8",
+      "B": "10",
+      "C": "2",
+      "D": "5"
+    },
+    "answer": "A",
+    "explanation": "Expected utility is the probability-weighted sum over outcomes: 0.8*10 + 0.2*0 = 8. Option B (10) is the deterministic best case that ignores the 0.2 failure probability, which is the classic 'rationality is not omniscience' trap.",
+    "figure": null
+  },
+  {
+    "id": "L02-Q2",
+    "topic": "PEAS classification",
+    "stem": "A student writes the PEAS for an automated taxi and lists 'GPS' and 'speedometer' under Actuators, alongside 'steering wheel' and 'brake'. Which statement correctly diagnoses this PEAS specification?",
+    "options": {
+      "A": "It is correct, because anything physically attached to the car is an actuator.",
+      "B": "GPS and speedometer are wrongly placed; they are Sensors (devices that produce percepts), not Actuators.",
+      "C": "Steering wheel and brake are wrongly placed; they belong under Sensors.",
+      "D": "GPS belongs under Environment because satellites are external to the agent."
+    },
+    "answer": "B",
+    "explanation": "Actuators are devices the agent acts WITH (steering, brake); GPS and speedometer are Sensors that feed percepts in, so they are misclassified. Option D confuses the Environment column (what is out there) with the Sensors column (the agent's own measuring devices).",
+    "figure": null
+  },
+  {
+    "id": "L02-Q3",
+    "topic": "environment taxonomy (classify scenario)",
+    "stem": "Consider playing Scrabble against an opponent, where you cannot see the opponent's rack and new tiles are drawn from the bag after every move. Along the six environment dimensions, Scrabble is best classified as:",
+    "options": {
+      "A": "Fully observable, deterministic, episodic, single-agent.",
+      "B": "Fully observable, stochastic, sequential, single-agent.",
+      "C": "Partially observable, stochastic, sequential, multi-agent.",
+      "D": "Partially observable, deterministic, episodic, multi-agent."
+    },
+    "answer": "C",
+    "explanation": "The hidden opponent rack makes it partially observable, the ongoing tile draws inject randomness into transitions (stochastic), each move affects later moves (sequential), and there is an opponent (multi-agent). Option D wrongly calls it deterministic, but tile draws DURING play make transitions stochastic.",
+    "figure": null
+  },
+  {
+    "id": "L02-Q4",
+    "topic": "environment taxonomy (deterministic vs stochastic)",
+    "stem": "A word-jumble solver is given a scrambled word that was selected at random; once shown, the letters never change while you work. By the lecture's convention on where randomness must live, is this environment deterministic or stochastic, and why?",
+    "options": {
+      "A": "Stochastic, because the word was chosen at random.",
+      "B": "Stochastic, because the solver may guess wrong and have to backtrack.",
+      "C": "Deterministic, because there is only one agent solving it.",
+      "D": "Deterministic, because only randomness in state transitions counts, and after the scramble is revealed the transitions are fixed."
+    },
+    "answer": "D",
+    "explanation": "Only randomness in state transitions makes an environment stochastic; a one-shot random initial scramble does not, since the letters do not reshuffle as you solve. Option A applies the wrong test (initial-state randomness), the very confusion the lecture warns against (contrast Scrabble, which keeps drawing tiles).",
+    "figure": null
+  },
+  {
+    "id": "L02-Q5",
+    "topic": "agent hierarchy (simplest architecture)",
+    "stem": "A factory sorter sits at a conveyor belt. At each instant its sensor fully reports the single item in front of it (its size class), and the correct action depends only on that current reading, never on history. From the five-level hierarchy, what is the SIMPLEST architecture that suffices?",
+    "options": {
+      "A": "Simple reflex agent (condition-action rules on the current percept).",
+      "B": "Model-based reflex agent, because it needs an internal state estimate.",
+      "C": "Goal-based agent, because sorting items is a goal.",
+      "D": "Utility-based agent, because some items are more valuable than others."
+    },
+    "answer": "A",
+    "explanation": "The environment is fully observable and the right action depends only on the current percept, so condition-action rules with no memory (simple reflex) are sufficient. Option B adds internal state that is unnecessary because there is nothing hidden to estimate; choosing a heavier architecture just wastes computation.",
+    "figure": null
+  },
+  {
+    "id": "L02-Q6",
+    "topic": "table-driven blow-up arithmetic",
+    "stem": "A table-driven agent stores one action for every possible percept sequence up to its lifespan T. With |P| = 4 distinct percepts and a lifespan of T = 3 time steps, how many rows must the table contain?",
+    "options": {
+      "A": "12, from 4*3.",
+      "B": "64, from 4^3 only.",
+      "C": "84, from 4^1 + 4^2 + 4^3 = 4 + 16 + 64.",
+      "D": "20, from 4 + 16."
+    },
+    "answer": "C",
+    "explanation": "The table needs a row for every sequence of length 1, 2, and 3: 4^1 + 4^2 + 4^3 = 4 + 16 + 64 = 84. Option B counts only the length-3 sequences and forgets the shorter prefixes that also need rows.",
+    "figure": null
+  },
+  {
+    "id": "L02-Q7",
+    "topic": "learning agent (4 components)",
+    "stem": "In a learning agent, a self-driving car occasionally tries braking on an unfamiliar road surface even though that is not the locally optimal move, purely to gather informative experience. Which of the four learning-agent components is responsible for this behaviour?",
+    "options": {
+      "A": "The Critic, because it judges the result of the experiment.",
+      "B": "The Performance element, because it executes the braking action.",
+      "C": "The Learning element, because it updates the agent's rules.",
+      "D": "The Problem generator, because it suggests exploratory actions that may not be locally optimal."
+    },
+    "answer": "D",
+    "explanation": "The Problem generator proposes exploratory, possibly suboptimal actions so the agent can learn from new experiences. Option A (Critic) only evaluates performance against the external standard and feeds that back; it does not propose the experiment.",
+    "figure": null
+  }
+]

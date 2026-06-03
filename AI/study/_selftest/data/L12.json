@@ -1,0 +1,118 @@
+[
+  {
+    "id": "L12-Q1",
+    "topic": "one k-means iteration (assign + recompute centroids, 2-D)",
+    "stem": "You run K-means with K=2 on four points P1=(1,1), P2=(1,3), P3=(7,5), P4=(9,7). The initial centroids are c1=(0,0) and c2=(8,8). After ONE full iteration (assign every point to its nearest centroid by Euclidean distance, then recompute each centroid as the mean of its members), what are the two new centroids?",
+    "options": {
+      "A": "c1=(1,2) and c2=(8,6)",
+      "B": "c1=(0,0) and c2=(8,8)",
+      "C": "c1=(1,1) and c2=(9,7)",
+      "D": "c1=(4.5,4) and c2=(4.5,4)"
+    },
+    "answer": "A",
+    "explanation": "Assignment: P1 (dist sqrt(2)=1.41 to c1 vs sqrt(98)=9.9 to c2) and P2 (sqrt(10)=3.16 vs sqrt(74)=8.6) go to cluster 1; P3 (sqrt(74)=8.6 vs sqrt(10)=3.16) and P4 (sqrt(130)=11.4 vs sqrt(2)=1.41) go to cluster 2. Recompute means: c1 = ((1+1)/2,(1+3)/2) = (1,2); c2 = ((7+9)/2,(5+7)/2) = (8,6). Option B is the initial centroids (forgetting to recompute). Option C picks one member per cluster instead of the mean. Option D averages all four points into a single point.",
+    "figure": {
+      "type": "scatter",
+      "caption": "Four points after the assignment step of iteration 1, coloured by nearest initial centroid (initial centroids c1=(0,0), c2=(8,8) shown as the centroid markers).",
+      "points": [[1, 1], [1, 3], [7, 5], [9, 7]],
+      "xlabel": "x",
+      "ylabel": "y",
+      "line": null,
+      "clusters": [0, 0, 1, 1],
+      "centroids": [[0, 0], [8, 8]]
+    }
+  },
+  {
+    "id": "L12-Q2",
+    "topic": "k-means assignment step (nearest centroid, Euclidean)",
+    "stem": "During the assignment step of K-means there are three centroids: c1=(1,2), c2=(6,5), c3=(3,8). A new point q=(4,4) must be assigned to the cluster of its nearest centroid using Euclidean distance. Which centroid does q join?",
+    "options": {
+      "A": "c1=(1,2)",
+      "B": "c2=(6,5)",
+      "C": "c3=(3,8)",
+      "D": "It is equidistant from all three, so it cannot be assigned."
+    },
+    "answer": "B",
+    "explanation": "dist(q,c1)=sqrt((4-1)^2+(4-2)^2)=sqrt(9+4)=sqrt(13)=3.61; dist(q,c2)=sqrt((4-6)^2+(4-5)^2)=sqrt(4+1)=sqrt(5)=2.24; dist(q,c3)=sqrt((4-3)^2+(4-8)^2)=sqrt(1+16)=sqrt(17)=4.12. The smallest is c2 at 2.24, so q joins c2. The distances differ, so option D is wrong; A and C have larger distances.",
+    "figure": null
+  },
+  {
+    "id": "L12-Q3",
+    "topic": "distance metrics (Euclidean vs Manhattan)",
+    "stem": "Two data points sit at a=(0,0) and b=(6,8). A classmate computes the Euclidean distance as 10 and claims the Manhattan (city-block) distance must be the same. What are the Euclidean and Manhattan distances between a and b?",
+    "options": {
+      "A": "Euclidean = 14, Manhattan = 10",
+      "B": "Euclidean = 10, Manhattan = 10",
+      "C": "Euclidean = 10, Manhattan = 14",
+      "D": "Euclidean = 100, Manhattan = 48"
+    },
+    "answer": "C",
+    "explanation": "Euclidean = sqrt((6-0)^2+(8-0)^2) = sqrt(36+64) = sqrt(100) = 10. Manhattan = |6-0|+|8-0| = 6+8 = 14. The two metrics differ here, so the classmate is wrong. Option D forgets the square root on Euclidean (100 is the squared distance) and multiplies the Manhattan terms instead of adding them.",
+    "figure": null
+  },
+  {
+    "id": "L12-Q4",
+    "topic": "choosing K (elbow method / within-cluster sum of squares)",
+    "stem": "You run K-means for K=1..6 and record the within-cluster sum of squares (WCSS / inertia): K=1 -> 820, K=2 -> 310, K=3 -> 130, K=4 -> 110, K=5 -> 98, K=6 -> 90. Using the elbow method to choose K, which value should you pick and why?",
+    "options": {
+      "A": "K=6, because it has the lowest WCSS of all the options tested.",
+      "B": "K=1, because the largest WCSS means the points are best summarised by a single centroid.",
+      "C": "K=2, because that is where WCSS first falls below half of the K=1 value.",
+      "D": "K=3, because WCSS drops steeply up to K=3 and then flattens, putting the 'elbow' at K=3."
+    },
+    "answer": "D",
+    "explanation": "The elbow method picks K where adding another cluster stops sharply reducing WCSS. Drops are 820->310 (510), 310->130 (180), 130->110 (20), then 12, 8 — the curve bends at K=3 where the marginal gain collapses, so K=3 is the elbow. Option A chases the global minimum, but WCSS always decreases with K (reaching 0 at K=n) so 'lowest WCSS' over-fits. Option B never clusters. Option C invents a 'half' rule that is not the elbow criterion.",
+    "figure": null
+  },
+  {
+    "id": "L12-Q5",
+    "topic": "convergence to a local optimum / sensitivity to initialization",
+    "stem": "The scatter below shows three well-separated round blobs. A run of K-means with K=3 converged to the colouring shown: the left blob has been split between two centroids while the two right blobs were merged under a single centroid, and no point now wants to switch clusters. What does this illustrate about K-means?",
+    "options": {
+      "A": "K-means failed to converge and should be left to run for more iterations.",
+      "B": "K-means converged to a sub-optimal local minimum of SSE because of a poor initial choice of centroids; a different initialization (or multiple runs keeping the lowest SSE) could find the better partition.",
+      "C": "K-means always finds the globally optimal clustering, so this colouring must be the lowest-SSE partition of the data.",
+      "D": "This proves K-means cannot be used on data with three clusters; you must use hierarchical clustering instead."
+    },
+    "answer": "B",
+    "explanation": "K-means does coordinate descent on SSE and is guaranteed to converge, but only to a LOCAL minimum that depends on the initial centroids — exactly the slide-12 'sub-optimal vs optimal' picture. Here it has stabilised (no point switches), so it HAS converged (A is wrong) but to a higher-SSE partition than the clean 3-blob split (C is wrong). Slide-17 remedies — multiple runs keeping the lowest SSE, better seeding, bisecting K-means — fix this; the algorithm is not unusable (D is wrong).",
+    "figure": {
+      "type": "scatter",
+      "caption": "A converged but sub-optimal K=3 run: the left blob is split across two centroids while the two right blobs share one centroid.",
+      "points": [[1, 1], [1.4, 1.6], [2, 1], [1.2, 0.6], [7, 6], [7.5, 6.4], [8, 7], [11, 1], [11.5, 1.5], [12, 0.8]],
+      "xlabel": "x",
+      "ylabel": "y",
+      "line": null,
+      "clusters": [0, 0, 1, 1, 2, 2, 2, 2, 2, 2],
+      "centroids": [[1.1, 0.8], [2.0, 1.0], [9.5, 3.8]]
+    }
+  },
+  {
+    "id": "L12-Q6",
+    "topic": "hierarchical (agglomerative) clustering — single-link merge order",
+    "stem": "Agglomerative clustering with MIN (single-link) linkage is run on four points with this distance matrix: d(P1,P2)=2, d(P1,P3)=6, d(P1,P4)=10, d(P2,P3)=5, d(P2,P4)=9, d(P3,P4)=4. In what order are the clusters merged, and at what height does the FINAL merge occur?",
+    "options": {
+      "A": "Merge P1&P2 (height 2), then P3&P4 (height 4), then {P1,P2}&{P3,P4} at height 5.",
+      "B": "Merge P1&P2 (height 2), then P3&P4 (height 4), then {P1,P2}&{P3,P4} at height 10.",
+      "C": "Merge P3&P4 (height 4) first, then P1&P2 (height 2), then join at height 6.",
+      "D": "Merge P1&P2 (height 2), then merge that into P3 (height 5), then add P4 at height 4."
+    },
+    "answer": "A",
+    "explanation": "Smallest distance is d(P1,P2)=2 -> merge first. Next smallest remaining is d(P3,P4)=4 -> merge. For the final merge under MIN, d({P1,P2},{P3,P4}) = min(d(P1,P3),d(P1,P4),d(P2,P3),d(P2,P4)) = min(6,10,5,9) = 5, so the last merge is at height 5. Option B uses the MAX/complete-link value (10). Option C reverses the first two merges (must always merge the closest pair first). Option D merges out of distance order.",
+    "figure": null
+  },
+  {
+    "id": "L12-Q7",
+    "topic": "supervised vs unsupervised placement of clustering",
+    "stem": "A bank has 50,000 customer records WITH NO labels and wants to discover natural groupings of customers from their spending features, then later decide what each group means. Which statement correctly places this task and names a suitable algorithm from this lecture?",
+    "options": {
+      "A": "It is a supervised classification task; train a decision tree on the customer labels.",
+      "B": "It is neither supervised nor unsupervised; with no labels the data cannot be analysed at all.",
+      "C": "It is a supervised regression task; fit a line predicting the group number from spending.",
+      "D": "It is an unsupervised clustering task; K-means can group customers by feature similarity without any labels."
+    },
+    "answer": "D",
+    "explanation": "Clustering is the unsupervised sibling of classification: no labels are given, and the algorithm groups points so intra-cluster distance is small and inter-cluster distance is large (slide 2). K-means fits exactly. Options A and C both assume labels/targets that do not exist (decision trees and regression are supervised, requiring labels). Option B is wrong because the whole point of unsupervised learning is to find structure when labels are absent.",
+    "figure": null
+  }
+]

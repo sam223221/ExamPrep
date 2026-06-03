@@ -1,0 +1,121 @@
+[
+  {
+    "id": "L06-Q1",
+    "topic": "Minimax value at the root",
+    "stem": "In the game tree below, MAX moves at the root and each of its two children is a MIN node. Reading the leaves left-to-right, what is the minimax value backed up to the root?",
+    "options": {
+      "A": "9 (the largest leaf in the tree)",
+      "B": "3 (the smallest of the two MIN-node values)",
+      "C": "4",
+      "D": "5 (the average of the two MIN-node values)"
+    },
+    "answer": "C",
+    "explanation": "Each MIN node takes the minimum of its children. Left MIN = min(5, 9, 4) = 4; right MIN = min(8, 3, 7) = 3. The root MAX then takes the maximum of its MIN children: max(4, 3) = 4. Distractor A grabs the global maximum (ignores the intervening MIN level), B takes the min instead of the max at the root, and D averages (minimax never averages in a deterministic game).",
+    "figure": {
+      "type": "game_tree",
+      "caption": "MAX root with two MIN children; leaves read left-to-right.",
+      "node": {
+        "player": "max",
+        "children": [
+          {"player": "min", "children": [{"leaf": 5}, {"leaf": 9}, {"leaf": 4}]},
+          {"player": "min", "children": [{"leaf": 8}, {"leaf": 3}, {"leaf": 7}]}
+        ]
+      }
+    }
+  },
+  {
+    "id": "L06-Q2",
+    "topic": "Minimax decision (best first move)",
+    "stem": "For the same tree as the previous question (left MIN = 4, right MIN = 3, root value = 4), which move should MAX make at the root, and why?",
+    "options": {
+      "A": "Play the LEFT branch, because it has the higher backed-up MIN value (4 > 3), so it gives the best guaranteed worst-case payoff.",
+      "B": "Play the RIGHT branch, because its subtree contains a smaller worst case that MIN will be forced into.",
+      "C": "Play the LEFT branch, because its subtree contains the single largest leaf (9).",
+      "D": "Either branch is equally good, because the root value is 4 regardless of which child MAX picks."
+    },
+    "answer": "A",
+    "explanation": "The minimax decision at the root is argmax over the children's backed-up values. Left MIN backs up 4, right MIN backs up 3, so MAX chooses the left branch (4 > 3) to maximise its guaranteed worst case. B reverses the logic. C picks the right branch for the wrong reason (a large leaf MIN would never allow). D is false: the move that achieves the root value is specifically the left one.",
+    "figure": null
+  },
+  {
+    "id": "L06-Q3",
+    "topic": "Alpha-beta pruning (which leaves are pruned)",
+    "stem": "Run alpha-beta on the tree below with children expanded strictly LEFT-TO-RIGHT (DFS). The root is MAX with three MIN children; leaf values are shown. Which leaf (or leaves) are PRUNED, i.e. never evaluated?",
+    "options": {
+      "A": "No leaves are pruned; alpha-beta must still examine all nine leaves on this tree.",
+      "B": "Only the leaf with value 8 (the third child of the middle MIN).",
+      "C": "The leaves 4 and 3 (the last two children of the right MIN).",
+      "D": "The leaves 1 and 8 (the last two children of the middle MIN)."
+    },
+    "answer": "B",
+    "explanation": "Left MIN = min(2, 9, 7) = 2, so the root sets alpha = 2. Middle MIN reads its first leaf 6 (v = 6, not <= 2, set beta = 6), then its second leaf 1 (v = min(6, 1) = 1). Now v = 1 <= alpha = 2, so the alpha-cutoff fires and the third leaf (value 8) is skipped. Right MIN reads 5, 4, 3 in turn; none ever satisfies v <= 2 before the node finishes, so nothing is pruned there. Only the value-8 leaf is pruned. A is wrong (one leaf is pruned). C and D prune leaves that are actually evaluated.",
+    "figure": {
+      "type": "game_tree",
+      "caption": "MAX root, three MIN children, expanded left-to-right; leaves read left-to-right.",
+      "node": {
+        "player": "max",
+        "children": [
+          {"player": "min", "children": [{"leaf": 2}, {"leaf": 9}, {"leaf": 7}]},
+          {"player": "min", "children": [{"leaf": 6}, {"leaf": 1}, {"leaf": 8}]},
+          {"player": "min", "children": [{"leaf": 5}, {"leaf": 4}, {"leaf": 3}]}
+        ]
+      }
+    }
+  },
+  {
+    "id": "L06-Q4",
+    "topic": "Effect of move ordering on pruning",
+    "stem": "Take a fixed game tree on which alpha-beta with one particular left-to-right ordering prunes several subtrees. If you now REVERSE the order in which every node expands its children (worst-for-the-mover first at every node), what happens?",
+    "options": {
+      "A": "The minimax value at the root changes, because pruning a different set of subtrees changes the backed-up answer.",
+      "B": "Alpha-beta becomes incomplete and may fail to return a value for the root.",
+      "C": "Pruning improves, because reversing the order always expands the best child first.",
+      "D": "The root's minimax value is unchanged, but more nodes may now be expanded; in the worst ordering alpha-beta prunes nothing and degenerates to plain minimax (O(b^d))."
+    },
+    "answer": "D",
+    "explanation": "Alpha-beta always returns the exact same minimax value as full minimax regardless of ordering; ordering only affects HOW MANY nodes are expanded. With the worst ordering (worst move first at every node) no cutoffs fire and alpha-beta visits every node, degenerating to O(b^d) like plain minimax. A is the classic error (the answer never changes). B is false (it stays complete). C is backwards (reversing to worst-first hurts, not helps).",
+    "figure": null
+  },
+  {
+    "id": "L06-Q5",
+    "topic": "Evaluation function at a depth cutoff",
+    "stem": "A depth-limited alpha-beta search reaches its horizon (depth = 0) at a board position where the game is NOT yet over. What value should the search back up from that node, and what is its status?",
+    "options": {
+      "A": "The rule-given utility U(s), because every node the search stops at is treated as a terminal.",
+      "B": "Zero, because a non-terminal position has no defined value until the game ends.",
+      "C": "The evaluation function Eval(s), a heuristic ESTIMATE of MAX's utility; it may be wrong, so the search is not guaranteed optimal.",
+      "D": "The exact Minimax(s) value, obtained by continuing the recursion past the horizon until real terminals are reached."
+    },
+    "answer": "C",
+    "explanation": "At an artificial cutoff (game still in progress) the search substitutes Eval(s), a heuristic estimate of the utility for MAX. Because Eval is only an estimate, depth-limited search loses the optimality guarantee unless Eval happens to equal the true Minimax value at every cutoff. A confuses Eval with the rule-given utility U(s), which is only used at TRUE terminals. B is wrong (a value is assigned, just heuristic). D contradicts the whole point of cutting off: the search does not continue past the horizon.",
+    "figure": null
+  },
+  {
+    "id": "L06-Q6",
+    "topic": "Minimax assumption / sub-optimal opponent",
+    "stem": "A minimax agent computes a root value of 5 against an opponent assumed to play optimally. During the real game the opponent blunders, choosing a branch whose minimax value is 8 (better for MAX) instead of the optimal-for-MIN branch worth 5. What can you conclude about MAX's realised payoff?",
+    "options": {
+      "A": "MAX's realised payoff can only be at least the minimax value (>= 5); against a sub-optimal opponent it may end up higher, never lower.",
+      "B": "MAX's realised payoff is exactly 5, because the precomputed minimax value is fixed regardless of how the opponent actually plays.",
+      "C": "MAX's realised payoff drops below 5, because the agent planned for a different opponent than the one it faced.",
+      "D": "The result is undefined, because minimax only works when the opponent plays optimally."
+    },
+    "answer": "A",
+    "explanation": "Minimax maximises the worst-case payoff: it guarantees at least the minimax value against ANY opponent. If MIN plays sub-optimally (picks a child whose value exceeds the minimum), MAX's realised payoff can only rise, never fall below the minimax value. So MAX gets >= 5. B ignores that real play can exceed the guarantee. C reverses the direction. D is false: minimax still plays validly and safely against a weaker opponent (it just does not actively exploit the weakness).",
+    "figure": null
+  },
+  {
+    "id": "L06-Q7",
+    "topic": "Properties: time/space complexity and ply",
+    "stem": "A two-player game has branching factor b = 4 and you search it fully to a depth of d = 6 ply with plain minimax (depth-first). Which statement about the search is correct?",
+    "options": {
+      "A": "Time is O(b * d) = 24 node expansions, because DFS only stores one path at a time.",
+      "B": "Space is O(b^d) = 4^6 nodes, because minimax must keep the entire tree in memory to back values up.",
+      "C": "Switching to alpha-beta would change the backed-up root value but keep the same O(b^d) worst-case time.",
+      "D": "Worst-case time is O(b^d) = 4^6 expansions and space is O(b*d) = O(24); one ply is a single player's half-move, so d = 6 means six half-moves (three by each side)."
+    },
+    "answer": "D",
+    "explanation": "Plain minimax is a DFS of the game tree: worst-case time is O(b^d) (here 4^6) because it expands every node to depth d, while space is only O(b*d) since DFS holds a single root-to-leaf path plus siblings. A ply is one half-move (one player's turn), so d = 6 ply is six half-moves, three per side. A confuses time with space. B confuses space with time. C is wrong on two counts: alpha-beta never changes the backed-up value, though it does share the same O(b^d) worst case.",
+    "figure": null
+  }
+]

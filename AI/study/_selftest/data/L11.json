@@ -1,0 +1,118 @@
+[
+  {
+    "id": "L11-Q1",
+    "topic": "prediction from a linear model",
+    "stem": "A fitted simple regression model is Sales = 51.849 + 7.527 * Advertising, where Advertising is in thousands of dollars and Sales is in thousands of units. A region spends $12,000 on advertising (Advertising = 12). What does the model predict for Sales (in thousands of units)?",
+    "options": {
+      "A": "63.376",
+      "B": "142.173",
+      "C": "90.324",
+      "D": "59.376"
+    },
+    "answer": "B",
+    "explanation": "Plug x = 12 into yhat = a + b*x: yhat = 51.849 + 7.527*12 = 51.849 + 90.324 = 142.173. Option C (90.324) is just the slope term 7.527*12 and forgets to add the intercept. Option A treats the spend as 1 unit ($1,000) instead of 12. Option D adds 7.527 once rather than multiplying by 12.",
+    "figure": null
+  },
+  {
+    "id": "L11-Q2",
+    "topic": "MSE / SSE on a tiny dataset",
+    "stem": "A model predicts yhat = 1 + 2*x. The dataset has three points: (x=1, y=4), (x=2, y=4), (x=3, y=8). Using MSE = (1/n)*sum((y_i - yhat_i)^2), what is the MSE?",
+    "options": {
+      "A": "3",
+      "B": "0",
+      "C": "1",
+      "D": "9"
+    },
+    "answer": "C",
+    "explanation": "Predictions are yhat = 1+2*1=3, 1+2*2=5, 1+2*3=7. Residuals (y - yhat) are 4-3=+1, 4-5=-1, 8-7=+1; squared they are 1, 1, 1; sum of squares (SSE) = 3. MSE = SSE/n = 3/3 = 1. Option A reports SSE (the un-normalised sum) instead of dividing by n=3. Option D squares the summed residual (1) incorrectly or uses the wrong n.",
+    "figure": null
+  },
+  {
+    "id": "L11-Q3",
+    "topic": "residuals from a fitted line (figure)",
+    "stem": "The scatter shows four data points and the fitted line yhat = 2*x + 1. Reading off the highlighted point at x = 3 (observed y = 8), what is its residual r = y - yhat, and is the point above or below the line?",
+    "options": {
+      "A": "r = +1, above the line",
+      "B": "r = -1, below the line",
+      "C": "r = +7, above the line",
+      "D": "r = 0, exactly on the line"
+    },
+    "answer": "A",
+    "explanation": "At x = 3 the line predicts yhat = 2*3 + 1 = 7. The observed value is 8, so the residual is r = y - yhat = 8 - 7 = +1, which is positive, meaning the point sits above the line. Option B flips the sign (computing yhat - y). Option C forgets to subtract the prediction and just reports the observed y minus nothing meaningful. Option D ignores the gap entirely.",
+    "figure": {
+      "type": "scatter",
+      "caption": "Four points with fitted line yhat = 2*x + 1; the point at x=3 is observed at y=8.",
+      "points": [[1, 3], [2, 4], [3, 8], [4, 9]],
+      "xlabel": "x",
+      "ylabel": "y",
+      "line": {"slope": 2.0, "intercept": 1.0},
+      "clusters": null,
+      "centroids": null
+    }
+  },
+  {
+    "id": "L11-Q4",
+    "topic": "R-squared interpretation (figure)",
+    "stem": "The scatter shows four points that all lie exactly on the fitted line yhat = 2*x + 1, so every residual is zero. What is the coefficient of determination R^2 for this training-set fit, and what does it mean?",
+    "options": {
+      "A": "R^2 = 0, the model explains none of the variability",
+      "B": "R^2 = 0.5, the model explains half of the variability",
+      "C": "R^2 = 1, the model explains all of the variability (SSE = 0)",
+      "D": "R^2 cannot be computed because the slope is not zero"
+    },
+    "answer": "C",
+    "explanation": "R^2 = 1 - SSE/SST. Since every point lies on the line, all residuals are 0, so SSE = 0 and R^2 = 1 - 0/SST = 1. The line passes through every training point and explains all of the variability. Option A is the SSE = SST case (line no better than predicting the mean). For an OLS fit with intercept on training data R^2 is always defined and lies in [0,1], so D is wrong.",
+    "figure": {
+      "type": "scatter",
+      "caption": "Four points lying exactly on the line yhat = 2*x + 1 (perfect fit, all residuals zero).",
+      "points": [[1, 3], [2, 5], [3, 7], [4, 9]],
+      "xlabel": "x",
+      "ylabel": "y",
+      "line": {"slope": 2.0, "intercept": 1.0},
+      "clusters": null,
+      "centroids": null
+    }
+  },
+  {
+    "id": "L11-Q5",
+    "topic": "gradient descent — learning rate effect",
+    "stem": "ML Lab 2 fits the same OLS line by gradient descent, iteratively stepping the coefficients downhill on the SSE/MSE surface. A student sets the learning rate far too large and observes the loss bouncing up and down and growing instead of settling. What is the most likely cause, and the correct fix?",
+    "options": {
+      "A": "The learning rate is too large, causing the updates to overshoot the minimum and diverge; reduce the learning rate.",
+      "B": "The learning rate is too small, so it cannot reach the minimum; increase it further.",
+      "C": "The SSE surface has many local minima, so no learning rate can work; switch to a different loss.",
+      "D": "Gradient descent cannot fit a linear model at all; only the normal equation works."
+    },
+    "answer": "A",
+    "explanation": "Too large a learning rate makes each step overshoot the minimum, so the loss oscillates and can diverge rather than decrease; the fix is to lower the learning rate. Option B describes the opposite symptom (slow but steady convergence). Option C is wrong because the OLS objective is convex with a single global minimum (no local minima). Option D is false: gradient descent reaches the same answer as the closed-form solve.",
+    "figure": null
+  },
+  {
+    "id": "L11-Q6",
+    "topic": "normal equation vs iterative gradient descent",
+    "stem": "For ordinary least squares with one or a few predictors, the lecture solves the fit in closed form (the normal equations) while ML Lab 2 also uses iterative gradient descent. Because the SSE objective for linear regression is convex, which statement best compares the two approaches?",
+    "options": {
+      "A": "They minimise different objectives, so they generally give different coefficients.",
+      "B": "Both minimise SSE and, at convergence, gradient descent reaches the same coefficients as the closed-form normal-equation solution.",
+      "C": "Gradient descent has no hyperparameters, whereas the normal equation requires a learning rate.",
+      "D": "The normal equation can land in a local minimum, so gradient descent is always more accurate."
+    },
+    "answer": "B",
+    "explanation": "Both methods minimise the same SSE objective; because that objective is convex (single global minimum), iterative gradient descent converges to the same coefficients the closed-form normal equations produce directly. Option C reverses which method has hyperparameters: gradient descent needs a learning rate and epochs, the closed-form solve has essentially none. Option D is backwards: the convex objective has no local minima to get stuck in.",
+    "figure": null
+  },
+  {
+    "id": "L11-Q7",
+    "topic": "overfitting with polynomial regression",
+    "stem": "Using polynomial features (adding x^2, x^3, ... as columns), a student fits a degree-10 polynomial to just 12 noisy training points and gets training R^2 = 0.999, but the curve wiggles wildly between points and performs poorly on new test data. What is the best description of what happened, and the appropriate remedy?",
+    "options": {
+      "A": "Underfitting; increase the polynomial degree further to capture more structure.",
+      "B": "Multicollinearity caused by too few points; add more predictors of a different kind.",
+      "C": "Overfitting; the high-degree model memorised training noise, so use a lower degree (or more data / regularisation) and judge on held-out test data.",
+      "D": "The fit is ideal; a near-perfect training R^2 of 0.999 means the model will generalise well."
+    },
+    "answer": "C",
+    "explanation": "A very flexible high-degree polynomial drives training error toward zero by fitting the noise, giving an inflated training R^2 but poor generalisation -- the classic overfitting symptom. The remedy is a simpler (lower-degree) model, more data, or regularisation, with model quality judged on held-out test data, not the training fit. Option A is the opposite problem. Option D is the exact trap: a near-perfect training R^2 with poor test behaviour signals overfitting, not good generalisation.",
+    "figure": null
+  }
+]

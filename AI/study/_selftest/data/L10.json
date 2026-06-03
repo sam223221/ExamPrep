@@ -1,0 +1,100 @@
+[
+  {
+    "id": "L10-Q1",
+    "topic": "Supervised vs unsupervised vs reinforcement learning",
+    "stem": "A robot vacuum is dropped into a brand-new house with no map and no labelled training data. It drives around, and each time it cleans a previously dirty patch it gets +1, while each time it bumps a wall it gets -1. Over many runs it learns which movement choices in which situations raise its long-run score. Which branch of machine learning does this match, per L10's definitions?",
+    "options": {
+      "A": "Supervised learning, because the +1 / -1 signals are output labels for each input state",
+      "B": "Unsupervised learning, because there is no labelled training set and the robot finds structure on its own",
+      "C": "Reinforcement learning, because an agent interacts with an environment of states, actions and rewards and gathers its own data to maximise long-term reward",
+      "D": "Semi-supervised learning, because only some of the states carry a reward"
+    },
+    "answer": "C",
+    "explanation": "L10 §3.1 defines reinforcement learning as having no fixed dataset: an agent interacts with an environment defined by states, actions and rewards, gathering its own data by acting to maximise long-term reward. The vacuum's delayed +1/-1 score is a reward signal, not a per-input label, so it is not supervised (A); and it is actively choosing actions to maximise reward rather than just discovering structure in unlabelled inputs, so it is not unsupervised (B). Semi-supervised (D) is not one of the three branches in the lecture.",
+    "figure": null
+  },
+  {
+    "id": "L10-Q2",
+    "topic": "Supervised vs unsupervised learning (classify a task)",
+    "stem": "A streaming service has a large table of users' raw listening features (genres played, time of day, session length) with NO category labels attached. It wants to automatically discover groups of similar listeners so marketing can later inspect the groups. Using L10's framework, this task is best described as:",
+    "options": {
+      "A": "Unsupervised learning (clustering) — inputs only, no labels, discover structure",
+      "B": "Supervised classification — assign each user to one of a finite set of known marketing segments",
+      "C": "Supervised regression — predict a continuous loyalty score per user",
+      "D": "Reinforcement learning — the marketing team rewards good groupings over time"
+    },
+    "answer": "A",
+    "explanation": "L10 §3.1 says unsupervised learning uses inputs only with no labels, and the learner discovers structure such as clusters. Here the data has no category labels and the goal is to discover groups of similar listeners (the 'sorting laundry without knowing the categories' analogy), which is clustering — the L12 specialisation. It is not supervised (B/C) because there are no (input, output) pairs to learn from, and there is no environment with rewards to make it reinforcement learning (D).",
+    "figure": null
+  },
+  {
+    "id": "L10-Q3",
+    "topic": "Classification vs regression (classify a task)",
+    "stem": "A weather company builds a model that eats today's temperature, humidity, pressure and wind and outputs a single real-valued number: tomorrow's noon temperature in degrees Celsius (e.g. -3.4, 18.7, 27.1). Per L10 §3.2, this supervised task is:",
+    "options": {
+      "A": "Binary classification, because tomorrow is either warmer or colder than today",
+      "B": "Multi-class classification, because each whole-degree value is a separate class",
+      "C": "Clustering, because temperatures naturally group into seasons",
+      "D": "Regression, because the output is a continuous real value rather than a discrete class"
+    },
+    "answer": "D",
+    "explanation": "L10 §3.2 defines regression as a supervised task whose output is a continuous real value (the 'predicting tomorrow's temperature' analogy is used verbatim in §2). A predicted temperature like 18.7°C is a number, not one of a finite set of discrete classes, so it is regression, not classification (A/B). Clustering (C) is unsupervised and produces groups, not a predicted number.",
+    "figure": null
+  },
+  {
+    "id": "L10-Q4",
+    "topic": "Overfitting vs underfitting (diagnose from error pattern)",
+    "stem": "You grow a decision tree to full depth on a small dataset. You measure: training accuracy = 100% (training error 0%), test accuracy = 62% (test error 38%). As you grew the tree deeper, training error kept dropping while test error first fell and then climbed back up. Per L10 §6.1, what is happening and what is the fix?",
+    "options": {
+      "A": "Underfitting — the model is too simple; grow the tree deeper / add capacity",
+      "B": "Overfitting — the model is more complex than necessary; prune the tree (pre- or post-pruning)",
+      "C": "The model is well-fit — 100% training accuracy means it has learned the task perfectly",
+      "D": "A train/test leak — the only explanation for any gap between training and test accuracy"
+    },
+    "answer": "B",
+    "explanation": "L10 §6.1 / Figure 17 describe overfitting exactly: training error keeps falling toward zero while test error bottoms out and then rises, leaving a large train-test gap (here 0% vs 38%). The fix is to reduce complexity via pre-pruning (max_depth, min_samples_leaf) or post-pruning (§6.3). Underfitting (A) would show large error on BOTH sets. Zero training error is the warning sign of overfitting, not of a perfect model (C). §6.5 stresses that a normal train-test gap is expected from overfitting and does not require a data leak (D).",
+    "figure": null
+  },
+  {
+    "id": "L10-Q5",
+    "topic": "Computing accuracy / precision / recall from a confusion matrix",
+    "stem": "A spam classifier is evaluated on 200 test emails. Class 'Spam' is the positive class. The confusion matrix is:\n\n                  Predicted Spam   Predicted Not-Spam\n  Actual Spam            40                20\n  Actual Not-Spam        10               130\n\nUsing precision = TP/(TP+FP) and recall = TP/(TP+FN), what are the precision and recall for the Spam class?",
+    "options": {
+      "A": "precision = 40/(40+20) = 0.667 and recall = 40/(40+10) = 0.80",
+      "B": "precision = 40/(40+10) = 0.80 and recall = 40/(40+20) = 0.667",
+      "C": "precision = 130/(130+10) = 0.929 and recall = 130/(130+20) = 0.867",
+      "D": "precision = (40+130)/200 = 0.85 and recall = 40/200 = 0.20"
+    },
+    "answer": "B",
+    "explanation": "With Spam positive: TP=40 (actual spam predicted spam), FP=10 (actual not-spam predicted spam), FN=20 (actual spam predicted not-spam), TN=130. Precision = TP/(TP+FP) = 40/(40+10) = 40/50 = 0.80. Recall = TP/(TP+FN) = 40/(40+20) = 40/60 ≈ 0.667. Option A swaps the FP and FN terms. Option C computes the metrics for the Not-Spam class instead. Option D confuses precision with accuracy ((TP+TN)/total = 170/200 = 0.85) and miscomputes recall.",
+    "figure": null
+  },
+  {
+    "id": "L10-Q6",
+    "topic": "Train/validation/test split and cross-validation purpose",
+    "stem": "While tuning a DecisionTreeClassifier you must pick the best value of max_depth. A teammate proposes: 'Train each candidate depth on the training set, then pick the depth that gives the highest accuracy on the test set, and report that same test accuracy as the model's final score.' Per L10's train/test logic (§3.3, §6.1), what is the flaw and the correct practice?",
+    "options": {
+      "A": "No flaw — the test set is exactly what you should use to choose hyperparameters and to report the score",
+      "B": "Tune max_depth on a separate validation set (or via cross-validation), and keep the test set untouched for one final unbiased estimate",
+      "C": "Tune max_depth on the training accuracy instead, since training error is the reliable estimate of generalisation",
+      "D": "Skip the split entirely — fit on all data and report training accuracy, which avoids any leakage"
+    },
+    "answer": "B",
+    "explanation": "L10 §3.3 requires the rows used to fit/select the model to be disjoint from the rows used to give the final accuracy estimate; if you choose max_depth by the test set and then report that same test number, the test set has leaked into model selection and no longer estimates performance on unseen data. The correct practice is to tune on a held-out validation set or via cross-validation and reserve the test set for one final unbiased estimate. §6.5 explicitly warns that training error always falls with capacity and is NOT a reliable generalisation estimate, ruling out C and D.",
+    "figure": null
+  },
+  {
+    "id": "L10-Q7",
+    "topic": "Bias-variance idea (ensembles, high-variance trees)",
+    "stem": "On the cheat dataset, swapping just a couple of training rows changes which attribute wins at the root, producing a noticeably different single decision tree each time (Figure 5). Per L10 (§4.9, §6.4), this sensitivity is best described as high variance, and the standard remedy is to:",
+    "options": {
+      "A": "Train many trees on bootstrap samples and combine them (bagging / random forest) so the individual trees' variance largely cancels in the vote",
+      "B": "Grow each single tree to greater depth, since a deeper tree is less sensitive to changes in the training data",
+      "C": "Switch the splitting criterion from Gini to entropy, which removes variance because the two measures usually pick the same split",
+      "D": "Train on the test set as well as the training set, so the tree sees every row and stops changing"
+    },
+    "answer": "A",
+    "explanation": "L10 §6.4 lists high variance — small data changes change the tree — as a core limitation of single decision trees, and §4.9 introduces ensembles as the remedy: bagging trains many trees on bootstrap samples and majority-votes them so individual variance cancels (the 'many slightly-different experts voting' analogy), with random forest adding a random attribute subset per split. Deeper trees overfit and have MORE variance, not less (B). Gini vs entropy usually pick the same split but do not address variance (C). Training on the test set destroys the disjoint split of §3.3 (D).",
+    "figure": null
+  }
+]

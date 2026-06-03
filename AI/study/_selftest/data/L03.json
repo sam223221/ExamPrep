@@ -1,0 +1,204 @@
+[
+  {
+    "id": "L03-Q1",
+    "topic": "BFS/DFS/UCS/IDS completeness, optimality, time and space (applied)",
+    "stem": "An agent searches a finite state space with branching factor b = 8. Goals can lie very deep, but the shallowest goal is at depth d, while the maximum path length is m (with m much larger than d). All step costs are equal to 1. The agent's hard constraint is memory: it cannot afford an exponential-sized frontier. Which single statement correctly matches a strategy to its property in THIS scenario?",
+    "options": {
+      "A": "BFS is the safest choice because its space cost O(b^d) is smaller than any other strategy here.",
+      "B": "DFS is optimal here because all step costs are equal, so the first goal it finds is least-cost.",
+      "C": "UCS uses only O(b*d) space because the step costs are uniform, so it reduces to a linear-memory search.",
+      "D": "DFS keeps only one root-to-leaf path plus its siblings, so its space cost is O(b*m) (linear in depth), which is why it survives the memory constraint."
+    },
+    "answer": "D",
+    "explanation": "DFS space is O(b*m): at any moment it stores the current root-to-leaf path and the unexpanded siblings along it, which is linear in depth rather than exponential. A is wrong because O(b^d) is still exponential (the memory killer). B is wrong because DFS is never optimal even with uniform costs (it returns the first goal found, which may be deep/expensive). C is wrong because UCS space is O(b^(1+floor(C*/eps))), exponential; reducing to BFS under uniform costs still gives O(b^d), not O(b*d).",
+    "figure": null
+  },
+  {
+    "id": "L03-Q2",
+    "topic": "Frontier data structure (FIFO / LIFO / priority queue)",
+    "stem": "The four uninformed strategies share one generic algorithm and differ ONLY in how the frontier is ordered. A student must match each strategy to the data structure that produces its expansion order. Which mapping is entirely correct?",
+    "options": {
+      "A": "BFS = FIFO queue; DFS = LIFO stack; UCS = priority queue keyed by g(n); IDS = LIFO stack (one depth-limited DFS at a time).",
+      "B": "BFS = LIFO stack; DFS = FIFO queue; UCS = priority queue keyed by g(n); IDS = FIFO queue.",
+      "C": "BFS = priority queue keyed by depth; DFS = LIFO stack; UCS = FIFO queue; IDS = priority queue.",
+      "D": "BFS = FIFO queue; DFS = priority queue keyed by g(n); UCS = LIFO stack; IDS = FIFO queue."
+    },
+    "answer": "A",
+    "explanation": "FIFO -> shallowest first = BFS; LIFO -> deepest first = DFS; priority queue ordered by path cost g(n) -> cheapest first = UCS; IDS runs a sequence of depth-limited DFS searches, each of which uses a LIFO stack, with only one DFS active at a time. B swaps BFS/DFS. C and D mis-assign UCS (it must use a g(n)-ordered priority queue, not FIFO/LIFO).",
+    "figure": null
+  },
+  {
+    "id": "L03-Q3",
+    "topic": "Tracing UCS to find an optimal-cost path",
+    "stem": "Run UCS on this directed graph from S to goal G. Edges (directed) with costs: S->A = 2, S->B = 4, A->C = 4, B->C = 1, C->G = 3, A->D = 7, D->G = 1. UCS tests for the goal when a node is POPPED. What total path cost does UCS return for the optimal solution?",
+    "options": {
+      "A": "7",
+      "B": "8",
+      "C": "9",
+      "D": "10"
+    },
+    "answer": "B",
+    "explanation": "Enumerate the S-to-G paths: S->A->C->G = 2+4+3 = 9; S->B->C->G = 4+1+3 = 8; S->A->D->G = 2+7+1 = 10. UCS expands nodes in non-decreasing g order and pops C via B (g=5) before C via A (g=6), so it commits to the cheapest route C->G giving 8. The optimal cost is 8 (path S->B->C->G). 9 is the A->C->G route, 10 is the A->D->G route, and 7 is not achievable by any path.",
+    "figure": null
+  },
+  {
+    "id": "L03-Q4",
+    "topic": "Why UCS goal-tests on POP, not on PUSH",
+    "stem": "A graph has two goals: S->G1 with cost 6, and S->A (cost 2) then A->G2 (cost 1). S's successors are generated in the order G1 first, then A. A student implements UCS but performs the goal test the moment a node is GENERATED (pushed) instead of when it is popped. What goes wrong, and why does testing on POP fix it?",
+    "options": {
+      "A": "Nothing goes wrong: G1 is generated first at cost 6, the test fires, and 6 is indeed optimal; testing on pop is only a performance optimisation.",
+      "B": "Testing on push returns S->G1 at cost 6 immediately, before A is even expanded, so the cheaper S->A->G2 (cost 3) is never found; testing on pop delays the goal test until G2 (g=3) is the cheapest popped node, so the optimum is returned.",
+      "C": "Testing on push loops forever because G1 keeps being regenerated; testing on pop adds an explored set that stops the loop.",
+      "D": "Testing on push returns S->A->G2 at cost 3 but reports the wrong cost; testing on pop fixes only the reported cost, not the path."
+    },
+    "answer": "B",
+    "explanation": "With goal-test-on-push, S is expanded and G1 (g=6) is generated first; the test fires and the algorithm returns the 6-cost path before A is ever expanded, so G2 (reachable at cost 2+1=3) does not yet exist on the frontier -- a sub-optimal answer. Goal-test-on-pop defers the test until a node is selected for expansion; UCS then pops A (g=2), expands it to generate G2 (g=3), and pops G2 (g=3) as the cheapest, returning the optimal cost-3 path. A is wrong (the test gives the wrong answer, it is not merely an optimisation). C confuses this with the zero-cost-cycle issue. D misstates the on-push outcome.",
+    "figure": null
+  },
+  {
+    "id": "L03-Q5",
+    "topic": "BFS vs UCS optimality on a weighted graph",
+    "stem": "Run BOTH breadth-first search (goal test on expansion, children pushed in edge-list order) and uniform-cost search on the weighted directed graph shown, from start S to goal G. Which pair of returned solution costs is correct?",
+    "options": {
+      "A": "BFS returns cost 4 and UCS returns cost 9 (BFS is optimal because it finds the shortest path).",
+      "B": "Both BFS and UCS return cost 4, because both are optimal on any graph.",
+      "C": "BFS returns cost 9 and UCS returns cost 4 (BFS finds the shallowest goal, not the cheapest; UCS finds the cheapest).",
+      "D": "BFS returns cost 9 and UCS returns cost 9, because the shallowest path is also the cheapest here."
+    },
+    "answer": "C",
+    "explanation": "BFS expands by depth and finds G first via the 2-edge path S->A->G = 1+8 = 9, returning cost 9 (graph-search blocks the later, deeper pushes of G). UCS expands by path cost and finds the 4-edge path S->B->C->D->G = 1+1+1+1 = 4, returning cost 4. So BFS=9, UCS=4: BFS returns the shallowest goal (fewest edges), not the cheapest, and is NOT optimal under non-uniform step costs, whereas UCS is. A swaps the two values; B falsely claims BFS is always optimal; D ignores that the cheaper path is deeper.",
+    "figure": {
+      "type": "graph",
+      "caption": "Weighted directed graph: S to G. The 2-edge route through A is shallow but expensive (8); the 4-edge route through B, C, D is deep but cheap.",
+      "directed": true,
+      "orientation": "LR",
+      "nodes": [
+        {
+          "id": "S",
+          "layer": 0,
+          "highlight": "start"
+        },
+        {
+          "id": "A",
+          "layer": 1
+        },
+        {
+          "id": "B",
+          "layer": 1
+        },
+        {
+          "id": "C",
+          "layer": 2
+        },
+        {
+          "id": "D",
+          "layer": 3
+        },
+        {
+          "id": "G",
+          "layer": 4,
+          "highlight": "goal"
+        }
+      ],
+      "edges": [
+        {
+          "from": "S",
+          "to": "A",
+          "label": "1"
+        },
+        {
+          "from": "S",
+          "to": "B",
+          "label": "1"
+        },
+        {
+          "from": "A",
+          "to": "G",
+          "label": "8"
+        },
+        {
+          "from": "B",
+          "to": "C",
+          "label": "1"
+        },
+        {
+          "from": "C",
+          "to": "D",
+          "label": "1"
+        },
+        {
+          "from": "D",
+          "to": "G",
+          "label": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": "L03-Q6",
+    "topic": "IDS time / space tradeoff",
+    "stem": "A finite tree has branching factor b = 10 and its shallowest goal at depth d = 5. A colleague claims iterative deepening search (IDS) must be far SLOWER than BFS because it re-expands the shallow levels on every pass. Using the lecture's accounting, which statement is correct?",
+    "options": {
+      "A": "IDS has the same big-O time as BFS, O(b^d), because the repeated shallow work is dominated by the deepest level; its advantage over BFS is space, O(b*d) instead of O(b^d).",
+      "B": "IDS is genuinely slower in big-O: it is O(d * b^d), one full BFS per depth level, so the colleague is right.",
+      "C": "IDS uses the same exponential space O(b^d) as BFS but is faster in time, O(b^(d-1)), because it prunes shallow nodes.",
+      "D": "IDS is both faster and more memory-hungry than BFS, with time O(b^(d/2)) and space O(b^d)."
+    },
+    "answer": "A",
+    "explanation": "The IDS work sums to (d+1)b^0 + d*b^1 + ... + 1*b^d, which is O(b^d) -- the same big-O class as BFS, since the last (deepest) level dominates (overhead factor b/(b-1), about 1.11 for b=10, roughly 23% extra at d=5). The real win is space: IDS runs one depth-limited DFS at a time, so it needs only O(b*d) memory versus BFS's O(b^d). B overstates the time cost; C and D invent incorrect bounds.",
+    "figure": null
+  },
+  {
+    "id": "L03-Q7",
+    "topic": "DFS expansion order (tree figure)",
+    "stem": "Depth-first search runs on the tree shown, starting at the root A, with the goal at node G. Children are pushed onto the LIFO stack right-to-left so the LEFTMOST child is expanded first (the lecture's left-first convention). In what order are nodes EXPANDED (popped) until the goal is found?",
+    "options": {
+      "A": "A, B, C, D, E, F, G (level-by-level, then the goal)",
+      "B": "A, B, E, F, C, G",
+      "C": "A, D, I, H, C, G (rightmost child first)",
+      "D": "A, B, C, E, F, G"
+    },
+    "answer": "B",
+    "explanation": "Left-first DFS: pop A and push its children right-to-left (D, C, B) so B is on top. Pop B, push F then E so E is on top; pop E (leaf), pop F (leaf). Pop C, push G; pop G -> goal. Expansion order is A, B, E, F, C, G. A is the BFS (level-order) sequence; C is the mirror-image right-first DFS (A, D, I, H, C, G); D scrambles the order by visiting C before finishing B's subtree.",
+    "figure": {
+      "type": "tree",
+      "caption": "Search tree for DFS expansion. Root A has children B, C, D (left to right). B has children E, F; C has child G; D has children H, I. Goal = G.",
+      "root": "A",
+      "edges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "A",
+          "C"
+        ],
+        [
+          "A",
+          "D"
+        ],
+        [
+          "B",
+          "E"
+        ],
+        [
+          "B",
+          "F"
+        ],
+        [
+          "C",
+          "G"
+        ],
+        [
+          "D",
+          "H"
+        ],
+        [
+          "D",
+          "I"
+        ]
+      ],
+      "goal": "G"
+    }
+  }
+]

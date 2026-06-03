@@ -1,0 +1,142 @@
+[
+  {
+    "id": "L07-Q1",
+    "topic": "Formulating a problem as a CSP",
+    "stem": "You must formulate 4-queens as a CSP using the compact formulation from the lecture (one variable per row, baking in the one-queen-per-row rule). Which choice correctly states the variables, domains, and the pairwise constraint between two rows i and j?",
+    "options": {
+      "A": "Variables X1..X4 (one per row), each domain {1,2,3,4} (the queen's column); for i != j require Xi != Xj AND |Xi - Xj| != |i - j|.",
+      "B": "Variables X1..X4 (one per row), each domain {0,1}; for i != j require Xi != Xj only.",
+      "C": "One Boolean variable per cell (16 variables), each domain {1,2,3,4}; constrain at most one 1 per row, column, and diagonal.",
+      "D": "Variables X1..X4 (one per column), each domain {1,2,3,4} (the queen's row); for i != j require only |Xi - Xj| != |i - j|."
+    },
+    "answer": "A",
+    "explanation": "The compact n-queens formulation uses n integer variables, one per row, with Xi in {1..n} giving the column of that row's queen (this builds 'one queen per row' into the variable set). Two queens conflict if they share a column (Xi = Xj) or a diagonal (|Xi - Xj| = |i - j|), so the constraint is Xi != Xj AND |Xi - Xj| != |i - j|. B uses Boolean domains (that belongs to the per-cell formulation, not the compact one) and drops the diagonal rule. C mixes the 16-variable per-cell encoding with the wrong {1..4} domain. D keeps only the diagonal constraint and omits the column-difference constraint, so two queens in the same column would be wrongly allowed.",
+    "figure": null
+  },
+  {
+    "id": "L07-Q2",
+    "topic": "Constraint graph + degree heuristic",
+    "stem": "The graph shows the Australia map-coloring CSP (each edge is a 'must differ' constraint; every variable's domain is {red, green, blue}). No variable has been assigned yet. Which variable does the degree heuristic select first, and why?",
+    "options": {
+      "A": "T, because as an isolated node it can take any value without risk.",
+      "B": "SA, because it participates in the most constraints (5 edges) on still-unassigned variables.",
+      "C": "WA, because it is drawn first and borders both NT and SA.",
+      "D": "NT, because it lies inside the WA-NT-SA triangle and so is maximally constrained."
+    },
+    "answer": "B",
+    "explanation": "At the very start every variable has its full 3-value domain, so MRV ties for all of them and the degree heuristic breaks the tie by picking the variable with the most edges to unassigned neighbours. Reading the graph: SA touches WA, NT, Q, NSW, and V = 5 edges, more than any other node, so SA is selected. T has degree 0 (fewest, not most). WA has degree 2 (WA-NT, WA-SA) and drawing order is irrelevant. NT has degree 3 (WA, SA, Q), fewer than SA's 5.",
+    "figure": {
+      "type": "graph",
+      "caption": "Australia map-coloring constraint graph; each edge is a must-differ constraint, domain {red, green, blue}.",
+      "directed": false,
+      "orientation": "LR",
+      "nodes": [
+        {"id": "WA", "layer": 0},
+        {"id": "NT", "layer": 1},
+        {"id": "SA", "layer": 1},
+        {"id": "Q", "layer": 2},
+        {"id": "NSW", "layer": 3},
+        {"id": "V", "layer": 4},
+        {"id": "T", "layer": 4}
+      ],
+      "edges": [
+        {"from": "WA", "to": "NT"},
+        {"from": "WA", "to": "SA"},
+        {"from": "NT", "to": "SA"},
+        {"from": "NT", "to": "Q"},
+        {"from": "Q", "to": "SA"},
+        {"from": "Q", "to": "NSW"},
+        {"from": "SA", "to": "NSW"},
+        {"from": "SA", "to": "V"},
+        {"from": "NSW", "to": "V"}
+      ]
+    }
+  },
+  {
+    "id": "L07-Q3",
+    "topic": "Forward checking (which values get eliminated from a neighbor)",
+    "stem": "Using the same Australia constraint graph (domains {red, green, blue}), backtracking with forward checking has just assigned WA = red and then Q = green. No other variable is assigned. After forward checking propagates these two assignments, what is SA's remaining domain?",
+    "options": {
+      "A": "{red, green, blue} -- SA is unaffected because it has not been assigned.",
+      "B": "{red, blue} -- only Q = green removes a value from SA.",
+      "C": "{blue} -- WA = red removes red and Q = green removes green from SA.",
+      "D": "{} -- SA is already wiped out, so the solver backtracks immediately."
+    },
+    "answer": "C",
+    "explanation": "Forward checking removes from each unassigned neighbour every value inconsistent with the just-assigned variable. SA is adjacent to both WA and Q. WA = red strips red from SA, and Q = green strips green from SA, leaving SA = {blue}. It is not yet empty (that wipeout happens only after a later V = blue, per the slide 30-34 trace), so D is wrong; A ignores propagation entirely; B forgets that WA = red also prunes SA.",
+    "figure": null
+  },
+  {
+    "id": "L07-Q4",
+    "topic": "Forward checking on 4-queens",
+    "stem": "In 4-queens (compact formulation, X1..X4 = queen's column in each row, domain {1,2,3,4}), the solver assigns X1 = 1 (queen at row 1, column 1) and runs forward checking. What is the resulting domain of X3 (row 3)?",
+    "options": {
+      "A": "{1, 3} -- X3 keeps the column of X1 and the cell on X1's diagonal.",
+      "B": "{2, 4} -- X3 loses column 1 (same column) and column 3 (on X1's diagonal).",
+      "C": "{2, 3, 4} -- only the shared column is removed.",
+      "D": "{} -- row 3 has no legal column, so the solver backtracks."
+    },
+    "answer": "B",
+    "explanation": "A queen at (3, c) conflicts with the queen at (1, 1) if c = 1 (same column) or if |3 - 1| = |c - 1| (same diagonal), i.e. |c - 1| = 2, which gives c = 3. So columns 1 and 3 are removed, leaving X3 = {2, 4}. A keeps exactly the values that should be removed. C forgets the diagonal at column 3. D is wrong because two legal columns remain.",
+    "figure": null
+  },
+  {
+    "id": "L07-Q5",
+    "topic": "Arc consistency / AC-3 (is an arc consistent? what gets pruned?)",
+    "stem": "Two variables x and y have domains Dx = {1,2,3} and Dy = {1,2,3} with the single constraint x < y. Enforcing arc consistency, you first REVISE the directed arc x -> y. Which statement is correct?",
+    "options": {
+      "A": "The arc x -> y is already consistent; nothing is removed from Dx.",
+      "B": "REVISE removes 1 from Dx, because no y satisfies 1 < y.",
+      "C": "REVISE removes 3 from Dx, because no y in {1,2,3} satisfies 3 < y, giving Dx = {1,2}.",
+      "D": "REVISE removes 1 from Dy, because the arc x -> y prunes the head variable y."
+    },
+    "answer": "C",
+    "explanation": "Arc x -> y is consistent only if every x has some supporting y with x < y. x = 1 (y = 2 or 3) and x = 2 (y = 3) are supported, but x = 3 has no y in {1,2,3} with 3 < y, so 3 is pruned from Dx, giving Dx = {1,2}. A is wrong because 3 is unsupported. B prunes the wrong end of the domain (1 is well supported). D confuses direction: enforcing x -> y prunes the tail x's domain, never the head y's (pruning 1 from Dy happens later when enforcing y -> x).",
+    "figure": null
+  },
+  {
+    "id": "L07-Q6",
+    "topic": "Variable ordering heuristics (MRV with degree tie-break)",
+    "stem": "Mid-search in a map-coloring CSP the current legal domains are: V1 = {red, green, blue}, V2 = {green, blue}, V3 = {red}, V4 = {green, blue}. V3 is already assigned (red). Among V2 and V4 (which tie on remaining-domain size), V2 has 3 unassigned neighbours and V4 has 1. Which variable does backtracking choose next under MRV with the degree heuristic as tie-breaker?",
+    "options": {
+      "A": "V1, because it has the most colours available and is least likely to fail.",
+      "B": "V3, because a domain of size 1 is the absolute minimum-remaining-values choice.",
+      "C": "V4, because the degree heuristic prefers the variable with the fewest unassigned neighbours.",
+      "D": "V2, because after MRV ties it and V4 at two values, the degree heuristic prefers V2's 3 unassigned neighbours."
+    },
+    "answer": "D",
+    "explanation": "MRV picks the unassigned variable with the fewest legal values. V3 is already assigned, so it is not a candidate (eliminating B). V1 has 3 values; V2 and V4 each have 2, so MRV narrows to {V2, V4} and rejects V1 (eliminating A). The degree heuristic breaks the MRV tie by choosing the variable with the MOST constraints on unassigned neighbours: V2 has 3, V4 has 1, so V2 wins (option D). C inverts the degree heuristic (it maximises, not minimises, unassigned-neighbour count).",
+    "figure": null
+  },
+  {
+    "id": "L07-Q7",
+    "topic": "Arc consistency vs forward checking (map-coloring)",
+    "stem": "The graph shows a 4-region map-coloring CSP (edges are must-differ constraints, every domain {red, green, blue}). The solver has assigned A = red, then propagated. The current domains are A = {red}, B = {green, blue}, C = {green, blue}, D = {red, green, blue}. Forward checking now reports no failure. What does enforcing full arc consistency reveal that forward checking missed, if anything?",
+    "options": {
+      "A": "Nothing extra; B and C each still have two colours, so the state is already arc-consistent.",
+      "B": "It prunes D to {} because D borders C, signalling failure.",
+      "C": "Forward checking was wrong to keep B = {green, blue}; arc consistency restores red to B.",
+      "D": "Both arcs B -> C and C -> B are consistent here (each value of B has a different-coloured support in C and vice versa), so arc consistency also finds no failure -- it only beats FC when a shared neighbour is forced to a single value."
+    },
+    "answer": "D",
+    "explanation": "Forward checking only prunes neighbours of the just-assigned variable; arc consistency additionally checks arcs between two unassigned variables (here B and C, which are adjacent in the triangle A-B-C). Test B -> C: B = green is supported by C = blue, B = blue is supported by C = green, so no pruning; by symmetry C -> B is also fine. With both B and C still holding {green, blue}, no domain is forced to a single conflicting value, so arc consistency reports no failure either. Arc consistency would have beaten FC only in the slide-45 situation where two adjacent unassigned variables are both pinned to the same single colour (e.g. both {blue}). A is too strong a claim about why nothing changes but lands on the wrong reasoning chain; B invents an edge effect on D (D borders only C and still has red available); C misstates arc consistency as adding values back -- it only removes unsupported ones.",
+    "figure": {
+      "type": "graph",
+      "caption": "4-region map-coloring CSP; triangle A-B-C plus pendant D, each edge a must-differ constraint, domain {red, green, blue}.",
+      "directed": false,
+      "orientation": "LR",
+      "nodes": [
+        {"id": "A", "layer": 0},
+        {"id": "B", "layer": 1},
+        {"id": "C", "layer": 1},
+        {"id": "D", "layer": 2}
+      ],
+      "edges": [
+        {"from": "A", "to": "B"},
+        {"from": "A", "to": "C"},
+        {"from": "B", "to": "C"},
+        {"from": "C", "to": "D"}
+      ]
+    }
+  }
+]

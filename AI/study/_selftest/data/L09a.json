@@ -1,0 +1,136 @@
+[
+  {
+    "id": "L09a-Q1",
+    "topic": "joint factorization from a DAG",
+    "stem": "Use the Bayesian network in the figure (the classic alarm network): Burglary (B) and Earthquake (E) are both parents of Alarm (A), and Alarm is the sole parent of both JohnCalls (J) and MaryCalls (M). Reading the BN factorization P(X1,...,Xn) = product of P(Xi | Parents(Xi)) directly off this structure, the full joint P(B,E,A,J,M) equals which product?",
+    "options": {
+      "A": "P(B)*P(E)*P(A)*P(J)*P(M)",
+      "B": "P(B|A)*P(E|A)*P(A|J,M)*P(J)*P(M)",
+      "C": "P(B)*P(E)*P(A|B,E)*P(J|A)*P(M|A)",
+      "D": "P(B)*P(E)*P(A|B,E)*P(J|A,M)*P(M|A,J)"
+    },
+    "answer": "C",
+    "explanation": "Each node contributes one factor P(node | its parents). B and E are roots (priors P(B), P(E)); A has parents {B,E} giving P(A|B,E); J and M each have the single parent A giving P(J|A) and P(M|A). So the joint is P(B)*P(E)*P(A|B,E)*P(J|A)*P(M|A). Option A wrongly drops all conditioning (treats every variable as independent). Option D adds J<->M coupling that the DAG does not contain; given A, John and Mary are conditionally independent.",
+    "figure": {
+      "type": "graph",
+      "caption": "Alarm Bayesian network: Burglary and Earthquake cause Alarm; Alarm triggers JohnCalls and MaryCalls.",
+      "directed": true,
+      "orientation": "TB",
+      "nodes": [
+        {"id": "Burglary", "layer": 0},
+        {"id": "Earthquake", "layer": 0},
+        {"id": "Alarm", "layer": 1},
+        {"id": "JohnCalls", "layer": 2},
+        {"id": "MaryCalls", "layer": 2}
+      ],
+      "edges": [
+        {"from": "Burglary", "to": "Alarm"},
+        {"from": "Earthquake", "to": "Alarm"},
+        {"from": "Alarm", "to": "JohnCalls"},
+        {"from": "Alarm", "to": "MaryCalls"}
+      ]
+    }
+  },
+  {
+    "id": "L09a-Q2",
+    "topic": "computing a joint entry from CPTs",
+    "stem": "Consider the Bayesian network in the figure: A -> B, and B -> C, B -> D (so A is the root, B has parent A, and C and D each have the single parent B). The relevant CPT entries are: P(A=true)=0.4 ; P(B=true | A=true)=0.3 ; P(C=true | B=true)=0.1 ; P(D=true | B=true)=0.95. What is the joint probability P(A=true, B=true, C=true, D=true)?",
+    "options": {
+      "A": "0.0114",
+      "B": "0.114",
+      "C": "0.012",
+      "D": "0.0285"
+    },
+    "answer": "A",
+    "explanation": "By the BN factorization, P(A=T,B=T,C=T,D=T) = P(A=T)*P(B=T|A=T)*P(C=T|B=T)*P(D=T|B=T) = 0.4*0.3*0.1*0.95 = 0.0114. Option B (0.114) forgets the P(C=true|B=true)=0.1 factor. Option C (0.012) forgets the P(D=true|B=true)=0.95 factor. Option D (0.0285) forgets the root prior P(A=true)=0.4.",
+    "figure": {
+      "type": "graph",
+      "caption": "A -> B -> {C, D}: A is the root, B depends on A, and C and D each depend only on B.",
+      "directed": true,
+      "orientation": "TB",
+      "nodes": [
+        {"id": "A", "layer": 0},
+        {"id": "B", "layer": 1},
+        {"id": "C", "layer": 2},
+        {"id": "D", "layer": 2}
+      ],
+      "edges": [
+        {"from": "A", "to": "B"},
+        {"from": "B", "to": "C"},
+        {"from": "B", "to": "D"}
+      ]
+    }
+  },
+  {
+    "id": "L09a-Q3",
+    "topic": "computing a joint entry (alarm network)",
+    "stem": "Using the alarm network of Q1 with CPTs: P(+b)=0.001 ; P(+e)=0.002 ; P(+a|+b,+e)=0.95, P(+a|+b,~e)=0.94, P(+a|~b,+e)=0.29, P(+a|~b,~e)=0.001 ; P(+j|+a)=0.9, P(+j|~a)=0.05 ; P(+m|+a)=0.7, P(+m|~a)=0.01. Compute the probability of the atomic event 'burglary, no earthquake, alarm sounds, John does NOT call, Mary calls' = P(+b, ~e, +a, ~j, +m). (Note: ~ denotes false.)",
+    "options": {
+      "A": "about 5.9 x 10^-4",
+      "B": "about 6.6 x 10^-5",
+      "C": "about 5.9 x 10^-3",
+      "D": "about 6.3 x 10^-4"
+    },
+    "answer": "B",
+    "explanation": "P(+b,~e,+a,~j,+m) = P(+b)*P(~e)*P(+a|+b,~e)*P(~j|+a)*P(+m|+a). Here P(~e)=1-0.002=0.998 and P(~j|+a)=1-0.9=0.1. So = 0.001*0.998*0.94*0.1*0.7 = 6.57 x 10^-5. Option A uses P(+j|+a)=0.9 instead of the complement P(~j|+a)=0.1. Option D is the unrelated false-alarm joint P(+j,+m,+a,~b,~e). Both A and D fail to take the complement for the negated literals.",
+    "figure": null
+  },
+  {
+    "id": "L09a-Q4",
+    "topic": "conditional independence / Markov condition",
+    "stem": "In the lecture-late Bayesian network the edges are M -> R, M -> L, S -> L, L -> T (M and S are independent roots; R has parent M only; L has parents M and S; T has parent L only). By the Markov condition, a node is conditionally independent of all its non-descendants given its parents. Given that we know the value of M, which set of variables is the topic node R conditionally independent of?",
+    "options": {
+      "A": "R is independent of M, S, and L (but not T) given M.",
+      "B": "R is independent of nothing, because R is correlated with T through the network.",
+      "C": "R is independent only of S given M, since L and T are downstream of M.",
+      "D": "R is conditionally independent of S, L, and T given M.",
+      "answer_note": "ignore"
+    },
+    "answer": "D",
+    "explanation": "R's only parent is M, and its only non-descendants here are S, L, and T (R has no descendants of its own). The Markov condition gives R perpendicular {S, L, T} | M. Option B confuses marginal correlation (R and T ARE marginally correlated through M -> L -> T) with conditional independence: once M is fixed, that path no longer carries information to R. Option C wrongly keeps L and T as dependents even though neither is a descendant of R.",
+    "figure": null
+  },
+  {
+    "id": "L09a-Q5",
+    "topic": "counting independent parameters",
+    "stem": "For the alarm network of Q1 (5 Boolean variables, with parent sets: B = none, E = none, A = {B,E}, J = {A}, M = {A}), how many INDEPENDENT probability parameters are needed to fully specify all the CPTs? (A Boolean node with k Boolean parents needs 2^k independent parameters.)",
+    "options": {
+      "A": "20",
+      "B": "31",
+      "C": "10",
+      "D": "32"
+    },
+    "answer": "C",
+    "explanation": "Independent parameters per node = 2^(number of parents): B and E (0 parents) need 2^0 = 1 each; A (2 parents) needs 2^2 = 4; J and M (1 parent each) need 2^1 = 2 each. Total = 1 + 1 + 4 + 2 + 2 = 10. Option A (20) counts table CELLS (2^(k+1) per node = 2+2+8+4+4), not independent parameters. Option B (31 = 2^5 - 1) is the parameter count of the UNRESTRICTED full joint. Option D (32 = 2^5) is the number of atomic events.",
+    "figure": null
+  },
+  {
+    "id": "L09a-Q6",
+    "topic": "collider / explaining away",
+    "stem": "In the alarm network of Q1, Burglary (B) and Earthquake (E) are the two parents of Alarm (A), with no edge between B and E. The CPTs give P(+b)=0.001 and, after computing, P(+b | +a) ~ 0.37 while P(+b | +a, +e) ~ 0.003. Which statement correctly describes the relationship between Burglary and Earthquake?",
+    "options": {
+      "A": "B and E are dependent marginally but become independent once Alarm is observed, because conditioning always removes dependence.",
+      "B": "B and E are independent marginally (P(B|E)=P(B)), but become dependent once Alarm is observed; observing the earthquake explains away the alarm and lowers P(burglary).",
+      "C": "B and E are independent both marginally and after observing Alarm, since there is no edge between them.",
+      "D": "B and E are dependent both marginally and conditionally, because they share the common child Alarm.",
+      "_x": "ignore"
+    },
+    "answer": "B",
+    "explanation": "B and E form a collider (V-structure) B -> A <- E. With no edge between them they are independent a priori: P(B|E)=P(B)=0.001. But conditioning on the common effect Alarm couples the parents: knowing an earthquake occurred 'explains away' the alarm, so P(+b|+a,+e) ~ 0.003 is far below P(+b|+a) ~ 0.37. Option A states the chain/fork rule (conditioning blocks the path) which is exactly backwards for a collider. Option C ignores the explaining-away effect; Option D wrongly claims marginal dependence.",
+    "figure": null
+  },
+  {
+    "id": "L09a-Q7",
+    "topic": "inference by enumeration",
+    "stem": "Using the alarm network of Q1 with P(+b)=0.001, P(+e)=0.002, and P(+a|+b,+e)=0.95, P(+a|+b,~e)=0.94, P(+a|~b,+e)=0.29, P(+a|~b,~e)=0.001, compute the marginal probability that the alarm sounds, P(A=true), by inference by enumeration (sum P(+a|b,e)*P(b)*P(e) over all four combinations of B and E).",
+    "options": {
+      "A": "about 0.50",
+      "B": "about 0.94",
+      "C": "about 0.045",
+      "D": "about 0.0025"
+    },
+    "answer": "D",
+    "explanation": "P(+a) = sum over b,e of P(+a|b,e)*P(b)*P(e) = 0.95*0.001*0.002 + 0.94*0.001*0.998 + 0.29*0.999*0.002 + 0.001*0.999*0.998 = 0.0000019 + 0.000938 + 0.000580 + 0.000997 = 0.002517, i.e. about 0.0025. The alarm almost never sounds because burglaries and earthquakes are both rare and the false-alarm rate P(+a|~b,~e)=0.001 is tiny. Option B (0.94) is the single CPT entry P(+a|+b,~e) used without weighting by the priors. Option A and C ignore that the dominant priors P(~b), P(~e) are near 1 while the corresponding alarm probability is only 0.001.",
+    "figure": null
+  }
+]
