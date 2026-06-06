@@ -1,0 +1,20 @@
+services:
+  ingest:
+    build: .
+    profiles: ["ingest"]
+    volumes:
+      - ./:/data/pdfs:ro
+      - ./study-guide:/data/study-guide:ro
+      - chroma:/data/chroma_db
+    command: ["python", "-m", "app.ingest"]
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma:/data/chroma_db
+    restart: unless-stopped
+
+volumes:
+  chroma:
