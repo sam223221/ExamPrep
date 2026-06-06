@@ -30,9 +30,17 @@ def discover_pdfs(root: str) -> list[str]:
 
 
 def topic_of(path: str) -> str:
-    """Folder name like '06. Denial of Service' -> 'Denial of Service'."""
+    """Derive a topic label from the path.
+
+    '06. Denial of Service/...' -> 'Denial of Service'.
+    Files under 'extraMaterial/' get a readable 'Extra: <filename>' label so they
+    are distinguishable in citations and filtering rather than all 'General'.
+    """
     parts = path.replace("\\", "/").split("/")
     for seg in parts:
         if seg[:2].isdigit() and "." in seg[:4]:
             return seg.split(".", 1)[1].strip()
+    if "extraMaterial" in parts:
+        stem = parts[-1].rsplit(".", 1)[0]
+        return "Extra: " + stem.replace("-", " ").replace("_", " ").strip()
     return "General"

@@ -14,6 +14,21 @@
   <main>
     <input id="q" type="search" autofocus
            placeholder="Ask anything… e.g. how does a SYN flood work?" />
+    <div id="filters">
+      <div class="chips" id="typeChips" role="group" aria-label="Content type">
+        <button class="chip active" data-type="">All</button>
+        <button class="chip" data-type="qna">Q&amp;A</button>
+        <button class="chip" data-type="guide">Guide</button>
+        <button class="chip" data-type="source">Slides</button>
+      </div>
+      <div class="chips" id="diffChips" role="group" aria-label="Difficulty" hidden>
+        <button class="chip active" data-diff="">Any</button>
+        <button class="chip" data-diff="easy">Easy</button>
+        <button class="chip" data-diff="medium">Medium</button>
+        <button class="chip" data-diff="hard">Hard</button>
+        <button class="chip" data-diff="very-hard">Very hard</button>
+      </div>
+    </div>
     <div id="status"></div>
     <div id="results"></div>
   </main>

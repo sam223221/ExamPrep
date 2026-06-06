@@ -29,11 +29,26 @@ stopped, so the examples below use `podman`.)
 
 To stop: `podman compose down`. To stop but keep the embedded data: `podman compose stop app`.
 
-## Re-ingest after editing the study guide
+## Re-ingest after editing the study guide / adding PDFs
 ```
 podman compose --profile ingest run --rm ingest
 podman compose restart app
 ```
+`restart` is enough for **data** changes (the new embeddings live in the `chroma` volume and
+the app reconnects on restart).
+
+## After changing app CODE (Python/JS/CSS)
+Rebuild the image and **recreate** the container (a plain `restart` keeps the old image):
+```
+podman compose build app
+podman compose up -d --force-recreate app
+```
+
+## Search filters
+The searchbar has filter chips: **All / Q&A / Guide / Slides**. Selecting **Q&A** reveals a
+difficulty row (**Any / Easy / Medium / Hard / Very hard**) backed by a bank of ~240 simulated
+open-book questions (20 per topic, grounded in the material). Filters map to the API as
+`/search?q=...&type=qna&difficulty=hard`.
 
 ## Tests
 ```
