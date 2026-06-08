@@ -28,6 +28,13 @@ function render(data) {
       : "";
     // r.html is sanitized server-side (bleach); r.text is plain and escaped here.
     const body = r.html ? r.html : `<p>${escapeHtml(r.text)}</p>`;
+    // source results carry an img URL to the rendered slide page (diagrams/charts)
+    const slide = r.img
+      ? `<a class="slide-link" href="${r.img}" target="_blank" rel="noopener" title="Open slide ${escapeHtml(r.file)} p.${r.page}">
+           <img class="slide-thumb" src="${r.img}" loading="lazy" alt="Slide ${escapeHtml(r.file)} page ${r.page}">
+           <span class="slide-cap">📄 view slide</span>
+         </a>`
+      : "";
     return `<div class="result">
       <div class="meta">
         <span class="badge ${r.type}">${r.type}</span>
@@ -37,6 +44,7 @@ function render(data) {
         <span class="score">sim ${r.score}</span>
       </div>
       <div class="body">${body}</div>
+      ${slide}
     </div>`;
   }).join("");
 }
@@ -89,3 +97,35 @@ diffChips.addEventListener("click", e => {
 
 q.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(run, 220); });
 q.addEventListener("keydown", e => { if (e.key === "Enter") { clearTimeout(timer); run(); } });
+
+// --- slide preview modal (lightbox) ---
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
+const modalCap = document.getElementById("modalCap");
+const modalClose = document.getElementById("modalClose");
+
+function openModal(src, caption) {
+  modalImg.src = src;
+  modalImg.alt = caption || "Slide preview";
+  modalCap.textContent = caption || "";
+  modal.hidden = false;
+}
+function closeModal() {
+  modal.hidden = true;
+  modalImg.removeAttribute("src");  // stop loading / free memory
+}
+
+// open when a slide thumbnail is clicked (let ctrl/middle/shift-click open a new tab)
+results.addEventListener("click", e => {
+  const link = e.target.closest(".slide-link");
+  if (!link) return;
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  e.preventDefault();
+  const img = link.querySelector("img");
+  openModal(link.getAttribute("href"), img ? img.alt : "Slide preview");
+});
+
+// close on backdrop click (but not when clicking the image), the × button, or Escape
+modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+modalClose.addEventListener("click", closeModal);
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !modal.hidden) closeModal(); });

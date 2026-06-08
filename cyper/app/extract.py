@@ -26,7 +26,8 @@ def extract_pdf(path: str) -> dict:
 
 def discover_pdfs(root: str) -> list[str]:
     pdfs = glob.glob(os.path.join(root, "**", "*.pdf"), recursive=True)
-    return sorted(p for p in pdfs if "docs" not in p.replace("\\", "/").split("/"))
+    skip = {"docs", ".git"}
+    return sorted(p for p in pdfs if not (skip & set(p.replace("\\", "/").split("/"))))
 
 
 def topic_of(path: str) -> str:

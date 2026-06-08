@@ -25,7 +25,9 @@ stopped, so the examples below use `podman`.)
    ```
    podman compose up -d app
    ```
-4. Open <http://localhost:8000>
+4. Open **<http://127.0.0.1:8000>** (prefer `127.0.0.1` over `localhost` — on Windows
+   `localhost` resolves to IPv6 `::1` first and can stall ~2s per request before falling back
+   to IPv4, since the app/podman publish on IPv4 only).
 
 To stop: `podman compose down`. To stop but keep the embedded data: `podman compose stop app`.
 
@@ -43,6 +45,13 @@ Rebuild the image and **recreate** the container (a plain `restart` keeps the ol
 podman compose build app
 podman compose up -d --force-recreate app
 ```
+
+## Slide images
+Every **source** (slide/PDF) result shows a "📄 view slide" thumbnail of the actual page —
+so diagrams, charts, DFDs, and attack trees that don't survive text extraction are still
+visible. Pages are rendered on demand (`GET /slide?file=...&page=...`, PyMuPDF → PNG) and
+cached on the `slides` volume, so the first view of a page takes ~1–2s and every later view is
+instant. The endpoint only serves files in the indexed PDF set (no path traversal).
 
 ## Search filters
 The searchbar has filter chips: **All / Q&A / Guide / Slides**. Selecting **Q&A** reveals a
