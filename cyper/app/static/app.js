@@ -21,6 +21,7 @@ function render(data) {
     let cite;
     if (r.type === "guide") cite = `Study guide · ${escapeHtml(r.title)}`;
     else if (r.type === "qna") cite = `Simulated Q&A · ${escapeHtml(r.topic)}`;
+    else if (r.type === "cmd") cite = `Command/Code · ${escapeHtml(r.topic)}`;
     else cite = `${escapeHtml(r.file)} · p.${r.page}`;
     const diffBadge = (r.type === "qna" && r.difficulty)
       ? `<span class="badge diff diff-${escapeHtml(r.difficulty)}">${escapeHtml(diffLabel(r.difficulty))}</span>`

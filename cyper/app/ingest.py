@@ -4,7 +4,7 @@ import glob
 import os
 import chromadb
 from app.extract import extract_pdf, discover_pdfs, topic_of
-from app.chunker import chunk_source, chunk_markdown, chunk_qna
+from app.chunker import chunk_source, chunk_markdown, chunk_qna, chunk_commands
 from app.embedder import Embedder
 
 PDF_ROOT = os.environ.get("PDF_ROOT", "/data/pdfs")
@@ -13,7 +13,7 @@ CHROMA_DIR = os.environ.get("CHROMA_DIR", "/data/chroma_db")
 COLLECTION = "cyber"
 
 
-def _qna_topic(path: str) -> str:
+def _topic_from_filename(path: str) -> str:
     """'08-threat-modeling-1.md' -> 'Threat Modeling 1'."""
     stem = os.path.basename(path).rsplit(".", 1)[0]
     head, _, tail = stem.partition("-")
@@ -26,7 +26,7 @@ def gather_chunks() -> list[dict]:
     for pdf in discover_pdfs(PDF_ROOT):
         rec = extract_pdf(pdf)
         chunks += chunk_source(rec["text"], file=rec["file"], topic=topic_of(pdf))
-    # top-level study-guide chapters (non-recursive: excludes the qna/ subfolder)
+    # top-level study-guide chapters (non-recursive: excludes the qna/ & commands/ subfolders)
     for md in sorted(glob.glob(os.path.join(GUIDE_ROOT, "*.md"))):
         with open(md, encoding="utf-8") as fh:
             text = fh.read()
@@ -35,7 +35,12 @@ def gather_chunks() -> list[dict]:
     for md in sorted(glob.glob(os.path.join(GUIDE_ROOT, "qna", "*.md"))):
         with open(md, encoding="utf-8") as fh:
             text = fh.read()
-        chunks += chunk_qna(text, file=os.path.basename(md), topic=_qna_topic(md))
+        chunks += chunk_qna(text, file=os.path.basename(md), topic=_topic_from_filename(md))
+    # command & code examples: one chunk per example
+    for md in sorted(glob.glob(os.path.join(GUIDE_ROOT, "commands", "*.md"))):
+        with open(md, encoding="utf-8") as fh:
+            text = fh.read()
+        chunks += chunk_commands(text, file=os.path.basename(md), topic=_topic_from_filename(md))
     return [c for c in chunks if c["text"].strip()]
 
 

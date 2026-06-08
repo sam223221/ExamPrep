@@ -55,7 +55,7 @@ def search(q: str, k: int = 5, where: dict | None = None) -> list[dict]:
         item = dict(meta)
         item["text"] = doc
         item["score"] = round(1 - dist, 3)  # cosine distance -> similarity
-        item["html"] = render_safe_markdown(doc) if meta.get("type") in ("guide", "qna") else None
+        item["html"] = render_safe_markdown(doc) if meta.get("type") in ("guide", "qna", "cmd") else None
         out.append(item)
     return out
 
@@ -65,7 +65,7 @@ def build_where(ctype: str | None, difficulty: str | None) -> dict | None:
     if difficulty and not ctype:
         ctype = "qna"  # only Q&A chunks carry a difficulty
     conds = []
-    if ctype in ("qna", "guide", "source"):
+    if ctype in ("qna", "guide", "source", "cmd"):
         conds.append({"type": ctype})
     if difficulty:
         conds.append({"difficulty": difficulty})

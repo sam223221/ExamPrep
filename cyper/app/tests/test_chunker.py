@@ -1,4 +1,4 @@
-from app.chunker import chunk_markdown, chunk_source, chunk_qna
+from app.chunker import chunk_markdown, chunk_source, chunk_qna, chunk_commands
 
 
 def test_chunk_source_attaches_page():
@@ -38,3 +38,30 @@ def test_chunk_qna_parses_questions_and_difficulty():
     assert "TCP backlog" in chunks[0]["text"]
     # the "**Answer:**" label is stripped from the stored body
     assert "**Answer:**" not in chunks[0]["text"]
+
+
+def test_chunk_commands_splits_examples_and_is_fence_aware():
+    md = (
+        "# 02. Vulnerability Assessment — Commands & Code Examples\n"
+        "### Full TCP SYN scan\n"
+        "**What:** stealthy port scan.\n"
+        "```bash\n"
+        "nmap -sS -p- 10.0.0.5\n"
+        "### this is a comment-like line inside a fence, NOT a new example\n"
+        "```\n"
+        "**Notes:** needs root.\n"
+        "### Service/version detection\n"
+        "**What:** identify services.\n"
+        "```bash\n"
+        "nmap -sV 10.0.0.5\n"
+        "```\n"
+    )
+    chunks = chunk_commands(md, file="02-vulnerability-assessment.md", topic="Vulnerability Assessment")
+    # fence-aware: the '###' inside the code block must NOT create a 3rd example
+    assert len(chunks) == 2
+    assert all(c["type"] == "cmd" for c in chunks)
+    assert chunks[0]["title"] == "Full TCP SYN scan"
+    assert chunks[1]["title"] == "Service/version detection"
+    # the command text is preserved in the chunk for embedding
+    assert "nmap -sS -p- 10.0.0.5" in chunks[0]["text"]
+    assert "comment-like line inside a fence" in chunks[0]["text"]

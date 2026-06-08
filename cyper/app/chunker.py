@@ -105,3 +105,47 @@ def chunk_qna(md: str, file: str, topic: str) -> list[dict]:
             buf.append(line)
     flush()
     return chunks
+
+
+def chunk_commands(md: str, file: str, topic: str) -> list[dict]:
+    """Parse a 'Commands & Code Examples' file into one chunk per example.
+
+    Each example block looks like:
+        ### <title>
+        **What:** ...
+        ```bash
+        <command(s)>
+        ```
+        **Notes:** ...
+    Splits on `### ` headers, but ignores any such line inside a fenced code
+    block (so a shell comment or diagram line can't mis-split). `type=cmd`.
+    """
+    chunks: list[dict] = []
+    title = ""
+    buf: list[str] = []
+    in_fence = False
+
+    def flush():
+        if not title:
+            return
+        body = "\n".join(buf).strip()
+        text = f"**{title}**\n\n{body}" if body else f"**{title}**"
+        chunks.append({
+            "text": text, "file": file, "topic": topic,
+            "page": 0, "type": "cmd", "title": title, "difficulty": "",
+        })
+
+    for line in md.splitlines():
+        if line.lstrip().startswith("```"):
+            in_fence = not in_fence
+            buf.append(line)
+            continue
+        if not in_fence and line.startswith("### "):
+            flush(); buf.clear()
+            title = line[4:].strip()
+            continue
+        if not in_fence and line.startswith("# "):
+            continue
+        buf.append(line)
+    flush()
+    return chunks
