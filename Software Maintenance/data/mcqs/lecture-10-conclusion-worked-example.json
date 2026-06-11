@@ -1,0 +1,1658 @@
+{
+  "lecture_id": "L10",
+  "lecture_num": 10,
+  "lecture_title": "Conclusion & Worked Example (Drawlets)",
+  "generated_from": [
+    "Conclusion of software change.pdf",
+    "Example of software change.pptx.pdf"
+  ],
+  "schema_version": 1,
+  "questions": [
+    {
+      "id": "L10-Q003",
+      "lecture_id": "L10",
+      "topic": "Software Change Process",
+      "difficulty": "easy",
+      "stem": "During the commit step of conclusion, where do programmers return their updated code?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The configuration-management repository"
+        },
+        {
+          "key": "B",
+          "text": "The production release server"
+        },
+        {
+          "key": "C",
+          "text": "The stakeholder acceptance environment"
+        },
+        {
+          "key": "D",
+          "text": "A local feature branch only"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Commit means returning updated code to the configuration-management repository while resolving conflicts with what others committed in the meantime. A local branch is not the shared repository the commit targets. The acceptance environment is for stakeholder testing, not commit. The release server receives released code, which is a later step. (Conclusion p.2)",
+      "source": {
+        "deck": "Conclusion of software change.pdf",
+        "page": 2
+      },
+      "tags": [
+        "Version Control / Git"
+      ]
+    },
+    {
+      "id": "L10-Q004",
+      "lecture_id": "L10",
+      "topic": "Version Control / Git",
+      "difficulty": "medium",
+      "stem": "Why does the commit step of conclusion involve resolving conflicts?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Because others may have committed changes to the same repository in the meantime"
+        },
+        {
+          "key": "B",
+          "text": "Because the merge tool corrupts patches"
+        },
+        {
+          "key": "C",
+          "text": "Because the baseline test rewrote the code"
+        },
+        {
+          "key": "D",
+          "text": "Because stakeholders edited the code during acceptance testing"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Commit returns code to the shared CM repository, and conflicts arise because other programmers may have committed overlapping changes since the developer branched. The baseline test certifies, it does not rewrite source. Stakeholders run acceptance tests, they do not edit code. The merge tool incorporates patches into users' programs, it does not corrupt them. (Conclusion p.2)",
+      "source": {
+        "deck": "Conclusion of software change.pdf",
+        "page": 2
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q007",
+      "lecture_id": "L10",
+      "topic": "Software Processes / CI",
+      "difficulty": "medium",
+      "stem": "A continuous-integration shop and a quarterly-release shop conclude a change differently. What does the deck say nonetheless stays the same?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The size of every release"
+        },
+        {
+          "key": "B",
+          "text": "The number of stakeholders involved"
+        },
+        {
+          "key": "C",
+          "text": "The same three logical steps (commit, baseline, release) still occur"
+        },
+        {
+          "key": "D",
+          "text": "The exact tooling and cadence"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Although the precise activities depend on the software process, the same three logical steps occur in every shop. The tooling, cadence, stakeholder count, and release sizes all vary by process, so they are not the invariant. (Conclusion p.1)",
+      "source": {
+        "deck": "Conclusion of software change.pdf",
+        "page": 1
+      },
+      "tags": [
+        "Software Change Process"
+      ]
+    },
+    {
+      "id": "L10-Q013",
+      "lecture_id": "L10",
+      "topic": "Software Change Process",
+      "difficulty": "medium",
+      "stem": "Running baseline testing too frequently produces which downside?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A broken baseline by definition"
+        },
+        {
+          "key": "B",
+          "text": "Unnecessary overhead"
+        },
+        {
+          "key": "C",
+          "text": "Loss of regression tests"
+        },
+        {
+          "key": "D",
+          "text": "Accumulated, undetected bugs"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Testing too frequently creates unnecessary overhead. Accumulated bugs are the opposite failure mode (testing too rarely). Frequency does not delete regression tests, and frequent testing does not by definition break the baseline. (Conclusion p.4)",
+      "source": {
+        "deck": "Conclusion of software change.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q021",
+      "lecture_id": "L10",
+      "topic": "Software Change Process",
+      "difficulty": "hard",
+      "stem": "A serious defect causes the testing team to reject the increment so that no new baseline is created. Which case is this, and what is its distinguishing consequence?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Bugs in baseline; fixes are deferred to the bug stack"
+        },
+        {
+          "key": "B",
+          "text": "Acceptance failure; stakeholders refuse release"
+        },
+        {
+          "key": "C",
+          "text": "Broken baseline; the increment's work is invalidated/postponed and reputations suffer"
+        },
+        {
+          "key": "D",
+          "text": "Missed deadline; the work waits for the next baseline"
+        }
+      ],
+      "answer": "C",
+      "explanation": "No-new-baseline plus invalidated increment plus reputational harm is the broken-baseline outcome. Bugs-in-baseline would still certify and defer. A missed deadline is about timing, not defect severity. Acceptance failure is a stakeholder-side, post-baseline event. (Conclusion p.7)",
+      "source": {
+        "deck": "Conclusion of software change.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q053",
+      "lecture_id": "L10",
+      "topic": "Concept Location",
+      "difficulty": "medium",
+      "stem": "Which concepts are classified as 'external' (crossing the system boundary, coming from outside)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "implement, modify, created"
+        },
+        {
+          "key": "B",
+          "text": "Figure, AbstractFigure, SimpleApplet"
+        },
+        {
+          "key": "C",
+          "text": "figure, canvas, tool"
+        },
+        {
+          "key": "D",
+          "text": "owner, ID, password"
+        }
+      ],
+      "answer": "D",
+      "explanation": "owner, ID and password are external concepts that come from outside the system boundary. figure/canvas are significant, implement/modify/created are irrelevant, and Figure/AbstractFigure/SimpleApplet are code classes, not extracted English concepts. (Drawlets p.8)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 8
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q055",
+      "lecture_id": "L10",
+      "topic": "Concept Location",
+      "difficulty": "hard",
+      "stem": "Why does concept classification matter before searching the code?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It tells you which concept (the significant 'figure') to anchor the search on, not 'owner'"
+        },
+        {
+          "key": "B",
+          "text": "It decides the release cadence"
+        },
+        {
+          "key": "C",
+          "text": "It selects which unit tests to delete"
+        },
+        {
+          "key": "D",
+          "text": "It assigns the baseline deadline"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Classification identifies the significant concept (figure) to anchor the search; owner is external and is what you ADD, not where you search. It has nothing to do with release cadence, test deletion, or the deadline. (Drawlets p.8)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 8
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q058",
+      "lecture_id": "L10",
+      "topic": "Concept Location",
+      "difficulty": "easy",
+      "stem": "Where does the Drawlets concept-location search start?",
+      "options": [
+        {
+          "key": "A",
+          "text": "At the leaf figure tools"
+        },
+        {
+          "key": "B",
+          "text": "At SimpleApplet, the already-comprehended host"
+        },
+        {
+          "key": "C",
+          "text": "At AbstractFigure, the answer"
+        },
+        {
+          "key": "D",
+          "text": "At the bug-report stack"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The search starts at SimpleApplet, the already-comprehended host, asking where a figure's properties live. AbstractFigure is the eventual ANSWER, not the start; the bug stack and leaf tools are unrelated to where comprehension begins. (Drawlets p.9)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 9
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q063",
+      "lecture_id": "L10",
+      "topic": "Impact Analysis",
+      "difficulty": "easy",
+      "stem": "With AbstractFigure as the change origin, what does impact analysis estimate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The stakeholder acceptance result"
+        },
+        {
+          "key": "B",
+          "text": "The final number of LOC typed"
+        },
+        {
+          "key": "C",
+          "text": "The release cadence"
+        },
+        {
+          "key": "D",
+          "text": "Which other classes will be touched (the blast radius)"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Impact analysis estimates the blast radius - which other classes the change will touch - before coding. Final LOC, release cadence, and acceptance results are not impact-analysis outputs. (Drawlets p.16, Phase 3)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q064",
+      "lecture_id": "L10",
+      "topic": "Impact Analysis",
+      "difficulty": "medium",
+      "stem": "Impact analysis predicts the owner change will ripple to roughly which part of Drawlets?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only the unit-test files"
+        },
+        {
+          "key": "B",
+          "text": "Only AbstractFigure itself"
+        },
+        {
+          "key": "C",
+          "text": "The whole upper graph: tool tree, canvas/sequence, palettes, and SimpleApplet"
+        },
+        {
+          "key": "D",
+          "text": "Only the two new classes"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Because many classes create, hold, or move figures, impact analysis predicts the ripple reaches the tool tree, the canvas/sequence, the palettes, and SimpleApplet - roughly the whole upper graph. It is not confined to AbstractFigure, the new classes, or test files. (Drawlets p.16, Phase 3)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q065",
+      "lecture_id": "L10",
+      "topic": "Impact Analysis",
+      "difficulty": "medium",
+      "stem": "What is the practical value of impact analysis before coding the owner change?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It signals this is a non-trivial, cross-cutting change rather than a one-class edit"
+        },
+        {
+          "key": "B",
+          "text": "It resolves merge conflicts in advance"
+        },
+        {
+          "key": "C",
+          "text": "It writes the new unit tests automatically"
+        },
+        {
+          "key": "D",
+          "text": "It certifies the baseline"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Impact analysis tells you in advance that the change is cross-cutting (many classes), not a single-class edit - guiding planning. It does not write tests, resolve conflicts, or certify baselines. (Drawlets p.16, Phase 3)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q066",
+      "lecture_id": "L10",
+      "topic": "Impact Analysis",
+      "difficulty": "hard",
+      "stem": "Impact analysis predicted a wide ripple. How was its estimate confirmed retrospectively?",
+      "options": [
+        {
+          "key": "A",
+          "text": "By actualization modifying ~13 classes and adding 2 new ones"
+        },
+        {
+          "key": "B",
+          "text": "By the 385 unit tests passing"
+        },
+        {
+          "key": "C",
+          "text": "By stakeholder acceptance approval"
+        },
+        {
+          "key": "D",
+          "text": "By a successful baseline certification"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The wide-ripple estimate was confirmed retrospectively by actualization modifying about 13 classes and adding 2 new ones. Test pass counts, baseline certification, and acceptance approval do not measure the predicted blast radius. (Drawlets p.37)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 37
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q067",
+      "lecture_id": "L10",
+      "topic": "Impact Analysis",
+      "difficulty": "hard",
+      "stem": "Why does an owner-check added to figure modification necessarily ripple to the tool tree and containers?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Containers cannot reference figures"
+        },
+        {
+          "key": "B",
+          "text": "Every tool that modifies figures and every container that stores them is affected by the owner constraint"
+        },
+        {
+          "key": "C",
+          "text": "The owner-check is placed in SimpleApplet only"
+        },
+        {
+          "key": "D",
+          "text": "Tools and containers are external concepts"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Because every tool that modifies figures and every container that stores them interacts with the now-owner-constrained figure, the change reaches the tool tree and canvas/sequence. Tools/containers are internal, the check is not SimpleApplet-only, and containers do reference figures. (Drawlets p.16, Phase 3)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q068",
+      "lecture_id": "L10",
+      "topic": "Prefactoring",
+      "difficulty": "medium",
+      "stem": "Did the Drawlets walkthrough perform a separate prefactoring step before actualization?",
+      "options": [
+        {
+          "key": "A",
+          "text": "No - it went straight to actualization; prefactoring was deemed unnecessary here"
+        },
+        {
+          "key": "B",
+          "text": "No - because prefactoring is forbidden"
+        },
+        {
+          "key": "C",
+          "text": "Yes - it extracted moveFigure first"
+        },
+        {
+          "key": "D",
+          "text": "Yes - it split move/secureMove first"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck performs no separate prefactoring step; it goes straight to actualization, deeming prefactoring unnecessary for this change. Extracting moveFigure and splitting move/secureMove are the POST-factoring refactorings, studied after. Prefactoring is optional, not forbidden. (Drawlets p.31-38, Phase 4)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q069",
+      "lecture_id": "L10",
+      "topic": "Prefactoring",
+      "difficulty": "hard",
+      "stem": "The guide notes that the closing refactoring study shows exactly what prefactoring one WOULD do. What are those two clean-ups?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Commit then certify the baseline"
+        },
+        {
+          "key": "B",
+          "text": "Move moveFigure up to ConstructionTool, and split move/secureMove"
+        },
+        {
+          "key": "C",
+          "text": "Delete obsolete tests and add new ones"
+        },
+        {
+          "key": "D",
+          "text": "Classify concepts then backtrack"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The closing study shows the prefactoring one would do: pull moveFigure up into ConstructionTool and split AbstractFigure.move into move/secureMove. Test maintenance, conclusion steps, and concept-location steps are different activities. (Drawlets p.31-36)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 33
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L10-Q070",
+      "lecture_id": "L10",
+      "topic": "Prefactoring",
+      "difficulty": "medium",
+      "stem": "How does the guide characterise prefactoring as a phase, given the Drawlets example?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Identical to baseline testing"
+        },
+        {
+          "key": "B",
+          "text": "Mandatory before every actualization"
+        },
+        {
+          "key": "C",
+          "text": "Performed only by stakeholders"
+        },
+        {
+          "key": "D",
+          "text": "Optional - performed only when it makes the change cheaper"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Prefactoring is optional and was skipped here because it was unnecessary. It is not mandatory, not stakeholder work, and not baseline testing. (Drawlets, Phase 4)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 16
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L10-Q071",
+      "lecture_id": "L10",
+      "topic": "Actualization",
+      "difficulty": "easy",
+      "stem": "Which two new classes are added during actualization of the owner change?",
+      "options": [
+        {
+          "key": "A",
+          "text": "RectangleTool and EllipseTool"
+        },
+        {
+          "key": "B",
+          "text": "move and secureMove"
+        },
+        {
+          "key": "C",
+          "text": "AbstractFigure and Figure"
+        },
+        {
+          "key": "D",
+          "text": "OwnerIdentity and SimpleListener"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Actualization adds OwnerIdentity (the user identity an owner carries) and SimpleListener (an Observer wiring it in). AbstractFigure/Figure already existed, move/secureMove are methods, and RectangleTool/EllipseTool are existing leaf tools. (Drawlets p.16)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q074",
+      "lecture_id": "L10",
+      "topic": "Actualization",
+      "difficulty": "medium",
+      "stem": "Where does the change BEGIN during actualization?",
+      "options": [
+        {
+          "key": "A",
+          "text": "At SimpleApplet"
+        },
+        {
+          "key": "B",
+          "text": "At AbstractFigure (the located class), which gains the owner concept"
+        },
+        {
+          "key": "C",
+          "text": "At the leaf creation tools"
+        },
+        {
+          "key": "D",
+          "text": "At the StylePalette"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Actualization begins at the located class AbstractFigure (marked red), which gains the owner concept, with OwnerIdentity/SimpleListener introduced to support it. It does not begin at leaf tools, SimpleApplet, or the palette. (Drawlets p.16)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q075",
+      "lecture_id": "L10",
+      "topic": "Actualization",
+      "difficulty": "hard",
+      "stem": "After OwnerIdentity and SimpleListener are introduced, which existing classes are shown depending on them?",
+      "options": [
+        {
+          "key": "A",
+          "text": "StylePalette and ToolBar"
+        },
+        {
+          "key": "B",
+          "text": "RectangleTool and EllipseTool"
+        },
+        {
+          "key": "C",
+          "text": "SimpleDrawingCanvas and AbstractFigure"
+        },
+        {
+          "key": "D",
+          "text": "ToolBar and ToolPalette"
+        }
+      ],
+      "answer": "C",
+      "explanation": "On the actualization slide, SimpleDrawingCanvas and AbstractFigure now depend on the new OwnerIdentity/SimpleListener. The palettes and leaf tools are reached later during propagation, not as the initial dependents. (Drawlets p.16)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q087",
+      "lecture_id": "L10",
+      "topic": "Refactoring",
+      "difficulty": "easy",
+      "stem": "What does the deck claim refactoring can do for change propagation?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Replace concept location"
+        },
+        {
+          "key": "B",
+          "text": "Shorten it"
+        },
+        {
+          "key": "C",
+          "text": "Eliminate the need for tests"
+        },
+        {
+          "key": "D",
+          "text": "Lengthen it"
+        }
+      ],
+      "answer": "B",
+      "explanation": "A long propagation is a problem, and refactoring can SHORTEN it (by moving code into fewer classes and splitting roles). It does not lengthen it, remove tests, or replace concept location. (Drawlets p.31)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 31
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q089",
+      "lecture_id": "L10",
+      "topic": "Refactoring",
+      "difficulty": "medium",
+      "stem": "In the 'move the code' refactoring, which method contains the duplicated logic that gets extracted?",
+      "options": [
+        {
+          "key": "A",
+          "text": "move(...), used only for user moves"
+        },
+        {
+          "key": "B",
+          "text": "basicNewFigure(...), which both creates a figure and moves it if at the wrong location"
+        },
+        {
+          "key": "C",
+          "text": "SimpleListener.update(...)"
+        },
+        {
+          "key": "D",
+          "text": "secureMove(...), the identity-checked move"
+        }
+      ],
+      "answer": "B",
+      "explanation": "basicNewFigure(...) exists in every figure-creating class and does two things: create a figure and, if at the wrong location, move it. The duplicated move logic is extracted. move/secureMove are the role-split result, and SimpleListener is the new Observer. (Drawlets p.33)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 33
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q090",
+      "lecture_id": "L10",
+      "topic": "Refactoring",
+      "difficulty": "hard",
+      "stem": "Which Fowler refactorings does the 'move the code' step combine?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Extract Method and Pull Up Method"
+        },
+        {
+          "key": "B",
+          "text": "Inline Method and Push Down Field"
+        },
+        {
+          "key": "C",
+          "text": "Replace Conditional with Polymorphism and Rename"
+        },
+        {
+          "key": "D",
+          "text": "Introduce Parameter Object and Encapsulate Field"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Moving the code combines Extract Method (pull the move logic out of basicNewFigure into moveFigure) and Pull Up Method (raise it into ConstructionTool). The other Fowler refactorings are not the ones the deck uses here. (Drawlets p.33)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 33
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q094",
+      "lecture_id": "L10",
+      "topic": "Refactoring",
+      "difficulty": "very-hard",
+      "stem": "Which statement best distinguishes the two postfactoring refactorings on Drawlets?",
+      "options": [
+        {
+          "key": "A",
+          "text": "'Move the code' relocates duplicated move logic up to ConstructionTool; 'split the roles' separates AbstractFigure.move into checked/unchecked variants"
+        },
+        {
+          "key": "B",
+          "text": "'Move the code' splits a method; 'split the roles' pulls a method up"
+        },
+        {
+          "key": "C",
+          "text": "Both move logic into ConstructionTool"
+        },
+        {
+          "key": "D",
+          "text": "Both split AbstractFigure.move"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Move-the-code = Extract+Pull Up moveFigure into ConstructionTool; split-the-roles = split AbstractFigure.move into move/secureMove. They are different mechanisms; the 'move-the-code splits a method / split-the-roles pulls up' option inverts them, and the 'both move into ConstructionTool' and 'both split AbstractFigure.move' options wrongly equate them. (Drawlets p.33-36)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 35
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q096",
+      "lecture_id": "L10",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "The Drawlets deck supplies the acceptance-test machinery for the conclusion. How were the acceptance tests built?",
+      "options": [
+        {
+          "key": "A",
+          "text": "By stakeholders editing the source directly"
+        },
+        {
+          "key": "B",
+          "text": "By hand-writing assertions in JUnit only"
+        },
+        {
+          "key": "C",
+          "text": "By mutation testing the baseline"
+        },
+        {
+          "key": "D",
+          "text": "With a record/playback tool for Java applications"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Acceptance tests were built with a record/playback tool for Java applications, feeding the stakeholders' acceptance decision. They were not pure hand-written JUnit, mutation tests, or source edits. (Drawlets p.27)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 27
+      },
+      "tags": [
+        "Software Testing"
+      ]
+    },
+    {
+      "id": "L10-Q099",
+      "lecture_id": "L10",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "How many lines of code make up Drawlets' unit-test suite?",
+      "options": [
+        {
+          "key": "A",
+          "text": "~40 000 LOC"
+        },
+        {
+          "key": "B",
+          "text": "~4800 LOC"
+        },
+        {
+          "key": "C",
+          "text": "~17 800 LOC"
+        },
+        {
+          "key": "D",
+          "text": "~124 LOC"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The unit-test code is about 4800 LOC. 17 800 is the production baseline, 40 000 is the whole framework, and 124 is the test LOC the change modified. (Drawlets p.25, p.30)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 25
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L10-Q101",
+      "lecture_id": "L10",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Which are examples of Drawlets' scenario-style functional tests?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Extract, PullUp, Inline"
+        },
+        {
+          "key": "B",
+          "text": "Irrelevant, External, Significant"
+        },
+        {
+          "key": "C",
+          "text": "Draw (figure drawn), Select (figure selected), Move (figure moved)"
+        },
+        {
+          "key": "D",
+          "text": "Commit, Baseline, Release"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Functional tests are scenario-style: Draw, Select, Move, etc. Commit/Baseline/Release are conclusion steps, Extract/PullUp/Inline are refactorings, and Irrelevant/External/Significant are concept categories. (Drawlets p.26)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 26
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L10-Q105",
+      "lecture_id": "L10",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "The guide calls test-suite maintenance the 'test-side analogue' of which production-code activity?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Concept location"
+        },
+        {
+          "key": "B",
+          "text": "Acceptance testing"
+        },
+        {
+          "key": "C",
+          "text": "Change propagation"
+        },
+        {
+          "key": "D",
+          "text": "Baseline frequency tuning"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Updating impacted tests, adding tests for new classes/features, keeping unaffected ones as regression, and deleting obsolete ones mirrors change propagation on the test side. It is not concept location, acceptance testing, or frequency tuning. (Drawlets p.28-29)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 29
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L10-Q126",
+      "lecture_id": "L10",
+      "topic": "Design Patterns",
+      "difficulty": "medium",
+      "stem": "The Observer/listener structure (e.g. the new SimpleListener) is a pattern from which reading?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Rajlich [Raj13]"
+        },
+        {
+          "key": "B",
+          "text": "Martin, Clean Architecture"
+        },
+        {
+          "key": "C",
+          "text": "Gang of Four, Design Patterns [GHJV94]"
+        },
+        {
+          "key": "D",
+          "text": "Fowler, Refactoring [Fowler99]"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Observer is a Gang of Four design pattern [GHJV94]; SimpleListener is its instance in the change. Fowler covers refactoring, Rajlich the example, and Martin architecture. (Drawlets p.16, citation key)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q128",
+      "lecture_id": "L10",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "How does the 'bugs in baseline' decision relate to technical debt?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It has no relationship to technical debt"
+        },
+        {
+          "key": "B",
+          "text": "It converts bugs into new features"
+        },
+        {
+          "key": "C",
+          "text": "Deferred minor-bug fixes are logged on the bug stack as debt to be paid in future changes"
+        },
+        {
+          "key": "D",
+          "text": "It eliminates technical debt entirely"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Certifying despite minor bugs preserves progress but logs debt: the fixes go on the bug-report stack for future changes. It does not eliminate debt, convert bugs to features, or stand apart from debt. (Conclusion p.6)",
+      "source": {
+        "deck": "Conclusion of software change.pdf",
+        "page": 6
+      },
+      "tags": [
+        "Software Change Process"
+      ]
+    },
+    {
+      "id": "L10-Q130",
+      "lecture_id": "L10",
+      "topic": "Actualization",
+      "difficulty": "hard",
+      "stem": "Why does the guide call the Drawlets propagation 'the heart of the lecture'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It demonstrates how to write unit tests"
+        },
+        {
+          "key": "B",
+          "text": "It explains the merge tool"
+        },
+        {
+          "key": "C",
+          "text": "It concretely shows one small edit rippling through a large part of the class graph, the lecture's core point"
+        },
+        {
+          "key": "D",
+          "text": "It lists all design patterns in Drawlets"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The propagation animation makes the lecture's core point concrete: a tiny edit ripples widely, so structure (and refactoring) matters. It is not primarily about writing tests, cataloguing patterns, or the merge tool. (Drawlets p.16-24)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 24
+      },
+      "tags": [
+        "Impact Analysis"
+      ]
+    },
+    {
+      "id": "L10-Q138",
+      "lecture_id": "L10",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "How does the Drawlets functional testing connect to the conclusion's acceptance step?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Functional tests are run only after release"
+        },
+        {
+          "key": "B",
+          "text": "Functional tests replace the baseline test entirely"
+        },
+        {
+          "key": "C",
+          "text": "Acceptance testing is done by the CI server alone"
+        },
+        {
+          "key": "D",
+          "text": "JGiven+Mockito functional tests feed the stakeholders' acceptance decision (BDD-style verification)"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The JGiven+Mockito functional tests (plus record/playback) are the BDD-style verification feeding stakeholders' acceptance decision. They do not replace baseline testing, are not CI-only, and are not post-release. (Drawlets p.27; Conclusion p.8)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 27
+      },
+      "tags": [
+        "Software Testing"
+      ]
+    },
+    {
+      "id": "L10-Q142",
+      "lecture_id": "L10",
+      "topic": "Software Testing",
+      "difficulty": "very-hard",
+      "stem": "Given splitting touches the fewest classes (5) yet the deck still flags a test-cost downside, which reasoning is correct?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Splitting deletes the need for functional tests"
+        },
+        {
+          "key": "B",
+          "text": "New methods need a new (duplicated) set of unit tests, and writing new tests costs more than adapting existing ones, so total effort may exceed move-function"
+        },
+        {
+          "key": "C",
+          "text": "Test cost is independent of the refactoring chosen"
+        },
+        {
+          "key": "D",
+          "text": "Fewer classes always means fewer tests, so splitting is cheapest overall"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Splitting creates new methods that require a new, duplicated set of unit tests, and new tests cost more to write than adapting existing ones - so fewest-classes need not be least-effort. Fewer classes does not guarantee fewer/cheaper tests, functional tests are still needed, and test cost depends on the refactoring. (Drawlets p.38)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 38
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L10-Q152",
+      "lecture_id": "L10",
+      "topic": "Concept Location",
+      "difficulty": "hard",
+      "stem": "What hypothesis did the maintainer test (and reject) at SimpleDrawingCanvas, and why was it wrong?",
+      "options": [
+        {
+          "key": "A",
+          "text": "That a figure's own properties live in its container; wrong because the container only holds figures, not their individual state"
+        },
+        {
+          "key": "B",
+          "text": "That the canvas is a new class; wrong because it already existed"
+        },
+        {
+          "key": "C",
+          "text": "That the canvas is external; wrong because it is significant"
+        },
+        {
+          "key": "D",
+          "text": "That the canvas owns no figures; wrong because it owns all of them"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The rejected hypothesis was that figure properties live in the container SimpleDrawingCanvas; it is wrong because the container only holds figures, while a single figure's own state (owner) belongs on AbstractFigure. The canvas is not new, not external, and does hold figures. (Drawlets p.10, p.13)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 13
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q158",
+      "lecture_id": "L10",
+      "topic": "Prefactoring",
+      "difficulty": "very-hard",
+      "stem": "Why does the guide frame the closing Drawlets refactorings as illustrating prefactoring even though they are shown after the change?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Because they delete the change request"
+        },
+        {
+          "key": "B",
+          "text": "Because prefactoring always happens after actualization"
+        },
+        {
+          "key": "C",
+          "text": "They are exactly the clean-ups one would do BEFORE a future owner-related change to make it cheaper"
+        },
+        {
+          "key": "D",
+          "text": "Because they are acceptance tests"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Shown after the change as analysis, the move-moveFigure and split-move/secureMove refactorings are precisely the prefactoring one would do before a future owner-related change to shorten its propagation. Prefactoring does not follow actualization, delete requests, or constitute acceptance tests. (Drawlets p.31-36, Phase 4)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 33
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L10-Q193",
+      "lecture_id": "L10",
+      "topic": "Actualization",
+      "difficulty": "easy",
+      "stem": "What colour marks the located origin class AbstractFigure when actualization begins?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Grey"
+        },
+        {
+          "key": "B",
+          "text": "Blue"
+        },
+        {
+          "key": "C",
+          "text": "Red"
+        },
+        {
+          "key": "D",
+          "text": "Green"
+        }
+      ],
+      "answer": "C",
+      "explanation": "AbstractFigure is marked red as the origin gaining the owner concept. Grey = checked-unchanged, green = reconciled, blue = a new class. (Drawlets p.16)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q501",
+      "lecture_id": "L10",
+      "topic": "Software Change Process",
+      "difficulty": "easy",
+      "stem": "You have just finished implementing a change and your local code passes your own tests. In the conclusion phase, what is your very first action?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Schedule the next acceptance-testing session with stakeholders"
+        },
+        {
+          "key": "B",
+          "text": "Delete the obsolete tests from the suite"
+        },
+        {
+          "key": "C",
+          "text": "Download the latest user release"
+        },
+        {
+          "key": "D",
+          "text": "Commit your updated code to the configuration-management repository"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The conclusion begins with commit: returning updated code to the CM repository (resolving conflicts). Baseline, acceptance, and release all come after commit, and deleting tests is test-suite maintenance, not the first conclusion action. (Conclusion p.2)",
+      "source": {
+        "deck": "Conclusion of software change.pdf",
+        "page": 2
+      },
+      "tags": [
+        "Version Control / Git"
+      ]
+    },
+    {
+      "id": "L10-Q502",
+      "lecture_id": "L10",
+      "topic": "Software Change Process",
+      "difficulty": "medium",
+      "stem": "You are concluding a change and your commit lands minutes before nightly baseline testing kicks off. A teammate committed an overlapping edit an hour earlier. What must you do as part of committing?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Ask stakeholders to approve the merge"
+        },
+        {
+          "key": "B",
+          "text": "Re-run concept location on the conflicting file"
+        },
+        {
+          "key": "C",
+          "text": "Resolve the conflict with the teammate's already-committed change"
+        },
+        {
+          "key": "D",
+          "text": "Wait for the next release before committing"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Commit means returning code to the shared CM repository while resolving conflicts with whatever others committed in the meantime. You do not wait for a release, re-run concept location, or seek stakeholder approval to merge. (Conclusion p.2)",
+      "source": {
+        "deck": "Conclusion of software change.pdf",
+        "page": 2
+      },
+      "tags": [
+        "Version Control / Git"
+      ]
+    },
+    {
+      "id": "L10-Q507",
+      "lecture_id": "L10",
+      "topic": "Software Change Process",
+      "difficulty": "very-hard",
+      "stem": "You are a programmer in a quarterly-release shop. You finish a change two days after baseline testing began. What is the realistic conclusion-phase outcome for you?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Your change is auto-merged because the shop uses CI"
+        },
+        {
+          "key": "B",
+          "text": "The testing team reverts the whole baseline to include you"
+        },
+        {
+          "key": "C",
+          "text": "Your change is excluded from this baseline; you re-integrate and submit by the next deadline, with extra work"
+        },
+        {
+          "key": "D",
+          "text": "Your change ships in this quarter's release regardless"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Missing the commit deadline (baseline-test start) means your work is not in this baseline; you must submit by the next deadline, doing extra re-integration work against a moved baseline, and management notes the miss. (Conclusion p.5)",
+      "source": {
+        "deck": "Conclusion of software change.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q508",
+      "lecture_id": "L10",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "At conclusion, stakeholders sit down to thoroughly exercise the new owner feature before approving it for users. Which activity is this?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Baseline testing"
+        },
+        {
+          "key": "B",
+          "text": "Unit testing"
+        },
+        {
+          "key": "C",
+          "text": "Acceptance testing"
+        },
+        {
+          "key": "D",
+          "text": "Mutation testing"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Stakeholders conducting functional testing that thoroughly exercises functionalities and approves software for release is acceptance testing. Baseline/unit/mutation testing are performed by the team or tools, not stakeholders. (Conclusion p.8)",
+      "source": {
+        "deck": "Conclusion of software change.pdf",
+        "page": 8
+      },
+      "tags": [
+        "Software Testing"
+      ]
+    },
+    {
+      "id": "L10-Q515",
+      "lecture_id": "L10",
+      "topic": "Concept Location",
+      "difficulty": "medium",
+      "stem": "Which concept from the owner change request is NOT classified as 'significant'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "canvas"
+        },
+        {
+          "key": "B",
+          "text": "owner"
+        },
+        {
+          "key": "C",
+          "text": "Both figure and canvas"
+        },
+        {
+          "key": "D",
+          "text": "figure"
+        }
+      ],
+      "answer": "B",
+      "explanation": "owner is classified as external (it crosses the system boundary). figure and canvas are the significant concepts already in the design. (Drawlets p.8)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 8
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q521",
+      "lecture_id": "L10",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "During test-suite maintenance after a change, which action is NOT performed?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Add tests for the new features"
+        },
+        {
+          "key": "B",
+          "text": "Delete all tests that the change touched"
+        },
+        {
+          "key": "C",
+          "text": "Keep unaffected old tests as regression tests"
+        },
+        {
+          "key": "D",
+          "text": "Remove obsolete tests"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Tests impacted by the change are UPDATED, not deleted. Maintenance keeps unaffected tests as regression, removes obsolete ones, and adds new-feature tests. (Drawlets p.28-29)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q527",
+      "lecture_id": "L10",
+      "topic": "Refactoring",
+      "difficulty": "hard",
+      "stem": "Compare the 'move the code' refactoring with 'splitting the roles' on the owner change.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Move splits move into two methods; splitting pulls code into ConstructionTool"
+        },
+        {
+          "key": "B",
+          "text": "Move pulls duplicated move-logic up into ConstructionTool; splitting divides move into move and secureMove"
+        },
+        {
+          "key": "C",
+          "text": "Both add a third new class to the design"
+        },
+        {
+          "key": "D",
+          "text": "Both leave the classes-modified count unchanged at 13"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Move-the-code extracts moveFigure and pulls it up into ConstructionTool; splitting divides AbstractFigure.move into move and secureMove. Both still add only 2 classes, and both REDUCE classes modified (8 and 5). (Drawlets p.33, p.36-37)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 33
+      },
+      "tags": [
+        "Technical Debt"
+      ]
+    },
+    {
+      "id": "L10-Q565",
+      "lecture_id": "L10",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Misconception: 'Verification is one final step at the very end.' What is the correction?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Verification is a band that wraps every phase, embodied throughout by the test suite"
+        },
+        {
+          "key": "B",
+          "text": "Verification is identical to acceptance testing"
+        },
+        {
+          "key": "C",
+          "text": "Correct; verification runs only after release"
+        },
+        {
+          "key": "D",
+          "text": "Verification is performed only by stakeholders"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Verification is the vertical band wrapping every phase, concretely the test suite running throughout, not one final step. It is broader than stakeholder acceptance. (Drawlets p.25)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 25
+      },
+      "tags": [
+        "Software Testing"
+      ]
+    },
+    {
+      "id": "L10-Q588",
+      "lecture_id": "L10",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "In the move-the-code refactoring, into which base class is moveFigure pulled up?",
+      "options": [
+        {
+          "key": "A",
+          "text": "AbstractFigure"
+        },
+        {
+          "key": "B",
+          "text": "SimpleApplet"
+        },
+        {
+          "key": "C",
+          "text": "ConstructionTool"
+        },
+        {
+          "key": "D",
+          "text": "DrawingCanvas"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The duplicated move logic is extracted into moveFigure and pulled up into the base class ConstructionTool. AbstractFigure holds the move/secureMove split; the others are not the pull-up target. (Drawlets p.33)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 33
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L10-Q589",
+      "lecture_id": "L10",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "After the move-the-code refactoring, the owner-check's impacted set shrinks to which classes?",
+      "options": [
+        {
+          "key": "A",
+          "text": "ConstructionTool plus the four concrete creation tools (RectangleTool, EllipseTool, RectangularCreationTool, PG_RectImageTool)"
+        },
+        {
+          "key": "B",
+          "text": "Every palette and tool in the graph"
+        },
+        {
+          "key": "C",
+          "text": "Only OwnerIdentity and SimpleListener"
+        },
+        {
+          "key": "D",
+          "text": "All 13 original classes"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The refactoring-impact diagram shows the owner-check now touches only ConstructionTool plus the four concrete creation tools - far smaller than the full p.24 propagation. (Drawlets p.34)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 34
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L10-Q591",
+      "lecture_id": "L10",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "very-hard",
+      "stem": "Read the comparison table: which row stays the SAME across no-refactoring, move, and splitting?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Classes modified"
+        },
+        {
+          "key": "B",
+          "text": "LOC modified"
+        },
+        {
+          "key": "C",
+          "text": "Classes added (2) and interfaces modified (1)"
+        },
+        {
+          "key": "D",
+          "text": "Test cost"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Classes added (2) and interfaces modified (1) are invariant across all three strategies; classes modified (13->8->5) and effectively test cost change, and LOC varies slightly (91/95/87). (Drawlets p.37)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 37
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q605",
+      "lecture_id": "L10",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "Interpret the unit-test figures: 385 unit tests carry how many assertions and how many LOC?",
+      "options": [
+        {
+          "key": "A",
+          "text": "91 assertions, 17 800 LOC"
+        },
+        {
+          "key": "B",
+          "text": "1369 assertions, ~4800 LOC"
+        },
+        {
+          "key": "C",
+          "text": "13 assertions, 8 LOC"
+        },
+        {
+          "key": "D",
+          "text": "141 assertions, 124 LOC"
+        }
+      ],
+      "answer": "B",
+      "explanation": "385 unit tests carry 1369 assertions across ~4800 LOC of unit-test code. 141 is the functional-test count; 91/17 800 are change/baseline production figures. (Drawlets p.25)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L10-Q622",
+      "lecture_id": "L10",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "Cause: the testing team certifies a baseline with minor bugs logged to the stack. Consequence over time if the stack is ignored?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The baseline auto-fixes itself"
+        },
+        {
+          "key": "B",
+          "text": "The release becomes a large installer"
+        },
+        {
+          "key": "C",
+          "text": "Deferred bug-fixes accumulate as technical debt to be paid in future changes"
+        },
+        {
+          "key": "D",
+          "text": "Concept location must restart"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Logging minor bugs to the stack preserves progress but accrues technical debt - fixes deferred to future changes. Ignoring the stack lets debt accumulate. (Conclusion p.6)",
+      "source": {
+        "deck": "Conclusion of software change.pdf",
+        "page": 6
+      },
+      "tags": [
+        "Software Change Process"
+      ]
+    },
+    {
+      "id": "L10-Q641",
+      "lecture_id": "L10",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "easy",
+      "stem": "The Drawlets functional-test suite (Draw/Select/Move scenarios) totals how many test cases?",
+      "options": [
+        {
+          "key": "A",
+          "text": "91"
+        },
+        {
+          "key": "B",
+          "text": "141"
+        },
+        {
+          "key": "C",
+          "text": "1369"
+        },
+        {
+          "key": "D",
+          "text": "385"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Drawlets has 141 functional test cases (Draw/Select/Move scenarios). 385 is unit tests, 1369 assertions, 91 the modified production LOC. (Drawlets p.26)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 26
+      },
+      "tags": [
+        "Software Testing"
+      ]
+    },
+    {
+      "id": "L10-Q669",
+      "lecture_id": "L10",
+      "topic": "Refactoring",
+      "difficulty": "easy",
+      "stem": "The two ways refactoring shortens propagation are moving code into fewer classes and what?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Splitting the roles of an overloaded method"
+        },
+        {
+          "key": "B",
+          "text": "Skipping baselines"
+        },
+        {
+          "key": "C",
+          "text": "Adding figure types"
+        },
+        {
+          "key": "D",
+          "text": "Deleting tests"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Refactoring shortens propagation by moving code into fewer classes and splitting overloaded-method roles. Deleting tests and skipping baselines are never proposed. (Drawlets p.31)",
+      "source": {
+        "deck": "Example of software change.pptx.pdf",
+        "page": 31
+      },
+      "tags": [
+        "Technical Debt"
+      ]
+    }
+  ]
+}

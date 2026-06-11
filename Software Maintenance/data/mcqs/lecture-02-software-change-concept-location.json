@@ -1,0 +1,1698 @@
+{
+  "lecture_id": "L02",
+  "lecture_num": 2,
+  "lecture_title": "Software Change & Concept Location",
+  "generated_from": [
+    "ChangeReqLec.pdf",
+    "ChangeLec.pdf",
+    "ConceptLocation.pdf",
+    "JHotDraw.pdf",
+    "ChangeReqLab.pdf",
+    "CLLab1.pdf"
+  ],
+  "schema_version": 1,
+  "questions": [
+    {
+      "id": "L02-Q003",
+      "lecture_id": "L02",
+      "topic": "Software Change Process",
+      "difficulty": "medium",
+      "stem": "What distinguishes software change from green-field development?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Software change never involves writing any new code"
+        },
+        {
+          "key": "B",
+          "text": "Software change excludes any form of testing"
+        },
+        {
+          "key": "C",
+          "text": "Software change always operates on existing code"
+        },
+        {
+          "key": "D",
+          "text": "Software change is performed only by the original authors"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Change always operates on existing code, the central premise of maintenance; green-field starts from nothing. It does write new code (it adds functionality), can be done by any maintainer, and includes verification. (SoftwareChange p.2, p.5)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 2
+      },
+      "tags": [
+        "definition"
+      ]
+    },
+    {
+      "id": "L02-Q010",
+      "lecture_id": "L02",
+      "topic": "Software Change Process",
+      "difficulty": "hard",
+      "stem": "Why does the dominance of perfective maintenance matter for the design of a change process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It shows corrective maintenance can be ignored entirely"
+        },
+        {
+          "key": "B",
+          "text": "It motivates a process tuned for adding functionality to existing code rather than just patching bugs"
+        },
+        {
+          "key": "C",
+          "text": "It proves that most code never needs to be tested"
+        },
+        {
+          "key": "D",
+          "text": "It means refactoring should never be performed"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Because perfective work dominates, the canonical process is tuned for adding functionality to existing code, not merely patching. Testing is still required, corrective work still happens (~21%), and refactoring is part of pre/postfactoring. (SoftwareChange p.3)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 3
+      },
+      "tags": [
+        "lientz-swanson",
+        "exam-point"
+      ]
+    },
+    {
+      "id": "L02-Q025",
+      "lecture_id": "L02",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "How does Verification fit into the phased change model?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It runs vertically alongside Prefactoring through Conclusion"
+        },
+        {
+          "key": "B",
+          "text": "It runs only during Initiation"
+        },
+        {
+          "key": "C",
+          "text": "It replaces the Postfactoring phase"
+        },
+        {
+          "key": "D",
+          "text": "It is a single final phase after Conclusion"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Verification runs vertically alongside the implementation phases (Prefactoring through Conclusion), guaranteeing correctness throughout. It is not a single final step, is not confined to Initiation, and does not replace Postfactoring. (SoftwareChange p.5, p.13)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 13
+      },
+      "tags": [
+        "verification",
+        "process"
+      ]
+    },
+    {
+      "id": "L02-Q028",
+      "lecture_id": "L02",
+      "topic": "Concept Location",
+      "difficulty": "medium",
+      "stem": "In the phased model, Concept Location sits between which two phases?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Impact Analysis and Prefactoring"
+        },
+        {
+          "key": "B",
+          "text": "Conclusion and Initiation"
+        },
+        {
+          "key": "C",
+          "text": "Actualization and Postfactoring"
+        },
+        {
+          "key": "D",
+          "text": "Initiation and Impact Analysis"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Concept Location follows Initiation and feeds Impact Analysis: concepts are extracted from the request, located in code, and the located classes seed Impact Analysis. The other pairs are later in the spine. (SoftwareChange p.8)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 8
+      },
+      "tags": [
+        "process",
+        "concept-location"
+      ]
+    },
+    {
+      "id": "L02-Q029",
+      "lecture_id": "L02",
+      "topic": "Impact Analysis",
+      "difficulty": "medium",
+      "stem": "What does the Impact Analysis phase determine?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The change strategy and the impact set of affected classes"
+        },
+        {
+          "key": "B",
+          "text": "The natural-language wording of the user story"
+        },
+        {
+          "key": "C",
+          "text": "Which version-control branch to use"
+        },
+        {
+          "key": "D",
+          "text": "The color scheme of the GUI"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Impact Analysis determines the change strategy and the impact set of affected classes. Wording the user story is Initiation; branch choice is Conclusion/version control; GUI styling is unrelated. (SoftwareChange p.9)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 9
+      },
+      "tags": [
+        "impact-analysis"
+      ]
+    },
+    {
+      "id": "L02-Q030",
+      "lecture_id": "L02",
+      "topic": "Impact Analysis",
+      "difficulty": "hard",
+      "stem": "How is the initial impact set formed at the start of Impact Analysis?",
+      "options": [
+        {
+          "key": "A",
+          "text": "From a random sample of supplier modules"
+        },
+        {
+          "key": "B",
+          "text": "From the classes identified during Concept Location"
+        },
+        {
+          "key": "C",
+          "text": "From the classes touched in the previous release"
+        },
+        {
+          "key": "D",
+          "text": "From every class in the entire system"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The classes found in Concept Location make up the initial impact set; dependency analysis then grows it. It is not every class, not last release's classes, and not a random sample. (SoftwareChange p.9)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 9
+      },
+      "tags": [
+        "impact-analysis",
+        "concept-location"
+      ]
+    },
+    {
+      "id": "L02-Q033",
+      "lecture_id": "L02",
+      "topic": "Prefactoring",
+      "difficulty": "easy",
+      "stem": "How does the deck define prefactoring?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Opportunistic refactoring that localizes (minimizes) the impact of the change"
+        },
+        {
+          "key": "B",
+          "text": "Writing the new feature code"
+        },
+        {
+          "key": "C",
+          "text": "Refactoring done after the change to remove anti-patterns"
+        },
+        {
+          "key": "D",
+          "text": "Committing the change to version control"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Prefactoring is opportunistic refactoring that localizes/minimizes the impact of SC, done before the change. Refactoring after to remove anti-patterns is postfactoring; writing the feature is actualization; committing is conclusion. (SoftwareChange p.10)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 10
+      },
+      "tags": [
+        "prefactoring"
+      ]
+    },
+    {
+      "id": "L02-Q034",
+      "lecture_id": "L02",
+      "topic": "Prefactoring",
+      "difficulty": "medium",
+      "stem": "Which two named Fowler refactorings does the deck give as prefactoring examples?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Rename Variable and Pull Up Method"
+        },
+        {
+          "key": "B",
+          "text": "Extract Class and Extract Superclass"
+        },
+        {
+          "key": "C",
+          "text": "Replace Conditional and Introduce Parameter"
+        },
+        {
+          "key": "D",
+          "text": "Inline Method and Move Field"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The deck names Extract Class (gather fields/methods into a new component) and Extract Superclass (create a new abstract class) as prefactoring examples. The others are real Fowler refactorings but not the ones cited here. (SoftwareChange p.10)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 10
+      },
+      "tags": [
+        "prefactoring",
+        "refactoring"
+      ]
+    },
+    {
+      "id": "L02-Q035",
+      "lecture_id": "L02",
+      "topic": "Prefactoring",
+      "difficulty": "medium",
+      "stem": "The Extract Class prefactoring refactoring does what?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Creates a new abstract superclass"
+        },
+        {
+          "key": "B",
+          "text": "Deletes an unused class"
+        },
+        {
+          "key": "C",
+          "text": "Gathers fields, methods, and code snippets into a new component class"
+        },
+        {
+          "key": "D",
+          "text": "Merges two classes into one"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Extract Class gathers fields, methods, and code snippets into a new component class. Creating a new abstract class is Extract Superclass; deleting and merging are different operations. (SoftwareChange p.10)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 10
+      },
+      "tags": [
+        "prefactoring",
+        "refactoring"
+      ]
+    },
+    {
+      "id": "L02-Q036",
+      "lecture_id": "L02",
+      "topic": "Prefactoring",
+      "difficulty": "hard",
+      "stem": "Why is prefactoring performed BEFORE the new code is written?",
+      "options": [
+        {
+          "key": "A",
+          "text": "To prioritize the change request in the backlog"
+        },
+        {
+          "key": "B",
+          "text": "To remove anti-patterns the change has already introduced"
+        },
+        {
+          "key": "C",
+          "text": "To verify the change against test cases"
+        },
+        {
+          "key": "D",
+          "text": "To make the upcoming change small and local, minimizing its impact"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Prefactoring happens before the change to localize and minimize impact, making the change small and local. Removing introduced anti-patterns is postfactoring (after); verification and backlog prioritization are different phases. (SoftwareChange p.10)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 10
+      },
+      "tags": [
+        "prefactoring"
+      ]
+    },
+    {
+      "id": "L02-Q037",
+      "lecture_id": "L02",
+      "topic": "Actualization",
+      "difficulty": "easy",
+      "stem": "What does the Actualization phase do?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Creates new code, plugs it into the old code, and visits neighboring classes to update them"
+        },
+        {
+          "key": "B",
+          "text": "Prioritizes the product backlog"
+        },
+        {
+          "key": "C",
+          "text": "Commits the baseline to version control"
+        },
+        {
+          "key": "D",
+          "text": "Extracts concepts from the change request"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Actualization creates the new code, plugs it into existing code, and updates neighboring classes. Concept extraction is Concept Location, committing is Conclusion, prioritizing is Initiation. (SoftwareChange p.11)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 11
+      },
+      "tags": [
+        "actualization"
+      ]
+    },
+    {
+      "id": "L02-Q038",
+      "lecture_id": "L02",
+      "topic": "Actualization",
+      "difficulty": "medium",
+      "stem": "During Actualization, what is 'change propagation'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Copying the change to every branch"
+        },
+        {
+          "key": "B",
+          "text": "Updating neighboring classes so the system stays consistent"
+        },
+        {
+          "key": "C",
+          "text": "Reverting the change if a test fails"
+        },
+        {
+          "key": "D",
+          "text": "Changes cascading uncontrollably through dependencies"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Change propagation is the deliberate act of updating neighbors to keep the system consistent. The uncontrolled cascade is the ripple effect; the other options are unrelated to the term. (SoftwareChange p.11)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 11
+      },
+      "tags": [
+        "actualization"
+      ]
+    },
+    {
+      "id": "L02-Q039",
+      "lecture_id": "L02",
+      "topic": "Actualization",
+      "difficulty": "hard",
+      "stem": "How does the 'ripple effect' differ from 'change propagation' in Actualization?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The ripple effect happens only during Initiation"
+        },
+        {
+          "key": "B",
+          "text": "They are two names for the same act of committing code"
+        },
+        {
+          "key": "C",
+          "text": "The ripple effect is changes cascading outward through dependencies; change propagation is the deliberate updating of neighbors to stay consistent"
+        },
+        {
+          "key": "D",
+          "text": "Change propagation removes anti-patterns introduced by the change"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The ripple effect is the cascade of changes outward through dependencies; change propagation is the maintainer's act of updating neighbors to keep the system consistent. They are distinct, occur in Actualization, and neither is committing or anti-pattern removal. (SoftwareChange p.11)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 11
+      },
+      "tags": [
+        "actualization"
+      ]
+    },
+    {
+      "id": "L02-Q040",
+      "lecture_id": "L02",
+      "topic": "Refactoring",
+      "difficulty": "easy",
+      "stem": "What does the Postfactoring phase eliminate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The product backlog"
+        },
+        {
+          "key": "B",
+          "text": "The original change request"
+        },
+        {
+          "key": "C",
+          "text": "Supplier modules from the dependency graph"
+        },
+        {
+          "key": "D",
+          "text": "Anti-patterns that the change may have introduced"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Postfactoring eliminates anti-patterns the change may have introduced (e.g. long method, bloated class). It does not remove the request, suppliers, or the backlog. (SoftwareChange p.12)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 12
+      },
+      "tags": [
+        "postfactoring",
+        "refactoring"
+      ]
+    },
+    {
+      "id": "L02-Q041",
+      "lecture_id": "L02",
+      "topic": "Refactoring",
+      "difficulty": "medium",
+      "stem": "Which two anti-patterns does the deck name as targets of postfactoring?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Long method and bloated class"
+        },
+        {
+          "key": "B",
+          "text": "Feature envy and shotgun surgery"
+        },
+        {
+          "key": "C",
+          "text": "God object and spaghetti code"
+        },
+        {
+          "key": "D",
+          "text": "Magic numbers and dead code"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck names long method and bloated class as anti-patterns postfactoring cleans up after a change. The others are real smells but not the cited examples. (SoftwareChange p.12)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 12
+      },
+      "tags": [
+        "postfactoring",
+        "refactoring"
+      ]
+    },
+    {
+      "id": "L02-Q042",
+      "lecture_id": "L02",
+      "topic": "Refactoring",
+      "difficulty": "hard",
+      "stem": "Postfactoring is best described as the mirror of which phase?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Verification, but skipping the tests"
+        },
+        {
+          "key": "B",
+          "text": "Prefactoring, but cleaning up after the change instead of before"
+        },
+        {
+          "key": "C",
+          "text": "Conclusion, but without committing"
+        },
+        {
+          "key": "D",
+          "text": "Actualization, but reverting code instead of adding it"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Postfactoring mirrors prefactoring: prefactoring refactors before to minimize impact, postfactoring refactors after to remove introduced anti-patterns. It is not reverting, skipping tests, or a variant of Conclusion. (SoftwareChange p.10, p.12)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 12
+      },
+      "tags": [
+        "postfactoring",
+        "prefactoring",
+        "refactoring"
+      ]
+    },
+    {
+      "id": "L02-Q043",
+      "lecture_id": "L02",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "According to the deck, what does Verification comprise?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only manual code reading"
+        },
+        {
+          "key": "B",
+          "text": "Only automated unit tests"
+        },
+        {
+          "key": "C",
+          "text": "Testing (functional, unit, structural) and walkthroughs"
+        },
+        {
+          "key": "D",
+          "text": "Compilation and linking"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Verification comprises testing (functional, unit, structural) and walkthroughs. It is broader than manual reading alone, broader than unit tests alone, and is not the build step. (SoftwareChange p.13)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 13
+      },
+      "tags": [
+        "verification"
+      ]
+    },
+    {
+      "id": "L02-Q046",
+      "lecture_id": "L02",
+      "topic": "Version Control / Git",
+      "difficulty": "medium",
+      "stem": "The Conclusion phase is the lecture's explicit tie-in to which later course topics?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Concept location methodologies"
+        },
+        {
+          "key": "B",
+          "text": "Version Control / Git and continuous integration"
+        },
+        {
+          "key": "C",
+          "text": "User-story templates"
+        },
+        {
+          "key": "D",
+          "text": "Design patterns"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Conclusion (commit, new baseline, prepare for next change) ties into Version Control / Git and CI. Concept location, design patterns, and user stories are introduced in other parts of L02. (SoftwareChange p.14)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 14
+      },
+      "tags": [
+        "conclusion",
+        "version-control",
+        "ci"
+      ]
+    },
+    {
+      "id": "L02-Q078",
+      "lecture_id": "L02",
+      "topic": "Concept Location",
+      "difficulty": "easy",
+      "stem": "According to the deck, what is true about comprehending large programs?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Comprehension is unnecessary for maintenance"
+        },
+        {
+          "key": "B",
+          "text": "Large programs cannot be completely comprehended"
+        },
+        {
+          "key": "C",
+          "text": "Only the compiler needs to comprehend the program"
+        },
+        {
+          "key": "D",
+          "text": "Large programs must be fully read before any change"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The deck states large programs cannot be completely comprehended, motivating partial comprehension. Reading everything is infeasible, comprehension is needed, and the point concerns the programmer, not the compiler. (ConceptLocation p.3)",
+      "source": {
+        "deck": "ConceptLocation.pdf",
+        "page": 3
+      },
+      "tags": [
+        "partial-comprehension"
+      ]
+    },
+    {
+      "id": "L02-Q091",
+      "lecture_id": "L02",
+      "topic": "Concept Location",
+      "difficulty": "hard",
+      "stem": "What lesson for concept location does the Dog/Pes/Hund example drive home?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Names in code are always English"
+        },
+        {
+          "key": "B",
+          "text": "Concepts always have exactly one name"
+        },
+        {
+          "key": "C",
+          "text": "The name a programmer searches for may differ from the name used in code, so reason from intension (meaning) to extension (instances)"
+        },
+        {
+          "key": "D",
+          "text": "Extension and intension are the same thing"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Because names vary, the programmer must reason from intension (meaning) to extension (the actual code instances) rather than relying on a literal name match. Concepts can have many names, intension and extension differ, and code names are not always English. (ConceptLocation p.5)",
+      "source": {
+        "deck": "ConceptLocation.pdf",
+        "page": 5
+      },
+      "tags": [
+        "concept-triangle",
+        "concept-location"
+      ]
+    },
+    {
+      "id": "L02-Q155",
+      "lecture_id": "L02",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "easy",
+      "stem": "In JHotDraw, which interface represents a drawable element that owns Handles and can itself contain figures?",
+      "options": [
+        {
+          "key": "A",
+          "text": "DrawApplication"
+        },
+        {
+          "key": "B",
+          "text": "Tool"
+        },
+        {
+          "key": "C",
+          "text": "Figure"
+        },
+        {
+          "key": "D",
+          "text": "Drawing"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Figure is the drawable-element interface; it has 1..n Handles and can itself be a figure container (enabling Composite). Drawing is the top-level container, Tool is the controller, DrawApplication is the window. (JHotDraw p.5)",
+      "source": {
+        "deck": "JHotDraw.pdf",
+        "page": 5
+      },
+      "tags": [
+        "architecture",
+        "composite"
+      ]
+    },
+    {
+      "id": "L02-Q168",
+      "lecture_id": "L02",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "In the MVC class-level picture, which class implements the Tool (controller) interface and exposes mouse methods?",
+      "options": [
+        {
+          "key": "A",
+          "text": "StandardDrawing, with add()"
+        },
+        {
+          "key": "B",
+          "text": "AbstractFigure, with draw()"
+        },
+        {
+          "key": "C",
+          "text": "FigureAttributes, with an fMap Hashtable"
+        },
+        {
+          "key": "D",
+          "text": "AbstractTool, with mouseDown/Drag/Up/Move and activate/deactivate"
+        }
+      ],
+      "answer": "D",
+      "explanation": "AbstractTool implements the controller interface and exposes mouseDown/Drag/Up/Move plus activate/deactivate. AbstractFigure/StandardDrawing implement model interfaces; FigureAttributes holds attribute state. (JHotDraw p.18)",
+      "source": {
+        "deck": "JHotDraw.pdf",
+        "page": 18
+      },
+      "tags": [
+        "mvc"
+      ]
+    },
+    {
+      "id": "L02-Q179",
+      "lecture_id": "L02",
+      "topic": "Design Patterns",
+      "difficulty": "easy",
+      "stem": "Which is one of the three underlying GoF design principles cited in the deck?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Inherit deeply to maximize reuse"
+        },
+        {
+          "key": "B",
+          "text": "Optimize prematurely for performance"
+        },
+        {
+          "key": "C",
+          "text": "Program to an interface, not to an implementation"
+        },
+        {
+          "key": "D",
+          "text": "Avoid all composition"
+        }
+      ],
+      "answer": "C",
+      "explanation": "'Program to an interface, not to an implementation' is one of the three principles. The others contradict GoF advice (which favors composition over deep inheritance and warns against premature optimization). (JHotDraw p.9)",
+      "source": {
+        "deck": "JHotDraw.pdf",
+        "page": 9
+      },
+      "tags": [
+        "gof",
+        "principles"
+      ]
+    },
+    {
+      "id": "L02-Q181",
+      "lecture_id": "L02",
+      "topic": "Design Patterns",
+      "difficulty": "medium",
+      "stem": "Which is the third underlying GoF principle in the deck, about variation?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Find what varies and encapsulate it"
+        },
+        {
+          "key": "B",
+          "text": "Ignore variation entirely"
+        },
+        {
+          "key": "C",
+          "text": "Find what is constant and duplicate it"
+        },
+        {
+          "key": "D",
+          "text": "Find what varies and hard-code it"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The third principle is 'find what varies and encapsulate it'. Duplicating constants, hard-coding variation, and ignoring it are the opposite advice. (JHotDraw p.9)",
+      "source": {
+        "deck": "JHotDraw.pdf",
+        "page": 9
+      },
+      "tags": [
+        "gof",
+        "principles"
+      ]
+    },
+    {
+      "id": "L02-Q189",
+      "lecture_id": "L02",
+      "topic": "Design Patterns",
+      "difficulty": "hard",
+      "stem": "What is the deck's single-sentence thesis linking design patterns to maintainability?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Extensibility of frameworks calls for extensive use of design patterns"
+        },
+        {
+          "key": "B",
+          "text": "Design patterns slow frameworks down"
+        },
+        {
+          "key": "C",
+          "text": "Frameworks should avoid patterns to stay simple"
+        },
+        {
+          "key": "D",
+          "text": "Patterns matter only for performance"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The thesis is that the extensibility of frameworks calls for extensive use of design patterns. The other statements contradict the deck. (JHotDraw p.16)",
+      "source": {
+        "deck": "JHotDraw.pdf",
+        "page": 16
+      },
+      "tags": [
+        "gof",
+        "thesis"
+      ]
+    },
+    {
+      "id": "L02-Q191",
+      "lecture_id": "L02",
+      "topic": "Design Patterns",
+      "difficulty": "hard",
+      "stem": "Which list correctly assigns three patterns to their categories?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Singleton structural, Decorator behavioral, Observer creational"
+        },
+        {
+          "key": "B",
+          "text": "Singleton creational, Decorator behavioral, Observer structural"
+        },
+        {
+          "key": "C",
+          "text": "Singleton creational, Decorator structural, Observer behavioral"
+        },
+        {
+          "key": "D",
+          "text": "Singleton behavioral, Decorator creational, Observer structural"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Singleton is creational, Decorator is structural, Observer is behavioral. The other rows scramble at least one assignment. (JHotDraw p.12-14)",
+      "source": {
+        "deck": "JHotDraw.pdf",
+        "page": 12
+      },
+      "tags": [
+        "gof"
+      ]
+    },
+    {
+      "id": "L02-Q192",
+      "lecture_id": "L02",
+      "topic": "Design Patterns",
+      "difficulty": "very-hard",
+      "stem": "Why does a reuse-oriented framework like JHotDraw end up pattern-dense, per the deck's reasoning?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Because patterns are required by the Java language"
+        },
+        {
+          "key": "B",
+          "text": "Because patterns reduce the number of classes to one"
+        },
+        {
+          "key": "C",
+          "text": "Because frameworks cannot compile without patterns"
+        },
+        {
+          "key": "D",
+          "text": "Because extensibility demands decoupling variation from the fixed skeleton, which is exactly what design patterns provide"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Extensibility requires decoupling what varies from the frozen skeleton, and design patterns are the established way to achieve that, so frameworks become pattern-dense. Patterns are not a language requirement, do not collapse to one class, and are not needed for compilation. (JHotDraw p.9, p.16)",
+      "source": {
+        "deck": "JHotDraw.pdf",
+        "page": 16
+      },
+      "tags": [
+        "gof",
+        "thesis",
+        "principles"
+      ]
+    },
+    {
+      "id": "L02-Q205",
+      "lecture_id": "L02",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "A documented 'con' of Strategy is what?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Clients must know the strategies, and there is communication overhead and more objects"
+        },
+        {
+          "key": "B",
+          "text": "It forbids algorithm reuse"
+        },
+        {
+          "key": "C",
+          "text": "It removes the ability to choose implementations"
+        },
+        {
+          "key": "D",
+          "text": "It hard-codes the algorithm into the context"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Strategy's cons include that clients must know the strategies, Strategy-Context communication overhead, and more objects. It actually enables algorithm families and implementation choice and decouples (not hard-codes) the algorithm. (JHotDraw p.29)",
+      "source": {
+        "deck": "JHotDraw.pdf",
+        "page": 29
+      },
+      "tags": [
+        "strategy"
+      ]
+    },
+    {
+      "id": "L02-Q243",
+      "lecture_id": "L02",
+      "topic": "Software Change Process",
+      "difficulty": "very-hard",
+      "stem": "What is the correct phase order for these activities: (i) commit and build new baseline, (ii) extract Export/Drawing/Text/Format, (iii) determine the impact set, (iv) write 'As a trial user, I want...'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "(ii), (iv), (iii), (i)"
+        },
+        {
+          "key": "B",
+          "text": "(iv), (iii), (ii), (i)"
+        },
+        {
+          "key": "C",
+          "text": "(iv), (ii), (iii), (i)"
+        },
+        {
+          "key": "D",
+          "text": "(i), (iv), (ii), (iii)"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Writing the user story is Initiation (iv), extracting concepts is Concept Location (ii), determining the impact set is Impact Analysis (iii), and committing/building the baseline is Conclusion (i): order (iv),(ii),(iii),(i). The other orders misplace at least one phase. (SoftwareChange p.5-14)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 5
+      },
+      "tags": [
+        "process",
+        "ordering"
+      ]
+    },
+    {
+      "id": "L02-Q245",
+      "lecture_id": "L02",
+      "topic": "Refactoring",
+      "difficulty": "very-hard",
+      "stem": "Why are pre- and post-factoring BOTH considered refactoring under the strict definition?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Both change structure without changing behavior, only differing in timing relative to the change"
+        },
+        {
+          "key": "B",
+          "text": "Prefactoring changes behavior but postfactoring does not"
+        },
+        {
+          "key": "C",
+          "text": "Both add new behavior to the system"
+        },
+        {
+          "key": "D",
+          "text": "Neither alters code, only documentation"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Refactoring is strictly changing structure without changing behavior; prefactoring (before, to minimize impact) and postfactoring (after, to remove anti-patterns) both satisfy this, differing only in timing. They do not add behavior, both preserve behavior, and both alter code. (SoftwareChange p.4, p.10, p.12, Gotchas)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 10
+      },
+      "tags": [
+        "refactoring",
+        "prefactoring",
+        "postfactoring"
+      ]
+    },
+    {
+      "id": "L02-Q511",
+      "lecture_id": "L02",
+      "topic": "Software Change Process",
+      "difficulty": "hard",
+      "stem": "A student lists the implementation-group phases as 'Postfactoring, Actualization, Prefactoring'. What is wrong?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Postfactoring is not an implementation phase"
+        },
+        {
+          "key": "B",
+          "text": "Actualization belongs to the design group, not implementation"
+        },
+        {
+          "key": "C",
+          "text": "The order is reversed; it should be Prefactoring, Actualization, Postfactoring"
+        },
+        {
+          "key": "D",
+          "text": "Nothing is wrong; that is the correct order"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The implementation group runs Prefactoring -> Actualization -> Postfactoring (refactor before, do the change, refactor after). The student reversed it. (SoftwareChange p.5)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q518",
+      "lecture_id": "L02",
+      "topic": "Software Change Process",
+      "difficulty": "easy",
+      "stem": "If prefactoring cleans code up before a change goes in, which later phase plays the symmetric clean-up role afterward?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Initiation"
+        },
+        {
+          "key": "B",
+          "text": "Prefactoring"
+        },
+        {
+          "key": "C",
+          "text": "Concept Location"
+        },
+        {
+          "key": "D",
+          "text": "Impact Analysis"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Prefactoring cleans up before the change to localize impact; postfactoring cleans up after to remove introduced anti-patterns. They mirror each other. (SoftwareChange p.10, p.12)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 12
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q538",
+      "lecture_id": "L02",
+      "topic": "Concept Location",
+      "difficulty": "easy",
+      "stem": "A new hire asks whether they should read the entire JHotDraw codebase before their first change. What does the deck imply they should expect about comprehending a large program?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They can always be fully comprehended before any change"
+        },
+        {
+          "key": "B",
+          "text": "They cannot be completely comprehended, so you aim for minimum essential understanding"
+        },
+        {
+          "key": "C",
+          "text": "They require comprehending every class equally"
+        },
+        {
+          "key": "D",
+          "text": "Comprehension is irrelevant to concept location"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Large programs cannot be completely comprehended; the programmer aims for the minimum essential understanding via an as-needed strategy. (ConceptLocation p.3)",
+      "source": {
+        "deck": "ConceptLocation.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q542",
+      "lecture_id": "L02",
+      "topic": "Concept Location",
+      "difficulty": "very-hard",
+      "stem": "Why does the Dog/Pes/Hund example matter for concept location?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Dogs are the most common domain concept in software"
+        },
+        {
+          "key": "B",
+          "text": "The same concept can have different names, so the name you search for may differ from the name used in code"
+        },
+        {
+          "key": "C",
+          "text": "It proves natural-language names are always identical to code identifiers"
+        },
+        {
+          "key": "D",
+          "text": "It shows extensions are always empty in practice"
+        }
+      ],
+      "answer": "B",
+      "explanation": "'Dog/Pes/Hund' are different names for one concept; the lesson is that a programmer's search name may differ from the code's name, so reason from intension to extension. (ConceptLocation p.5)",
+      "source": {
+        "deck": "ConceptLocation.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q632",
+      "lecture_id": "L02",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "very-hard",
+      "stem": "Compare Composite and Decorator as used in JHotDraw: what is the key structural difference the deck draws?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Composite wraps one component; Decorator aggregates many children"
+        },
+        {
+          "key": "B",
+          "text": "Both aggregate many children identically"
+        },
+        {
+          "key": "C",
+          "text": "Both wrap exactly one component identically"
+        },
+        {
+          "key": "D",
+          "text": "Composite aggregates many children to form a part-whole tree; Decorator wraps exactly one component to add responsibilities"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Composite holds many children (part-whole tree); Decorator wraps a single component and forwards to it while adding behavior. (JHotDraw p.20, p.38)",
+      "source": {
+        "deck": "JHotDraw.pdf",
+        "page": 38
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q678",
+      "lecture_id": "L02",
+      "topic": "Impact Analysis",
+      "difficulty": "hard",
+      "stem": "Starting from the concept-location classes, by what mechanism does Impact Analysis enlarge the impact set?",
+      "options": [
+        {
+          "key": "A",
+          "text": "All classes in the project are added unconditionally"
+        },
+        {
+          "key": "B",
+          "text": "Class dependencies are analyzed and impacted classes are added to the impact set"
+        },
+        {
+          "key": "C",
+          "text": "Only test classes are added"
+        },
+        {
+          "key": "D",
+          "text": "The set is frozen and never grows"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Impact Analysis analyzes class dependencies and adds impacted classes to the impact set. (SoftwareChange p.9)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 9
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q681",
+      "lecture_id": "L02",
+      "topic": "Refactoring",
+      "difficulty": "easy",
+      "stem": "One of the four impacts on functionality is defined as reshaping structure while leaving observable behaviour untouched. Which impact is that?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Refactoring"
+        },
+        {
+          "key": "B",
+          "text": "Incremental"
+        },
+        {
+          "key": "C",
+          "text": "Contraction"
+        },
+        {
+          "key": "D",
+          "text": "Replacement"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Refactoring changes software structure without changing behavior. (SoftwareChange p.4)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q685",
+      "lecture_id": "L02",
+      "topic": "Prefactoring",
+      "difficulty": "hard",
+      "stem": "What is the point of doing prefactoring ahead of writing any new feature code?",
+      "options": [
+        {
+          "key": "A",
+          "text": "To make the upcoming change small and local"
+        },
+        {
+          "key": "B",
+          "text": "To verify the change after the fact"
+        },
+        {
+          "key": "C",
+          "text": "To remove anti-patterns the change introduced"
+        },
+        {
+          "key": "D",
+          "text": "To commit the change to version control"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Prefactoring happens before to make the upcoming change small and local. (SoftwareChange p.10)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 10
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q687",
+      "lecture_id": "L02",
+      "topic": "Actualization",
+      "difficulty": "hard",
+      "stem": "A change to one class forces edits in classes that depend on it, which in turn force more edits further out. Which Actualization phenomenon is this?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Change propagation as a deliberate act"
+        },
+        {
+          "key": "B",
+          "text": "Backtracking"
+        },
+        {
+          "key": "C",
+          "text": "The ripple effect"
+        },
+        {
+          "key": "D",
+          "text": "Prefactoring"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The ripple effect is changes cascading outward through dependencies. (SoftwareChange p.11)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q688",
+      "lecture_id": "L02",
+      "topic": "OO Principles",
+      "difficulty": "medium",
+      "stem": "Which GoF principle tells you to depend on abstractions rather than concrete classes?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Favor composition over class inheritance"
+        },
+        {
+          "key": "B",
+          "text": "Find what varies and encapsulate it"
+        },
+        {
+          "key": "C",
+          "text": "Optimize for the common case"
+        },
+        {
+          "key": "D",
+          "text": "Program to an interface, not to an implementation"
+        }
+      ],
+      "answer": "D",
+      "explanation": "'Program to an interface, not to an implementation' is the principle about depending on abstractions. (JHotDraw p.9)",
+      "source": {
+        "deck": "JHotDraw.pdf",
+        "page": 9
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q689",
+      "lecture_id": "L02",
+      "topic": "OO Principles",
+      "difficulty": "medium",
+      "stem": "Which GoF principle motivates using object composition instead of deep inheritance hierarchies?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Favor composition over class inheritance"
+        },
+        {
+          "key": "B",
+          "text": "Program to an interface, not to an implementation"
+        },
+        {
+          "key": "C",
+          "text": "Find what varies and encapsulate it"
+        },
+        {
+          "key": "D",
+          "text": "Keep it simple, stupid"
+        }
+      ],
+      "answer": "A",
+      "explanation": "'Favor composition over class inheritance' motivates composition over deep inheritance. (JHotDraw p.9)",
+      "source": {
+        "deck": "JHotDraw.pdf",
+        "page": 9
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q690",
+      "lecture_id": "L02",
+      "topic": "OO Principles",
+      "difficulty": "hard",
+      "stem": "JHotDraw isolates layout algorithms and tool modes behind interfaces so they can vary independently. Which GoF principle does this most directly express?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Optimize prematurely"
+        },
+        {
+          "key": "B",
+          "text": "Find what varies and encapsulate it"
+        },
+        {
+          "key": "C",
+          "text": "Inherit from concrete classes"
+        },
+        {
+          "key": "D",
+          "text": "Couple modules tightly"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Isolating the varying parts (layouts, modes) behind interfaces expresses 'find what varies and encapsulate it'. (JHotDraw p.9)",
+      "source": {
+        "deck": "JHotDraw.pdf",
+        "page": 9
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q691",
+      "lecture_id": "L02",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "What does Verification guarantee, and over which phases does it run?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It guarantees performance and runs only during Initiation"
+        },
+        {
+          "key": "B",
+          "text": "It guarantees security and runs only during Conclusion"
+        },
+        {
+          "key": "C",
+          "text": "It guarantees correctness of the change and runs across the implementation phases"
+        },
+        {
+          "key": "D",
+          "text": "It guarantees nothing and is optional"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Verification guarantees correctness of the change and runs continuously across the implementation phases. (SoftwareChange p.13)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 13
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q692",
+      "lecture_id": "L02",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "Besides testing, what other activity does the deck list under Verification?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Profiling"
+        },
+        {
+          "key": "B",
+          "text": "Code minification"
+        },
+        {
+          "key": "C",
+          "text": "Continuous deployment"
+        },
+        {
+          "key": "D",
+          "text": "Walkthroughs"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Verification comprises testing (functional/unit/structural) AND walkthroughs. (SoftwareChange p.13)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 13
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q693",
+      "lecture_id": "L02",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Which trio of testing types does the deck explicitly list under Verification?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Functional, unit, structural"
+        },
+        {
+          "key": "B",
+          "text": "Unit, integration, system"
+        },
+        {
+          "key": "C",
+          "text": "Alpha, beta, gamma"
+        },
+        {
+          "key": "D",
+          "text": "Manual, automated, exploratory"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck lists functional, unit, and structural testing under Verification. (SoftwareChange p.13)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 13
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q694",
+      "lecture_id": "L02",
+      "topic": "Version Control / Git",
+      "difficulty": "medium",
+      "stem": "In the Conclusion phase, what is committed and built?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The user story card is committed and a backlog is built"
+        },
+        {
+          "key": "B",
+          "text": "The finished code is committed to version control and a new baseline is built"
+        },
+        {
+          "key": "C",
+          "text": "The impact set is committed and a CDG is built"
+        },
+        {
+          "key": "D",
+          "text": "The test report is committed and a prototype is built"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Conclusion commits the finished code to version control and builds the new baseline. (SoftwareChange p.14)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q695",
+      "lecture_id": "L02",
+      "topic": "Version Control / Git",
+      "difficulty": "medium",
+      "stem": "After forking JHotDraw on GitHub for the ChangeReqLab, which collaboration workflow do students adopt?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Trunk-based with no branches"
+        },
+        {
+          "key": "B",
+          "text": "GitFlow with release trains"
+        },
+        {
+          "key": "C",
+          "text": "GitHub flow"
+        },
+        {
+          "key": "D",
+          "text": "Subversion centralized commits"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The ChangeReqLab has students fork JHotDraw and adopt GitHub flow. (ChangeReqLab p.1)",
+      "source": {
+        "deck": "ChangeReqLab.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q697",
+      "lecture_id": "L02",
+      "topic": "Software Processes / CI",
+      "difficulty": "medium",
+      "stem": "The Conclusion phase explicitly ties the change process to which later course themes?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Version control and continuous integration"
+        },
+        {
+          "key": "B",
+          "text": "Design patterns and OO principles"
+        },
+        {
+          "key": "C",
+          "text": "Concept triangle and intension"
+        },
+        {
+          "key": "D",
+          "text": "BDD scenarios and Gherkin"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Conclusion (commit, new baseline) ties into Version Control / Git and CI. (SoftwareChange p.14)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q698",
+      "lecture_id": "L02",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "Which Lientz & Swanson category most directly maps to reducing technical debt by improving structure before problems arise?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Corrective"
+        },
+        {
+          "key": "B",
+          "text": "Preventive"
+        },
+        {
+          "key": "C",
+          "text": "Adaptive"
+        },
+        {
+          "key": "D",
+          "text": "Perfective"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Preventive maintenance improves code structure to forestall future problems, closely related to refactoring and reducing technical debt. (SoftwareChange p.3)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L02-Q699",
+      "lecture_id": "L02",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "Postfactoring removes a 'bloated class' a change introduced. In technical-debt terms, what is postfactoring doing?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Adding new debt deliberately"
+        },
+        {
+          "key": "B",
+          "text": "Deferring all cleanup to the next release"
+        },
+        {
+          "key": "C",
+          "text": "Paying down debt the change just incurred by removing the introduced anti-pattern"
+        },
+        {
+          "key": "D",
+          "text": "Committing the bloated class as the new baseline"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Postfactoring eliminates anti-patterns (e.g. bloated class) the change introduced — paying down the freshly incurred debt. (SoftwareChange p.12)",
+      "source": {
+        "deck": "ChangeReqLec.pdf",
+        "page": 12
+      },
+      "tags": []
+    }
+  ]
+}

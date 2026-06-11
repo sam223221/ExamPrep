@@ -1,0 +1,1672 @@
+{
+  "lecture_id": "L04",
+  "lecture_num": 4,
+  "lecture_title": "Refactoring & Maintainable Code",
+  "generated_from": [
+    "Refactoring1.pdf",
+    "BetterCode.pdf",
+    "HighLevelRefactoring.pdf",
+    "RefactoringLab1.pdf"
+  ],
+  "schema_version": 1,
+  "questions": [
+    {
+      "id": "L04-Q001",
+      "lecture_id": "L04",
+      "topic": "Refactoring",
+      "difficulty": "easy",
+      "stem": "According to Fowler's definition, what is refactoring?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A change made to the internal structure of software to make it easier to understand and cheaper to modify, without changing observable behaviour"
+        },
+        {
+          "key": "B",
+          "text": "A change that adds new features while keeping the existing tests green"
+        },
+        {
+          "key": "C",
+          "text": "An optimisation that improves runtime performance by restructuring algorithms"
+        },
+        {
+          "key": "D",
+          "text": "A rewrite of a module from scratch to remove accumulated technical debt"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Fowler defines refactoring as a change to the internal structure to make software easier to understand and cheaper to modify, with observable behaviour unchanged. B is wrong because refactoring adds no functionality. C confuses refactoring with performance tuning; the goal is understandability/modifiability, not speed. D is a rewrite, not a behaviour-preserving restructuring. (Refactoring1 p.3)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q003",
+      "lecture_id": "L04",
+      "topic": "Refactoring",
+      "difficulty": "medium",
+      "stem": "A developer restructures a method's internals and, in the process, a previously-correct output value becomes different. Why is this NOT a refactoring?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Because the change was not verified by automated tests"
+        },
+        {
+          "key": "B",
+          "text": "Because refactoring is only allowed during the Postfactoring phase"
+        },
+        {
+          "key": "C",
+          "text": "Because the observable behaviour changed, so by definition it is a modification, not a refactoring"
+        },
+        {
+          "key": "D",
+          "text": "Because refactoring may only be applied to methods shorter than 15 lines"
+        }
+      ],
+      "answer": "C",
+      "explanation": "By definition refactoring preserves observable behaviour; if an output changes it is a functional modification, not a refactoring. D invents a length rule that does not gate the definition. A is good practice but a missing test does not change the definition. B is false; refactoring happens in both Prefactoring and Postfactoring. (Refactoring1 p.3)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q004",
+      "lecture_id": "L04",
+      "topic": "Refactoring",
+      "difficulty": "medium",
+      "stem": "Which pair correctly states the two goals of refactoring named in Fowler's definition?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Faster to execute and smaller in memory"
+        },
+        {
+          "key": "B",
+          "text": "More features and fewer defects"
+        },
+        {
+          "key": "C",
+          "text": "Better documented and more portable"
+        },
+        {
+          "key": "D",
+          "text": "Easier to understand and cheaper to modify"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Fowler's definition names two human-facing goals: easier to understand and cheaper to modify. A is performance, not a refactoring goal. B adds features/fixes bugs which are not refactoring's defining goals. C names documentation/portability which are not in the definition. (Refactoring1 p.3)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q007",
+      "lecture_id": "L04",
+      "topic": "Refactoring",
+      "difficulty": "hard",
+      "stem": "Kerievsky's phrase 'the algebra of refactoring' most directly refers to which idea?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Computing man-months from lines of code"
+        },
+        {
+          "key": "B",
+          "text": "Measuring fan-in to assess module coupling"
+        },
+        {
+          "key": "C",
+          "text": "Solving design problems through sequences of small behaviour-preserving steps"
+        },
+        {
+          "key": "D",
+          "text": "Calculating cyclomatic complexity from branch points"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Kerievsky calls patterns the 'word problems' and refactoring the 'algebra' — solving design problems via behaviour-preserving steps. D, A, and B are SIG/BetterCode measurement formulas, a different deck's concern, not the algebra metaphor. (HighLevelRefactoring p.10)",
+      "source": {
+        "deck": "HighLevelRefactoring.pdf",
+        "page": 10
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q016",
+      "lecture_id": "L04",
+      "topic": "Prefactoring",
+      "difficulty": "medium",
+      "stem": "Fowler's 'Refactor When You Add Function' trigger maps to which change-process phase in this course?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Postfactoring"
+        },
+        {
+          "key": "B",
+          "text": "Actualization"
+        },
+        {
+          "key": "C",
+          "text": "Concept Location"
+        },
+        {
+          "key": "D",
+          "text": "Prefactoring"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Cleaning up so a new feature fits is refactoring before the functional change — Prefactoring. Postfactoring is the after-cleanup. Actualization is where the new behaviour is actually added. Concept Location is finding where to change, an earlier phase. (Refactoring1 p.5)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q018",
+      "lecture_id": "L04",
+      "topic": "Prefactoring",
+      "difficulty": "hard",
+      "stem": "Fowler's 'Refactor As You Do a Code Review' trigger is described in the course as territory for which phase?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Impact Analysis"
+        },
+        {
+          "key": "B",
+          "text": "Postfactoring"
+        },
+        {
+          "key": "C",
+          "text": "Prefactoring"
+        },
+        {
+          "key": "D",
+          "text": "Concept Location"
+        }
+      ],
+      "answer": "B",
+      "explanation": "A code review surfaces smells that are fixed after the change has been made — Postfactoring territory. Prefactoring is the before-cleanup tied to 'add function'. Concept Location and Impact Analysis are earlier, non-refactoring phases. (Refactoring1 p.5)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q022",
+      "lecture_id": "L04",
+      "topic": "Prefactoring",
+      "difficulty": "medium",
+      "stem": "What single property distinguishes Prefactoring from Postfactoring?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Which refactoring catalog they may draw from"
+        },
+        {
+          "key": "B",
+          "text": "Their position relative to the functional change (Actualization)"
+        },
+        {
+          "key": "C",
+          "text": "Whether automated tests are used"
+        },
+        {
+          "key": "D",
+          "text": "Whether observable behaviour is preserved"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Both are behaviour-preserving and use the same catalog and metrics; the only difference is position relative to Actualization (before vs after). C is false — tests support both. D is false — both preserve behaviour. A is false — the same Fowler/Kerievsky catalog applies to both. (course)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q023",
+      "lecture_id": "L04",
+      "topic": "Prefactoring",
+      "difficulty": "hard",
+      "stem": "Which phase, unlike Prefactoring and Postfactoring, actually DOES change observable behaviour?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Impact Analysis"
+        },
+        {
+          "key": "B",
+          "text": "Initiation"
+        },
+        {
+          "key": "C",
+          "text": "Actualization"
+        },
+        {
+          "key": "D",
+          "text": "Concept Location"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Actualization is where new functionality is injected, so it changes observable behaviour. Prefactoring and Postfactoring are behaviour-preserving. Concept Location, Impact Analysis, and Initiation are analysis/planning phases that change no code behaviour. (course)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q024",
+      "lecture_id": "L04",
+      "topic": "Prefactoring",
+      "difficulty": "very-hard",
+      "stem": "In change-process terms, Prefactoring maps to which Fowler trigger, and Postfactoring to which guideline?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Prefactoring -> Rule of Three; Postfactoring -> Guideline 1 (15 LOC)"
+        },
+        {
+          "key": "B",
+          "text": "Prefactoring -> Guideline 9 (Automated Tests); Postfactoring -> 'Refactor to fix a bug'"
+        },
+        {
+          "key": "C",
+          "text": "Prefactoring -> Guideline 4 (4 params); Postfactoring -> Rule of Three"
+        },
+        {
+          "key": "D",
+          "text": "Prefactoring -> 'Refactor When You Add Function'; Postfactoring -> BetterCode Guideline 10 'leave no smells behind'"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Prefactoring corresponds to Fowler's 'Refactor When You Add Function'; Postfactoring corresponds to BetterCode G10 'Write Clean Code / leave no smells behind'. The other pairings mismatch the mapping the course draws. (course; Refactoring1 p.5; BetterCode p.57)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 57
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q063",
+      "lecture_id": "L04",
+      "topic": "Refactoring",
+      "difficulty": "hard",
+      "stem": "Which of these is NOT one of Fowler's seven refactoring categories?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Organizing Data"
+        },
+        {
+          "key": "B",
+          "text": "Big Refactorings"
+        },
+        {
+          "key": "C",
+          "text": "Replacing Conditional Dispatchers"
+        },
+        {
+          "key": "D",
+          "text": "Composing Methods"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The seven categories are Composing Methods, Moving Features, Organizing Data, Simplifying Conditionals, Making Method Calls Simpler, Dealing with Generalization, Big Refactorings. 'Replacing Conditional Dispatchers' is not a category (it echoes a Kerievsky refactoring name). The others are genuine categories. (Refactoring1 p.9)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 9
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q070",
+      "lecture_id": "L04",
+      "topic": "Refactoring",
+      "difficulty": "very-hard",
+      "stem": "Hide Delegate and Remove Middle Man are inverse refactorings. How do you choose between them?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Choose based on which has the lower [Fowler99] page number"
+        },
+        {
+          "key": "B",
+          "text": "By which smell dominates — too much delegation (Middle Man) -> Remove Middle Man; chains/coupling -> Hide Delegate"
+        },
+        {
+          "key": "C",
+          "text": "Always prefer Hide Delegate because hiding is safer"
+        },
+        {
+          "key": "D",
+          "text": "Always prefer Remove Middle Man because fewer methods is simpler"
+        }
+      ],
+      "answer": "B",
+      "explanation": "These inverses pull opposite ways; pick by the dominant smell — Middle Man (over-delegation) calls for Remove Middle Man, Message Chains/coupling call for Hide Delegate. C and D are false absolutes. A is the page-number trap (book pages are not selection criteria). (Refactoring1 p.19-20)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q152",
+      "lecture_id": "L04",
+      "topic": "Design Patterns",
+      "difficulty": "easy",
+      "stem": "Whose book is the source of the high-level / 'Refactoring to Patterns' material?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Fowler"
+        },
+        {
+          "key": "B",
+          "text": "Visser (SIG)"
+        },
+        {
+          "key": "C",
+          "text": "Gang of Four"
+        },
+        {
+          "key": "D",
+          "text": "Kerievsky"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The high-level/composite refactoring deck is Kerievsky's 'Refactoring to Patterns' [Ker05]. Fowler wrote the low-level catalog, SIG/Visser wrote 'Building Maintainable Software', and the Gang of Four wrote 'Design Patterns'. (HighLevelRefactoring p.2)",
+      "source": {
+        "deck": "HighLevelRefactoring.pdf",
+        "page": 2
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L04-Q153",
+      "lecture_id": "L04",
+      "topic": "Design Patterns",
+      "difficulty": "medium",
+      "stem": "In Kerievsky's metaphor 'Design patterns are the word problems of the programming world; refactoring is its ___', which word fills the blank?",
+      "options": [
+        {
+          "key": "A",
+          "text": "algebra"
+        },
+        {
+          "key": "B",
+          "text": "grammar"
+        },
+        {
+          "key": "C",
+          "text": "syntax"
+        },
+        {
+          "key": "D",
+          "text": "dictionary"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Kerievsky's metaphor: patterns are the word problems, refactoring is the algebra (you solve a design problem via a sequence of behaviour-preserving moves). The other words do not complete the slide's phrase. (HighLevelRefactoring p.9)",
+      "source": {
+        "deck": "HighLevelRefactoring.pdf",
+        "page": 9
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L04-Q161",
+      "lecture_id": "L04",
+      "topic": "Design Patterns",
+      "difficulty": "medium",
+      "stem": "In Kerievsky's catalog, which refactoring addresses the Switch Statements smell by introducing a Command?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Replace Conditional Dispatcher with Command"
+        },
+        {
+          "key": "B",
+          "text": "Replace Conditional Logic with Strategy"
+        },
+        {
+          "key": "C",
+          "text": "Form Template Method"
+        },
+        {
+          "key": "D",
+          "text": "Unify Interfaces with Adapter"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Replace Conditional Dispatcher with Command targets Switch Statements (and Long/Large smells) via the Command pattern. Replace Conditional Logic with Strategy uses Strategy; Form Template Method targets duplication; Unify Interfaces with Adapter targets differing interfaces. (HighLevelRefactoring p.13)",
+      "source": {
+        "deck": "HighLevelRefactoring.pdf",
+        "page": 13
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L04-Q164",
+      "lecture_id": "L04",
+      "topic": "Design Patterns",
+      "difficulty": "hard",
+      "stem": "Which Kerievsky-only smell (not in Fowler's list) is fixed by 'Replace Implicit Language with Interpreter'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Duplicated Code"
+        },
+        {
+          "key": "B",
+          "text": "Large Class"
+        },
+        {
+          "key": "C",
+          "text": "Primitive Obsession"
+        },
+        {
+          "key": "D",
+          "text": "Combinatorial Explosion"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Combinatorial Explosion is a Kerievsky-only smell addressed by Replace Implicit Language with Interpreter. Duplicated Code, Large Class, and Primitive Obsession are Fowler smells (marked [F]) with other Kerievsky fixes. (HighLevelRefactoring p.12)",
+      "source": {
+        "deck": "HighLevelRefactoring.pdf",
+        "page": 12
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L04-Q176",
+      "lecture_id": "L04",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "Why is Kerievsky's 'refactoring to patterns' deck especially applicable to JHotDraw?",
+      "options": [
+        {
+          "key": "A",
+          "text": "JHotDraw has no design patterns, so every refactoring adds one"
+        },
+        {
+          "key": "B",
+          "text": "JHotDraw is written procedurally, so only Convert Procedural Design applies"
+        },
+        {
+          "key": "C",
+          "text": "JHotDraw forbids inheritance, so only delegation refactorings apply"
+        },
+        {
+          "key": "D",
+          "text": "JHotDraw is a GoF design-pattern showcase, so its patterns are exactly the targets of Kerievsky's refactorings"
+        }
+      ],
+      "answer": "D",
+      "explanation": "JHotDraw heavily uses GoF patterns (Factory Method, Strategy, Composite, Observer, Decorator, etc.), which are precisely what Kerievsky's refactorings target. A/B/C mischaracterise JHotDraw, which is rich in patterns and inheritance. (course)",
+      "source": {
+        "deck": "RefactoringLab1.pdf",
+        "page": 1
+      },
+      "tags": [
+        "Design Patterns"
+      ]
+    },
+    {
+      "id": "L04-Q179",
+      "lecture_id": "L04",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "Which Big Refactoring corresponds to JHotDraw's MVC-style split between the Drawing/Figure domain model and the DrawingView/GUI presentation?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Extract Hierarchy"
+        },
+        {
+          "key": "B",
+          "text": "Convert Procedural Design to Objects"
+        },
+        {
+          "key": "C",
+          "text": "Separate Domain from Presentation"
+        },
+        {
+          "key": "D",
+          "text": "Tease Apart Inheritance"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Separate Domain from Presentation maps onto JHotDraw's domain (Drawing/Figure) vs presentation (DrawingView/GUI) layering. The others address inheritance, conditionals, and procedural code. (Refactoring1 p.56)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 56
+      },
+      "tags": [
+        "JHotDraw Case Study"
+      ]
+    },
+    {
+      "id": "L04-Q180",
+      "lecture_id": "L04",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "very-hard",
+      "stem": "Which Fowler refactoring (Organizing Data) supports the GUI/domain synchronisation seen in JHotDraw's MVC design?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Encapsulate Collection"
+        },
+        {
+          "key": "B",
+          "text": "Replace Subclass with Fields"
+        },
+        {
+          "key": "C",
+          "text": "Self Encapsulate Field"
+        },
+        {
+          "key": "D",
+          "text": "Duplicate Observed Data"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Duplicate Observed Data copies GUI-control data into a domain object with an observer to keep them in sync — exactly the JHotDraw domain/presentation separation. The other Organizing Data refactorings serve different ends. (Refactoring1 p.27)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 27
+      },
+      "tags": [
+        "JHotDraw Case Study"
+      ]
+    },
+    {
+      "id": "L04-Q183",
+      "lecture_id": "L04",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "On what kind of branch does the lab ask you to apply the refactorings?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A detached HEAD"
+        },
+        {
+          "key": "B",
+          "text": "A read-only release tag"
+        },
+        {
+          "key": "C",
+          "text": "A feature branch"
+        },
+        {
+          "key": "D",
+          "text": "The main/master branch directly"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The lab's workflow uses a feature branch for the refactoring work. Working directly on main, a detached HEAD, or a release tag are not the prescribed workflow. (RefactLab p.1)",
+      "source": {
+        "deck": "RefactoringLab1.pdf",
+        "page": 1
+      },
+      "tags": [
+        "Version Control / Git"
+      ]
+    },
+    {
+      "id": "L04-Q184",
+      "lecture_id": "L04",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "Which catalog of refactorings does the lab ask you to APPLY to the JHotDraw smells?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only Fowler's Big Refactorings"
+        },
+        {
+          "key": "B",
+          "text": "Only the SIG metric thresholds"
+        },
+        {
+          "key": "C",
+          "text": "Only Git rebase operations"
+        },
+        {
+          "key": "D",
+          "text": "Kerievsky's (Refactoring to Patterns) refactorings"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The lab directs you to apply suitable Kerievsky [Ker05] refactoring patterns to remove the smells. A/B/C mischaracterise the lab task. (RefactLab p.1)",
+      "source": {
+        "deck": "RefactoringLab1.pdf",
+        "page": 1
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L04-Q243",
+      "lecture_id": "L04",
+      "topic": "Design Patterns",
+      "difficulty": "hard",
+      "stem": "Kerievsky lists multiple refactorings for Long Method. Which one moves accumulation logic into a Collecting Parameter?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Replace Conditional Dispatcher with Command"
+        },
+        {
+          "key": "B",
+          "text": "Move Accumulation to Visitor"
+        },
+        {
+          "key": "C",
+          "text": "Move Accumulation to Collecting Parameter"
+        },
+        {
+          "key": "D",
+          "text": "Compose Method"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Move Accumulation to Collecting Parameter is the named refactoring for accumulation in a Long Method. Compose Method composes small steps, Replace Conditional Dispatcher with Command uses Command, Move Accumulation to Visitor uses Visitor. (HighLevelRefactoring p.13)",
+      "source": {
+        "deck": "HighLevelRefactoring.pdf",
+        "page": 13
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L04-Q244",
+      "lecture_id": "L04",
+      "topic": "Design Patterns",
+      "difficulty": "hard",
+      "stem": "In Kerievsky's catalog, Primitive Obsession can be refactored toward which pattern via 'Replace Type Code with Class'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The Singleton pattern"
+        },
+        {
+          "key": "B",
+          "text": "The Observer pattern"
+        },
+        {
+          "key": "C",
+          "text": "The Template Method pattern"
+        },
+        {
+          "key": "D",
+          "text": "A dedicated class replacing the primitive type code"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Replace Type Code with Class introduces a class to replace primitive type codes — one of Kerievsky's Primitive Obsession fixes. Singleton, Observer, and Template Method are reached by other refactorings. (HighLevelRefactoring p.13)",
+      "source": {
+        "deck": "HighLevelRefactoring.pdf",
+        "page": 13
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L04-Q514",
+      "lecture_id": "L04",
+      "topic": "Clean Code",
+      "difficulty": "medium",
+      "stem": "While finishing a task you notice a method littered with comments that merely re-explain confusing code. Applying the Comments-smell guidance, what is the correct fix?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Delete every comment in the file"
+        },
+        {
+          "key": "B",
+          "text": "Extract Method and give it a self-documenting name"
+        },
+        {
+          "key": "C",
+          "text": "Add more comments until it is clear"
+        },
+        {
+          "key": "D",
+          "text": "Leave it; comments are always good"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The Comments smell means comments compensate for unclear code; the fix is Extract Method plus a good name so the comment becomes unnecessary, not blanket deletion. (Refactoring1 p.8)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 8
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L04-Q516",
+      "lecture_id": "L04",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "Your team keeps copy-pasting a 12-line validation block. You decide to act on the Rule of Three. What does that rule tell you to do here?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Wait until a fourth copy appears"
+        },
+        {
+          "key": "B",
+          "text": "Copy it once more, then stop"
+        },
+        {
+          "key": "C",
+          "text": "Never refactor duplicated code"
+        },
+        {
+          "key": "D",
+          "text": "Refactor now, since this is the third similar occurrence"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The Rule of Three says refactor the third time you do something similar (first do it, second wince, third refactor). Waiting for a fourth or copying again ignores the rule. (Refactoring1 p.5)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 5
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L04-Q524",
+      "lecture_id": "L04",
+      "topic": "Clean Architecture",
+      "difficulty": "easy",
+      "stem": "Which is NOT one of the four SIG levels at which the guidelines operate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Unit"
+        },
+        {
+          "key": "B",
+          "text": "Module"
+        },
+        {
+          "key": "C",
+          "text": "Component"
+        },
+        {
+          "key": "D",
+          "text": "Package-private"
+        }
+      ],
+      "answer": "D",
+      "explanation": "'Package-private' is a Java access modifier, not a SIG level. The four levels are Unit, Module, Component, System. (BetterCode p.9)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 9
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q526",
+      "lecture_id": "L04",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "Which claim about tests and refactoring is FALSE?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Tests act as a safety net that verifies behaviour preservation"
+        },
+        {
+          "key": "B",
+          "text": "Because refactoring is behaviour-preserving by definition, running tests is unnecessary"
+        },
+        {
+          "key": "C",
+          "text": "Lack of tests makes refactoring unsafe"
+        },
+        {
+          "key": "D",
+          "text": "BetterCode G9 'Automated Tests' supports the refactoring discipline"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Behaviour preservation must be verified, not assumed; tests are the safety net, which is why G9 exists. Claiming tests are unnecessary is wrong practice. (BetterCode p.53)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 53
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L04-Q535",
+      "lecture_id": "L04",
+      "topic": "Clean Architecture",
+      "difficulty": "hard",
+      "stem": "Guideline 5 (module coupling) and Guideline 6 (component coupling) both target loose coupling. How do they differ in level?",
+      "options": [
+        {
+          "key": "A",
+          "text": "G5 is at System level; G6 is at Unit level"
+        },
+        {
+          "key": "B",
+          "text": "Both operate at the Unit level"
+        },
+        {
+          "key": "C",
+          "text": "G5 operates at the Module level (fan-in to a file/class); G6 operates at the Component level (hidden-code % across top-level components)"
+        },
+        {
+          "key": "D",
+          "text": "G5 measures parameters; G6 measures lines of code"
+        }
+      ],
+      "answer": "C",
+      "explanation": "G5 is Module-level coupling measured by fan-in; G6 is Component-level coupling measured by the weighted percentage of hidden code. (BetterCode p.5, 34, 39)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 34
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q555",
+      "lecture_id": "L04",
+      "topic": "Software Testing",
+      "difficulty": "very-hard",
+      "stem": "What is the most likely consequence of refactoring a tangled module with no automated tests?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The code automatically becomes faster"
+        },
+        {
+          "key": "B",
+          "text": "Cyclomatic complexity is guaranteed to drop"
+        },
+        {
+          "key": "C",
+          "text": "You may silently break observable behaviour with no safety net to catch it"
+        },
+        {
+          "key": "D",
+          "text": "The refactoring becomes behaviour-changing by definition"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Without tests, behaviour preservation is unverified, so regressions can slip through unnoticed; that is why G9 (Automated Tests) underpins safe refactoring. (BetterCode p.53)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 53
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L04-Q559",
+      "lecture_id": "L04",
+      "topic": "Clean Code",
+      "difficulty": "hard",
+      "stem": "A method's branch points rise from 4 to 6. What follows under BetterCode G2?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It still passes; CC is 6"
+        },
+        {
+          "key": "B",
+          "text": "It violates G1 instead"
+        },
+        {
+          "key": "C",
+          "text": "It now violates G2 (max 4 branch points; CC = 7), and should be simplified"
+        },
+        {
+          "key": "D",
+          "text": "It violates G4 instead"
+        }
+      ],
+      "answer": "C",
+      "explanation": "G2 caps branch points at 4 (CC <= 5). Six branch points give CC = 7, violating G2; split the unit, e.g. via Replace Conditional with Polymorphism. (BetterCode p.13, 16)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 13
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q560",
+      "lecture_id": "L04",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "Consequence of skipping Postfactoring after Actualization on every task?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Behaviour silently changes"
+        },
+        {
+          "key": "B",
+          "text": "The new feature stops working immediately"
+        },
+        {
+          "key": "C",
+          "text": "Cyclomatic complexity is forced to zero"
+        },
+        {
+          "key": "D",
+          "text": "Smells accumulate and the codebase steadily degrades, raising future change cost"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Postfactoring removes smells the change introduced; skipping it lets debt accumulate, making later changes harder (the opposite of the Boy-Scout rule). (BetterCode p.57)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 57
+      },
+      "tags": [
+        "Prefactoring"
+      ]
+    },
+    {
+      "id": "L04-Q583",
+      "lecture_id": "L04",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "A developer says 'the Rule of Three means I should never duplicate code even once.' Correct them.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Correct as stated"
+        },
+        {
+          "key": "B",
+          "text": "It means duplicate exactly three times always"
+        },
+        {
+          "key": "C",
+          "text": "No: do it the first time, wince and duplicate the second, refactor only the third"
+        },
+        {
+          "key": "D",
+          "text": "It means refactor after the fourth duplication"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The Rule of Three tolerates the first and second occurrence and triggers refactoring on the third similar one. (Refactoring1 p.5)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 5
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L04-Q588",
+      "lecture_id": "L04",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "Misconception: 'refactoring is safe even without tests because it is behaviour-preserving by definition.' What's the flaw?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Correct: tests are pointless during refactoring"
+        },
+        {
+          "key": "B",
+          "text": "Refactoring changes behaviour, so tests fail anyway"
+        },
+        {
+          "key": "C",
+          "text": "Tests prevent refactoring entirely"
+        },
+        {
+          "key": "D",
+          "text": "Behaviour preservation is a goal to be verified, not a guarantee; without tests, mistakes go undetected"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The definition states the intended invariant; humans still err, so tests verify it. That's why G9 pairs with the refactoring discipline. (BetterCode p.53)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 53
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L04-Q591",
+      "lecture_id": "L04",
+      "topic": "Software Change Process",
+      "difficulty": "easy",
+      "stem": "Which phase comes immediately AFTER Actualization in this lecture's framing?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Prefactoring"
+        },
+        {
+          "key": "B",
+          "text": "Concept Location"
+        },
+        {
+          "key": "C",
+          "text": "Postfactoring"
+        },
+        {
+          "key": "D",
+          "text": "Impact Analysis"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Actualization is followed by Postfactoring (clean up smells the new code introduced) before Conclusion/Verification. (BetterCode p.57)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 57
+      },
+      "tags": [
+        "Prefactoring"
+      ]
+    },
+    {
+      "id": "L04-Q595",
+      "lecture_id": "L04",
+      "topic": "Version Control / Git",
+      "difficulty": "medium",
+      "stem": "Order the lab's workflow steps correctly.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Run SonarLint -> commit to main -> document -> create branch"
+        },
+        {
+          "key": "B",
+          "text": "Apply refactorings -> create branch -> run SonarLint -> identify smells"
+        },
+        {
+          "key": "C",
+          "text": "Create feature branch -> run SonarLint -> identify smells -> apply Kerievsky refactorings -> document strategy"
+        },
+        {
+          "key": "D",
+          "text": "Document strategy -> create branch -> apply refactorings -> run SonarLint"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The lab sequence is: feature branch, SonarLint, find smells in JHotDraw, apply [Ker05] refactorings, document the strategy. (RefactLab p.1)",
+      "source": {
+        "deck": "RefactoringLab1.pdf",
+        "page": 1
+      },
+      "tags": [
+        "JHotDraw Case Study"
+      ]
+    },
+    {
+      "id": "L04-Q597",
+      "lecture_id": "L04",
+      "topic": "Software Change Process",
+      "difficulty": "medium",
+      "stem": "Within the change process, which two phases are the 'refactoring bookends' around Actualization?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Prefactoring and Postfactoring"
+        },
+        {
+          "key": "B",
+          "text": "Concept Location and Impact Analysis"
+        },
+        {
+          "key": "C",
+          "text": "Initiation and Conclusion"
+        },
+        {
+          "key": "D",
+          "text": "Verification and Concept Location"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Prefactoring (before) and Postfactoring (after) are the two refactoring bookends of Actualization. (Refactoring1 p.5)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 5
+      },
+      "tags": [
+        "Prefactoring"
+      ]
+    },
+    {
+      "id": "L04-Q608",
+      "lecture_id": "L04",
+      "topic": "Version Control / Git",
+      "difficulty": "easy",
+      "stem": "Why does the lab require you to work on a feature branch rather than directly on main?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Because SonarLint only runs on branches"
+        },
+        {
+          "key": "B",
+          "text": "Because refactoring changes behaviour and must be quarantined"
+        },
+        {
+          "key": "C",
+          "text": "Because the GoF patterns require branches"
+        },
+        {
+          "key": "D",
+          "text": "To isolate the refactoring experiment so main stays stable until the work is reviewed/merged"
+        }
+      ],
+      "answer": "D",
+      "explanation": "A feature branch isolates the refactoring work, keeping the mainline stable; the lab prescribes branch -> SonarLint -> refactor -> document. (RefactLab p.1)",
+      "source": {
+        "deck": "RefactoringLab1.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q610",
+      "lecture_id": "L04",
+      "topic": "Clean Code",
+      "difficulty": "very-hard",
+      "stem": "A metric report lists a unit: LOC=15, branch points=2, parameters=3, duplication=0. Against G1-G4, how does it fare?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Fails G1 only"
+        },
+        {
+          "key": "B",
+          "text": "Passes all four (15<=15 LOC, 2<=4 branch pts, 3<=4 params, no duplication)"
+        },
+        {
+          "key": "C",
+          "text": "Fails G2 and G4"
+        },
+        {
+          "key": "D",
+          "text": "Fails G3 on duplication"
+        }
+      ],
+      "answer": "B",
+      "explanation": "15 LOC is at the limit (pass), 2 branch points pass G2, 3 params pass G4, zero duplication passes G3 — fully compliant. (BetterCode p.10, 16, 28)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 10
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q616",
+      "lecture_id": "L04",
+      "topic": "Clean Architecture",
+      "difficulty": "hard",
+      "stem": "A system reports 9 top-level components, but one component is roughly ten times the size of each of the others. Does it satisfy G7?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Yes: 9 components is all G7 needs"
+        },
+        {
+          "key": "B",
+          "text": "No: G7 requires exactly 6 components"
+        },
+        {
+          "key": "C",
+          "text": "Yes, because more components is always better"
+        },
+        {
+          "key": "D",
+          "text": "No: G7 requires both ~9 components AND approximately equal size; the size imbalance fails it"
+        }
+      ],
+      "answer": "D",
+      "explanation": "G7 demands both the count (close to 9, 6-12) and roughly equal component sizes; a 10x-larger component violates the balance requirement. (BetterCode p.42)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 42
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q648",
+      "lecture_id": "L04",
+      "topic": "Clean Code",
+      "difficulty": "easy",
+      "stem": "Which is NOT a motivation BetterCode gives for automated tests (G9)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They make testing repeatable"
+        },
+        {
+          "key": "B",
+          "text": "They make code predictable and document it"
+        },
+        {
+          "key": "C",
+          "text": "They help you write better code"
+        },
+        {
+          "key": "D",
+          "text": "They make the runtime faster"
+        }
+      ],
+      "answer": "D",
+      "explanation": "G9's motivations are repeatable testing, efficient development, predictable code, documentation, and writing better code — not runtime speed. (BetterCode p.54)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 54
+      },
+      "tags": [
+        "Software Testing"
+      ]
+    },
+    {
+      "id": "L04-Q656",
+      "lecture_id": "L04",
+      "topic": "Clean Architecture",
+      "difficulty": "medium",
+      "stem": "A system has 4 top-level components of roughly equal size. Does it satisfy G7's count requirement?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Yes: any equal-size split passes"
+        },
+        {
+          "key": "B",
+          "text": "No: it should be exactly 12"
+        },
+        {
+          "key": "C",
+          "text": "Yes: 4 is within 6-12"
+        },
+        {
+          "key": "D",
+          "text": "No: the count should be close to 9 (6-12); 4 is too few"
+        }
+      ],
+      "answer": "D",
+      "explanation": "G7 wants the number of top-level components close to 9 (between 6 and 12); 4 is below that range. (BetterCode p.42)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 42
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q659",
+      "lecture_id": "L04",
+      "topic": "Software Change Process",
+      "difficulty": "medium",
+      "stem": "Where do BOTH Prefactoring and Postfactoring sit relative to Concept Location and Impact Analysis?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Before both of them"
+        },
+        {
+          "key": "B",
+          "text": "Prefactoring before, Postfactoring before Concept Location"
+        },
+        {
+          "key": "C",
+          "text": "After them — you locate and analyse first, then prefactor, actualize, postfactor"
+        },
+        {
+          "key": "D",
+          "text": "They replace Concept Location"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Concept Location and Impact Analysis precede the refactoring bookends; the spine is Concept Location -> Impact Analysis -> Prefactoring -> Actualization -> Postfactoring. (Refactoring1 p.5)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 5
+      },
+      "tags": [
+        "Prefactoring"
+      ]
+    },
+    {
+      "id": "L04-Q662",
+      "lecture_id": "L04",
+      "topic": "Clean Architecture",
+      "difficulty": "medium",
+      "stem": "Misconception: 'a module with fan-in 11 is still Excellent.' What is correct?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Correct: 11 is Excellent"
+        },
+        {
+          "key": "B",
+          "text": "No — 11 falls in the 11-20 'Good' band, not the 1-10 'Excellent' band"
+        },
+        {
+          "key": "C",
+          "text": "11 is 'Difficult'"
+        },
+        {
+          "key": "D",
+          "text": "Fan-in is irrelevant to rating"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The Excellent band is 1-10; fan-in 11 starts the Good band. (BetterCode p.34)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 34
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q686",
+      "lecture_id": "L04",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "Consequence of accumulating smells without ever refactoring, in design terms?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The design improves automatically"
+        },
+        {
+          "key": "B",
+          "text": "The design decays under accumulated changes, raising the cost of future change"
+        },
+        {
+          "key": "C",
+          "text": "Tests become unnecessary"
+        },
+        {
+          "key": "D",
+          "text": "Components self-balance"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Fowler's first reason to refactor is that without it design decays under change; smells left unattended raise future change cost. (Refactoring1 p.4)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 4
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L04-Q694",
+      "lecture_id": "L04",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "Misconception: 'writing tests slows you down with no design benefit.' What does BetterCode claim?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Correct: tests have no design benefit"
+        },
+        {
+          "key": "B",
+          "text": "Writing tests makes you write better code and documents it"
+        },
+        {
+          "key": "C",
+          "text": "Tests only matter for releases"
+        },
+        {
+          "key": "D",
+          "text": "Tests replace refactoring"
+        }
+      ],
+      "answer": "B",
+      "explanation": "G9's motivations include that writing tests makes you write better code and that tests document the code. (BetterCode p.54)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 54
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q695",
+      "lecture_id": "L04",
+      "topic": "Software Change Process",
+      "difficulty": "hard",
+      "stem": "Which phase actually adds the new functionality, distinguishing it from the two refactoring bookends?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Prefactoring"
+        },
+        {
+          "key": "B",
+          "text": "Postfactoring"
+        },
+        {
+          "key": "C",
+          "text": "Actualization"
+        },
+        {
+          "key": "D",
+          "text": "Concept Location"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Actualization is the only one of these that changes observable behaviour by adding functionality; Pre/Postfactoring are behaviour-preserving. (Refactoring1 p.5)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L04-Q697",
+      "lecture_id": "L04",
+      "topic": "Version Control / Git",
+      "difficulty": "medium",
+      "stem": "After SonarLint flags smells in the lab, but BEFORE applying refactorings, what should already be done?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A feature branch should be created to isolate the work"
+        },
+        {
+          "key": "B",
+          "text": "The fix should be merged to main"
+        },
+        {
+          "key": "C",
+          "text": "The portfolio should be finalized"
+        },
+        {
+          "key": "D",
+          "text": "All tests should be deleted"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The lab creates the feature branch first, then runs SonarLint and applies refactorings before documenting. (RefactLab p.1)",
+      "source": {
+        "deck": "RefactoringLab1.pdf",
+        "page": 1
+      },
+      "tags": [
+        "JHotDraw Case Study"
+      ]
+    },
+    {
+      "id": "L04-Q719",
+      "lecture_id": "L04",
+      "topic": "Clean Code",
+      "difficulty": "medium",
+      "stem": "Which guideline pairs 'leave no code smells behind' with the Postfactoring discipline?",
+      "options": [
+        {
+          "key": "A",
+          "text": "G9 Automated Tests"
+        },
+        {
+          "key": "B",
+          "text": "G1 Write Short Units"
+        },
+        {
+          "key": "C",
+          "text": "G10 Write Clean Code"
+        },
+        {
+          "key": "D",
+          "text": "G5 Separate Concerns"
+        }
+      ],
+      "answer": "C",
+      "explanation": "G10 ('leave no smells behind after development work') is literally the Postfactoring discipline. (BetterCode p.57)",
+      "source": {
+        "deck": "BetterCode.pdf",
+        "page": 57
+      },
+      "tags": [
+        "Prefactoring"
+      ]
+    },
+    {
+      "id": "L04-Q721",
+      "lecture_id": "L04",
+      "topic": "Software Change Process",
+      "difficulty": "hard",
+      "stem": "In this lecture's framing, which two phases use the SAME catalogs and metrics, differing only in timing?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Prefactoring and Postfactoring"
+        },
+        {
+          "key": "B",
+          "text": "Concept Location and Impact Analysis"
+        },
+        {
+          "key": "C",
+          "text": "Actualization and Verification"
+        },
+        {
+          "key": "D",
+          "text": "Initiation and Conclusion"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Pre- and Postfactoring both draw on the Fowler/Kerievsky catalogs and SIG metrics; only their position around Actualization differs. (Refactoring1 p.5)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 5
+      },
+      "tags": [
+        "Prefactoring"
+      ]
+    },
+    {
+      "id": "L04-Q723",
+      "lecture_id": "L04",
+      "topic": "OO Principles",
+      "difficulty": "medium",
+      "stem": "Replace Conditional with Polymorphism leans on which OO principle to dispatch behaviour by type?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Encapsulation of fields"
+        },
+        {
+          "key": "B",
+          "text": "Multiple inheritance"
+        },
+        {
+          "key": "C",
+          "text": "Polymorphism via subtype overriding"
+        },
+        {
+          "key": "D",
+          "text": "Static binding"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The refactoring moves each conditional leg into an overriding subclass method, relying on subtype polymorphism. (Refactoring1 p.34, 255)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 34
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L04-Q724",
+      "lecture_id": "L04",
+      "topic": "OO Principles",
+      "difficulty": "easy",
+      "stem": "A Data Class with only fields and accessors most clearly under-uses which OO idea?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Inheritance"
+        },
+        {
+          "key": "B",
+          "text": "Operator overloading"
+        },
+        {
+          "key": "C",
+          "text": "Reflection"
+        },
+        {
+          "key": "D",
+          "text": "Encapsulation of behaviour with data"
+        }
+      ],
+      "answer": "D",
+      "explanation": "A Data Class separates behaviour from data, under-using encapsulation (objects should bundle behaviour with state). (Refactoring1 p.8)",
+      "source": {
+        "deck": "Refactoring1.pdf",
+        "page": 8
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    }
+  ]
+}

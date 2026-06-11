@@ -1,0 +1,1662 @@
+{
+  "lecture_id": "L01",
+  "lecture_num": 1,
+  "lecture_title": "Introduction & Version Control",
+  "generated_from": [
+    "IntroductionSB5MAI.pdf",
+    "Lab - GIT.pdf",
+    "IntroLab.pdf"
+  ],
+  "schema_version": 1,
+  "questions": [
+    {
+      "id": "L01-Q006",
+      "lecture_id": "L01",
+      "topic": "Software Change Process",
+      "difficulty": "easy",
+      "stem": "What form does the SB5-MAI examination take?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A take-home multiple-choice quiz"
+        },
+        {
+          "key": "B",
+          "text": "An individual written report on campus"
+        },
+        {
+          "key": "C",
+          "text": "A group oral defense"
+        },
+        {
+          "key": "D",
+          "text": "A live pair-programming session"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The exam is a written report on campus, based on the individual portfolio. It is individual (not a group defense), written (not oral), and conducted on campus (not take-home), so the other options are wrong. (Introduction p.5)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 5
+      }
+    },
+    {
+      "id": "L01-Q007",
+      "lecture_id": "L01",
+      "topic": "Software Change Process",
+      "difficulty": "medium",
+      "stem": "On which grading scale is the SB5-MAI portfolio assessed?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A 100-point percentage scale"
+        },
+        {
+          "key": "B",
+          "text": "The ECTS A-F letter scale"
+        },
+        {
+          "key": "C",
+          "text": "The Danish 7-point grading scale"
+        },
+        {
+          "key": "D",
+          "text": "A pass/fail scale"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The portfolio is assessed on the Danish 7-point grading scale. It is graded (not pass/fail), uses the national 7-point scale rather than a raw percentage, and is not reported on the ECTS A-F letter scale. (Introduction p.5)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 5
+      }
+    },
+    {
+      "id": "L01-Q008",
+      "lecture_id": "L01",
+      "topic": "Refactoring",
+      "difficulty": "medium",
+      "stem": "What is the concrete portfolio task that the SB5-MAI exam is built around?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Write a formal specification for JHotDraw"
+        },
+        {
+          "key": "B",
+          "text": "Build a new drawing editor from scratch"
+        },
+        {
+          "key": "C",
+          "text": "Port JHotDraw from Java to Kotlin"
+        },
+        {
+          "key": "D",
+          "text": "Refactor JHotDraw features according to Clean Code"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The portfolio's concrete task is to refactor JHotDraw features according to Clean Code, built from individual mandatory portfolio examples. It is refactoring of an existing codebase, not greenfield construction, a language port, or a formal specification. (Introduction p.6)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 6
+      },
+      "tags": [
+        "Clean Code",
+        "JHotDraw Case Study"
+      ]
+    },
+    {
+      "id": "L01-Q009",
+      "lecture_id": "L01",
+      "topic": "Refactoring",
+      "difficulty": "medium",
+      "stem": "From what is the SB5-MAI portfolio built?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Individual mandatory portfolio examples"
+        },
+        {
+          "key": "B",
+          "text": "Weekly written exams"
+        },
+        {
+          "key": "C",
+          "text": "A single large group project"
+        },
+        {
+          "key": "D",
+          "text": "Peer-reviewed conference papers"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The portfolio is built from individual mandatory portfolio examples. It is individual rather than a group project, example-based rather than exam-based, and academic papers are never part of the assessment. (Introduction p.6)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 6
+      },
+      "tags": [
+        "JHotDraw Case Study"
+      ]
+    },
+    {
+      "id": "L01-Q013",
+      "lecture_id": "L01",
+      "topic": "OO Principles",
+      "difficulty": "easy",
+      "stem": "How many essential difficulties of software does the Essential Properties slide name?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Five"
+        },
+        {
+          "key": "B",
+          "text": "Three"
+        },
+        {
+          "key": "C",
+          "text": "Four"
+        },
+        {
+          "key": "D",
+          "text": "Seven"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The slide names five essential difficulties: complexity, invisibility, changeability, conformity and discontinuity. Three, four and seven are simply wrong counts. (Introduction p.9)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 9
+      },
+      "tags": [
+        "Software Processes / CI"
+      ]
+    },
+    {
+      "id": "L01-Q014",
+      "lecture_id": "L01",
+      "topic": "OO Principles",
+      "difficulty": "medium",
+      "stem": "Which set correctly lists all five essential difficulties of software?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Complexity, invisibility, changeability, compatibility, discontinuity"
+        },
+        {
+          "key": "B",
+          "text": "Complexity, invisibility, changeability, conformity, discontinuity"
+        },
+        {
+          "key": "C",
+          "text": "Complexity, coupling, cohesion, conformity, continuity"
+        },
+        {
+          "key": "D",
+          "text": "Complexity, invisibility, scalability, conformity, discontinuity"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The five essential difficulties are complexity, invisibility, changeability, conformity and discontinuity. The distractors swap in adjacent-sounding terms (coupling/cohesion, scalability, compatibility) that are not on the slide. (Introduction p.9)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 9
+      },
+      "tags": [
+        "Software Processes / CI"
+      ]
+    },
+    {
+      "id": "L01-Q018",
+      "lecture_id": "L01",
+      "topic": "OO Principles",
+      "difficulty": "hard",
+      "stem": "Which essential difficulty explains why software must adapt to arbitrary external interfaces, standards and human institutions it cannot redesign?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Changeability"
+        },
+        {
+          "key": "B",
+          "text": "Conformity"
+        },
+        {
+          "key": "C",
+          "text": "Complexity"
+        },
+        {
+          "key": "D",
+          "text": "Invisibility"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Conformity is the requirement to conform to arbitrary external interfaces and institutions (illustrated as modules M and D linked by a constraint d). Changeability is internal pressure to change, complexity is about parts, and invisibility is about visual form. (Introduction p.9)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 9
+      },
+      "tags": [
+        "Software Processes / CI"
+      ]
+    },
+    {
+      "id": "L01-Q019",
+      "lecture_id": "L01",
+      "topic": "OO Principles",
+      "difficulty": "hard",
+      "stem": "Which essential difficulty captures that small input changes can cause disproportionately large, non-continuous changes in behaviour?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Conformity"
+        },
+        {
+          "key": "B",
+          "text": "Complexity"
+        },
+        {
+          "key": "C",
+          "text": "Discontinuity"
+        },
+        {
+          "key": "D",
+          "text": "Changeability"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Discontinuity means software does not degrade gracefully like physical systems; small inputs can trigger large jumps (illustrated by a padlock/security icon). The other three difficulties describe parts, pressure to change, and external standards respectively. (Introduction p.9)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 9
+      },
+      "tags": [
+        "Software Processes / CI"
+      ]
+    },
+    {
+      "id": "L01-Q021",
+      "lecture_id": "L01",
+      "topic": "OO Principles",
+      "difficulty": "very-hard",
+      "stem": "A student claims 'adopting a better IDE will remove the complexity of our system.' Why is this claim wrong according to the lecture?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Complexity is an essential difficulty that tooling cannot remove"
+        },
+        {
+          "key": "B",
+          "text": "Complexity is removed only by switching to waterfall"
+        },
+        {
+          "key": "C",
+          "text": "Complexity is an accidental property tied to the IDE"
+        },
+        {
+          "key": "D",
+          "text": "Complexity only matters during the servicing stage"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Complexity is an essential (inherent) difficulty, so no tool, IDE or language removes it; only accidental properties change with tooling. It is not accidental, not stage-specific, and unrelated to choosing waterfall. This is a flagged exam trap. (Introduction p.9-10)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 9
+      },
+      "tags": [
+        "Software Processes / CI"
+      ]
+    },
+    {
+      "id": "L01-Q029",
+      "lecture_id": "L01",
+      "topic": "Software Processes / CI",
+      "difficulty": "easy",
+      "stem": "According to the requirements-volatility anomaly, at roughly what monthly rate do IT requirements change?",
+      "options": [
+        {
+          "key": "A",
+          "text": "2 to 3 % per month"
+        },
+        {
+          "key": "B",
+          "text": "10 to 15 % per month"
+        },
+        {
+          "key": "C",
+          "text": "0.5 % per month"
+        },
+        {
+          "key": "D",
+          "text": "50 % per month"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Requirements for IT change at a rate of 2 to 3 % per month (attributed to Capers Jones). The per-software-type breakdown ranges from 1.0% to 3.5% per month around that headline figure, so the other figures are wrong. (Introduction p.16)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 16
+      }
+    },
+    {
+      "id": "L01-Q030",
+      "lecture_id": "L01",
+      "topic": "Software Processes / CI",
+      "difficulty": "medium",
+      "stem": "In the per-software-type requirements-change table, which software type has the HIGHEST monthly change rate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Information systems (1.5%)"
+        },
+        {
+          "key": "B",
+          "text": "Commercial software (3.5%)"
+        },
+        {
+          "key": "C",
+          "text": "Military software (2.0%)"
+        },
+        {
+          "key": "D",
+          "text": "System software (2.0%)"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Commercial software changes fastest at 3.5% per month. System and military software are at 2.0%, information systems at 1.5%, and contract/outsource at 1.0%, so commercial is the maximum. (Introduction p.17)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 17
+      }
+    },
+    {
+      "id": "L01-Q032",
+      "lecture_id": "L01",
+      "topic": "Software Processes / CI",
+      "difficulty": "medium",
+      "stem": "What monthly requirements-change rate do BOTH system software and military software show in the table?",
+      "options": [
+        {
+          "key": "A",
+          "text": "3.5%"
+        },
+        {
+          "key": "B",
+          "text": "1.5%"
+        },
+        {
+          "key": "C",
+          "text": "1.0%"
+        },
+        {
+          "key": "D",
+          "text": "2.0%"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Both system software and military software change at 2.0% per month. 1.0% is contract/outsource, 1.5% is information systems, and 3.5% is commercial. (Introduction p.17)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 17
+      }
+    },
+    {
+      "id": "L01-Q047",
+      "lecture_id": "L01",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "What force drives the natural drift from Evolution to Servicing in the staged model?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Refactoring"
+        },
+        {
+          "key": "B",
+          "text": "Forking"
+        },
+        {
+          "key": "C",
+          "text": "Code decay"
+        },
+        {
+          "key": "D",
+          "text": "Reengineering"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Code decay drives Evolution -> Servicing: as the codebase degrades, deep evolution becomes too risky. Reengineering/refactoring is the counter-force in the opposite direction, and forking is a Git operation. (Introduction p.22)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 22
+      },
+      "tags": [
+        "Refactoring",
+        "Software Change Process"
+      ]
+    },
+    {
+      "id": "L01-Q048",
+      "lecture_id": "L01",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "What is reengineering in the staged-model overlay, and which transition does it represent?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The switch-off: Phase-out -> Close-down"
+        },
+        {
+          "key": "B",
+          "text": "The first running version: Initial -> Evolution"
+        },
+        {
+          "key": "C",
+          "text": "The decay that pushes code: Evolution -> Servicing"
+        },
+        {
+          "key": "D",
+          "text": "The counter-force restoring decayed code: Servicing -> Evolution"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Reengineering is the counter-force that restores decayed code, the arrow back from Servicing to Evolution, so real evolution can resume. Evolution -> Servicing is code decay, Initial -> Evolution is the first version, and Phase-out -> Close-down is switch-off. (Introduction p.22)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 22
+      },
+      "tags": [
+        "Refactoring",
+        "Software Change Process"
+      ]
+    },
+    {
+      "id": "L01-Q049",
+      "lecture_id": "L01",
+      "topic": "Refactoring",
+      "difficulty": "hard",
+      "stem": "Why is reengineering/refactoring described as the direct conceptual justification for this course?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It reverses code decay so software can stay in the evolution stage"
+        },
+        {
+          "key": "B",
+          "text": "It speeds up the close-down of legacy systems"
+        },
+        {
+          "key": "C",
+          "text": "It replaces version control with a central repository"
+        },
+        {
+          "key": "D",
+          "text": "It eliminates the need to understand the existing code"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Reengineering/refactoring fights code decay and keeps software in the evolution stage, which is why a maintenance course exists. It does not accelerate retirement, replace VCS, or remove the need to understand code. (Introduction p.22)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 22
+      },
+      "tags": [
+        "Technical Debt",
+        "Software Change Process"
+      ]
+    },
+    {
+      "id": "L01-Q051",
+      "lecture_id": "L01",
+      "topic": "Software Processes / CI",
+      "difficulty": "hard",
+      "stem": "In the versioned staged model, when is a new evolution branch typically started?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Never; versions are strictly sequential"
+        },
+        {
+          "key": "B",
+          "text": "Only after the old version reaches close-down"
+        },
+        {
+          "key": "C",
+          "text": "Before the old version is closed down"
+        },
+        {
+          "key": "D",
+          "text": "Only during the old version's phase-out"
+        }
+      ],
+      "answer": "C",
+      "explanation": "A new evolution branch is started before the old one is closed down, modelling real products that maintain several supported releases at once. The other options describe strictly sequential versioning, which the model rejects. (Introduction p.23)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 23
+      }
+    },
+    {
+      "id": "L01-Q052",
+      "lecture_id": "L01",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "What is the defining idea of the V-model?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Each commit is shared immediately on push"
+        },
+        {
+          "key": "B",
+          "text": "Each stage decays into the next via code decay"
+        },
+        {
+          "key": "C",
+          "text": "Each version ships in parallel with the others"
+        },
+        {
+          "key": "D",
+          "text": "Each constructive activity is paired with a corresponding verification activity"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The V-model pairs each constructive (descending) activity with a corresponding verification (ascending) activity. Parallel versions describe the versioned-staged model, decay belongs to reengineering, and commit/push is Git. (Introduction p.24)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 24
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L01-Q053",
+      "lecture_id": "L01",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "In the V-model, which test level is paired with the 'requirements' activity?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Functional testing"
+        },
+        {
+          "key": "B",
+          "text": "System testing"
+        },
+        {
+          "key": "C",
+          "text": "Integration testing"
+        },
+        {
+          "key": "D",
+          "text": "Unit testing"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Requirements is paired with functional testing. System design is paired with system testing and unit design with unit testing; integration testing is not one of the named V-model pairings. (Introduction p.24)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 24
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L01-Q058",
+      "lecture_id": "L01",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "What do the dashed horizontal links in the V-model express?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Each version branches into a new evolution"
+        },
+        {
+          "key": "B",
+          "text": "Each test level validates the corresponding design level"
+        },
+        {
+          "key": "C",
+          "text": "Each commit must be pushed before merging"
+        },
+        {
+          "key": "D",
+          "text": "Each paradigm replaces the previous one"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The dashed horizontal links show that each test level validates the corresponding design level, making testing a first-class planned activity paired with design. The other options describe versioning, Git, and paradigm history. (Introduction p.24)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 24
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L01-Q061",
+      "lecture_id": "L01",
+      "topic": "Version Control / Git",
+      "difficulty": "easy",
+      "stem": "How many benefits of version control does the Git Lab list when justifying VCS?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Six"
+        },
+        {
+          "key": "B",
+          "text": "Five"
+        },
+        {
+          "key": "C",
+          "text": "Four"
+        },
+        {
+          "key": "D",
+          "text": "Three"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The Git Lab justifies VCS with six benefits (discipline, archive, history, collaboration, recovery, disk space). Three is the number of essential VCS actions, four is the number of Git areas, and five is the number of essential difficulties. (Git Lab p.3)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 3
+      }
+    },
+    {
+      "id": "L01-Q069",
+      "lecture_id": "L01",
+      "topic": "Version Control / Git",
+      "difficulty": "medium",
+      "stem": "In the Maven/JHotDraw setup, which directory should specifically NOT be committed, following the 'commit source, not build output' rule?",
+      "options": [
+        {
+          "key": "A",
+          "text": "target/"
+        },
+        {
+          "key": "B",
+          "text": "pom.xml"
+        },
+        {
+          "key": "C",
+          "text": "src/"
+        },
+        {
+          "key": "D",
+          "text": ".git/"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The Maven build output lives in target/, which is generated and must never be committed. src/ holds source, .git/ is the repository metadata Git manages, and pom.xml is a source build descriptor that should be committed. (Git Lab p.6)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 6
+      },
+      "tags": [
+        "JHotDraw Case Study"
+      ]
+    },
+    {
+      "id": "L01-Q077",
+      "lecture_id": "L01",
+      "topic": "Version Control / Git",
+      "difficulty": "medium",
+      "stem": "From which URL does the lecture say Git can be installed?",
+      "options": [
+        {
+          "key": "A",
+          "text": "http://git-scm.com/downloads"
+        },
+        {
+          "key": "B",
+          "text": "http://linux.org/git"
+        },
+        {
+          "key": "C",
+          "text": "http://github.com/install"
+        },
+        {
+          "key": "D",
+          "text": "http://maven.apache.org/git"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Installation is from http://git-scm.com/downloads via platform package managers. GitHub is a host, Maven is a build tool, and linux.org is not the Git download site. (Git Lab p.10)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 10
+      }
+    },
+    {
+      "id": "L01-Q088",
+      "lecture_id": "L01",
+      "topic": "Version Control / Git",
+      "difficulty": "very-hard",
+      "stem": "Why is understanding that 'commit' is local and 'push' is what shares it called the single most exam-relevant Git concept?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It is what determines which branch the HEAD pointer currently points at in the repository"
+        },
+        {
+          "key": "B",
+          "text": "It is the setting that controls whether the Maven build skips tests during a smoke build"
+        },
+        {
+          "key": "C",
+          "text": "It is the only mechanism by which Git is able to conserve disk space across versions"
+        },
+        {
+          "key": "D",
+          "text": "It is the defining feature of a decentralized VCS: teammates see nothing until you push"
+        }
+      ],
+      "answer": "D",
+      "explanation": "commit records only to your local HEAD; teammates see nothing until you push - the defining feature of a decentralized VCS and a classic exam trap. It is unrelated to disk space, HEAD's branch, or test-skipping. (Git Lab p.11)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 11
+      }
+    },
+    {
+      "id": "L01-Q093",
+      "lecture_id": "L01",
+      "topic": "Version Control / Git",
+      "difficulty": "medium",
+      "stem": "Per the documented best practice, what should you always run before committing?",
+      "options": [
+        {
+          "key": "A",
+          "text": "git status then git diff"
+        },
+        {
+          "key": "B",
+          "text": "git clone then git fetch"
+        },
+        {
+          "key": "C",
+          "text": "git merge then git show"
+        },
+        {
+          "key": "D",
+          "text": "git push then git pull"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Always git status then git diff before committing so you know exactly what you are recording. Skipping this inspection loop is a flagged pitfall; the other sequences are unrelated to pre-commit inspection. (Git Lab p.13)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 13
+      }
+    },
+    {
+      "id": "L01-Q100",
+      "lecture_id": "L01",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "easy",
+      "stem": "Which project does the Git Lab's 'Projects' slide name as the course case study?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Apache Maven"
+        },
+        {
+          "key": "B",
+          "text": "Subversion"
+        },
+        {
+          "key": "C",
+          "text": "JFreeChart"
+        },
+        {
+          "key": "D",
+          "text": "JHotDraw"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The Projects slide names JHotDraw as the course project and recurring case study. JFreeChart, Maven and Subversion appear nowhere as the case study. (Git Lab p.18)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 18
+      },
+      "tags": [
+        "Version Control / Git"
+      ]
+    },
+    {
+      "id": "L01-Q101",
+      "lecture_id": "L01",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "easy",
+      "stem": "What kind of software is JHotDraw?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A Java drawing-editor framework"
+        },
+        {
+          "key": "B",
+          "text": "A continuous-integration server"
+        },
+        {
+          "key": "C",
+          "text": "A relational database engine"
+        },
+        {
+          "key": "D",
+          "text": "A distributed version control system"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JHotDraw is a Java drawing-editor framework, also a teaching vehicle for design patterns. It is not a VCS, a CI server, or a database. (Git Lab p.18)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 18
+      },
+      "tags": [
+        "Version Control / Git"
+      ]
+    },
+    {
+      "id": "L01-Q102",
+      "lecture_id": "L01",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "In the 'LAB TODOs', after cloning JHotDraw and learning Git, what does the lab tell students to file on GitHub?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A wiki documentation page"
+        },
+        {
+          "key": "B",
+          "text": "A change request as an Issue"
+        },
+        {
+          "key": "C",
+          "text": "A new release tag"
+        },
+        {
+          "key": "D",
+          "text": "A pull request to upstream"
+        }
+      ],
+      "answer": "B",
+      "explanation": "LAB TODOs tell students to file a change request as an Issue on GitHub - the first taste of course Initiation, a change request entering the system. It is not a pull request, a release tag, or a wiki page. (Git Lab p.19)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 19
+      },
+      "tags": [
+        "Software Change Process"
+      ]
+    },
+    {
+      "id": "L01-Q103",
+      "lecture_id": "L01",
+      "topic": "Software Change Process",
+      "difficulty": "very-hard",
+      "stem": "Filing a GitHub Issue for a JHotDraw change is described as the course's first instance of which canonical change-process phase?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Concept Location"
+        },
+        {
+          "key": "B",
+          "text": "Impact Analysis"
+        },
+        {
+          "key": "C",
+          "text": "Initiation"
+        },
+        {
+          "key": "D",
+          "text": "Actualization"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Filing a change request as a GitHub Issue is the course's first instance of Initiation: a change request enters the backlog before any code is touched. Concept Location, Impact Analysis and Actualization are later phases. (Git Lab p.19)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 19
+      },
+      "tags": [
+        "JHotDraw Case Study"
+      ]
+    },
+    {
+      "id": "L01-Q108",
+      "lecture_id": "L01",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "Why does the IntroLab's first build use the '-DskipTests' flag?",
+      "options": [
+        {
+          "key": "A",
+          "text": "To skip downloading Maven dependencies and build entirely from a local cache"
+        },
+        {
+          "key": "B",
+          "text": "To permanently disable testing for the whole course so tests never run again"
+        },
+        {
+          "key": "C",
+          "text": "To run only the project's tests while skipping compilation of the source modules"
+        },
+        {
+          "key": "D",
+          "text": "To get a fast smoke build that confirms compilation without running the test suite"
+        }
+      ],
+      "answer": "D",
+      "explanation": "-DskipTests gives a fast smoke build that confirms the modules compile and install without running tests. It does not permanently disable tests, skip dependency download, or invert into tests-only. (IntroLab p.1)",
+      "source": {
+        "deck": "IntroLab.pdf",
+        "page": 1
+      }
+    },
+    {
+      "id": "L01-Q139",
+      "lecture_id": "L01",
+      "topic": "Software Change Process",
+      "difficulty": "hard",
+      "stem": "Why does the guide treat the 'file a GitHub Issue' step as conceptually important beyond Git mechanics?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It replaces Impact Analysis entirely so no dependency assessment is needed before changing"
+        },
+        {
+          "key": "B",
+          "text": "It is the final Verification step of the change process, recorded after the code is complete"
+        },
+        {
+          "key": "C",
+          "text": "It is the course's first Initiation step: a change request entering the system before code changes"
+        },
+        {
+          "key": "D",
+          "text": "It is identical to pushing a feature branch and shares the same commit with the whole team"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Filing a GitHub Issue is the first Initiation step - a change request enters the system before any code is touched. It is not Verification, not the same as pushing a branch, and does not replace Impact Analysis. (Git Lab p.19)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 19
+      }
+    },
+    {
+      "id": "L01-Q502",
+      "lecture_id": "L01",
+      "topic": "Version Control / Git",
+      "difficulty": "hard",
+      "stem": "You committed a fix on your feature branch yesterday, but a teammate who just pulled still cannot see it. What is the right next action?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Run 'git push' to send your commit to the remote"
+        },
+        {
+          "key": "B",
+          "text": "Re-clone the repository to refresh history"
+        },
+        {
+          "key": "C",
+          "text": "Run 'git commit' again to make the commit count"
+        },
+        {
+          "key": "D",
+          "text": "Ask the teammate to run 'git fetch' a second time"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A commit only records to your local HEAD; in a decentralized VCS teammates see nothing until you push. Re-committing, re-cloning, or a second fetch on their side cannot reveal a commit that never left your machine. (Git Lab p.11)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L01-Q506",
+      "lecture_id": "L01",
+      "topic": "Version Control / Git",
+      "difficulty": "hard",
+      "stem": "What is the essential difference between a centralized VCS like Subversion and a decentralized VCS like Git?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Centralized stores deltas; decentralized stores full copies"
+        },
+        {
+          "key": "B",
+          "text": "Centralized supports branching; decentralized forbids branching"
+        },
+        {
+          "key": "C",
+          "text": "Centralized clients hold no full history; decentralized clones each hold the complete history"
+        },
+        {
+          "key": "D",
+          "text": "Centralized works offline; decentralized requires a constant server connection"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The defining contrast is history location: a centralized working copy lacks full history, while every decentralized clone has the complete local repository. The other options invert offline capability or invent false limits on branching and storage. (Git Lab p.7)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L01-Q520",
+      "lecture_id": "L01",
+      "topic": "Version Control / Git",
+      "difficulty": "easy",
+      "stem": "Given the description 'displays the most recent commit', which command does the local-repo slide use?",
+      "options": [
+        {
+          "key": "A",
+          "text": "git fetch"
+        },
+        {
+          "key": "B",
+          "text": "git show"
+        },
+        {
+          "key": "C",
+          "text": "git diff"
+        },
+        {
+          "key": "D",
+          "text": "git status"
+        }
+      ],
+      "answer": "B",
+      "explanation": "'git show' displays the last commit. 'status' lists changed files, 'diff' shows uncommitted changes, and 'fetch' downloads from the remote. (Git Lab p.13)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 13
+      },
+      "tags": []
+    },
+    {
+      "id": "L01-Q525",
+      "lecture_id": "L01",
+      "topic": "Version Control / Git",
+      "difficulty": "easy",
+      "stem": "Which of the following is NOT one of the four areas in the Git four-area model?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Backlog"
+        },
+        {
+          "key": "B",
+          "text": "Remote repository"
+        },
+        {
+          "key": "C",
+          "text": "Workspace (working dir)"
+        },
+        {
+          "key": "D",
+          "text": "Index/stage"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The four areas are workspace, index/stage, local repository (HEAD), and remote repository. 'Backlog' belongs to the agile loop, not the Git model. (Git Lab p.11)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L01-Q545",
+      "lecture_id": "L01",
+      "topic": "Software Change Process",
+      "difficulty": "medium",
+      "stem": "Before touching any JHotDraw code, your team logs the requested change as a GitHub Issue. Which canonical change-process phase does this map onto?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Impact Analysis"
+        },
+        {
+          "key": "B",
+          "text": "Initiation"
+        },
+        {
+          "key": "C",
+          "text": "Verification"
+        },
+        {
+          "key": "D",
+          "text": "Actualization"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Filing a change request as a GitHub Issue is the course's first instance of Initiation: a request enters the system before any code is touched. Actualization, Verification, and Impact Analysis are later phases. (Git Lab p.19)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 19
+      },
+      "tags": [
+        "JHotDraw Case Study"
+      ]
+    },
+    {
+      "id": "L01-Q548",
+      "lecture_id": "L01",
+      "topic": "Software Change Process",
+      "difficulty": "hard",
+      "stem": "Filing a GitHub Issue is presented as conceptually important for what reason beyond Git mechanics?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It replaces Impact Analysis so no dependency check is needed"
+        },
+        {
+          "key": "B",
+          "text": "It is identical to pushing a feature branch"
+        },
+        {
+          "key": "C",
+          "text": "It is a change request entering the system before any code is changed"
+        },
+        {
+          "key": "D",
+          "text": "It is the final Verification recorded after code is complete"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The Issue is the first Initiation step: a change request enters the system before code is touched. It is not Verification, does not replace Impact Analysis, and is not the same as a push. (Git Lab p.19)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 19
+      },
+      "tags": []
+    },
+    {
+      "id": "L01-Q562",
+      "lecture_id": "L01",
+      "topic": "Software Processes / CI",
+      "difficulty": "hard",
+      "stem": "In the per-software-type table, which type changes fastest, and at what monthly rate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Military software at 2.0%"
+        },
+        {
+          "key": "B",
+          "text": "Information systems at 1.5%"
+        },
+        {
+          "key": "C",
+          "text": "Contract/outsource software at 1.0%"
+        },
+        {
+          "key": "D",
+          "text": "Commercial software at 3.5%"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Commercial software changes fastest at 3.5%/month. System and military are 2.0%, information systems 1.5%, and contract/outsource 1.0%. (Introduction p.17)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 17
+      },
+      "tags": []
+    },
+    {
+      "id": "L01-Q573",
+      "lecture_id": "L01",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "What force naturally pushes software from Evolution toward Servicing, and what counter-force reverses it?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Forking pushes it down; merging pushes it back"
+        },
+        {
+          "key": "B",
+          "text": "Phase-out pushes it down; close-down pushes it back"
+        },
+        {
+          "key": "C",
+          "text": "Reengineering pushes it down; code decay pushes it back"
+        },
+        {
+          "key": "D",
+          "text": "Code decay pushes it down; reengineering pushes it back"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Code decay drives Evolution -> Servicing, and reengineering is the counter-force restoring decayed code (Servicing -> Evolution). The other pairs are Git operations or later stages. (Introduction p.22)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 22
+      },
+      "tags": [
+        "Refactoring",
+        "Software Change Process"
+      ]
+    },
+    {
+      "id": "L01-Q574",
+      "lecture_id": "L01",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "Given the description 'the arrow back from Servicing to Evolution that restores decayed code so deep change can resume', which transition is meant?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Reengineering"
+        },
+        {
+          "key": "B",
+          "text": "First running version"
+        },
+        {
+          "key": "C",
+          "text": "Code decay"
+        },
+        {
+          "key": "D",
+          "text": "Switch-off"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Reengineering is the Servicing -> Evolution counter-force that restores decayed code. Code decay is the opposite direction, switch-off is Phase-out -> Close-down, and the first running version is Initial -> Evolution. (Introduction p.22)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 22
+      },
+      "tags": [
+        "Refactoring",
+        "Software Change Process"
+      ]
+    },
+    {
+      "id": "L01-Q578",
+      "lecture_id": "L01",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "Which V-model design-to-test pairing is INCORRECT?",
+      "options": [
+        {
+          "key": "A",
+          "text": "System design <-> system testing"
+        },
+        {
+          "key": "B",
+          "text": "Requirements <-> unit testing"
+        },
+        {
+          "key": "C",
+          "text": "Unit design <-> unit testing"
+        },
+        {
+          "key": "D",
+          "text": "Requirements <-> functional testing"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Requirements pairs with functional testing, not unit testing. The correct pairings are requirements<->functional, system design<->system, and unit design<->unit testing. (Introduction p.24)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 24
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L01-Q580",
+      "lecture_id": "L01",
+      "topic": "Software Testing",
+      "difficulty": "very-hard",
+      "stem": "How do the staged model's Servicing stage and the V-model's maintenance node differ, despite both being post-development?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Both denote the very first stage before implementation"
+        },
+        {
+          "key": "B",
+          "text": "Servicing is the reduced patch-only stage after evolution; V-model maintenance is the top-of-V post-delivery stage"
+        },
+        {
+          "key": "C",
+          "text": "They are two names for the same initial-development stage"
+        },
+        {
+          "key": "D",
+          "text": "Both sit at the bottom of the V"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Servicing is the reduced patch-only stage after evolution stops, while V-model maintenance is placed at the top as the post-delivery stage. They are neither first stages, identical, nor at the bottom of the V. (Introduction p.21-24)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 24
+      },
+      "tags": []
+    },
+    {
+      "id": "L01-Q581",
+      "lecture_id": "L01",
+      "topic": "Software Processes / CI",
+      "difficulty": "medium",
+      "stem": "Your team builds an early throwaway version purely to learn what users actually need before committing to a design. In the prototype life-span model, what is this artifact's purpose?",
+      "options": [
+        {
+          "key": "A",
+          "text": "To serve as the shipped final product"
+        },
+        {
+          "key": "B",
+          "text": "To act as the team's central version repository"
+        },
+        {
+          "key": "C",
+          "text": "To replace the maintenance stage"
+        },
+        {
+          "key": "D",
+          "text": "To surface misunderstandings so corrected requirements drive the real build"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The prototype is an early throwaway/learning artifact that surfaces misunderstandings so corrected requirements drive the real build. It is not the shipped product, a repository, or a maintenance replacement. (Introduction p.25)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L01-Q587",
+      "lecture_id": "L01",
+      "topic": "Refactoring",
+      "difficulty": "medium",
+      "stem": "Mapping onto JHotDraw: which staged-model stage best describes the portfolio work students do?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Phase-out"
+        },
+        {
+          "key": "B",
+          "text": "Servicing-style patching"
+        },
+        {
+          "key": "C",
+          "text": "Close-down"
+        },
+        {
+          "key": "D",
+          "text": "Evolution-style change"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Portfolio work on JHotDraw is evolution-style change - real change while the team understands the code - not mere servicing patches, phase-out, or close-down. (Introduction p.21)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 21
+      },
+      "tags": [
+        "JHotDraw Case Study"
+      ]
+    },
+    {
+      "id": "L01-Q589",
+      "lecture_id": "L01",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "Your team needs its own working copy of JHotDraw to make changes on GitHub. What is the prescribed first step?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Clone the original directly without forking"
+        },
+        {
+          "key": "B",
+          "text": "Mirror it to a centralized SVN server"
+        },
+        {
+          "key": "C",
+          "text": "Ask the instructor to email a zip of the source"
+        },
+        {
+          "key": "D",
+          "text": "Fork the project repository on GitHub"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Each team first forks the JHotDraw repository on GitHub, then members clone the fork and follow GitHub flow. There is no SVN mirror, emailed zip, or direct-original clone in the lab. (IntroLab p.1)",
+      "source": {
+        "deck": "IntroLab.pdf",
+        "page": 1
+      },
+      "tags": [
+        "Version Control / Git"
+      ]
+    },
+    {
+      "id": "L01-Q594",
+      "lecture_id": "L01",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "very-hard",
+      "stem": "You ran 'mvn clean install -DskipTests' successfully but the GUI does not open. Which exact main class must you target with mvn exec:java?",
+      "options": [
+        {
+          "key": "A",
+          "text": "org.jhotdraw.svg.SvgApplication"
+        },
+        {
+          "key": "B",
+          "text": "org.jhotdraw.samples.Main"
+        },
+        {
+          "key": "C",
+          "text": "org.jhotdraw.app.Main"
+        },
+        {
+          "key": "D",
+          "text": "org.jhotdraw.samples.svg.Main"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The GUI launches with mvn exec:java targeting org.jhotdraw.samples.svg.Main; using the wrong class means the GUI will not appear (a flagged pitfall). The other class names are plausible but wrong. (IntroLab p.1)",
+      "source": {
+        "deck": "IntroLab.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L01-Q599",
+      "lecture_id": "L01",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "Working through the LAB TODOs, a student has cloned JHotDraw and learned Git. As their first taste of course Initiation, what are they directed to create on GitHub?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A pull request to upstream"
+        },
+        {
+          "key": "B",
+          "text": "A change request as an Issue"
+        },
+        {
+          "key": "C",
+          "text": "A wiki documentation page"
+        },
+        {
+          "key": "D",
+          "text": "A new release tag"
+        }
+      ],
+      "answer": "B",
+      "explanation": "LAB TODOs tell students to file a change request as an Issue - the first taste of course Initiation. It is not a pull request, release tag, or wiki page. (Git Lab p.19)",
+      "source": {
+        "deck": "Lab - GIT.pdf",
+        "page": 19
+      },
+      "tags": [
+        "Software Change Process"
+      ]
+    },
+    {
+      "id": "L01-Q600",
+      "lecture_id": "L01",
+      "topic": "Refactoring",
+      "difficulty": "medium",
+      "stem": "The SB5-MAI portfolio is graded on applying Clean Code to an existing editor's features rather than building anything new. Which task does that describe?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Port JHotDraw from Java to Kotlin"
+        },
+        {
+          "key": "B",
+          "text": "Write a formal specification for JHotDraw"
+        },
+        {
+          "key": "C",
+          "text": "Build a new drawing editor from scratch"
+        },
+        {
+          "key": "D",
+          "text": "Refactor JHotDraw features according to Clean Code"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The portfolio task is to refactor JHotDraw features according to Clean Code. It is refactoring of existing code, not greenfield construction, a language port, or a formal spec. (Introduction p.6)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 6
+      },
+      "tags": [
+        "Clean Code",
+        "JHotDraw Case Study"
+      ]
+    },
+    {
+      "id": "L01-Q609",
+      "lecture_id": "L01",
+      "topic": "OO Principles",
+      "difficulty": "medium",
+      "stem": "Which essential difficulty is illustrated with branching/merging arrows, evoking version-control branches?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Conformity"
+        },
+        {
+          "key": "B",
+          "text": "Invisibility"
+        },
+        {
+          "key": "C",
+          "text": "Changeability"
+        },
+        {
+          "key": "D",
+          "text": "Discontinuity"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Changeability is illustrated with branching/merging arrows, capturing constant pressure to change. Invisibility, conformity, and discontinuity use other illustrations. (Introduction p.9)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 9
+      },
+      "tags": [
+        "Software Processes / CI"
+      ]
+    },
+    {
+      "id": "L01-Q614",
+      "lecture_id": "L01",
+      "topic": "Software Processes / CI",
+      "difficulty": "easy",
+      "stem": "Roughly at what monthly rate does the deck say IT requirements change overall?",
+      "options": [
+        {
+          "key": "A",
+          "text": "2 to 3 % per month"
+        },
+        {
+          "key": "B",
+          "text": "10 to 15 % per month"
+        },
+        {
+          "key": "C",
+          "text": "0.5 % per month"
+        },
+        {
+          "key": "D",
+          "text": "50 % per month"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Requirements for IT change at 2 to 3 % per month (Capers Jones). The per-type figures range from 1.0% to 3.5% per month, but the headline overall rate is 2-3%/month. (Introduction p.16)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L01-Q628",
+      "lecture_id": "L01",
+      "topic": "Software Processes / CI",
+      "difficulty": "easy",
+      "stem": "An exam answer defines a 'life-span model' as a list of Git commands. Which option instead states what a software life-span model actually describes?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The six reasons to use version control"
+        },
+        {
+          "key": "B",
+          "text": "The five essential difficulties"
+        },
+        {
+          "key": "C",
+          "text": "The stages software goes through from conception to death"
+        },
+        {
+          "key": "D",
+          "text": "The four areas of a Git repository"
+        }
+      ],
+      "answer": "C",
+      "explanation": "A life-span model describes the stages software passes through from conception to death. The other options describe Git areas, VCS benefits, and essential difficulties. (Introduction p.20)",
+      "source": {
+        "deck": "IntroductionSB5MAI.pdf",
+        "page": 20
+      },
+      "tags": []
+    }
+  ]
+}

@@ -1,0 +1,1622 @@
+{
+  "lecture_id": "L09",
+  "lecture_num": 9,
+  "lecture_title": "Behaviour-Driven Development & Verification",
+  "generated_from": [
+    "BDD.pdf",
+    "BDDLab.pdf"
+  ],
+  "schema_version": 1,
+  "questions": [
+    {
+      "id": "L09-Q001",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What does the abbreviation BDD stand for in this lecture?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Behaviour-Driven Development"
+        },
+        {
+          "key": "B",
+          "text": "Behaviour-Driven Design"
+        },
+        {
+          "key": "C",
+          "text": "Build-Driven Development"
+        },
+        {
+          "key": "D",
+          "text": "Boundary-Defined Design"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD stands for Behaviour-Driven Development: behaviour described in a common domain language, defined collaboratively, executed like tests, forming living documentation. 'Behaviour-Driven Design', 'Build-Driven Development' and 'Boundary-Defined Design' are invented expansions not used by the deck. (BDD p.4)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q006",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which item is listed among the 'typical test issues' that motivate BDD?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Many technical and often irrelevant details clutter the test"
+        },
+        {
+          "key": "B",
+          "text": "Tests run too quickly to be observed"
+        },
+        {
+          "key": "C",
+          "text": "Tests are too readable by non-developers"
+        },
+        {
+          "key": "D",
+          "text": "Tests produce too much living documentation"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck's list of typical test issues includes 'many technical and often irrelevant details'. The other options invert real problems: tests being too readable or producing too much documentation are not complaints — they are exactly what BDD aims to achieve. (BDD p.3)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q007",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "According to the deck, ordinary tests suffer because they can be read by whom?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only developers"
+        },
+        {
+          "key": "B",
+          "text": "Only domain experts"
+        },
+        {
+          "key": "C",
+          "text": "Anyone in the organisation equally"
+        },
+        {
+          "key": "D",
+          "text": "Only automated tools, not humans"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A motivating test issue is that conventional tests 'can only be read by developers'. BDD's fix is domain-language scenarios readable by experts too. The claim is not that only experts or only tools can read them, nor that everyone reads them equally — that equal readability is the goal BDD strives for. (BDD p.3)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q008",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which is cited as a typical problem with conventional tests that BDD seeks to fix?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The point of the test is often hard to grasp"
+        },
+        {
+          "key": "B",
+          "text": "The test always documents the domain perfectly"
+        },
+        {
+          "key": "C",
+          "text": "The test is always free of duplication"
+        },
+        {
+          "key": "D",
+          "text": "The test is automatically readable by experts"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck lists 'the point of the test is often hard to grasp' as a typical issue. The other three describe ideal qualities BDD adds, not pre-existing problems — conventional tests are criticised precisely for duplication and unreadability by experts. (BDD p.3)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q009",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Conventional tests are criticised by the deck for which maintainability problem?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Code duplication across tests"
+        },
+        {
+          "key": "B",
+          "text": "Excessive use of domain language"
+        },
+        {
+          "key": "C",
+          "text": "Being too short to be useful"
+        },
+        {
+          "key": "D",
+          "text": "Running only on the developer's machine"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Code duplication across tests is one of the listed typical test issues. Excessive domain language is what BDD adds (a benefit, not a flaw); 'too short' and 'only on the developer's machine' are not among the deck's cited issues. (BDD p.3)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q018",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Why does the deck argue that the same BDD artefact can serve developers, testers, and domain experts simultaneously?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It runs (developer), is the acceptance criterion (tester), and is readable documentation (domain expert)"
+        },
+        {
+          "key": "B",
+          "text": "It is compiled to three separate binaries, one per audience"
+        },
+        {
+          "key": "C",
+          "text": "It is translated automatically into three natural languages"
+        },
+        {
+          "key": "D",
+          "text": "It is stored in three different repositories for three teams"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD raises behaviour to domain language so one artefact runs (for developers), acts as the acceptance criterion (for testers) and reads as documentation (for domain experts). The other options describe mechanical duplication, not the single-artefact-three-audiences idea the deck stresses. (BDD p.4)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q043",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "In the JGiven pancake test, the step methods are written in which naming style?",
+      "options": [
+        {
+          "key": "A",
+          "text": "snake_case"
+        },
+        {
+          "key": "B",
+          "text": "camelCase"
+        },
+        {
+          "key": "C",
+          "text": "PascalCase"
+        },
+        {
+          "key": "D",
+          "text": "kebab-case"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven step methods use snake_case (e.g. an_egg(), the_cook_fries_the_dough_in_a_pan()) so the Java reads like the prose scenario. camelCase, PascalCase and kebab-case would not reproduce the readable sentence form. (BDD p.10)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 10
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q064",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Trace the pancake state pipeline. Which sequence correctly describes the @...ScenarioState flow?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Given provides ingredients; When consumes ingredients and provides meal; Then consumes meal"
+        },
+        {
+          "key": "B",
+          "text": "Given consumes meal; When provides ingredients; Then provides dough"
+        },
+        {
+          "key": "C",
+          "text": "Then provides ingredients; Given consumes meal; When consumes dough"
+        },
+        {
+          "key": "D",
+          "text": "All three stages only use @ScenarioState bidirectionally"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The pipeline is: Given provides ingredients, When consumes ingredients (+Cook) and provides meal/dough, Then consumes meal and asserts. The other orderings reverse producer/consumer roles, and the deck uses directional @Provided/@Expected, not only bidirectional @ScenarioState. (BDD p.14-16)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q065",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "very-hard",
+      "stem": "A developer annotates the Then stage's meal field @ProvidedScenarioState instead of @ExpectedScenarioState. What is the most likely consequence?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The Then stage will not receive the meal value produced upstream, so its assertion lacks the produced data"
+        },
+        {
+          "key": "B",
+          "text": "The scenario compiles into a Gherkin file automatically"
+        },
+        {
+          "key": "C",
+          "text": "The Given stage stops producing ingredients"
+        },
+        {
+          "key": "D",
+          "text": "The HTML report switches to German automatically"
+        }
+      ],
+      "answer": "A",
+      "explanation": "@ProvidedScenarioState marks the field as something this stage outputs, so the Then stage would not be wired to consume the upstream meal — the assertion loses the produced value. The other options are unrelated effects (Gherkin generation, Given behaviour, report language). (BDD p.13, p.16)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q072",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "How do the JGiven console and HTML5 reports satisfy the test-issue 'tests cannot be used as documentation'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The executed scenario reads identically to the spec, so it doubles as living documentation"
+        },
+        {
+          "key": "B",
+          "text": "They hide all scenario text so nothing can be misread"
+        },
+        {
+          "key": "C",
+          "text": "They export the source code as a PDF manual"
+        },
+        {
+          "key": "D",
+          "text": "They replace tests with prose written by hand"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Because the executed scenario reads like the specification, the report is itself readable documentation that stays in sync — addressing the 'unusable as documentation' issue. They do not hide text, export source PDFs, or replace tests with hand prose. (BDD p.3-4, p.17-18)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 17
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q076",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What did the TNG report say happened to readability and reusability of test code with JGiven?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They greatly improved"
+        },
+        {
+          "key": "B",
+          "text": "They greatly worsened"
+        },
+        {
+          "key": "C",
+          "text": "They stayed exactly the same"
+        },
+        {
+          "key": "D",
+          "text": "They became impossible to measure"
+        }
+      ],
+      "answer": "A",
+      "explanation": "TNG reports readability and reusability greatly improved. The deck does not claim they worsened, stayed identical, or were unmeasurable. (BDD p.19)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 19
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q077",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "What caveat accompanies TNG's claim that maintenance costs of automated tests were reduced?",
+      "options": [
+        {
+          "key": "A",
+          "text": "There were no hard numbers to quantify the reduction"
+        },
+        {
+          "key": "B",
+          "text": "The reduction only applied to GUI tests"
+        },
+        {
+          "key": "C",
+          "text": "Maintenance costs actually rose for new developers"
+        },
+        {
+          "key": "D",
+          "text": "The reduction required abandoning JUnit"
+        }
+      ],
+      "answer": "A",
+      "explanation": "TNG reports reduced maintenance costs but with 'no hard numbers' — a qualitative claim. It was not limited to GUI tests, did not raise costs for newcomers (it was easy to learn), and did not require dropping JUnit. (BDD p.19)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 19
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q079",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "The JGiven summary slide highlights easy integration with which existing test infrastructures?",
+      "options": [
+        {
+          "key": "A",
+          "text": "JUnit and TestNG"
+        },
+        {
+          "key": "B",
+          "text": "Cucumber and JBehave"
+        },
+        {
+          "key": "C",
+          "text": "Selenium and Cypress"
+        },
+        {
+          "key": "D",
+          "text": "Maven and Gradle as test runners"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven integrates easily with JUnit and TestNG. Cucumber/JBehave are competing BDD frameworks, Selenium/Cypress are web UI tools, and Maven/Gradle are build tools (JGiven has Maven and Jenkins plugins, but the test infrastructures named are JUnit/TestNG). (BDD p.20)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q084",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "very-hard",
+      "stem": "JGiven 'buys low maintenance and reuse by living in Java, but the price is...'. What completes the deck's central trade-off?",
+      "options": [
+        {
+          "key": "A",
+          "text": "...non-developers can read the reports yet cannot author the scenarios"
+        },
+        {
+          "key": "B",
+          "text": "...the tests can no longer run on CI servers"
+        },
+        {
+          "key": "C",
+          "text": "...the reports are no longer readable by anyone"
+        },
+        {
+          "key": "D",
+          "text": "...the framework becomes closed-source and paid"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Living in Java lowers maintenance and boosts reuse, but at the cost that non-developers can read reports yet not author scenarios. CI still works, reports stay readable, and JGiven remains open-source Apache 2 — so the other completions are false. (BDD p.20)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q113",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What does AssertJ-Swing embed in HTML reports when a GUI test fails?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Screenshots of the failed GUI test"
+        },
+        {
+          "key": "B",
+          "text": "The full source code of the app"
+        },
+        {
+          "key": "C",
+          "text": "A video recording of the whole session"
+        },
+        {
+          "key": "D",
+          "text": "A memory dump of the JVM"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ-Swing can embed screenshots of failed GUI tests in HTML reports. It does not embed full source, video recordings, or JVM memory dumps. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q114",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "Which test frameworks can AssertJ-Swing be used with?",
+      "options": [
+        {
+          "key": "A",
+          "text": "TestNG or JUnit"
+        },
+        {
+          "key": "B",
+          "text": "Cucumber or JBehave only"
+        },
+        {
+          "key": "C",
+          "text": "Spock only"
+        },
+        {
+          "key": "D",
+          "text": "No framework — it runs standalone"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ-Swing works with TestNG or JUnit. It is not limited to Cucumber/JBehave or Spock, and it is not a standalone-only runner. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q141",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "The BDD deck itself — does it mention JHotDraw or walk the eight-phase change process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "No; the JHotDraw and eight-phase links are course-frame synthesis, not deck claims"
+        },
+        {
+          "key": "B",
+          "text": "Yes; the deck dedicates a slide to JHotDraw figures"
+        },
+        {
+          "key": "C",
+          "text": "Yes; the deck names all eight phases explicitly"
+        },
+        {
+          "key": "D",
+          "text": "Yes; JHotDraw is the deck's running example instead of pancakes"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck does NOT mention JHotDraw or name the eight phases; those connections are course-frame synthesis. The deck's running example is the pancake scenario, not JHotDraw. (guide gotchas; BDD p.5)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q142",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "Why is AssertJ-Swing the relevant BDD tool for verifying a JHotDraw change at the GUI level?",
+      "options": [
+        {
+          "key": "A",
+          "text": "JHotDraw is a Swing drawing editor, and AssertJ-Swing automates Swing GUI tests"
+        },
+        {
+          "key": "B",
+          "text": "JHotDraw is a web app, and AssertJ-Swing drives browsers"
+        },
+        {
+          "key": "C",
+          "text": "JHotDraw is a database, and AssertJ-Swing runs SQL"
+        },
+        {
+          "key": "D",
+          "text": "JHotDraw is a CLI tool needing no GUI testing"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JHotDraw is a Java Swing drawing editor, so AssertJ-Swing (which automates Swing GUI tests) is the natural verification tool. JHotDraw is not a web app, database, or CLI tool. (BDD p.29; course frame)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L09-Q143",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "For a JHotDraw scenario 'Given a drawing with one rectangle, When the user drags it 50px right, Then x increases by 50', which tool plays which role?",
+      "options": [
+        {
+          "key": "A",
+          "text": "JGiven implements the scenario in Java; AssertJ-Swing drives the drag; AssertJ asserts the new coordinate"
+        },
+        {
+          "key": "B",
+          "text": "Cucumber implements it; Hamcrest drives the GUI; Fest asserts"
+        },
+        {
+          "key": "C",
+          "text": "AssertJ-Swing writes the scenario; JGiven drives the GUI; JUnit asserts only"
+        },
+        {
+          "key": "D",
+          "text": "The scenario cannot be automated because JHotDraw is Swing"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven expresses the scenario in Java, AssertJ-Swing simulates the drag, and AssertJ asserts the coordinate. The Cucumber/Hamcrest/Fest combo is not the course toolchain, the roles in option C are scrambled, and Swing GUIs are automatable (that is AssertJ-Swing's purpose). (BDD p.10-16, p.29; course frame)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L09-Q144",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "How does JGiven's stage reuse pay off on a large case study like JHotDraw?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A stage such as GivenADrawing can be reused across many figure scenarios"
+        },
+        {
+          "key": "B",
+          "text": "Each scenario must rewrite all stages from scratch"
+        },
+        {
+          "key": "C",
+          "text": "Stages can only be used once and then discarded"
+        },
+        {
+          "key": "D",
+          "text": "Stages must be authored by domain experts"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Because stages are ordinary reusable classes, a GivenADrawing stage is reused across many JHotDraw figure scenarios. Stages are not rewritten per scenario, not single-use, and authored by developers, not experts. (BDD p.11; course frame)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 11
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L09-Q145",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "very-hard",
+      "stem": "JHotDraw is built on GoF patterns (Composite, Observer, Strategy). How do BDD scenarios relate to these patterns?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They verify the behaviour the patterns produce (e.g. an Observer refreshing the view) without coupling to the pattern's internal structure"
+        },
+        {
+          "key": "B",
+          "text": "They replace the patterns with simpler procedural code"
+        },
+        {
+          "key": "C",
+          "text": "They assert directly on each pattern's private fields"
+        },
+        {
+          "key": "D",
+          "text": "They forbid the use of design patterns in tested code"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD verifies observable behaviour (e.g. the Observer refreshing the view) without coupling to internal structure — behaviour over implementation. It does not replace patterns, assert on private fields, or forbid patterns. (course frame; [GHJV94])",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L09-Q157",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "Which is a genuine 'typical test issue' the deck lists (choose the real one)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Tests cannot be used as documentation"
+        },
+        {
+          "key": "B",
+          "text": "Tests are too readable by experts"
+        },
+        {
+          "key": "C",
+          "text": "Tests have too few technical details"
+        },
+        {
+          "key": "D",
+          "text": "Tests run on too many machines"
+        }
+      ],
+      "answer": "A",
+      "explanation": "'Tests cannot be used as documentation' is one of the listed issues. The others invert reality: too-readable, too-few-details and too-many-machines are not the deck's complaints (it complains of irrelevant detail and developer-only readability). (BDD p.3)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q170",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "In the deck's Condition example, which two AssertJ calls test the divisibility predicate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "assertThat(12).is(evenDivBySix) and assertThat(8).isNot(evenDivBySix)"
+        },
+        {
+          "key": "B",
+          "text": "assertThat(12).contains(6) and assertThat(8).startsWith(6)"
+        },
+        {
+          "key": "C",
+          "text": "assertThat(12).given(evenDivBySix) and assertThat(8).then(evenDivBySix)"
+        },
+        {
+          "key": "D",
+          "text": "assertThat(12).matches(6) and assertThat(8).filter(6)"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The example asserts assertThat(12).is(evenDivBySix) and assertThat(8).isNot(evenDivBySix). contains/startsWith are String/array methods, given/then are JGiven, and matches/filter are not the application calls. (BDD p.27)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 27
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q512",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "You role-play verifying a JHotDraw change: 'Given a drawing with one rectangle, When the user drags it 50px right, Then x increases by 50.' Which tool drives the actual drag on the Swing canvas?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Hamcrest matchers"
+        },
+        {
+          "key": "B",
+          "text": "Cucumber's Gherkin parser"
+        },
+        {
+          "key": "C",
+          "text": "Plain JUnit assertEquals"
+        },
+        {
+          "key": "D",
+          "text": "AssertJ-Swing"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Driving real GUI interaction (drag 'n drop) on a Swing app like JHotDraw is AssertJ-Swing's job. JUnit/Hamcrest only assert values; Cucumber parses plain text, it does not drive a GUI. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q545",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "A snippet reads: 'assertThat(actual).contains(\"is\").startsWith(\"This\");'. Which library is this?",
+      "options": [
+        {
+          "key": "A",
+          "text": "AssertJ (fluent chained assertions)"
+        },
+        {
+          "key": "B",
+          "text": "JUnit's assertEquals"
+        },
+        {
+          "key": "C",
+          "text": "Mockito"
+        },
+        {
+          "key": "D",
+          "text": "Hamcrest"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Chained fluent assertions like contains().startsWith() are AssertJ's signature style. Hamcrest uses assertThat(x, matcher), JUnit uses assertEquals, and Mockito mocks. (BDD p.25)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q546",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "A snippet defines 'new Condition<Integer>(){ public boolean matches(Integer v){ return v%6==0; } }' and uses assertThat(12).is(...). Which AssertJ feature is shown?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A type-specific factory method"
+        },
+        {
+          "key": "B",
+          "text": "A custom Condition functor"
+        },
+        {
+          "key": "C",
+          "text": "AssertJ-Swing component lookup"
+        },
+        {
+          "key": "D",
+          "text": "A custom AbstractAssert subclass"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Overriding matches() and applying it with is()/isNot() is the custom Condition functor. A custom assertion subclasses AbstractAssert; this snippet does neither that nor Swing lookup. (BDD p.27)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 27
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q549",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "A class extends 'Stage<GivenIngredients>'. What does the generic parameter (the self-type) enable?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Type-safe fluent 'return this' chaining"
+        },
+        {
+          "key": "B",
+          "text": "HTML report generation"
+        },
+        {
+          "key": "C",
+          "text": "Spring dependency injection"
+        },
+        {
+          "key": "D",
+          "text": "Multi-threaded test execution"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Stage<SELF> is the self-type that makes 'return this' return the concrete stage type for fluent chaining. It is unrelated to DI, reports, or threading. (BDD p.11,14)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 11
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L09-Q550",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "A test imports 'static org.assertj.core.api.Assertions.assertThat;'. Which library and purpose does this indicate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Hamcrest — for matcher syntax"
+        },
+        {
+          "key": "B",
+          "text": "AssertJ — to use the fluent assertThat() factory in Then steps"
+        },
+        {
+          "key": "C",
+          "text": "JGiven — to declare stages"
+        },
+        {
+          "key": "D",
+          "text": "JUnit — for lifecycle annotations"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The org.assertj.core.api.Assertions.assertThat static import is AssertJ's fluent factory, used in Then steps. It is not Hamcrest, JUnit, or JGiven's stage API. (BDD p.16,24)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 24
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q559",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "Because JHotDraw is a Swing application prone to threading mistakes, why is AssertJ-Swing's EDT support valuable when verifying a change?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It converts Swing to JavaFX"
+        },
+        {
+          "key": "B",
+          "text": "It removes the need for any assertions"
+        },
+        {
+          "key": "C",
+          "text": "It can test violations of Swing's Event Dispatch Thread rules"
+        },
+        {
+          "key": "D",
+          "text": "It compiles JHotDraw faster"
+        }
+      ],
+      "answer": "C",
+      "explanation": "AssertJ-Swing can detect EDT (threading-rule) violations, important for a GUI framework like JHotDraw. It does not compile, remove assertions, or port to JavaFX. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q561",
+      "lecture_id": "L09",
+      "topic": "Software Processes / CI",
+      "difficulty": "hard",
+      "stem": "Because JGiven ships Maven and Jenkins plugins, what does this enable for the change process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Scenarios run automatically in CI, tying Verification to the Conclusion/CI phase"
+        },
+        {
+          "key": "B",
+          "text": "Domain experts gain authoring rights"
+        },
+        {
+          "key": "C",
+          "text": "Scenarios can only run manually"
+        },
+        {
+          "key": "D",
+          "text": "Reports become non-readable"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Maven/Jenkins plugins let scenarios execute automatically on every integration, connecting Verification to CI. They do not force manual runs or change authoring/readability. (BDD p.20)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q562",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "You need to assert that a String both contains a substring and starts with a prefix in one readable statement. Which is most appropriate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Two separate JUnit assertTrue calls"
+        },
+        {
+          "key": "B",
+          "text": "AssertJ fluent chaining: assertThat(s).contains(\"is\").startsWith(\"This\")"
+        },
+        {
+          "key": "C",
+          "text": "A Hamcrest assertThat with a single matcher"
+        },
+        {
+          "key": "D",
+          "text": "A Mockito verify call"
+        }
+      ],
+      "answer": "B",
+      "explanation": "AssertJ's fluent chain reads as one sentence and is the deck's recommended style. Separate assertTrue calls are less readable, and Mockito is for mocks, not assertions. (BDD p.25)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q563",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "You want a reusable predicate 'is evenly divisible by six' applied to many integer assertions. Which AssertJ feature fits best?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A custom AbstractAssert subclass per number"
+        },
+        {
+          "key": "B",
+          "text": "AssertJ-Swing"
+        },
+        {
+          "key": "C",
+          "text": "A custom Condition used with is()/isNot()"
+        },
+        {
+          "key": "D",
+          "text": "A new Gherkin keyword"
+        }
+      ],
+      "answer": "C",
+      "explanation": "A reusable predicate is exactly a Condition functor (override matches, apply via is/isNot). A full AbstractAssert subclass is heavier; Swing and Gherkin are irrelevant here. (BDD p.27)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 27
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q564",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "Your domain type Student needs natural assertions like isInMiddleSchool() and isSenior(). Which approach is most appropriate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Add the methods to java.lang.Integer"
+        },
+        {
+          "key": "B",
+          "text": "Define a single Condition and reuse it for both checks"
+        },
+        {
+          "key": "C",
+          "text": "Use AssertJ-Swing"
+        },
+        {
+          "key": "D",
+          "text": "Subclass AbstractAssert (StudentAssert) plus Assertions for the factory"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Multiple named domain assertions belong on a custom AbstractAssert subclass with a matching Assertions factory. A lone Condition gives is()/isNot(), not named methods. (BDD p.28)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q565",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "To verify that dragging a figure on JHotDraw's canvas updates its position, which tool is most appropriate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "AssertJ-Swing"
+        },
+        {
+          "key": "B",
+          "text": "JUnit assertEquals alone"
+        },
+        {
+          "key": "C",
+          "text": "Cucumber Gherkin parser"
+        },
+        {
+          "key": "D",
+          "text": "Hamcrest matchers alone"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Driving and verifying real Swing GUI interaction is AssertJ-Swing's purpose. Plain assertions cannot perform the drag; Cucumber parses text, not GUIs. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q567",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "You need a single assertion library that is maintained and replaces JUnit/Hamcrest/Fest. Which does the deck recommend?",
+      "options": [
+        {
+          "key": "A",
+          "text": "JUnit's built-in asserts"
+        },
+        {
+          "key": "B",
+          "text": "Fest"
+        },
+        {
+          "key": "C",
+          "text": "AssertJ"
+        },
+        {
+          "key": "D",
+          "text": "Hamcrest"
+        }
+      ],
+      "answer": "C",
+      "explanation": "AssertJ is the deck's recommendation: maintained, a near-superset, and readable. Hamcrest is stagnant, Fest abandonware, JUnit underpowered. (BDD p.23)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 23
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q570",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "You want the factory call that returns the correct assertion type for whatever value you pass. Which is the right entry point?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Condition.matches(value)"
+        },
+        {
+          "key": "B",
+          "text": "Assertions.assertThat(value)"
+        },
+        {
+          "key": "C",
+          "text": "assertEquals(expected, value)"
+        },
+        {
+          "key": "D",
+          "text": "new AbstractAssert(value)"
+        }
+      ],
+      "answer": "B",
+      "explanation": "assertThat() is AssertJ's type-specific factory returning the right assert per type. AbstractAssert is a base class you subclass, matches() is a Condition method, and assertEquals is JUnit. (BDD p.24)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 24
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q577",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "A study slide draft says 'pick Hamcrest for Then-step assertions.' Per the deck, what single word best describes Hamcrest's state?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Stagnant"
+        },
+        {
+          "key": "B",
+          "text": "Cutting-edge"
+        },
+        {
+          "key": "C",
+          "text": "Recommended"
+        },
+        {
+          "key": "D",
+          "text": "JDK-bundled"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck calls Hamcrest stagnant (and ugly) and steers you to AssertJ instead. It is not cutting-edge, JDK-bundled, or the deck's recommendation. (BDD p.22-23)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 22
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q581",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "Misconception: 'The BDD deck cites JHotDraw and walks the eight-phase change process.' What is accurate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The deck does NOT mention JHotDraw or the eight phases; that link is course-frame synthesis"
+        },
+        {
+          "key": "B",
+          "text": "The deck names all eight phases"
+        },
+        {
+          "key": "C",
+          "text": "The deck devotes a slide to JHotDraw"
+        },
+        {
+          "key": "D",
+          "text": "The deck replaces JHotDraw with Swing examples on every slide"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The BDD deck is tool-focused and does not name JHotDraw or the eight phases; the connection is supplied by the course frame, not a deck slide. (BDD p.1)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q586",
+      "lecture_id": "L09",
+      "topic": "Software Processes / CI",
+      "difficulty": "hard",
+      "stem": "How does BDD connect the Verification phase to the Conclusion/CI phase in the change process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Verification must finish before any code is written"
+        },
+        {
+          "key": "B",
+          "text": "JGiven's Maven/Jenkins plugins run the scenarios automatically on every integration"
+        },
+        {
+          "key": "C",
+          "text": "CI replaces the need for scenarios"
+        },
+        {
+          "key": "D",
+          "text": "Conclusion happens before Verification"
+        }
+      ],
+      "answer": "B",
+      "explanation": "JGiven's CI plugins execute scenarios automatically at integration, linking Verification to Conclusion/CI. CI does not replace scenarios, and the phase order is not reversed. (BDD p.20)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q594",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "On a sprawling case study like JHotDraw, what about JGiven stage reuse makes it especially worthwhile?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Stages disable AssertJ"
+        },
+        {
+          "key": "B",
+          "text": "A stage like GivenADrawing can be reused across many figure scenarios"
+        },
+        {
+          "key": "C",
+          "text": "Reuse forces a separate .feature file"
+        },
+        {
+          "key": "D",
+          "text": "Large apps cannot use stages at all"
+        }
+      ],
+      "answer": "B",
+      "explanation": "On a big app, a reusable GivenADrawing stage serves many scenarios, amplifying JGiven's modularity benefit. Stages do not require .feature files or disable AssertJ. (BDD p.11)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q596",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "Which Swing-specific risk in JHotDraw can AssertJ-Swing help verify?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Database deadlocks"
+        },
+        {
+          "key": "B",
+          "text": "Memory fragmentation on the heap"
+        },
+        {
+          "key": "C",
+          "text": "Network latency to a server"
+        },
+        {
+          "key": "D",
+          "text": "Violations of the Event Dispatch Thread (EDT) threading rules"
+        }
+      ],
+      "answer": "D",
+      "explanation": "AssertJ-Swing can test EDT threading-rule violations, relevant to a Swing GUI like JHotDraw. Heap, network and DB concerns are outside its scope. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q605",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "very-hard",
+      "stem": "Interpret 'assertThat(actualArray).contains(\"is\").startsWith(\"This\");' where actualArray is a String[]. What does it demonstrate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Polymorphism — the same methods work on String and String[] via type-specific asserts"
+        },
+        {
+          "key": "B",
+          "text": "That contains() is a JUnit method"
+        },
+        {
+          "key": "C",
+          "text": "That AssertJ only supports Strings"
+        },
+        {
+          "key": "D",
+          "text": "A compile error because arrays lack these methods"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The same contains()/startsWith() names work on both String and String[] because assertThat returns the right type-specific assert — polymorphism. It compiles and is AssertJ, not JUnit. (BDD p.25)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q606",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "very-hard",
+      "stem": "Interpret the Condition example: 'assertThat(12).is(evenDivBySix); assertThat(8).isNot(evenDivBySix);'. What is being checked?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Both 12 and 8 are even"
+        },
+        {
+          "key": "B",
+          "text": "12 satisfies the divisible-by-six predicate; 8 does not"
+        },
+        {
+          "key": "C",
+          "text": "12 equals 8"
+        },
+        {
+          "key": "D",
+          "text": "The array contains 6"
+        }
+      ],
+      "answer": "B",
+      "explanation": "is(condition) checks 12 % 6 == 0 (true), isNot(condition) checks 8 is not divisible by six (true). It is not an equality or array-contains check. (BDD p.27)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 27
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q618",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "Misconception: 'AssertJ contains() and startsWith() are different APIs for String and array.' Correct it.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only String supports startsWith"
+        },
+        {
+          "key": "B",
+          "text": "They are the same polymorphic methods; assertThat returns the right type-specific assert"
+        },
+        {
+          "key": "C",
+          "text": "They are different APIs requiring separate imports"
+        },
+        {
+          "key": "D",
+          "text": "Arrays cannot use them"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The same method names work on String and array via the type-specific assert returned by assertThat — polymorphism, not separate APIs. Arrays do support them. (BDD p.25)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q629",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "Applied/cause: if a JHotDraw GUI test mutates a figure off the EDT, what can AssertJ-Swing reveal?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The Swing threading-rule (EDT) violation"
+        },
+        {
+          "key": "B",
+          "text": "A merge conflict"
+        },
+        {
+          "key": "C",
+          "text": "A SQL injection"
+        },
+        {
+          "key": "D",
+          "text": "A memory leak only"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ-Swing can surface EDT threading-rule violations. Leaks, SQL injection and merge conflicts are unrelated to its checks. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q637",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "AssertJ is primarily used inside which BDD scenario clause?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Then"
+        },
+        {
+          "key": "B",
+          "text": "And-only"
+        },
+        {
+          "key": "C",
+          "text": "Given"
+        },
+        {
+          "key": "D",
+          "text": "When-only"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ performs assertions in the Then clause (with sanity checks possible in When). It is not Given-, When-only, or And-only. (BDD p.16,24)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q638",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "Which AssertJ method asserts exact equality in the pancake Then step?",
+      "options": [
+        {
+          "key": "A",
+          "text": "startsWith"
+        },
+        {
+          "key": "B",
+          "text": "isEqualTo"
+        },
+        {
+          "key": "C",
+          "text": "contains"
+        },
+        {
+          "key": "D",
+          "text": "is"
+        }
+      ],
+      "answer": "B",
+      "explanation": "ThenMeal uses assertThat(meal).isEqualTo(\"pancake\"). contains/startsWith are substring/prefix checks and is() applies a Condition. (BDD p.16)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q644",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "Which library provides the fluent assertThat used in Then steps?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Mockito"
+        },
+        {
+          "key": "B",
+          "text": "JUnit's assertEquals"
+        },
+        {
+          "key": "C",
+          "text": "Log4j"
+        },
+        {
+          "key": "D",
+          "text": "AssertJ"
+        }
+      ],
+      "answer": "D",
+      "explanation": "AssertJ provides the fluent assertThat factory for Then steps. Mockito mocks, Log4j logs, and assertEquals is JUnit's non-fluent assert. (BDD p.24)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 24
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q645",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "AssertJ-Swing is specifically for testing what kind of application?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Swing GUI applications"
+        },
+        {
+          "key": "B",
+          "text": "REST microservices"
+        },
+        {
+          "key": "C",
+          "text": "Database stored procedures"
+        },
+        {
+          "key": "D",
+          "text": "Command-line batch jobs"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ-Swing automates Swing GUI tests. CLI jobs, REST services and DB procedures are outside its scope. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q649",
+      "lecture_id": "L09",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "Which AssertJ feature is a reusable predicate applied via is()/isNot()?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A Condition"
+        },
+        {
+          "key": "B",
+          "text": "AssertJ-Swing"
+        },
+        {
+          "key": "C",
+          "text": "A custom assertion"
+        },
+        {
+          "key": "D",
+          "text": "assertThat"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A Condition is the reusable predicate used with is()/isNot(). A custom assertion adds named methods; assertThat is the factory; Swing is GUI testing. (BDD p.27)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 27
+      },
+      "tags": []
+    }
+  ]
+}

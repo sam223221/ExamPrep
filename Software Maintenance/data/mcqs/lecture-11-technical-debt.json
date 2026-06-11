@@ -1,0 +1,1650 @@
+{
+  "lecture_id": "L11",
+  "lecture_num": 11,
+  "lecture_title": "Technical Debt",
+  "generated_from": [
+    "BeyondTechnicalDebt.pdf"
+  ],
+  "schema_version": 1,
+  "questions": [
+    {
+      "id": "L11-Q001",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "easy",
+      "stem": "According to the deck's working definition (Ford, Parsons & Kua), technical debt is best described as which of the following?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Stuff that isn't supposed to be there and is in the way of the stuff that is supposed to be there"
+        },
+        {
+          "key": "B",
+          "text": "Any code that lacks unit tests and continuous integration"
+        },
+        {
+          "key": "C",
+          "text": "The total number of static-analysis violations reported by a tool"
+        },
+        {
+          "key": "D",
+          "text": "Code that was written more than five years ago by former employees"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck quotes Building Evolutionary Architectures (p.110): technical debt is 'stuff that isn't supposed to be there and is in the way of the stuff that is supposed to be there.' B describes a CI/test gap, not debt; C is a snapshot metric the deck criticises; D conflates debt with age, which the deck explicitly rejects. (BeyondTechnicalDebt p.2)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 2
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q004",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "easy",
+      "stem": "Which source does the deck cite for its working definition of technical debt?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Martin, Clean Code"
+        },
+        {
+          "key": "B",
+          "text": "Ford, Parsons & Kua, Building Evolutionary Architectures (p.110)"
+        },
+        {
+          "key": "C",
+          "text": "Fowler, Refactoring"
+        },
+        {
+          "key": "D",
+          "text": "Graves et al., Predicting Fault Incidence Using Software Change History"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The definition 'stuff that isn't supposed to be there and is in the way...' is attributed to Ford, Parsons & Kua's Building Evolutionary Architectures p.110. Fowler/Martin supply refactoring and clean-code material; Graves et al. is the fault-prediction study. (BeyondTechnicalDebt p.2)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 2
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q006",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "easy",
+      "stem": "Which two of Lehman's Laws of software evolution does the deck use to ground technical debt?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Continuing Change and Increasing Complexity"
+        },
+        {
+          "key": "B",
+          "text": "Conservation of Familiarity and Conservation of Organisational Stability"
+        },
+        {
+          "key": "C",
+          "text": "Self-Regulation and Continuing Growth"
+        },
+        {
+          "key": "D",
+          "text": "Declining Quality and Feedback System"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck grounds debt in Lehman's Continuing Change and Increasing Complexity. The other options name real Lehman laws not invoked by this deck, so they are plausible but not what the slide uses. (BeyondTechnicalDebt p.3)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q009",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "Why do Lehman's two laws together make technical debt 'structural rather than accidental'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "You are required to keep changing the system, and every change tends to raise complexity, so debt accumulates unless you actively counter it"
+        },
+        {
+          "key": "B",
+          "text": "Because Lehman proved debt is impossible to remove once incurred"
+        },
+        {
+          "key": "C",
+          "text": "Because the laws forbid any refactoring during evolution"
+        },
+        {
+          "key": "D",
+          "text": "Because complexity only grows when developers make mistakes"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Continuing Change forces ongoing modification while Increasing Complexity means each change tends to raise complexity, so debt accumulates as a default unless effort counters it; that is what makes it structural. B overstates (debt is removable via refactoring); C is false; D blames mistakes rather than the structural trajectory. (BeyondTechnicalDebt p.3)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q010",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "How does the pairing of Lehman's laws justify treating refactoring as a permanent, recurring activity rather than a one-off cleanup?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Because the system must keep changing (Law 1) and each change tends to add complexity (Law 2), so countering effort must be continuous too"
+        },
+        {
+          "key": "B",
+          "text": "Because Lehman's laws explicitly mandate a quarterly refactoring sprint"
+        },
+        {
+          "key": "C",
+          "text": "Because one large refactoring removes all future complexity permanently"
+        },
+        {
+          "key": "D",
+          "text": "Because the laws apply only to systems that have stopped evolving"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Continuing Change keeps generating modifications and Increasing Complexity adds principal with each one, so the counter-effort (refactoring) must be ongoing, not a one-time event. B invents a schedule; C is false (new changes re-add complexity); D inverts the laws' scope. (BeyondTechnicalDebt p.3)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 3
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L11-Q011",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "A manager argues that the team should refactor the whole codebase once and then never need to again. Using Lehman's laws, what is the best rebuttal?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Complexity is constant, so one cleanup is indeed sufficient"
+        },
+        {
+          "key": "B",
+          "text": "Continuing Change means future modifications keep arriving, and Increasing Complexity means each re-adds principal, so cleanup must recur"
+        },
+        {
+          "key": "C",
+          "text": "Lehman's laws prove a single cleanup is mathematically optimal"
+        },
+        {
+          "key": "D",
+          "text": "Refactoring is forbidden by Lehman's laws, so the team should not do it at all"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Because the system must keep changing and each change tends to raise complexity, a one-off cleanup will be eroded by subsequent changes, so refactoring must be recurring. C and A contradict Increasing Complexity; D misstates the implication of the laws. (BeyondTechnicalDebt p.3)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 3
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L11-Q015",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "How does the Hickey slide reframe spending on refactoring?",
+      "options": [
+        {
+          "key": "A",
+          "text": "As a purely aesthetic activity with no economic justification"
+        },
+        {
+          "key": "B",
+          "text": "As something to do only after a product has been retired"
+        },
+        {
+          "key": "C",
+          "text": "As an investment in future delivery speed rather than a pure cost"
+        },
+        {
+          "key": "D",
+          "text": "As an unavoidable tax that produces no return"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Because unmanaged complexity compounds and slows every sprint, the slide reframes refactoring spend as an investment in future delivery speed, not a cost. D, A and B all deny the investment framing the slide establishes. (BeyondTechnicalDebt p.4)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 4
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L11-Q016",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "easy",
+      "stem": "On the slide showing technical debt's impact, which two symptoms are listed on the business/roadmap side?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Long lead times and lack of predictability"
+        },
+        {
+          "key": "B",
+          "text": "Bugs and crashes users experience"
+        },
+        {
+          "key": "C",
+          "text": "High duplication and low test coverage"
+        },
+        {
+          "key": "D",
+          "text": "Large file sizes and deep nesting"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The business/roadmap side shows long lead times and lack of predictability. Bugs are the product side (B); C and D are static-analysis style metrics, not the business symptoms shown. (BeyondTechnicalDebt p.5)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q018",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "What is the teaching point of the slide that pays a 'BILL' for technical debt to both a business side and a product side?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Technical debt only affects developers and never reaches the business"
+        },
+        {
+          "key": "B",
+          "text": "The business and product impacts are identical and interchangeable"
+        },
+        {
+          "key": "C",
+          "text": "Paying the bill once eliminates debt permanently"
+        },
+        {
+          "key": "D",
+          "text": "Technical debt is a business liability, not just a developer inconvenience, because it manifests as slow/unpredictable delivery and as user-facing defects"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The slide shows debt paid out to both business (slow, unpredictable delivery) and product (bugs), making the point that debt is a business liability, not merely a developer inconvenience. A denies the outward impact; B ignores the two distinct sides; C misreads the metaphor. (BeyondTechnicalDebt p.5)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q019",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "very-hard",
+      "stem": "A stakeholder dismisses technical debt as 'just a developer concern.' Using the impact slide, what is the strongest counter-argument?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Debt affects only the speed of writing new code, never the product"
+        },
+        {
+          "key": "B",
+          "text": "Debt manifests outward as long lead times and unpredictable delivery to the business and as bugs to users, so it is a business liability worth prioritising"
+        },
+        {
+          "key": "C",
+          "text": "Debt is invisible to anyone outside the engineering team"
+        },
+        {
+          "key": "D",
+          "text": "Debt only matters once a static analyser reports more than 10% debt"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The slide makes debt's cost concrete on both sides: long lead times and unpredictability (business) and bugs (product), so it is a measurable business liability. C contradicts the outward manifestation; D ties it to a snapshot metric the deck criticises; A ignores the product (bug) side. (BeyondTechnicalDebt p.5)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q037",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "What does the 'Thousands of Years of Technical Debt' (Tower of Babel) slide dramatise?",
+      "options": [
+        {
+          "key": "A",
+          "text": "That debt can be fully repaid in a single sprint"
+        },
+        {
+          "key": "B",
+          "text": "That older code always has fewer faults than new code"
+        },
+        {
+          "key": "C",
+          "text": "That static analysis is the only way to find debt"
+        },
+        {
+          "key": "D",
+          "text": "That systems accumulate so much debt over time that the hard problem becomes knowing where to start paying it back"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The Tower-of-Babel slide dramatises age and accretion: so much debt accumulates that the real problem is where to start. A and B are false; C contradicts the deck's whole behavioural argument. (BeyondTechnicalDebt p.8)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 8
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q039",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "What are the three input sources in CodeScene's analysis pipeline?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Source code, CPU profiles, and memory dumps"
+        },
+        {
+          "key": "B",
+          "text": "Source code, version-control data (git), and project-management tools (e.g. JIRA)"
+        },
+        {
+          "key": "C",
+          "text": "Source code, unit tests, and the production database"
+        },
+        {
+          "key": "D",
+          "text": "Compiler warnings, linter output, and code review comments"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The pipeline inputs are source code + version-control data (git) + project-management tools such as JIRA. The other options list inputs the pipeline does not use. (BeyondTechnicalDebt p.11)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q040",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "In CodeScene's pipeline, what sits between the metrics stage and the final visualisations/priorities?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Pattern detectors, machine learning and intelligence"
+        },
+        {
+          "key": "B",
+          "text": "A SonarQube static rule engine"
+        },
+        {
+          "key": "C",
+          "text": "A manual spreadsheet review"
+        },
+        {
+          "key": "D",
+          "text": "A UML class-diagram generator"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The pipeline runs inputs into Code/Process/Evolutionary metrics, then pattern detectors / ML / intelligence, then visualisations, priorities and predictive analytics. B is a snapshot tool; C and D are not part of the pipeline. (BeyondTechnicalDebt p.11)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q052",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "checker.ts had about 785 commits and 1,051 defects (133% bug fixes). Combined with its rising complexity trend, what is the correct interpretation?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The high commit count proves the debt is already paid down"
+        },
+        {
+          "key": "B",
+          "text": "The defect count is irrelevant once complexity is known"
+        },
+        {
+          "key": "C",
+          "text": "The debt is compounding in a high-interest, defect-prone file, so it warrants action now"
+        },
+        {
+          "key": "D",
+          "text": "The file is healthy because it has many commits"
+        }
+      ],
+      "answer": "C",
+      "explanation": "High commits (interest) plus many defects plus complexity outpacing LOC means the debt is compounding in a high-interest, defect-prone file — act now. D and A misread churn/defects as health; B ignores the corroborating defect evidence. (BeyondTechnicalDebt p.15)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 15
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q054",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "Why does the deck argue you should X-Ray a hotspot file rather than refactor the whole file?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A hotspot file can be huge (e.g. 25k LOC); X-Ray scopes the fix to the two or three worst functions"
+        },
+        {
+          "key": "B",
+          "text": "Refactoring a whole file is always faster than fixing functions"
+        },
+        {
+          "key": "C",
+          "text": "X-Ray automatically rewrites the file for you"
+        },
+        {
+          "key": "D",
+          "text": "Whole-file refactoring is forbidden by version control"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A 25k-LOC hotspot is not a single refactoring task; X-Ray ranks functions so you fix the two or three worst, scoping the work affordably. B is false; C overstates X-Ray (it analyses, not rewrites); D is invented. (BeyondTechnicalDebt p.17)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 17
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L11-Q060",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "High change coupling is described as a form of debt because it corresponds to which Fowler code smell?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Long Method"
+        },
+        {
+          "key": "B",
+          "text": "Feature Envy"
+        },
+        {
+          "key": "C",
+          "text": "Primitive Obsession"
+        },
+        {
+          "key": "D",
+          "text": "Shotgun Surgery — one logical change smeared across many files"
+        }
+      ],
+      "answer": "D",
+      "explanation": "High change coupling means a single logical change is spread across multiple files — Fowler's Shotgun Surgery smell, which the deck lists explicitly. The other smells describe different problems. (BeyondTechnicalDebt p.19, p.24)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 19
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L11-Q062",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "Two files in JHotDraw have no static dependency between them but always appear together in the same commits. What does this indicate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "That the files have low cyclomatic complexity"
+        },
+        {
+          "key": "B",
+          "text": "That neither file is part of any hotspot"
+        },
+        {
+          "key": "C",
+          "text": "Hidden change coupling that a static dependency graph would miss but that belongs in the impact set"
+        },
+        {
+          "key": "D",
+          "text": "That the files are duplicates of each other"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Files with no static link that always co-change exhibit hidden change coupling, which a static graph misses but which belongs in the impact set. D, A and B draw unsupported conclusions about duplication, complexity, or hotspots. (BeyondTechnicalDebt p.19)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 19
+      },
+      "tags": [
+        "Impact Analysis",
+        "JHotDraw Case Study"
+      ]
+    },
+    {
+      "id": "L11-Q063",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "easy",
+      "stem": "The deck's section on legacy code argues which broad point about technical debt?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Technical debt is purely a matter of code complexity"
+        },
+        {
+          "key": "B",
+          "text": "Technical debt only exists in compiled languages"
+        },
+        {
+          "key": "C",
+          "text": "Technical debt can always be measured without the VCS"
+        },
+        {
+          "key": "D",
+          "text": "Technical debt isn't just technical — it has a social/organisational dimension"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The legacy-code section's headline is 'why technical debt isn't just technical', widening debt to its social/organisational dimension. A, B and C narrow or misstate the point. (BeyondTechnicalDebt p.20)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q066",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "easy",
+      "stem": "What does 'The Technical Debt That Wasn't' slide illustrate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Abandoned/unowned code whose risk is organisational rather than in the code itself"
+        },
+        {
+          "key": "B",
+          "text": "A file with the highest cyclomatic complexity in the repo"
+        },
+        {
+          "key": "C",
+          "text": "Code that turned out to have no debt after static analysis"
+        },
+        {
+          "key": "D",
+          "text": "A file that was refactored to zero complexity"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The slide shows three products, one with no owner (a '?'): abandoned code whose risk is organisational, not in the code itself. B, C and D misread the slide's point about unowned code. (BeyondTechnicalDebt p.21)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 21
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q074",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "Which cause of technical debt does the Tower-of-Babel slide specifically dramatise?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Excessive automated testing"
+        },
+        {
+          "key": "B",
+          "text": "Using too many design patterns"
+        },
+        {
+          "key": "C",
+          "text": "Frequent pair programming"
+        },
+        {
+          "key": "D",
+          "text": "Age and historical accretion — debt builds up so long that the problem is knowing where to start"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The Tower-of-Babel slide dramatises age and historical accretion ('thousands of years of technical debt'), where the challenge is where to start. The other options are not causes the deck identifies. (BeyondTechnicalDebt p.8)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 8
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q082",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "The deck's title 'Beyond Technical Debt' signals three ways the lecture goes 'beyond'. Which is one of them?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Beyond the language — using only compiled languages"
+        },
+        {
+          "key": "B",
+          "text": "Beyond the team — removing all human input"
+        },
+        {
+          "key": "C",
+          "text": "Beyond the repository — analysing code without version control"
+        },
+        {
+          "key": "D",
+          "text": "Beyond the snapshot — from a static debt figure to an evolutionary movie adding time and people"
+        }
+      ],
+      "answer": "D",
+      "explanation": "One of the three 'beyonds' is beyond the snapshot (static figure to evolutionary movie). The others are beyond the code (social debt) and beyond the tool (human judgement); the distractors are not the deck's framings. (BeyondTechnicalDebt p.9-11)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 9
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q092",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "How does the guide position behavioural debt analysis relative to Prefactoring and Postfactoring?",
+      "options": [
+        {
+          "key": "A",
+          "text": "As a replacement for refactoring that removes the need to change code"
+        },
+        {
+          "key": "B",
+          "text": "As a phase that runs only after the system is retired"
+        },
+        {
+          "key": "C",
+          "text": "As a tool that automatically performs the refactoring itself"
+        },
+        {
+          "key": "D",
+          "text": "As the prioritisation layer that decides which debt to repay so refactoring effort lands where the next change is most expensive"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Behavioural analysis is the prioritisation layer over Prefactoring/Postfactoring: it decides which debt to repay so effort lands where the next Actualization is most expensive. A, B and C misstate its role; it directs, not replaces, refactoring. (BeyondTechnicalDebt p.12)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 12
+      },
+      "tags": [
+        "Prefactoring",
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L11-Q093",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "What is the division of labour between L04 (Refactoring) and L11 (Technical Debt), per the guide?",
+      "options": [
+        {
+          "key": "A",
+          "text": "L04 = how to refactor (the repayment mechanism); L11 = which debt to repay first and when (the economics/prioritisation)"
+        },
+        {
+          "key": "B",
+          "text": "L04 = which debt to repay; L11 = how to refactor"
+        },
+        {
+          "key": "C",
+          "text": "Both lectures cover only how to write unit tests"
+        },
+        {
+          "key": "D",
+          "text": "L04 = static analysis; L11 = compilation"
+        }
+      ],
+      "answer": "A",
+      "explanation": "L04 supplies the repayment mechanism (how to refactor); L11 supplies the economics (which debt first and when). B swaps the two; C and D are unrelated. (BeyondTechnicalDebt p.12)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 12
+      },
+      "tags": [
+        "Refactoring",
+        "Prefactoring"
+      ]
+    },
+    {
+      "id": "L11-Q097",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "If you ran CodeScene over JHotDraw's git history, where would the guide expect any hotspots to cluster?",
+      "options": [
+        {
+          "key": "A",
+          "text": "In its README and documentation files"
+        },
+        {
+          "key": "B",
+          "text": "In files that have never been modified"
+        },
+        {
+          "key": "C",
+          "text": "Uniformly across every file regardless of change history"
+        },
+        {
+          "key": "D",
+          "text": "In its most-changed, most-complex areas (e.g. the Figure/drawing-editor hierarchy or command/undo machinery)"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The same principal x interest rule applies: hotspots would cluster in JHotDraw's most-changed, most-complex areas (Figure hierarchy, command/undo). A, B and C ignore the complexity-times-frequency definition. (BeyondTechnicalDebt p.13)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 13
+      },
+      "tags": [
+        "JHotDraw Case Study"
+      ]
+    },
+    {
+      "id": "L11-Q118",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "Your SonarQube report says 11% technical debt / 683 man-days. Why is this insufficient for planning repayment, and what should you do instead?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It is too low; instead double the estimate and rewrite everything"
+        },
+        {
+          "key": "B",
+          "text": "It is a snapshot that omits where to start; instead map hotspots (complexity x change frequency) and repay the highest-interest first"
+        },
+        {
+          "key": "C",
+          "text": "It overstates the debt; instead halve every figure and proceed"
+        },
+        {
+          "key": "D",
+          "text": "It is fine as-is; just allocate 683 man-days evenly across all files"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The snapshot says how much but not where to start; the fix is hotspot prioritisation (complexity x change frequency), repaying the highest-interest debt first. C, D and A either mis-handle the figure or boil the ocean. (BeyondTechnicalDebt p.7-8, p.12)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 7
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L11-Q120",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "How would you concisely explain why technical debt is also a business problem?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It only slows down individual developers, never the business"
+        },
+        {
+          "key": "B",
+          "text": "It increases the codebase's line count, which pleases the business"
+        },
+        {
+          "key": "C",
+          "text": "It is a purely cosmetic concern with no business impact"
+        },
+        {
+          "key": "D",
+          "text": "It causes long lead times and unpredictability (business) plus bugs (product), and complexity kills velocity (Hickey)"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Debt is a business problem because it causes long lead times and unpredictability (business), bugs (product), and complexity kills velocity (Hickey). A, B and C deny or trivialise the business impact. (BeyondTechnicalDebt p.4-5)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q125",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "very-hard",
+      "stem": "Which best distinguishes maintainability, technical debt, and a hotspot as the guide relates them?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A hotspot is the quality attribute; maintainability is the deficit; debt is the tool"
+        },
+        {
+          "key": "B",
+          "text": "Maintainability is the quality attribute; technical debt is the deficit in it; a hotspot is debt that is actively costing you (high interest)"
+        },
+        {
+          "key": "C",
+          "text": "All three are synonyms for cyclomatic complexity"
+        },
+        {
+          "key": "D",
+          "text": "Maintainability is the deficit; technical debt is the attribute; a hotspot is dormant debt"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Maintainability is the attribute, technical debt the deficit in it, and a hotspot is debt actively costing interest. C collapses the distinctions; D and A scramble the mappings. (BeyondTechnicalDebt p.12)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 12
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L11-Q126",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "What is the relationship between code smells (e.g. Shotgun Surgery) and behavioural metrics (hotspots, change coupling)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Behavioural metrics are qualitative; smells are quantitative"
+        },
+        {
+          "key": "B",
+          "text": "Neither relates to technical debt"
+        },
+        {
+          "key": "C",
+          "text": "Code smells are qualitative debt indicators; behavioural metrics are the quantitative, prioritised version"
+        },
+        {
+          "key": "D",
+          "text": "They are identical and interchangeable"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Code smells are qualitative debt indicators while behavioural metrics (hotspots, change coupling) are the quantitative, prioritised version. D denies the distinction; A inverts it; B is false. (BeyondTechnicalDebt p.19, p.24)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 19
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L11-Q127",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "Roughly how many lines of code and commits did the checker.ts hotspot have on the trend slide?",
+      "options": [
+        {
+          "key": "A",
+          "text": "About 100 lines and 5 commits"
+        },
+        {
+          "key": "B",
+          "text": "About 25,774 lines and 785 commits"
+        },
+        {
+          "key": "C",
+          "text": "About 1,000 lines and 50 commits"
+        },
+        {
+          "key": "D",
+          "text": "About 162,306 lines and 10,072 commits"
+        }
+      ],
+      "answer": "B",
+      "explanation": "checker.ts had about 25,774 LOC and 785 commits. The 162,306/10,072 figures belong to the Sonar dashboard, not checker.ts; the other counts are too small. (BeyondTechnicalDebt p.15)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 15
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q149",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "very-hard",
+      "stem": "A team measures only total complexity (principal) and refactors the most complex files, ignoring change frequency. What flaw does the deck predict?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They will perfectly minimise future maintenance cost"
+        },
+        {
+          "key": "B",
+          "text": "They will eliminate all faults because complexity is the only fault predictor"
+        },
+        {
+          "key": "C",
+          "text": "They may spend effort on dormant debt while leaving high-interest, frequently-changed files unaddressed"
+        },
+        {
+          "key": "D",
+          "text": "They will always fix the most expensive debt first"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Refactoring by complexity alone risks fixing dormant debt while ignoring high-interest churned files; the deck stresses cost is principal x interest. D and A are false; B contradicts Graves et al. (change frequency beats size). (BeyondTechnicalDebt p.12-14)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 12
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L11-Q501",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "You are a tech lead handed a CodeScene report. Module A: complexity 95, changed 3x/year. Module B: complexity 50, changed 4x/month. With one sprint of refactoring budget, where do you spend it first?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Module B, because frequent change means its principal is charged interest constantly"
+        },
+        {
+          "key": "B",
+          "text": "Split the budget evenly, since both carry debt"
+        },
+        {
+          "key": "C",
+          "text": "Neither yet; wait until a static analyser reports over 11% debt"
+        },
+        {
+          "key": "D",
+          "text": "Module A, because its raw complexity is the higher number"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Cost is principal x interest (change frequency); Module B's repeated changes charge its principal often, making it the higher-interest target despite lower complexity. Module A is dormant; an even split ignores prioritisation; the 11% gate is the snapshot trap. (BeyondTechnicalDebt p.12)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 12
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L11-Q503",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "very-hard",
+      "stem": "A CTO wants a single dashboard number to decide the whole year's refactoring roadmap. As the engineer who has read this deck, what is your most defensible position?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Refactor strictly the oldest files first"
+        },
+        {
+          "key": "B",
+          "text": "Accept the single debt percentage as the roadmap driver"
+        },
+        {
+          "key": "C",
+          "text": "Reject a single number; prioritise hotspots (complexity x change frequency) and let human judgement target highest-ROI fixes"
+        },
+        {
+          "key": "D",
+          "text": "Refactor strictly the largest files first"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The deck argues a single snapshot figure cannot say where to start; you prioritise hotspots and let data support human judgement for the highest ROI. Largest/oldest-first ignore the interest axis; the single number is the trap. (BeyondTechnicalDebt p.7,p.12,p.25)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q505",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "An engineer proposes refactoring a 25k-line hotspot file in one go. As reviewer, what do you recommend instead?",
+      "options": [
+        {
+          "key": "A",
+          "text": "X-Ray the file to the two or three worst functions and scope the refactoring to those"
+        },
+        {
+          "key": "B",
+          "text": "Leave the file untouched permanently"
+        },
+        {
+          "key": "C",
+          "text": "Split the file alphabetically into smaller files"
+        },
+        {
+          "key": "D",
+          "text": "Approve the full-file rewrite as planned"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A 25k-LOC hotspot is not a refactoring task; X-Ray ranks its functions so you target the worst (e.g. complexity 48 and 45) and scope the fix. A full rewrite is the Tower-of-Babel failure mode; the other options solve nothing. (BeyondTechnicalDebt p.16-18)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 17
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L11-Q506",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "very-hard",
+      "stem": "You are asked to defend a refactoring budget to finance. Which framing aligns with the deck's economic argument?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Refactoring is a sunk cost with no measurable return"
+        },
+        {
+          "key": "B",
+          "text": "Refactoring is an investment in future delivery speed, since unmanaged complexity compounds and slows every sprint"
+        },
+        {
+          "key": "C",
+          "text": "Refactoring should wait until the product is retired"
+        },
+        {
+          "key": "D",
+          "text": "Refactoring is purely an aesthetic preference"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The Hickey slide reframes refactoring spend as an investment in future delivery speed, not a cost, because complexity compounds. The other framings deny the velocity/economics argument the deck makes. (BeyondTechnicalDebt p.4)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 4
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L11-Q509",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "easy",
+      "stem": "Which of the following is NOT one of the two Lehman laws the deck invokes?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Conservation of Familiarity"
+        },
+        {
+          "key": "B",
+          "text": "Neither of the first two is a Lehman law"
+        },
+        {
+          "key": "C",
+          "text": "Continuing Change"
+        },
+        {
+          "key": "D",
+          "text": "Increasing Complexity"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck uses only Continuing Change and Increasing Complexity; Conservation of Familiarity is a real Lehman law but not the one invoked here. (BeyondTechnicalDebt p.3)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q515",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "Which is NOT a cause of technical debt synthesised in the guide?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Ignoring complexity / schedule pressure"
+        },
+        {
+          "key": "B",
+          "text": "Knowledge loss / staff turnover"
+        },
+        {
+          "key": "C",
+          "text": "Using a statically typed language"
+        },
+        {
+          "key": "D",
+          "text": "Software evolution itself (Lehman's laws)"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The guide lists evolution, schedule pressure, age/accretion, knowledge loss, and hidden coupling; language typing is not a listed cause and debt is language-independent. (BeyondTechnicalDebt p.3-8,p.25)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q517",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "How does the 'snapshot' view differ from the 'movie' view of technical debt?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The snapshot is point-in-time and static; the movie adds time and people dimensions from the VCS"
+        },
+        {
+          "key": "B",
+          "text": "They are identical except for colour"
+        },
+        {
+          "key": "C",
+          "text": "The movie ignores the version-control history entirely"
+        },
+        {
+          "key": "D",
+          "text": "The snapshot tracks evolution over time; the movie is point-in-time"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Conventional static analysis is a point-in-time snapshot; CodeScene is a movie adding the time and organization/people dimensions from VCS history. Calling the snapshot the time-tracker inverts the pair; the remaining options deny the distinction. (BeyondTechnicalDebt p.6-10)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 9
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q518",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "Two files have equal complexity. File P is committed weekly; file Q was last touched two years ago. Contrast their debt cost.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Both cost the same because principal is equal"
+        },
+        {
+          "key": "B",
+          "text": "P pays more interest because its equal principal is charged by frequent change; Q's debt is largely dormant"
+        },
+        {
+          "key": "C",
+          "text": "Q costs more because old code is always worse"
+        },
+        {
+          "key": "D",
+          "text": "Neither costs anything until a tool flags them"
+        }
+      ],
+      "answer": "B",
+      "explanation": "With equal principal, interest is driven by change frequency, so the weekly-committed P pays more; Q is dormant. The other options ignore the interest axis or equate cost with age/tool flags. (BeyondTechnicalDebt p.12)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 12
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q522",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "How do code smells (e.g. Shotgun Surgery) compare with behavioural metrics (hotspots, change coupling)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Smells are quantitative and prioritised; metrics are qualitative"
+        },
+        {
+          "key": "B",
+          "text": "Smells are qualitative debt indicators; behavioural metrics are the quantitative, prioritised version"
+        },
+        {
+          "key": "C",
+          "text": "They measure entirely unrelated things"
+        },
+        {
+          "key": "D",
+          "text": "Both are purely static and ignore history"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Code smells are qualitative indicators; behavioural metrics give the quantitative, prioritised view. Calling smells quantitative and metrics qualitative inverts this; the others deny the relationship or the history dimension. (BeyondTechnicalDebt p.19,p.24)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 24
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q524",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "Files that have no static dependency yet always appear together in the same commits exhibit which phenomenon?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Low Code Health"
+        },
+        {
+          "key": "B",
+          "text": "Knowledge loss"
+        },
+        {
+          "key": "C",
+          "text": "High duplication"
+        },
+        {
+          "key": "D",
+          "text": "Change coupling"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Files that co-change in commits without a static link exhibit change coupling, a temporal dependency. The others describe duplication, health, or ownership. (BeyondTechnicalDebt p.19)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 19
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q526",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "A code smell where one logical change is smeared across many files corresponds to which behavioural signal?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Long Method, shown as high LOC"
+        },
+        {
+          "key": "B",
+          "text": "Shotgun Surgery, surfacing as high change coupling"
+        },
+        {
+          "key": "C",
+          "text": "Feature Envy, shown as low Code Health"
+        },
+        {
+          "key": "D",
+          "text": "Primitive Obsession, shown as high churn"
+        }
+      ],
+      "answer": "B",
+      "explanation": "One change spread across many files is Shotgun Surgery, which surfaces as high change coupling in the VCS. The other smells do not map to change coupling. (BeyondTechnicalDebt p.19,p.24)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 24
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q545",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "Someone says 'the tool should pick what to refactor; engineers just execute.' Why does the deck push back?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Ultimately you must rely on human expertise; data supports judgement, it does not replace it"
+        },
+        {
+          "key": "B",
+          "text": "Engineers should ignore the tool entirely"
+        },
+        {
+          "key": "C",
+          "text": "Tools cannot produce priorities at all"
+        },
+        {
+          "key": "D",
+          "text": "It agrees; tools should decide"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The conclusion insists on human expertise with data in a supporting role; tools do not decide. The other options over- or under-rate the tool's role. (BeyondTechnicalDebt p.25)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q546",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "Where does behavioural debt analysis sit relative to Prefactoring and Postfactoring in the change process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It replaces Prefactoring and Postfactoring"
+        },
+        {
+          "key": "B",
+          "text": "It is the prioritisation layer that directs where Prefactoring/Postfactoring effort is spent"
+        },
+        {
+          "key": "C",
+          "text": "It runs only after Postfactoring is complete"
+        },
+        {
+          "key": "D",
+          "text": "It is unrelated to the refactoring phases"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Behavioural analysis is the prioritisation layer over the refactoring phases, deciding which debt to repay. The other options misplace or sever the relationship. (BeyondTechnicalDebt p.12)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 12
+      },
+      "tags": [
+        "Prefactoring"
+      ]
+    },
+    {
+      "id": "L11-Q548",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "Which CodeScene pipeline stage comes immediately AFTER deriving Code/Process/Evolutionary metrics?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Producing the final visualisations and priorities"
+        },
+        {
+          "key": "B",
+          "text": "Ingesting JIRA tickets"
+        },
+        {
+          "key": "C",
+          "text": "Reading the source code"
+        },
+        {
+          "key": "D",
+          "text": "Pattern detectors, machine learning and intelligence"
+        }
+      ],
+      "answer": "D",
+      "explanation": "After metrics comes the pattern-detector/ML/intelligence stage, then visualisations and priorities. Source/JIRA ingestion is earlier; visualisations are later. (BeyondTechnicalDebt p.11)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q556",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "X-Ray table row: updateFiberRecursively - Change Freq 24, LOC 220, Cyclomatic Complexity 48. How should you read this for refactoring priority?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Ignore it; only file-level metrics matter"
+        },
+        {
+          "key": "B",
+          "text": "Priority is set by LOC alone, so 220 makes it low priority"
+        },
+        {
+          "key": "C",
+          "text": "Low priority, because its change frequency (24) is modest"
+        },
+        {
+          "key": "D",
+          "text": "High function-level priority, because very high cyclomatic complexity (48) marks it as a worst function to refactor"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Cyclomatic complexity 48 marks updateFiberRecursively as a top function-level hotspot to refactor, applying principal x interest one level down. The other readings drop the complexity signal. (BeyondTechnicalDebt p.18)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 18
+      },
+      "tags": [
+        "Refactoring"
+      ]
+    },
+    {
+      "id": "L11-Q558",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "medium",
+      "stem": "A file card reads: Code Health 1 (red), 785 commits, 1,051 defects. What overall judgement does this support?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A healthy, low-risk file"
+        },
+        {
+          "key": "B",
+          "text": "An unhealthy, high-churn, defect-prone file warranting attention"
+        },
+        {
+          "key": "C",
+          "text": "A file safe to ignore because of its many commits"
+        },
+        {
+          "key": "D",
+          "text": "A file whose health score means it is complete"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Code Health 1 plus high churn and many defects flags an unhealthy, defect-prone file needing attention. The other readings misinterpret the low health band or churn. (BeyondTechnicalDebt p.15)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 15
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q562",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "hard",
+      "stem": "A manager wants to cut the refactoring budget because 'debt hasn't caused an outage yet.' Using the deck, what is the best counter?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Agree; without an outage there is no debt"
+        },
+        {
+          "key": "B",
+          "text": "Debt already manifests as long lead times, unpredictability, and bugs, and compounds to slow every sprint even without a dramatic outage"
+        },
+        {
+          "key": "C",
+          "text": "Debt only matters after an outage occurs"
+        },
+        {
+          "key": "D",
+          "text": "Outages are the only measurable debt symptom"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Debt's impact shows as slow/unpredictable delivery and bugs and compounds over time, independent of any outage. The other options tie debt's existence to outages. (BeyondTechnicalDebt p.4-5)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q569",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "easy",
+      "stem": "Per the deck, which best completes: technical debt is stuff that isn't supposed to be there and ___",
+      "options": [
+        {
+          "key": "A",
+          "text": "is in the way of the stuff that is supposed to be there"
+        },
+        {
+          "key": "B",
+          "text": "is always the oldest code in the system"
+        },
+        {
+          "key": "C",
+          "text": "only exists in untested code"
+        },
+        {
+          "key": "D",
+          "text": "is automatically removed by the compiler"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The definition's load-bearing clause is 'and is in the way of the stuff that is supposed to be there.' The other completions are not the deck's wording. (BeyondTechnicalDebt p.2)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 2
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q601",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "easy",
+      "stem": "Which book supplies the deck's definition of technical debt?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Building Evolutionary Architectures (Ford, Parsons & Kua)"
+        },
+        {
+          "key": "B",
+          "text": "Your Code as a Crime Scene"
+        },
+        {
+          "key": "C",
+          "text": "Refactoring"
+        },
+        {
+          "key": "D",
+          "text": "Clean Code"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The definition comes from Ford, Parsons & Kua's Building Evolutionary Architectures (p.110). The others are by Martin, Tornhill, and Fowler. (BeyondTechnicalDebt p.2)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 2
+      },
+      "tags": []
+    },
+    {
+      "id": "L11-Q647",
+      "lecture_id": "L11",
+      "topic": "Technical Debt",
+      "difficulty": "easy",
+      "stem": "Which is an output of CodeScene's pipeline?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A list of merge conflicts"
+        },
+        {
+          "key": "B",
+          "text": "A compiled binary"
+        },
+        {
+          "key": "C",
+          "text": "Visualisations, priorities, and predictive analytics"
+        },
+        {
+          "key": "D",
+          "text": "A static rule configuration"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The pipeline outputs visualisations, priorities, and predictive analytics. The other options are not pipeline outputs. (BeyondTechnicalDebt p.11)",
+      "source": {
+        "deck": "BeyondTechnicalDebt.pdf",
+        "page": 11
+      },
+      "tags": []
+    }
+  ]
+}

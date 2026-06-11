@@ -1,0 +1,1618 @@
+{
+  "lecture_id": "L07",
+  "lecture_num": 7,
+  "lecture_title": "Software Testing",
+  "generated_from": [
+    "Software Testing.pdf",
+    "TestLab1.pdf"
+  ],
+  "schema_version": 1,
+  "questions": [
+    {
+      "id": "L07-Q001",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "According to the lecture, what does Dijkstra's principle state about testing?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Testing can demonstrate the presence of bugs, but not their absence"
+        },
+        {
+          "key": "B",
+          "text": "Testing can demonstrate the absence of bugs, but not their presence"
+        },
+        {
+          "key": "C",
+          "text": "Testing proves a program is correct once every test passes"
+        },
+        {
+          "key": "D",
+          "text": "Testing is only meaningful when 100% coverage is reached"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Dijkstra's maxim, quoted verbatim on the slides, is 'Testing can demonstrate the presence of bugs, but not their absence.' The inverted 'absence not presence' wording is wrong, and the claims that passing tests prove correctness or that only full coverage gives meaning both overclaim, since a green suite is evidence not proof. (Software Testing p.6)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q003",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Which problem is the theoretical root cause of testing incompleteness?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The P versus NP problem"
+        },
+        {
+          "key": "B",
+          "text": "The Byzantine generals problem"
+        },
+        {
+          "key": "C",
+          "text": "The halting problem, inherited by Turing-complete languages"
+        },
+        {
+          "key": "D",
+          "text": "The dining philosophers problem"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Turing-complete languages inherit Turing's halting problem, which makes a perfect test suite theoretically impossible. P vs NP is about complexity, Byzantine generals about consensus, dining philosophers about deadlock. (Software Testing p.4-5)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q004",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "The lecture says a perfect test suite is theoretically impossible. What is the best a programmer can do?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Prove correctness by achieving 100% path coverage"
+        },
+        {
+          "key": "B",
+          "text": "Use a Turing machine to enumerate all inputs"
+        },
+        {
+          "key": "C",
+          "text": "Rely on the compiler to certify the absence of bugs"
+        },
+        {
+          "key": "D",
+          "text": "Design well-designed tests that come close to being adequate"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The slide says only well-designed tests come close to being adequate; testing cannot guarantee complete correctness. Path coverage does not prove correctness, enumerating all inputs is infeasible, and compilers do not certify bug-freedom. (Software Testing p.5)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q006",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "Which statement best captures the exam takeaway about a passing test suite?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It is a formal proof that the specification is satisfied"
+        },
+        {
+          "key": "B",
+          "text": "It is evidence of working features, never a proof of correctness"
+        },
+        {
+          "key": "C",
+          "text": "It guarantees no residual bugs remain in any path"
+        },
+        {
+          "key": "D",
+          "text": "It makes the Verification phase unnecessary"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The guide's takeaway: a passing suite is evidence of working features, never proof of correctness, which is the humility justifying Verification. The distractors overclaim or wrongly drop Verification. (Software Testing p.6)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q009",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "In the basic test model, which component decides pass or fail by judging 'Outputs OK?'",
+      "options": [
+        {
+          "key": "A",
+          "text": "The test oracle"
+        },
+        {
+          "key": "B",
+          "text": "The Software Under Test (SUT)"
+        },
+        {
+          "key": "C",
+          "text": "The test input generator"
+        },
+        {
+          "key": "D",
+          "text": "The continuous-integration server"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The oracle decides pass/fail by judging 'Outputs OK?'. The SUT produces outputs, the input generator supplies inputs, and CI orchestrates runs. (Software Testing p.7)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q011",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Which sequence correctly describes the basic test model?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The oracle produces inputs, which feed the SUT to make outputs"
+        },
+        {
+          "key": "B",
+          "text": "The SUT calls the oracle, which then generates the inputs"
+        },
+        {
+          "key": "C",
+          "text": "Test inputs to the SUT, which produces outputs, which the oracle judges 'Outputs OK?'"
+        },
+        {
+          "key": "D",
+          "text": "Outputs feed the SUT, which produces the inputs for the oracle"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Inputs go into the SUT, which produces outputs, which the oracle then judges. The other orderings scramble the pipeline. (Software Testing p.7)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q012",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "For a typical unit test, what usually serves as the oracle?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A second human reviewer reading the output"
+        },
+        {
+          "key": "B",
+          "text": "The compiler's type checker"
+        },
+        {
+          "key": "C",
+          "text": "A random number generator"
+        },
+        {
+          "key": "D",
+          "text": "A hard-coded expected value, e.g. assertEquals(expected, actual)"
+        }
+      ],
+      "answer": "D",
+      "explanation": "For a unit test the oracle is usually a hard-coded expected value such as assertEquals(expected, actual). The distractors are not the unit-test oracle. (Software Testing p.7)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q013",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "Besides a hard-coded expected value, which two oracle forms does the guide mention for non-unit tests?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A reference implementation (differential testing) and an invariant (checkRep())"
+        },
+        {
+          "key": "B",
+          "text": "A user interview and a stack trace"
+        },
+        {
+          "key": "C",
+          "text": "A coverage report and a profiler"
+        },
+        {
+          "key": "D",
+          "text": "A code formatter and a linter"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The guide notes oracles can be a reference implementation (differential testing) or an invariant (checkRep()). Interviews, stack traces, coverage reports, profilers, formatters, and linters are not oracles. (Software Testing p.7)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q014",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "The guide says 'choosing a correct, cheap oracle is half the art of testing.' Why does the oracle matter so much?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It determines how many CPU cores the test uses"
+        },
+        {
+          "key": "B",
+          "text": "It is the part that actually decides pass/fail, so a wrong oracle silently invalidates the test"
+        },
+        {
+          "key": "C",
+          "text": "It controls the random seed for fuzzing"
+        },
+        {
+          "key": "D",
+          "text": "It compiles the SUT before each run"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The oracle decides pass/fail; a wrong or expensive oracle undermines the test. It is unrelated to CPU cores, random seeds, or compilation. (Software Testing p.7)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q022",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "A maintainer changes a JHotDraw module. The guide says the testing levels of p.8 map onto which set?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only the user-interface widgets, regardless of impact"
+        },
+        {
+          "key": "B",
+          "text": "The impact set: the modules touched are exactly those whose unit tests must be (re)written and run"
+        },
+        {
+          "key": "C",
+          "text": "Only the database schema"
+        },
+        {
+          "key": "D",
+          "text": "The entire codebase, every class, every time"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The guide maps testing levels onto the impact set produced by Concept Location and Impact Analysis. It is not limited to UI widgets or the DB, nor does it require manually re-testing literally everything. (Software Testing p.8)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 8
+      },
+      "tags": [
+        "Impact Analysis"
+      ]
+    },
+    {
+      "id": "L07-Q027",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "Random testing works by doing what?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Randomly deleting code to see if tests still pass"
+        },
+        {
+          "key": "B",
+          "text": "Choosing a random subset of existing tests to run"
+        },
+        {
+          "key": "C",
+          "text": "Generating random inputs to explore the input space and surface unconsidered inputs"
+        },
+        {
+          "key": "D",
+          "text": "Running tests in a random order to expose ordering bugs"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Random testing generates random inputs to explore the input space and surface inputs the author never considered. The distractors describe mutation testing, test selection, and order randomization. (Software Testing p.8)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 8
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q039",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "The Equivalent Tests slide also flags 'Large Integers?' as a partition of which space?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The input space of method names"
+        },
+        {
+          "key": "B",
+          "text": "The space of thread schedules"
+        },
+        {
+          "key": "C",
+          "text": "The output space, where values near the representable-range edge form their own class"
+        },
+        {
+          "key": "D",
+          "text": "The space of file paths"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The slide flags 'Large Integers?' as an output-space partition: values near the edge of the representable range form their own class. It is not about method names, thread schedules, or file paths. (Software Testing p.12)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 12
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q049",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "What does branch (decision) coverage require beyond statement coverage?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Every branch of every decision is taken, i.e. both the true and false outcome of each if"
+        },
+        {
+          "key": "B",
+          "text": "Only that every line executes once"
+        },
+        {
+          "key": "C",
+          "text": "Every loop runs an infinite number of times"
+        },
+        {
+          "key": "D",
+          "text": "Every method is called by name"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Branch coverage requires both true and false outcomes of each decision, which is stronger than statement coverage. Line-once is statement coverage; infinite loops and name-calling are not criteria. (Software Testing p.11)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q053",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "In the queue, branch coverage specifically forces which pair of enqueue tests?",
+      "options": [
+        {
+          "key": "A",
+          "text": "One where enqueue returns false (queue full) and one where it returns true"
+        },
+        {
+          "key": "B",
+          "text": "Two tests that both return true"
+        },
+        {
+          "key": "C",
+          "text": "Two tests that both return false"
+        },
+        {
+          "key": "D",
+          "text": "One test that returns null and one that throws"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Branch coverage forces both the true and false outcomes of enqueue: a successful enqueue and a full-queue rejection, matching the true,true,false expected tuple. Two-same or null/throw pairs do not cover both branches. (Software Testing p.11)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q054",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "very-hard",
+      "stem": "Even at 100% statement, branch, and path coverage, why is the program still not proven correct?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Because coverage tools cannot reach 100%"
+        },
+        {
+          "key": "B",
+          "text": "Coverage measures executed structure, not the infinite set of inputs/values; missing logic and wrong oracles still hide bugs (p.6)"
+        },
+        {
+          "key": "C",
+          "text": "Because path coverage is weaker than statement coverage"
+        },
+        {
+          "key": "D",
+          "text": "Because assertions are disabled by default"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Full coverage exercises code structure but not every input/value, and cannot catch missing logic or a wrong oracle, so correctness is unproven (p.6). Tools can reach 100% on small code, path is the strongest, and assertion defaults are a separate concern. (Software Testing p.6)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q059",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "Why does the spec slide matter for choosing which tests must exist?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It tells you which CI server to use"
+        },
+        {
+          "key": "B",
+          "text": "It sets the random seed for fuzzing"
+        },
+        {
+          "key": "C",
+          "text": "The domain-to-range table reveals the equivalence classes (positive, zero, negative, NaN, infinity, overflow) that each need a test"
+        },
+        {
+          "key": "D",
+          "text": "It decides the number of mocks"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The spec tells you the equivalence classes and therefore which tests must exist; black-box tests are written straight off the domain-to-range table. It is unrelated to CI servers, seeds, or mock counts. (Software Testing p.23)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 23
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q062",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "When a test fails, the deck's decision tree says the fault could be in four places. Which is the FIRST (and most common) one to consider?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A bug in the hardware"
+        },
+        {
+          "key": "B",
+          "text": "A bug in the SUT (the software under test)"
+        },
+        {
+          "key": "C",
+          "text": "A bug in the compiler"
+        },
+        {
+          "key": "D",
+          "text": "A bug in the operating system"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The decision tree begins with a bug in the SUT, the most common case and the one you hope for because it is yours to fix. Hardware, compiler, and OS are the rarer platform category considered last. (Software Testing p.9)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 9
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q067",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "A failing integration test results from two modules each internally consistent but disagreeing on units. Which fault location does this match?",
+      "options": [
+        {
+          "key": "A",
+          "text": "SUT of one module only"
+        },
+        {
+          "key": "B",
+          "text": "Platform/hardware"
+        },
+        {
+          "key": "C",
+          "text": "Specification (the contract between the modules was ambiguous or wrong)"
+        },
+        {
+          "key": "D",
+          "text": "Acceptance test"
+        }
+      ],
+      "answer": "C",
+      "explanation": "When both modules are internally consistent but disagree, the fault is in the shared specification/contract, exactly the Mars Orbiter class. It is not a single SUT, the platform, or the acceptance test. (Software Testing p.9)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 9
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q069",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Which item is NOT on the design-for-testability checklist?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Add as many extra threads as possible for parallelism"
+        },
+        {
+          "key": "B",
+          "text": "No swap of global variables"
+        },
+        {
+          "key": "C",
+          "text": "No pointer soup"
+        },
+        {
+          "key": "D",
+          "text": "Support fault injection"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The checklist says NO extra threads (concurrency makes tests non-deterministic), so adding threads is the wrong answer. No global swaps, no pointer soup, and supporting fault injection are all genuine checklist items. (Software Testing p.14)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q094",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Interface sensitivity means a test is over-coupled to what?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The wall-clock time at which it runs"
+        },
+        {
+          "key": "B",
+          "text": "The shape of the API (method signatures, parameter order)"
+        },
+        {
+          "key": "C",
+          "text": "A specific database row"
+        },
+        {
+          "key": "D",
+          "text": "The behaviour that legitimately changed"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Interface sensitivity couples a test to the API's shape, so renaming a method or reordering parameters breaks tests though behaviour is unchanged. Time is context, a DB row is data, and changed behaviour is behavior sensitivity. (Software Testing p.25)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q102",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "very-hard",
+      "stem": "A test fails because the build ran in a German locale where decimal separators differ. Which sensitivity is this, and what is the cure?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Interface sensitivity; rename the method"
+        },
+        {
+          "key": "B",
+          "text": "Context sensitivity; control the environment or inject the locale rather than depending on the ambient one"
+        },
+        {
+          "key": "C",
+          "text": "Data sensitivity; seed a database row"
+        },
+        {
+          "key": "D",
+          "text": "Behavior sensitivity; accept the new behaviour"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Locale dependence is context sensitivity; the cure is to control/inject the environment. Renaming (interface), seeding a row (data), and accepting changed behaviour (behavior) do not address an environment coupling. (Software Testing p.28)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q107",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "How does the 'test under the UI' idea map onto Clean Architecture for JHotDraw?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Put all business rules inside Swing event handlers"
+        },
+        {
+          "key": "B",
+          "text": "Test only the UI and never the domain"
+        },
+        {
+          "key": "C",
+          "text": "Keep business rules independent of the UI so they are unit-testable, and verify the thin UI layer separately and sparingly"
+        },
+        {
+          "key": "D",
+          "text": "Merge the domain and UI into one class"
+        }
+      ],
+      "answer": "C",
+      "explanation": "It maps to Clean Architecture: business rules independent of the UI, unit-tested, with a thin UI verified separately. Embedding rules in handlers, UI-only testing, and merging layers all defeat testability. (Software Testing p.29)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 29
+      },
+      "tags": [
+        "Clean Architecture"
+      ]
+    },
+    {
+      "id": "L07-Q201",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "In the 'Overdue book' mock example, how is the external OverdueService handled in the unit test?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It is replaced with a Mockito mock stubbed with when(svc.hasOverdue(user)).thenReturn(false)"
+        },
+        {
+          "key": "B",
+          "text": "It is called against the live network"
+        },
+        {
+          "key": "C",
+          "text": "It is removed from the code permanently"
+        },
+        {
+          "key": "D",
+          "text": "It is tested with a real clock and sleep"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The OverdueService is replaced by a Mockito mock stubbed to return false, so the test never hits the network, and verify(svc).hasOverdue(user) checks the interaction. Live network, permanent removal, and real sleeps defeat isolation. (Software Testing p.68)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 68
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q203",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "How are acceptance tests run 'traditionally'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Automatic tests, written before the story, run by developers"
+        },
+        {
+          "key": "B",
+          "text": "Random fuzzing run by the CI server"
+        },
+        {
+          "key": "C",
+          "text": "Manual tests, run by the customer, after delivery, based on use cases/user stories"
+        },
+        {
+          "key": "D",
+          "text": "Differential tests against the previous release"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Traditionally, acceptance tests are manual, run by the customer after delivery, based on use cases. The automatic-before-story form is the Agile mode; fuzzing and differential testing are other kinds. (Software Testing p.78)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 78
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q204",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "How are acceptance tests done in the 'Agile' mode?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Manual tests run only after delivery"
+        },
+        {
+          "key": "B",
+          "text": "Stress tests run nightly"
+        },
+        {
+          "key": "C",
+          "text": "Code reviews instead of tests"
+        },
+        {
+          "key": "D",
+          "text": "Automatic tests (JUnit, Fit) created before the user story is implemented"
+        }
+      ],
+      "answer": "D",
+      "explanation": "In Agile, acceptance tests are automatic (JUnit, Fit) and created before the story is implemented (the red-first discipline at feature level). Manual-after-delivery is the traditional mode; stress and reviews are not acceptance tests. (Software Testing p.78)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 78
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q206",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "How does the acceptance-test template bridge to BDD/Verification?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It replaces unit tests entirely"
+        },
+        {
+          "key": "B",
+          "text": "The acceptance scenario IS the specification of 'done', and automating it confirms the feature meets the user's requirement"
+        },
+        {
+          "key": "C",
+          "text": "It only documents the GUI layout"
+        },
+        {
+          "key": "D",
+          "text": "It measures statement coverage"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The acceptance scenario is the spec of 'done', and automating it is how Verification confirms the feature meets the requirement, the BDD bridge. It does not replace unit tests, document layout, or measure coverage. (Software Testing p.79)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 79
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L07-Q208",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "What is the deck's verdict on manual tests?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Manual tests are cheaper than automated ones"
+        },
+        {
+          "key": "B",
+          "text": "Manual tests give immediate regression feedback"
+        },
+        {
+          "key": "C",
+          "text": "Manual tests are required for unit testing"
+        },
+        {
+          "key": "D",
+          "text": "Manual tests should be avoided because they are expensive and can't be run often"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The deck says manual tests should be avoided: expensive in time and personnel and can't run often. They are not cheaper, do not give immediate regression feedback, and are not required for unit testing. (Software Testing p.81)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 81
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q215",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "What is the tester's mindset, contrasted with the developer's, on the closing slide?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Developer: 'I want this code to fail'; Tester: 'I want this code to succeed'"
+        },
+        {
+          "key": "B",
+          "text": "Both want the code to compile only"
+        },
+        {
+          "key": "C",
+          "text": "Developer: 'I want this code to succeed'; Tester: 'I want this code to fail'"
+        },
+        {
+          "key": "D",
+          "text": "Both want maximum coverage only"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The slide frames the developer wanting success and the tester wanting failure. The inverted 'developer wants failure, tester wants success' wording is wrong, and the 'compile only' and 'coverage only' framings miss the cultural contrast. (Software Testing p.83)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 83
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q252",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "very-hard",
+      "stem": "A maintainer renames a public method during refactoring; many tests now fail to compile though behaviour is unchanged. Which sensitivity is this and what is the lesson?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Behavior sensitivity; the behaviour really changed"
+        },
+        {
+          "key": "B",
+          "text": "Data sensitivity; a fixture row changed"
+        },
+        {
+          "key": "C",
+          "text": "Context sensitivity; the locale changed"
+        },
+        {
+          "key": "D",
+          "text": "Interface sensitivity; test through stable interfaces and treat the breakage as non-defect noise"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Renaming an API couples tests to the interface shape, so this is interface sensitivity and the breakage is non-defect noise. Behaviour did not change (not behavior), no fixture changed (not data), and no environment changed (not context). (Software Testing p.25)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q262",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "A unit test for borrowBook would otherwise call a real OverdueService over the network. What is the correct fix?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Let the test hit the real network for realism"
+        },
+        {
+          "key": "B",
+          "text": "Replace OverdueService with a Mockito mock/stub so the test stays a single isolated code-path"
+        },
+        {
+          "key": "C",
+          "text": "Delete the OverdueService dependency from production"
+        },
+        {
+          "key": "D",
+          "text": "Run the test only when the network is up"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Replace the external service with a mock/stub to keep the unit test isolated and deterministic. Hitting the real network, deleting production code, and network-conditional runs all defeat unit-test isolation. (Software Testing p.58, TestLab1 p.1)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 68
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q503",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "What does the deck's title slide say the goal of software testing is?",
+      "options": [
+        {
+          "key": "A",
+          "text": "To prove software is correct"
+        },
+        {
+          "key": "B",
+          "text": "To replace code review"
+        },
+        {
+          "key": "C",
+          "text": "To make software fail (on purpose, in the lab)"
+        },
+        {
+          "key": "D",
+          "text": "To generate documentation"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The title framing is 'Software Testing: How to make software fail!' - surfacing defects in the lab, not in production. (Software Testing p.1)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q510",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "A bug report says the system crashes only when two already-working modules exchange data because one sends metres and the other expects feet. Which test LEVEL is designed to catch this seam defect?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Integration testing"
+        },
+        {
+          "key": "B",
+          "text": "Unit testing"
+        },
+        {
+          "key": "C",
+          "text": "Stress testing"
+        },
+        {
+          "key": "D",
+          "text": "Statement-coverage testing"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The defect lives in the seam between two independently-correct modules, which is exactly what integration testing exercises; unit tests pass on each side, and stress/statement coverage target other concerns. (Software Testing p.8)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 8
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q511",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "Testers report that a function returns the right answer for 5, 50, and 500 but throws on the largest representable integer. Which black-box technique would most directly have predicted that the failing case needed its own test?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Random testing"
+        },
+        {
+          "key": "B",
+          "text": "Differential testing"
+        },
+        {
+          "key": "C",
+          "text": "Boundary-value analysis"
+        },
+        {
+          "key": "D",
+          "text": "Stress testing"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Defects cluster at the edges of value ranges, so boundary-value analysis flags the maximum-integer edge as its own case; random testing only stumbles on it by luck and the others target different goals. (Software Testing p.12)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 12
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q512",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "A defect surfaces only after thousands of concurrent users push the server past its rated load. Which testing kind is meant to find this?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Unit testing"
+        },
+        {
+          "key": "B",
+          "text": "Differential testing"
+        },
+        {
+          "key": "C",
+          "text": "Equivalence partitioning"
+        },
+        {
+          "key": "D",
+          "text": "Stress testing"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Stress testing pushes a system past expected load/volume/rate to find where it breaks; the others check single-input correctness or component isolation. (Software Testing p.8)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 8
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q552",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "A scheduled job mis-decides 'is the book overdue?' only around midnight, and the bug is nearly impossible to reproduce on demand. Which design change makes the behaviour testable?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Add a Thread.sleep to slow the test down"
+        },
+        {
+          "key": "B",
+          "text": "Run the test only at midnight"
+        },
+        {
+          "key": "C",
+          "text": "Increase the number of random inputs"
+        },
+        {
+          "key": "D",
+          "text": "Inject the clock behind an interface and substitute a controllable fake in tests"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Time-dependent code is context-sensitive; the standard mitigation is to inject the clock so 'now' is whatever the test dictates. (Software Testing p.32)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 32
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q553",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "very-hard",
+      "stem": "A bug appears only because a test relies on a specific row in a shared live database that another test mutates, producing intermittent red runs. Which fragile-test sensitivity is this and what is the cure?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Data sensitivity; own and control your test data"
+        },
+        {
+          "key": "B",
+          "text": "Interface sensitivity; rename the method"
+        },
+        {
+          "key": "C",
+          "text": "Behavior sensitivity; accept the breakage"
+        },
+        {
+          "key": "D",
+          "text": "Context sensitivity; disable assertions"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Coupling to specific data/state is data sensitivity; the cure is to own and control the fixture rather than share mutable live data. (Software Testing p.27)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 27
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q556",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "A maintainer faces a tangled, untested JHotDraw method they need to refactor. Following the TDD/change-process linkage, which step comes first?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Refactor first, then add tests if time allows"
+        },
+        {
+          "key": "B",
+          "text": "Disable assertions to avoid noise during refactoring"
+        },
+        {
+          "key": "C",
+          "text": "Run a stress test on the method"
+        },
+        {
+          "key": "D",
+          "text": "Write a passing test suite to act as a safety net before refactoring"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Refactoring is only safe with a good test suite; green tests are the licence to refactor (the mandatory third TDD step). (Software Testing p.48)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 48
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q557",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "A unit test for a figure's bounds passes, but you want every operation in the test to also re-validate the figure's invariant automatically. What does the queue example do that you should copy?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Wrap the object so checkRep runs after each operation (e.g. in setUp)"
+        },
+        {
+          "key": "B",
+          "text": "Add a Thread.sleep between operations"
+        },
+        {
+          "key": "C",
+          "text": "Call verifyNoMoreInteractions after each step"
+        },
+        {
+          "key": "D",
+          "text": "Switch to a system test"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The queue's setUp wraps the object in a CheckRepWrapper so every operation is validated against the representation invariant. (Software Testing p.52)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 52
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q558",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "very-hard",
+      "stem": "Which statement does NOT correctly describe a test oracle?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The oracle decides pass or fail"
+        },
+        {
+          "key": "B",
+          "text": "The oracle generates the test inputs"
+        },
+        {
+          "key": "C",
+          "text": "A hard-coded expected value can be the oracle"
+        },
+        {
+          "key": "D",
+          "text": "A reference implementation can serve as the oracle"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The oracle judges 'Outputs OK?'; it decides pass/fail and can be an expected value or reference impl, but it does not generate inputs. (Software Testing p.7)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q560",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "Which correctly contrasts branch coverage with path coverage?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Path coverage is weaker than branch coverage"
+        },
+        {
+          "key": "B",
+          "text": "Branch coverage requires every independent path; path coverage only each branch"
+        },
+        {
+          "key": "C",
+          "text": "They are the same once loops are present"
+        },
+        {
+          "key": "D",
+          "text": "Branch coverage takes each branch at least once; path coverage requires every combination of branches"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Branch coverage needs each branch taken once; path coverage needs every combination of branches (every independent path), which is strongest. (Software Testing p.13, +[Raj13])",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 13
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q561",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "Differential testing and regression testing both compare against a 'reference.' What is the key difference?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Differential testing compares the SUT to a separate reference implementation; regression re-runs the SUT's own prior suite to detect new breakage"
+        },
+        {
+          "key": "B",
+          "text": "Both compare to a separate implementation"
+        },
+        {
+          "key": "C",
+          "text": "Regression compares two independent implementations; differential re-runs old tests"
+        },
+        {
+          "key": "D",
+          "text": "They are identical concepts"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Differential testing uses another implementation as the oracle; regression re-runs the existing automated suite after each change to catch newly introduced bugs. (Software Testing p.8, p.81)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 8
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q562",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "Order the three test doubles from lightest/most static to most powerful, per the deck.",
+      "options": [
+        {
+          "key": "A",
+          "text": "mock, stub, spy"
+        },
+        {
+          "key": "B",
+          "text": "stub, spy, mock"
+        },
+        {
+          "key": "C",
+          "text": "spy, mock, stub"
+        },
+        {
+          "key": "D",
+          "text": "stub, mock, spy"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The stub is the lightest/most static; the spy wraps a real object; the mock is the most powerful and flexible. (Software Testing p.59-60, p.72)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 59
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q653",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Per TestLab1, which deliverable links Lecture 7 to the JHotDraw feature you chose?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Class-level unit tests of the feature's business functionality, documenting how the feature was verified"
+        },
+        {
+          "key": "B",
+          "text": "A manual checklist signed by the customer"
+        },
+        {
+          "key": "C",
+          "text": "A stress-test report of the rendering loop"
+        },
+        {
+          "key": "D",
+          "text": "A UML diagram only"
+        }
+      ],
+      "answer": "A",
+      "explanation": "TestLab1: write unit tests of important business functionality and document how you verified your feature. (TestLab1 p.1)",
+      "source": {
+        "deck": "TestLab1.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q656",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "A JHotDraw figure depends on an undo manager you do not want to exercise in a unit test. What does the guide recommend?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Run the real undo manager and assert on the GUI"
+        },
+        {
+          "key": "B",
+          "text": "Disable assertions"
+        },
+        {
+          "key": "C",
+          "text": "Use record-and-play"
+        },
+        {
+          "key": "D",
+          "text": "Replace it with a mock/stub via its interface"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Interface-based collaborators like an undo manager are substituted with mocks/stubs to isolate the unit. (Software Testing p.57-75)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 57
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q658",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Read this snippet: Mockito.verify(test, Mockito.times(2)); What does it assert?",
+      "options": [
+        {
+          "key": "A",
+          "text": "That the method returns 2"
+        },
+        {
+          "key": "B",
+          "text": "That the method was called exactly twice"
+        },
+        {
+          "key": "C",
+          "text": "That two mocks exist"
+        },
+        {
+          "key": "D",
+          "text": "That the test runs twice"
+        }
+      ],
+      "answer": "B",
+      "explanation": "verify(mock, times(2)) asserts the method was invoked exactly two times. (Software Testing p.71)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 71
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q660",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Given the spec line 'sqrt: F -> F+ U exception', what does it tell you must be tested?",
+      "options": [
+        {
+          "key": "A",
+          "text": "That all floats return complex numbers"
+        },
+        {
+          "key": "B",
+          "text": "That sqrt never throws"
+        },
+        {
+          "key": "C",
+          "text": "That only positive floats are valid"
+        },
+        {
+          "key": "D",
+          "text": "That negative floats may return a value OR throw an exception"
+        }
+      ],
+      "answer": "D",
+      "explanation": "'F -> F+ U exception' means float inputs (including negatives) map to a float or an exception, so both outcomes need tests. (Software Testing p.23)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 23
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q661",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Read: @Test(expected = MyException.class) public void testM(){ ... }. What does this test pass/fail on?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It passes only if the method body throws MyException"
+        },
+        {
+          "key": "B",
+          "text": "It passes only if the method returns MyException"
+        },
+        {
+          "key": "C",
+          "text": "It always passes"
+        },
+        {
+          "key": "D",
+          "text": "It fails if any exception is thrown"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The annotation form passes only when the body throws the declared exception type. (Software Testing p.55)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 55
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q664",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Which best captures why differential testing is especially useful during maintenance?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It removes the need for any oracle"
+        },
+        {
+          "key": "B",
+          "text": "It guarantees 100% path coverage"
+        },
+        {
+          "key": "C",
+          "text": "It only works on GUIs"
+        },
+        {
+          "key": "D",
+          "text": "The previous release is a free oracle for the new version"
+        }
+      ],
+      "answer": "D",
+      "explanation": "In maintenance the prior release serves as a free reference oracle for the new code. (Software Testing p.8)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 8
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q666",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Which 'idea for tests' does the deck pair with 'possibility for defects (missing code)'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Acceptance tests"
+        },
+        {
+          "key": "B",
+          "text": "Defect tests"
+        },
+        {
+          "key": "C",
+          "text": "Stress tests"
+        },
+        {
+          "key": "D",
+          "text": "Differential tests"
+        }
+      ],
+      "answer": "B",
+      "explanation": "A possibility for defects (missing code) maps to defect tests. (Software Testing p.40)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 40
+      },
+      "tags": []
+    },
+    {
+      "id": "L07-Q669",
+      "lecture_id": "L07",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Why does the guide say machine floats (F) versus real numbers (R) matters for test design?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Float-specific edges like overflow, NaN, and -0.0 form their own test classes"
+        },
+        {
+          "key": "B",
+          "text": "Floats and reals never differ"
+        },
+        {
+          "key": "C",
+          "text": "Reals require more tests than floats"
+        },
+        {
+          "key": "D",
+          "text": "Floats cannot be tested"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Machine floats differ from real-number theory, so overflow/NaN/-0.0 are distinct test classes. (Software Testing p.23)",
+      "source": {
+        "deck": "Software Testing.pdf",
+        "page": 23
+      },
+      "tags": []
+    }
+  ]
+}

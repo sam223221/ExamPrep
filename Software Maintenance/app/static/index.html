@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Software Maintenance — Study &amp; Practice</title>
+  <!-- Inline SVG favicon: warm-paper/amber "field manual" mark. Fully offline
+       (data URI), so the first paint no longer logs GET /favicon.ico 404. -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%23b4531a'/%3E%3Cg%20fill='none'%20stroke='%23fbf8f2'%20stroke-width='2.4'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M11%208v16'/%3E%3Cpath%20d='M8%2011h6M8%2016h6M8%2021h6'/%3E%3Cpath%20d='M19%2010l5%206-5%206'/%3E%3C/g%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">SB5</span>
+        <span class="brand-text">
+          <span class="brand-title">Software Maintenance</span>
+          <span class="brand-sub">Study guide lookup &amp; exam practice · offline · cited</span>
+        </span>
+      </div>
+
+      <nav class="mode-toggle" id="modeToggle" role="tablist" aria-label="Application mode">
+        <button class="mode-btn is-active" id="tab-lookup" role="tab"
+                aria-selected="true" aria-controls="lookup-view" data-mode="lookup">
+          <span class="mode-icon" aria-hidden="true">&#9906;</span>Lookup
+        </button>
+        <button class="mode-btn" id="tab-quiz" role="tab"
+                aria-selected="false" aria-controls="quiz-view" tabindex="-1" data-mode="quiz">
+          <span class="mode-icon" aria-hidden="true">&#9745;</span>Quiz
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ===================== LOOKUP MODE ===================== -->
+    <section id="lookup-view" class="view is-active" role="tabpanel"
+             aria-labelledby="tab-lookup">
+      <div class="view-inner">
+
+        <form class="search-bar" id="searchForm" role="search" autocomplete="off">
+          <label class="visually-hidden" for="q">Search the study guides</label>
+          <span class="search-icon" aria-hidden="true">&#9906;</span>
+          <input id="q" name="q" type="search" enterkeyhint="search"
+                 placeholder="Search the study guides — e.g. what is concept location?" />
+          <button class="search-clear" id="searchClear" type="button"
+                  hidden aria-label="Clear search">&times;</button>
+        </form>
+
+        <div class="filters" id="lookupFilters">
+          <fieldset class="filter-group" id="lectureChips" aria-busy="true">
+            <legend class="filter-legend">Lecture</legend>
+            <div class="chips" role="group" aria-label="Filter by lecture">
+              <button type="button" class="chip is-active" data-lecture="">All lectures</button>
+              <span class="chips-loading">Loading lectures&hellip;</span>
+            </div>
+          </fieldset>
+
+          <fieldset class="filter-group" id="topicChips">
+            <legend class="filter-legend">Topic</legend>
+            <div class="chips" role="group" aria-label="Filter by topic">
+              <button type="button" class="chip is-active" data-topic="">All topics</button>
+            </div>
+          </fieldset>
+        </div>
+
+        <p class="status" id="lookupStatus" role="status" aria-live="polite"></p>
+
+        <div id="lookupResults" class="results" aria-live="polite"></div>
+
+        <div class="empty-hint" id="lookupHint">
+          <p class="empty-title">Search the course study guides</p>
+          <p class="empty-body">
+            Type at least two characters. Results are ranked by semantic similarity over the
+            per-lecture study guides, each citing the source deck and slide page.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== QUIZ MODE ===================== -->
+    <section id="quiz-view" class="view" role="tabpanel"
+             aria-labelledby="tab-quiz" hidden>
+      <div class="view-inner">
+
+        <!-- Setup -->
+        <form class="quiz-setup" id="quizSetup">
+          <h2 class="quiz-heading">Build a practice set</h2>
+          <p class="quiz-subhead">
+            Pick a scope, then answer one question at a time. Answers are graded on the
+            server, so nothing is revealed until you submit.
+          </p>
+
+          <div class="setup-grid">
+            <div class="field">
+              <label class="field-label" for="quizLecture">Lecture</label>
+              <select class="field-control" id="quizLecture" name="lecture">
+                <option value="all">All lectures</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="quizTopic">Topic</label>
+              <select class="field-control" id="quizTopic" name="topic">
+                <option value="">Any topic</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="quizDifficulty">Difficulty</label>
+              <select class="field-control" id="quizDifficulty" name="difficulty">
+                <option value="">Any difficulty</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+                <option value="very-hard">Very hard</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="quizCount">Questions</label>
+              <select class="field-control" id="quizCount" name="n">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="setup-actions">
+            <button class="btn btn-primary" type="submit" id="quizStart">Start practice set</button>
+            <span class="setup-note" id="quizSetupNote"></span>
+          </div>
+        </form>
+
+        <p class="status" id="quizStatus" role="status" aria-live="polite"></p>
+
+        <!-- Runner -->
+        <div class="quiz-runner" id="quizRunner" hidden>
+          <div class="runner-top">
+            <div class="progress" aria-hidden="true">
+              <div class="progress-bar" id="quizProgressBar"></div>
+            </div>
+            <p class="runner-meta" id="quizProgressLabel" role="status" aria-live="polite"></p>
+          </div>
+
+          <div id="quizQuestionHost"></div>
+
+          <div class="runner-nav">
+            <button class="btn btn-ghost" type="button" id="quizPrev">&larr; Previous</button>
+            <button class="btn btn-ghost" type="button" id="quizNext">Next &rarr;</button>
+            <button class="btn btn-primary runner-submit" type="button" id="quizSubmit">
+              Submit answers
+            </button>
+          </div>
+          <p class="runner-foot">
+            <button class="link-btn" type="button" id="quizAbort">Cancel this set</button>
+          </p>
+        </div>
+
+        <!-- Results -->
+        <div class="quiz-results" id="quizResults" hidden></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>SB5-MAI · Software Maintenance · runs locally, fully offline. Every answer is cited
+       back to a source slide.</p>
+  </footer>
+
+  <!-- ===================== SLIDE LIGHTBOX ===================== -->
+  <div id="slideModal" class="modal" hidden role="dialog" aria-modal="true"
+       aria-labelledby="slideModalCap">
+    <div class="modal-shell" role="document">
+      <button id="slideModalClose" class="modal-close" type="button"
+              aria-label="Close slide preview">&times;</button>
+      <img id="slideModalImg" class="modal-img" alt="" />
+      <p id="slideModalCap" class="modal-cap"></p>
+    </div>
+  </div>
+
+  <script src="/common.js"></script>
+  <script src="/lookup.js"></script>
+  <script src="/quiz.js"></script>
+</body>
+</html>

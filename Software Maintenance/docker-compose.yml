@@ -1,0 +1,47 @@
+# Software Maintenance Exam Prep — Podman/Docker compose.
+# Standard compose schema only (no Docker-Desktop-only features) so it runs the
+# same under `podman compose`. Mirrors cyper: a one-shot `ingest` profile that
+# builds the ChromaDB collection, and a long-running `app` service that serves it.
+#
+#   podman compose --profile ingest run --rm ingest   # build the index (one-time / after edits)
+#   podman compose up -d app                           # serve at http://127.0.0.1:8000
+#
+# The repo root is mounted read-only as the PDF source so /slide can render real
+# slide pages out of the `Lecture N/` folders without ever writing to them.
+
+services:
+  ingest:
+    build: .
+    profiles: ["ingest"]
+    environment:
+      PDF_ROOT: /data/pdfs
+      GUIDE_ROOT: /data/guides
+      MCQ_ROOT: /data/mcqs
+      CHROMA_DIR: /data/chroma_db
+    volumes:
+      - ./:/data/pdfs:ro            # source PDFs (Lecture N/) — read-only
+      - ./data/guides:/data/guides:ro
+      - ./data/mcqs:/data/mcqs:ro
+      - chroma:/data/chroma_db      # persisted vector index (shared with app)
+    command: ["python", "-m", "app.ingest"]
+
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"       # localhost-only bind: single-user, no auth
+    environment:
+      PDF_ROOT: /data/pdfs
+      GUIDE_ROOT: /data/guides
+      MCQ_ROOT: /data/mcqs
+      CHROMA_DIR: /data/chroma_db
+      SLIDES_DIR: /data/slides
+    volumes:
+      - chroma:/data/chroma_db      # read the index built by `ingest`
+      - ./:/data/pdfs:ro            # read-only source PDFs for slide rendering
+      - ./data/mcqs:/data/mcqs:ro   # MCQ bank loaded into memory at startup
+      - slides:/data/slides         # disk cache for rendered slide images
+    restart: unless-stopped
+
+volumes:
+  chroma:
+  slides:

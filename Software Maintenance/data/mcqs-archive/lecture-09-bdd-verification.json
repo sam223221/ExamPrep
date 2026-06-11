@@ -1,0 +1,5620 @@
+{
+  "lecture_id": "L09",
+  "lecture_num": 9,
+  "lecture_title": "Behaviour-Driven Development & Verification",
+  "generated_from": [
+    "BDD.pdf",
+    "BDDLab.pdf"
+  ],
+  "schema_version": 1,
+  "questions": [
+    {
+      "id": "L09-Q001",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What does the abbreviation BDD stand for in this lecture?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Behaviour-Driven Development"
+        },
+        {
+          "key": "B",
+          "text": "Behaviour-Driven Design"
+        },
+        {
+          "key": "C",
+          "text": "Build-Driven Development"
+        },
+        {
+          "key": "D",
+          "text": "Boundary-Defined Design"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD stands for Behaviour-Driven Development: behaviour described in a common domain language, defined collaboratively, executed like tests, forming living documentation. 'Behaviour-Driven Design', 'Build-Driven Development' and 'Boundary-Defined Design' are invented expansions not used by the deck. (BDD p.4)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q002",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "According to the deck, BDD describes a system's behaviour in what kind of language?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A common domain language understandable by domain experts"
+        },
+        {
+          "key": "B",
+          "text": "A formal mathematical specification language"
+        },
+        {
+          "key": "C",
+          "text": "A low-level assembly-like test language"
+        },
+        {
+          "key": "D",
+          "text": "A vendor-specific proprietary scripting language"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck defines BDD as describing behaviour in a common domain language understandable by domain experts. It is deliberately NOT a formal mathematical, low-level, or vendor-proprietary language — the whole point is readability by non-developers. (BDD p.4)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q003",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In BDD, who collaborates to define the behaviour of the system?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Domain experts and developers"
+        },
+        {
+          "key": "B",
+          "text": "Only developers"
+        },
+        {
+          "key": "C",
+          "text": "Only project managers"
+        },
+        {
+          "key": "D",
+          "text": "Only the QA team in isolation"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD's definition requires domain experts and developers to collaborate on defining the behaviour. It is explicitly not a developer-only, manager-only, or QA-only activity — collaboration across roles is one of BDD's four defining properties. (BDD p.4)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q004",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which of the following is one of the four defining properties of BDD given by the deck?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The behaviour is executed like normal tests"
+        },
+        {
+          "key": "B",
+          "text": "The behaviour is documented only in a separate Word file"
+        },
+        {
+          "key": "C",
+          "text": "The behaviour is verified manually by a human checker"
+        },
+        {
+          "key": "D",
+          "text": "The behaviour is written exclusively in UML diagrams"
+        }
+      ],
+      "answer": "A",
+      "explanation": "One of BDD's four properties is that the described behaviour is executed like normal tests (the others: domain language, expert+developer collaboration, living documentation). Manual checking, separate Word files, and UML-only specifications contradict the 'executed like normal tests' and 'living documentation' properties. (BDD p.4)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q005",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "The deck says the result of running BDD scenarios is a form of documentation. What is it called?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Living documentation"
+        },
+        {
+          "key": "B",
+          "text": "Frozen documentation"
+        },
+        {
+          "key": "C",
+          "text": "Archived documentation"
+        },
+        {
+          "key": "D",
+          "text": "Deprecated documentation"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD produces living documentation — the executing scenario itself serves as up-to-date documentation that cannot silently go stale. 'Frozen', 'archived' and 'deprecated' are the opposite of the deck's claim that the documentation stays alive with the code. (BDD p.4)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q006",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which item is listed among the 'typical test issues' that motivate BDD?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Many technical and often irrelevant details clutter the test"
+        },
+        {
+          "key": "B",
+          "text": "Tests run too quickly to be observed"
+        },
+        {
+          "key": "C",
+          "text": "Tests are too readable by non-developers"
+        },
+        {
+          "key": "D",
+          "text": "Tests produce too much living documentation"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck's list of typical test issues includes 'many technical and often irrelevant details'. The other options invert real problems: tests being too readable or producing too much documentation are not complaints — they are exactly what BDD aims to achieve. (BDD p.3)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q007",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "According to the deck, ordinary tests suffer because they can be read by whom?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only developers"
+        },
+        {
+          "key": "B",
+          "text": "Only domain experts"
+        },
+        {
+          "key": "C",
+          "text": "Anyone in the organisation equally"
+        },
+        {
+          "key": "D",
+          "text": "Only automated tools, not humans"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A motivating test issue is that conventional tests 'can only be read by developers'. BDD's fix is domain-language scenarios readable by experts too. The claim is not that only experts or only tools can read them, nor that everyone reads them equally — that equal readability is the goal BDD strives for. (BDD p.3)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q008",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which is cited as a typical problem with conventional tests that BDD seeks to fix?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The point of the test is often hard to grasp"
+        },
+        {
+          "key": "B",
+          "text": "The test always documents the domain perfectly"
+        },
+        {
+          "key": "C",
+          "text": "The test is always free of duplication"
+        },
+        {
+          "key": "D",
+          "text": "The test is automatically readable by experts"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck lists 'the point of the test is often hard to grasp' as a typical issue. The other three describe ideal qualities BDD adds, not pre-existing problems — conventional tests are criticised precisely for duplication and unreadability by experts. (BDD p.3)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q009",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Conventional tests are criticised by the deck for which maintainability problem?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Code duplication across tests"
+        },
+        {
+          "key": "B",
+          "text": "Excessive use of domain language"
+        },
+        {
+          "key": "C",
+          "text": "Being too short to be useful"
+        },
+        {
+          "key": "D",
+          "text": "Running only on the developer's machine"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Code duplication across tests is one of the listed typical test issues. Excessive domain language is what BDD adds (a benefit, not a flaw); 'too short' and 'only on the developer's machine' are not among the deck's cited issues. (BDD p.3)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q010",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What is the name of the three-part scenario structure used to express BDD behaviour?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Given / When / Then"
+        },
+        {
+          "key": "B",
+          "text": "Setup / Run / Teardown"
+        },
+        {
+          "key": "C",
+          "text": "Arrange / Act / Assert"
+        },
+        {
+          "key": "D",
+          "text": "Input / Process / Output"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD scenarios use the Given / When / Then structure. 'Arrange / Act / Assert' is the classic unit-test triad (related but not the deck's BDD term); 'Setup/Run/Teardown' and 'Input/Process/Output' are unrelated framings. (BDD p.5)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q011",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In a Given/When/Then scenario, what does the 'Given' clause specify?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The pre-conditions / starting context"
+        },
+        {
+          "key": "B",
+          "text": "The action that triggers the behaviour"
+        },
+        {
+          "key": "C",
+          "text": "The expected outcome to assert"
+        },
+        {
+          "key": "D",
+          "text": "The clean-up performed after the test"
+        }
+      ],
+      "answer": "A",
+      "explanation": "'Given' states the pre-conditions or starting context (e.g. 'an egg', 'some milk'). The action is 'When', the expected outcome is 'Then', and BDD scenarios do not have a dedicated clean-up clause. (BDD p.5)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q012",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In a Given/When/Then scenario, what does the 'When' clause specify?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The action or event that exercises the behaviour"
+        },
+        {
+          "key": "B",
+          "text": "The pre-conditions of the test"
+        },
+        {
+          "key": "C",
+          "text": "The assertion on the result"
+        },
+        {
+          "key": "D",
+          "text": "The list of required libraries"
+        }
+      ],
+      "answer": "A",
+      "explanation": "'When' describes the action/event that exercises the behaviour (e.g. 'the cook fries the dough in a pan'). Pre-conditions are 'Given', assertions are 'Then', and library lists are not part of the scenario syntax. (BDD p.5)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q013",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In a Given/When/Then scenario, what does the 'Then' clause specify?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The expected outcome / assertion"
+        },
+        {
+          "key": "B",
+          "text": "The starting context"
+        },
+        {
+          "key": "C",
+          "text": "The triggering action"
+        },
+        {
+          "key": "D",
+          "text": "The author of the scenario"
+        }
+      ],
+      "answer": "A",
+      "explanation": "'Then' states the expected outcome / assertion (e.g. 'the resulting meal is a pan cake'). The starting context is 'Given', the triggering action is 'When', and authorship is metadata, not a scenario clause. (BDD p.5)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q014",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In the pancake scenario, multiple Given pre-conditions are chained using which keyword?",
+      "options": [
+        {
+          "key": "A",
+          "text": "And"
+        },
+        {
+          "key": "B",
+          "text": "Or"
+        },
+        {
+          "key": "C",
+          "text": "With"
+        },
+        {
+          "key": "D",
+          "text": "Plus"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Additional clauses are chained with 'And' (e.g. 'Given an egg And some milk And the ingredient flour'). 'Or', 'With' and 'Plus' are not Given/When/Then continuation keywords. (BDD p.5)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q015",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In the deck's pancake scenario, which line is a 'Then' step?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Then the resulting meal is a pan cake"
+        },
+        {
+          "key": "B",
+          "text": "Given an egg"
+        },
+        {
+          "key": "C",
+          "text": "When the cook fries the dough in a pan"
+        },
+        {
+          "key": "D",
+          "text": "And some milk"
+        }
+      ],
+      "answer": "A",
+      "explanation": "'Then the resulting meal is a pan cake' is the outcome/assertion step. 'Given an egg' is a pre-condition, 'When the cook fries the dough in a pan' is the action, and 'And some milk' is a chained Given. (BDD p.5)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q016",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In the pancake scenario, 'the cook mangles everything to a dough' belongs to which clause?",
+      "options": [
+        {
+          "key": "A",
+          "text": "When"
+        },
+        {
+          "key": "B",
+          "text": "Given"
+        },
+        {
+          "key": "C",
+          "text": "Then"
+        },
+        {
+          "key": "D",
+          "text": "And-Given"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Mangling everything to a dough is an action that exercises the behaviour, so it is a 'When' step. It is not a pre-condition (Given), an outcome (Then), or a chained pre-condition (And after Given). (BDD p.5)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q017",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What does the deck call the plain-text Given/When/Then language used by classical frameworks such as Cucumber?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Gherkin"
+        },
+        {
+          "key": "B",
+          "text": "Groovy"
+        },
+        {
+          "key": "C",
+          "text": "Gradle"
+        },
+        {
+          "key": "D",
+          "text": "Gosu"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The plain-text Given/When/Then language of classical tools like Cucumber is Gherkin (used in .feature files). Groovy is the language of Spock, Gradle is a build tool, and Gosu is unrelated. (BDD p.6)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q018",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Why does the deck argue that the same BDD artefact can serve developers, testers, and domain experts simultaneously?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It runs (developer), is the acceptance criterion (tester), and is readable documentation (domain expert)"
+        },
+        {
+          "key": "B",
+          "text": "It is compiled to three separate binaries, one per audience"
+        },
+        {
+          "key": "C",
+          "text": "It is translated automatically into three natural languages"
+        },
+        {
+          "key": "D",
+          "text": "It is stored in three different repositories for three teams"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD raises behaviour to domain language so one artefact runs (for developers), acts as the acceptance criterion (for testers) and reads as documentation (for domain experts). The other options describe mechanical duplication, not the single-artefact-three-audiences idea the deck stresses. (BDD p.4)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q019",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "An 'executable specification' is best described as which of the following?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A specification of behaviour that also runs as a test"
+        },
+        {
+          "key": "B",
+          "text": "A test that has no readable specification attached"
+        },
+        {
+          "key": "C",
+          "text": "A prose document that must be manually checked against code"
+        },
+        {
+          "key": "D",
+          "text": "A UML model generated from the source code"
+        }
+      ],
+      "answer": "A",
+      "explanation": "An executable specification both specifies behaviour AND runs as a test, so it cannot silently drift from the code (a stale spec fails). A test without a readable spec, hand-checked prose, and generated UML all lack the 'specification that executes' property. (BDD p.4)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q020",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Why can a stale executable specification be detected automatically, unlike stale prose documentation?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Because it is executed and a drifted spec fails the test run"
+        },
+        {
+          "key": "B",
+          "text": "Because it is re-typed by a human reviewer each release"
+        },
+        {
+          "key": "C",
+          "text": "Because a linter scans the English grammar of the prose"
+        },
+        {
+          "key": "D",
+          "text": "Because it is stored in version control with timestamps"
+        }
+      ],
+      "answer": "A",
+      "explanation": "An executable spec runs, so when behaviour drifts the spec fails — drift is detected automatically. Human re-typing and grammar linting are not the mechanism, and version-control timestamps record changes but do not detect semantic drift. (BDD p.4, p.17-18)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 17
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q021",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "Which of the following is a 'classical' plain-text BDD framework listed by the deck?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Cucumber"
+        },
+        {
+          "key": "B",
+          "text": "JGiven"
+        },
+        {
+          "key": "C",
+          "text": "Spock"
+        },
+        {
+          "key": "D",
+          "text": "Serenity"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Cucumber is a classical plain-text framework (Gherkin .feature files + Java step definitions). JGiven, Spock and Serenity are listed by the deck as developer-friendly frameworks, not classical ones. (BDD p.6-7)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q022",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "Which framework is listed by the deck as a 'developer-friendly' BDD framework?",
+      "options": [
+        {
+          "key": "A",
+          "text": "JGiven"
+        },
+        {
+          "key": "B",
+          "text": "Cucumber"
+        },
+        {
+          "key": "C",
+          "text": "JBehave"
+        },
+        {
+          "key": "D",
+          "text": "Concordion"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven is the deck's chosen developer-friendly framework (scenarios in pure Java). Cucumber, JBehave and Concordion are all in the classical plain-text category that carries an additional maintenance cost. (BDD p.6-7)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q023",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "What one-phrase verdict does the deck give for the whole class of classical plain-text frameworks?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Additional Maintenance Cost"
+        },
+        {
+          "key": "B",
+          "text": "Zero Setup Required"
+        },
+        {
+          "key": "C",
+          "text": "Best Performance"
+        },
+        {
+          "key": "D",
+          "text": "No Domain Language"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck's verdict on classical frameworks is 'Additional Maintenance Cost' — the plain-text scenario plus step-definition glue must be kept in sync. 'Zero setup', 'best performance' and 'no domain language' are not the deck's verdict. (BDD p.6)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q024",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "What is the underlying reason classical plain-text frameworks carry extra maintenance cost?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Each scenario line must be matched to a separately-maintained step-definition method"
+        },
+        {
+          "key": "B",
+          "text": "They cannot be run on a continuous-integration server"
+        },
+        {
+          "key": "C",
+          "text": "They require a paid commercial licence per developer"
+        },
+        {
+          "key": "D",
+          "text": "They only run on Windows operating systems"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Classical frameworks keep the scenario in a plain-text file glued to Java by regex step-definitions, so two artefacts in two languages must be kept in sync — that is the maintenance cost. CI incompatibility, licensing fees and OS limits are not the cited reason. (BDD p.6)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q025",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "According to the deck, what is the key structural difference of developer-friendly frameworks?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Scenarios live in the same language as the production code"
+        },
+        {
+          "key": "B",
+          "text": "Scenarios are written only by domain experts"
+        },
+        {
+          "key": "C",
+          "text": "Scenarios are stored as binary files"
+        },
+        {
+          "key": "D",
+          "text": "Scenarios cannot be executed automatically"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Developer-friendly frameworks put scenarios in the production language (no separate plain-text glue), lowering maintenance. The deck does not say experts write them, that they are binary, or that they cannot run — automatic execution is a core BDD property. (BDD p.7)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q026",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Cucumber stores its scenarios in which kind of file before gluing them to Java?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Plain-text Gherkin (.feature) files"
+        },
+        {
+          "key": "B",
+          "text": "Compiled Java .class files"
+        },
+        {
+          "key": "C",
+          "text": "Groovy scripts"
+        },
+        {
+          "key": "D",
+          "text": "XML configuration files"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Cucumber uses plain-text Gherkin .feature files matched to Java step definitions. It does not store scenarios as .class files, Groovy scripts (that is Spock), or XML. (BDD p.6)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q027",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Concordion differs from Cucumber and JBehave in that its scenario format is based on what?",
+      "options": [
+        {
+          "key": "A",
+          "text": "HTML"
+        },
+        {
+          "key": "B",
+          "text": "Wiki markup"
+        },
+        {
+          "key": "C",
+          "text": "Groovy"
+        },
+        {
+          "key": "D",
+          "text": "Scala"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck lists Concordion as HTML + Java. Wiki markup is Fitnesse, Groovy is Spock, and Scala is ScalaTest — none of which is Concordion's format. (BDD p.6)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q028",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which classical framework uses a Wiki format glued to Java, according to the deck?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Fitnesse"
+        },
+        {
+          "key": "B",
+          "text": "Concordion"
+        },
+        {
+          "key": "C",
+          "text": "Cucumber"
+        },
+        {
+          "key": "D",
+          "text": "JBehave"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Fitnesse ('Fitness' on the slide) is the Wiki + Java framework. Concordion is HTML, Cucumber and JBehave are plain-text Gherkin-style — none of those is the Wiki one. (BDD p.6)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q029",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which framework is paired with the Groovy language on the developer-friendly slide?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Spock"
+        },
+        {
+          "key": "B",
+          "text": "JGiven"
+        },
+        {
+          "key": "C",
+          "text": "Serenity"
+        },
+        {
+          "key": "D",
+          "text": "Jnario"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Spock is the Groovy-based developer-friendly framework. JGiven and Serenity are Java, and Jnario is Xtend — none of those is the Groovy one. (BDD p.7)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q030",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "Which developer-friendly framework is paired with the Scala language?",
+      "options": [
+        {
+          "key": "A",
+          "text": "ScalaTest"
+        },
+        {
+          "key": "B",
+          "text": "Spock"
+        },
+        {
+          "key": "C",
+          "text": "Jnario"
+        },
+        {
+          "key": "D",
+          "text": "JGiven"
+        }
+      ],
+      "answer": "A",
+      "explanation": "ScalaTest is the Scala-based framework. Spock is Groovy, Jnario is Xtend, and JGiven is Java. (BDD p.7)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q031",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "Which developer-friendly framework is paired with the Xtend language?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Jnario"
+        },
+        {
+          "key": "B",
+          "text": "ScalaTest"
+        },
+        {
+          "key": "C",
+          "text": "Serenity"
+        },
+        {
+          "key": "D",
+          "text": "Spock"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Jnario is the Xtend-based developer-friendly framework. ScalaTest is Scala, Serenity is Java, and Spock is Groovy. (BDD p.7)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q032",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Besides JGiven, which other developer-friendly framework on the slide is Java-based (and starred)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Serenity"
+        },
+        {
+          "key": "B",
+          "text": "Spock"
+        },
+        {
+          "key": "C",
+          "text": "ScalaTest"
+        },
+        {
+          "key": "D",
+          "text": "Jnario"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Serenity is Java-based and starred on the developer-friendly slide alongside JGiven. Spock (Groovy), ScalaTest (Scala) and Jnario (Xtend) use other JVM languages. (BDD p.7)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q033",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "A team complains that for every Gherkin line in their .feature file they must also maintain a regex-matched Java method. Which framework category are they using?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Classical plain-text BDD frameworks"
+        },
+        {
+          "key": "B",
+          "text": "Developer-friendly BDD frameworks"
+        },
+        {
+          "key": "C",
+          "text": "Pure unit-testing frameworks with no BDD"
+        },
+        {
+          "key": "D",
+          "text": "GUI-only testing frameworks"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Maintaining a separate plain-text scenario glued by regex step-definitions is the hallmark of classical frameworks and their 'Additional Maintenance Cost'. Developer-friendly frameworks remove the separate file; pure unit and GUI-only frameworks are different categories entirely. (BDD p.6)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q034",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Why does the deck argue the classical-framework maintenance cost is especially harmful for the Verification phase?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Expensive-to-maintain verification tends to be neglected"
+        },
+        {
+          "key": "B",
+          "text": "Verification must always be done manually anyway"
+        },
+        {
+          "key": "C",
+          "text": "Verification cannot use plain-text files at all"
+        },
+        {
+          "key": "D",
+          "text": "Verification is the cheapest phase so cost never matters"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The guide notes that verification that is expensive to maintain gets neglected, undermining the phase. Verification is not inherently manual, can use plain text, and is not cost-immune — so the other options misstate the reasoning. (BDD p.6)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q035",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "How do developer-friendly frameworks remove the classical frameworks' maintenance cost?",
+      "options": [
+        {
+          "key": "A",
+          "text": "By writing the scenario in the production language so there is no separate file to keep in sync"
+        },
+        {
+          "key": "B",
+          "text": "By generating the step definitions from a paid cloud service"
+        },
+        {
+          "key": "C",
+          "text": "By forbidding domain experts from reading any reports"
+        },
+        {
+          "key": "D",
+          "text": "By compiling scenarios ahead of time into native machine code"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Putting the scenario in the production language eliminates the second artefact (the plain-text file) and its glue, removing the sync burden. Cloud generation, banning expert reading, and native compilation are not the mechanism the deck describes. (BDD p.7, p.10)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q036",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Which statement correctly contrasts the two framework categories?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Classical keep a separate plain-text scenario; developer-friendly keep it in the production language"
+        },
+        {
+          "key": "B",
+          "text": "Classical run on CI; developer-friendly cannot run on CI"
+        },
+        {
+          "key": "C",
+          "text": "Classical are readable by experts; developer-friendly are unreadable by anyone"
+        },
+        {
+          "key": "D",
+          "text": "Classical are Java-only; developer-friendly are plain-text-only"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The defining contrast is artefact location: classical use a separate plain-text file, developer-friendly use the production language. Both can run on CI; both produce readable reports; and the Java-only/plain-text-only claim reverses the actual distinction. (BDD p.6-7)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q037",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "Under which open-source licence is JGiven released, per the summary slide?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Apache 2"
+        },
+        {
+          "key": "B",
+          "text": "GPL v3"
+        },
+        {
+          "key": "C",
+          "text": "MIT"
+        },
+        {
+          "key": "D",
+          "text": "BSD 3-Clause"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The JGiven summary slide states it is open source under the Apache 2 licence. GPL v3, MIT and BSD 3-Clause are common open-source licences but not the one the deck cites for JGiven. (BDD p.20)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q038",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In which programming language are JGiven scenarios written?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Java"
+        },
+        {
+          "key": "B",
+          "text": "Groovy"
+        },
+        {
+          "key": "C",
+          "text": "Scala"
+        },
+        {
+          "key": "D",
+          "text": "Xtend"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven scenarios are written in pure Java ('just Java — no further language needed'). Groovy is Spock, Scala is ScalaTest, and Xtend is Jnario. (BDD p.9, p.20)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 9
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q039",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What is a JGiven scenario, at the code level?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A JUnit/TestNG test method whose calls read like Given/When/Then"
+        },
+        {
+          "key": "B",
+          "text": "A separate Gherkin .feature file"
+        },
+        {
+          "key": "C",
+          "text": "An XML scenario descriptor"
+        },
+        {
+          "key": "D",
+          "text": "A shell script that drives the application"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A JGiven scenario is just a JUnit/TestNG test method whose body reads like Given/When/Then. There is no separate .feature file, XML descriptor, or shell script — that is precisely how JGiven avoids the classical maintenance cost. (BDD p.10)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 10
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q040",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which JGiven method calls reproduce the Given/When/Then structure inside a Java test method?",
+      "options": [
+        {
+          "key": "A",
+          "text": "given(), when(), then(), and()"
+        },
+        {
+          "key": "B",
+          "text": "setUp(), run(), check(), tearDown()"
+        },
+        {
+          "key": "C",
+          "text": "arrange(), act(), assert(), reset()"
+        },
+        {
+          "key": "D",
+          "text": "begin(), do(), expect(), end()"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven expresses GWT through the method calls given(), when(), then() and and(). The other triads belong to unit-test lifecycles (setUp/tearDown), the AAA pattern, or are invented. (BDD p.10)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 10
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q041",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Because a JGiven scenario is written in Java, what artefact does it NOT require?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A separate .feature file to keep in sync"
+        },
+        {
+          "key": "B",
+          "text": "A JUnit or TestNG runner"
+        },
+        {
+          "key": "C",
+          "text": "Step methods in snake_case"
+        },
+        {
+          "key": "D",
+          "text": "An HTML5 report"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven needs no separate .feature file — that is the maintenance saving. It still uses a JUnit/TestNG runner, snake_case step methods, and can produce HTML5 reports. (BDD p.10)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 10
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q042",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which is one of JGiven's stated selling points on its intro slide?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Readable test code with Given-When-Then expressed directly in Java"
+        },
+        {
+          "key": "B",
+          "text": "Scenarios authored entirely by domain experts"
+        },
+        {
+          "key": "C",
+          "text": "Automatic translation of Java into Gherkin files"
+        },
+        {
+          "key": "D",
+          "text": "Built-in machine-learning test generation"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven's intro highlights readable test code with GWT directly in Java, plus modularity, reports for experts, and open source. Expert authoring is explicitly NOT possible in JGiven; auto-translation to Gherkin and ML generation are not claimed. (BDD p.9)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 9
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q043",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "In the JGiven pancake test, the step methods are written in which naming style?",
+      "options": [
+        {
+          "key": "A",
+          "text": "snake_case"
+        },
+        {
+          "key": "B",
+          "text": "camelCase"
+        },
+        {
+          "key": "C",
+          "text": "PascalCase"
+        },
+        {
+          "key": "D",
+          "text": "kebab-case"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven step methods use snake_case (e.g. an_egg(), the_cook_fries_the_dough_in_a_pan()) so the Java reads like the prose scenario. camelCase, PascalCase and kebab-case would not reproduce the readable sentence form. (BDD p.10)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 10
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q044",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "What feeds the human-readable text of the generated JGiven report?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The test class name, method name and step method names"
+        },
+        {
+          "key": "B",
+          "text": "A separate Gherkin .feature file parsed at runtime"
+        },
+        {
+          "key": "C",
+          "text": "Hand-written XML annotations on each assertion"
+        },
+        {
+          "key": "D",
+          "text": "Comments in the production source code"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven derives report text from the test class, method and snake_case step names. There is no .feature file, no XML scenario text, and report text is not scraped from production-code comments. (BDD p.10, p.17)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 10
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q045",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Which JGiven property most directly explains why it removes the classical 'additional maintenance cost'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The scenario lives in Java, so there is no separate plain-text file and step-glue to keep in sync"
+        },
+        {
+          "key": "B",
+          "text": "It generates reports in HTML5 rather than plain text"
+        },
+        {
+          "key": "C",
+          "text": "It is licensed under Apache 2"
+        },
+        {
+          "key": "D",
+          "text": "It integrates with the Spring framework"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Living in Java means no second artefact to synchronise, which is exactly the maintenance saving over classical frameworks. HTML5 reports, the Apache 2 licence and Spring integration are real JGiven traits but not the reason it cuts the sync cost. (BDD p.10, p.20)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 10
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q046",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What are JGiven scenarios built from to gain modularity and reuse?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Stage classes"
+        },
+        {
+          "key": "B",
+          "text": "Feature files"
+        },
+        {
+          "key": "C",
+          "text": "Step CSV tables"
+        },
+        {
+          "key": "D",
+          "text": "Annotation processors"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven scenarios are built from stage classes, which provide modularity and reuse. Feature files belong to classical frameworks, and CSV step tables and annotation processors are not the JGiven building block. (BDD p.11)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q047",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "According to the deck, stage classes are notable because they are what?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A unique feature of JGiven, not present in other BDD frameworks"
+        },
+        {
+          "key": "B",
+          "text": "A feature shared by all BDD frameworks"
+        },
+        {
+          "key": "C",
+          "text": "A deprecated JGiven concept"
+        },
+        {
+          "key": "D",
+          "text": "A part of the Gherkin language"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck states stage classes are a unique feature of JGiven, not found in other BDD frameworks. They are not universal, deprecated, or part of Gherkin (which is plain text). (BDD p.11)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q048",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "How many stage classes are typically used per scenario in JGiven?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Typically one for each of the Given, When, or Then steps"
+        },
+        {
+          "key": "B",
+          "text": "Exactly one shared stage for the whole scenario"
+        },
+        {
+          "key": "C",
+          "text": "One stage per assertion line"
+        },
+        {
+          "key": "D",
+          "text": "One stage per project, reused everywhere"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven typically uses one stage class for each of the Given, When and Then steps. It is not a single shared stage, not one-per-assertion, and not one-per-project. (BDD p.11)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q049",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "A JGiven stage class typically extends which base class?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Stage<SELF>"
+        },
+        {
+          "key": "B",
+          "text": "AbstractAssert"
+        },
+        {
+          "key": "C",
+          "text": "TestCase"
+        },
+        {
+          "key": "D",
+          "text": "Condition<T>"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Stage classes extend JGiven's Stage<SELF> base, whose self-type generic enables fluent 'return this' chaining. AbstractAssert and Condition belong to AssertJ; TestCase is the old JUnit 3 base. (BDD p.11, p.14)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q050",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Why must each JGiven step method end with 'return this;' (enabled by Stage<SELF>)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "So the fluent given().an_egg().and()... chain can continue"
+        },
+        {
+          "key": "B",
+          "text": "So the test runs on a background thread"
+        },
+        {
+          "key": "C",
+          "text": "So Spring can autowire the stage"
+        },
+        {
+          "key": "D",
+          "text": "So the HTML report can be generated"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Returning the stage (self-type) is what lets the fluent chain continue across step calls. Threading, Spring autowiring and report generation are unrelated to the return value — a void step simply breaks the chain. (BDD p.14)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q051",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "In the ThenMeal stage, the step methods are declared void rather than returning the stage. Why is that acceptable?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Nothing chains after a Then step, so no fluent return is needed"
+        },
+        {
+          "key": "B",
+          "text": "Then steps are never executed at runtime"
+        },
+        {
+          "key": "C",
+          "text": "void methods run faster in the JVM"
+        },
+        {
+          "key": "D",
+          "text": "AssertJ forbids returning a value from a Then step"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Then steps may be void because nothing chains after them, so the self-type return is unnecessary. They are still executed, void has no special speed benefit, and AssertJ imposes no such rule. (BDD p.16)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q052",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "How does JGiven transfer data between stages?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Through annotated fields rather than explicit method parameters"
+        },
+        {
+          "key": "B",
+          "text": "Through global static variables"
+        },
+        {
+          "key": "C",
+          "text": "Through a shared database table"
+        },
+        {
+          "key": "D",
+          "text": "Through command-line arguments"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven transfers state through annotated fields (@ScenarioState and friends), copying values between same-typed fields of consecutive stages — not via global statics, a database, or CLI arguments. (BDD p.13)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 13
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q053",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which annotation marks a stage field that is both read and written (bidirectional) between stages?",
+      "options": [
+        {
+          "key": "A",
+          "text": "@ScenarioState"
+        },
+        {
+          "key": "B",
+          "text": "@ProvidedScenarioState"
+        },
+        {
+          "key": "C",
+          "text": "@ExpectedScenarioState"
+        },
+        {
+          "key": "D",
+          "text": "@Autowired"
+        }
+      ],
+      "answer": "A",
+      "explanation": "@ScenarioState is the bidirectional annotation (read and written). @ProvidedScenarioState is write-only (producer), @ExpectedScenarioState is read-only (consumer), and @Autowired is Spring DI. (BDD p.13)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 13
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q054",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which annotation marks a field that a stage PRODUCES for later stages?",
+      "options": [
+        {
+          "key": "A",
+          "text": "@ProvidedScenarioState"
+        },
+        {
+          "key": "B",
+          "text": "@ExpectedScenarioState"
+        },
+        {
+          "key": "C",
+          "text": "@ScenarioState"
+        },
+        {
+          "key": "D",
+          "text": "@ProducedState"
+        }
+      ],
+      "answer": "A",
+      "explanation": "@ProvidedScenarioState marks a value this stage provides (writes out) for later stages — Provided = producer. @ExpectedScenarioState is the consumer side, @ScenarioState is bidirectional, and @ProducedState is not a real JGiven annotation. (BDD p.13-14)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q055",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which annotation marks a field that a stage CONSUMES, having been provided by an earlier stage?",
+      "options": [
+        {
+          "key": "A",
+          "text": "@ExpectedScenarioState"
+        },
+        {
+          "key": "B",
+          "text": "@ProvidedScenarioState"
+        },
+        {
+          "key": "C",
+          "text": "@ScenarioState"
+        },
+        {
+          "key": "D",
+          "text": "@ConsumedState"
+        }
+      ],
+      "answer": "A",
+      "explanation": "@ExpectedScenarioState marks a value this stage expects (consumes) from an earlier stage — Expected = consumer. @ProvidedScenarioState is the producer side, @ScenarioState is bidirectional, and @ConsumedState is invented. (BDD p.13, p.16)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q056",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Using the mnemonic 'Provided = producer, Expected = consumer', which annotation should the Given stage put on the ingredients list it builds for later stages?",
+      "options": [
+        {
+          "key": "A",
+          "text": "@ProvidedScenarioState"
+        },
+        {
+          "key": "B",
+          "text": "@ExpectedScenarioState"
+        },
+        {
+          "key": "C",
+          "text": "@ScenarioState only on the When stage"
+        },
+        {
+          "key": "D",
+          "text": "@Autowired"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The Given stage produces the ingredients list, so it uses @ProvidedScenarioState. @ExpectedScenarioState would be wrong (that is the consumer side used by When/Then), and @Autowired is Spring DI, not state transfer. (BDD p.14)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q057",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "In the WhenCook stage, the ingredients field is annotated @ExpectedScenarioState. What does this signify?",
+      "options": [
+        {
+          "key": "A",
+          "text": "WhenCook consumes ingredients that the Given stage provided"
+        },
+        {
+          "key": "B",
+          "text": "WhenCook produces ingredients for the Then stage"
+        },
+        {
+          "key": "C",
+          "text": "ingredients is a Spring-injected bean"
+        },
+        {
+          "key": "D",
+          "text": "ingredients is asserted with AssertJ"
+        }
+      ],
+      "answer": "A",
+      "explanation": "@ExpectedScenarioState on ingredients means WhenCook consumes the value the Given stage provided. It does not produce it (that would be @Provided), it is not Spring-injected (that is @Autowired), and the annotation is about state transfer, not assertion. (BDD p.15)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 15
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q058",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "In WhenCook, the fields dough and meal are annotated @ProvidedScenarioState. What is their role?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They are produced by WhenCook for downstream stages such as ThenMeal"
+        },
+        {
+          "key": "B",
+          "text": "They are consumed from the Given stage"
+        },
+        {
+          "key": "C",
+          "text": "They are Spring beans injected by @Autowired"
+        },
+        {
+          "key": "D",
+          "text": "They are local variables never shared between stages"
+        }
+      ],
+      "answer": "A",
+      "explanation": "@ProvidedScenarioState on dough and meal means WhenCook produces them for downstream stages (ThenMeal consumes meal). They are not consumed from Given, not @Autowired beans, and explicitly are shared, not local. (BDD p.15)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 15
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q059",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "In the WhenCook stage, the Cook collaborator is supplied via which annotation, showing JGiven's Spring integration?",
+      "options": [
+        {
+          "key": "A",
+          "text": "@Autowired"
+        },
+        {
+          "key": "B",
+          "text": "@ProvidedScenarioState"
+        },
+        {
+          "key": "C",
+          "text": "@ExpectedScenarioState"
+        },
+        {
+          "key": "D",
+          "text": "@Inject only"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Cook is supplied with @Autowired (alongside @ScenarioState), demonstrating JGiven integrating with Spring dependency injection. @Provided/@Expected are state-transfer annotations, and the slide shows @Autowired specifically, not a bare @Inject. (BDD p.15)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 15
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q060",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "In the ThenMeal stage, the meal field is annotated @ExpectedScenarioState. Why?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Because ThenMeal consumes the meal produced by the WhenCook stage"
+        },
+        {
+          "key": "B",
+          "text": "Because ThenMeal produces the meal for the Given stage"
+        },
+        {
+          "key": "C",
+          "text": "Because meal is a Spring-injected bean"
+        },
+        {
+          "key": "D",
+          "text": "Because meal must be re-created in every stage"
+        }
+      ],
+      "answer": "A",
+      "explanation": "ThenMeal consumes the meal that WhenCook provided, so meal is @ExpectedScenarioState. It does not produce it, it is not Spring-injected, and state is transferred, not re-created per stage. (BDD p.16)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q061",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "In the GivenIngredients stage, the step method the_ingredient(String) does what before returning this?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Adds the ingredient to the ingredients list"
+        },
+        {
+          "key": "B",
+          "text": "Asserts the ingredient equals 'egg'"
+        },
+        {
+          "key": "C",
+          "text": "Fries the dough in a pan"
+        },
+        {
+          "key": "D",
+          "text": "Generates the HTML report"
+        }
+      ],
+      "answer": "A",
+      "explanation": "the_ingredient(String) adds the ingredient to the provided ingredients list, then returns this for chaining. Asserting, frying, and report generation belong to other stages/steps. (BDD p.14)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q062",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "In GivenIngredients, how is an_egg() implemented?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It calls the_ingredient(\"egg\")"
+        },
+        {
+          "key": "B",
+          "text": "It returns a new Cook"
+        },
+        {
+          "key": "C",
+          "text": "It asserts the list is non-empty"
+        },
+        {
+          "key": "D",
+          "text": "It fries the egg immediately"
+        }
+      ],
+      "answer": "A",
+      "explanation": "an_egg() delegates to the_ingredient(\"egg\"), reusing the shared add-and-return logic. It does not create a Cook, assert, or perform the frying action (a When-stage responsibility). (BDD p.14)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q063",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Inside the_cook_fries_the_dough_in_a_pan(), what kind of AssertJ checks appear before the action runs?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Sanity checks like assertThat(cook).isNotNull() and assertThat(dough).isNotNull()"
+        },
+        {
+          "key": "B",
+          "text": "A full HTML report rendering call"
+        },
+        {
+          "key": "C",
+          "text": "A Gherkin .feature file parse"
+        },
+        {
+          "key": "D",
+          "text": "A Spring context refresh"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The When step uses AssertJ sanity checks (assertThat(cook).isNotNull(), assertThat(dough).isNotNull()) before frying, foreshadowing the AssertJ section. It does not render reports, parse Gherkin, or refresh Spring contexts at that point. (BDD p.15)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 15
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q064",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Trace the pancake state pipeline. Which sequence correctly describes the @...ScenarioState flow?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Given provides ingredients; When consumes ingredients and provides meal; Then consumes meal"
+        },
+        {
+          "key": "B",
+          "text": "Given consumes meal; When provides ingredients; Then provides dough"
+        },
+        {
+          "key": "C",
+          "text": "Then provides ingredients; Given consumes meal; When consumes dough"
+        },
+        {
+          "key": "D",
+          "text": "All three stages only use @ScenarioState bidirectionally"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The pipeline is: Given provides ingredients, When consumes ingredients (+Cook) and provides meal/dough, Then consumes meal and asserts. The other orderings reverse producer/consumer roles, and the deck uses directional @Provided/@Expected, not only bidirectional @ScenarioState. (BDD p.14-16)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q065",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "very-hard",
+      "stem": "A developer annotates the Then stage's meal field @ProvidedScenarioState instead of @ExpectedScenarioState. What is the most likely consequence?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The Then stage will not receive the meal value produced upstream, so its assertion lacks the produced data"
+        },
+        {
+          "key": "B",
+          "text": "The scenario compiles into a Gherkin file automatically"
+        },
+        {
+          "key": "C",
+          "text": "The Given stage stops producing ingredients"
+        },
+        {
+          "key": "D",
+          "text": "The HTML report switches to German automatically"
+        }
+      ],
+      "answer": "A",
+      "explanation": "@ProvidedScenarioState marks the field as something this stage outputs, so the Then stage would not be wired to consume the upstream meal — the assertion loses the produced value. The other options are unrelated effects (Gherkin generation, Given behaviour, report language). (BDD p.13, p.16)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q066",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "very-hard",
+      "stem": "Why does the state-transfer diagram (Given→When→Then bands) justify directional annotations rather than method parameters?",
+      "options": [
+        {
+          "key": "A",
+          "text": "State flows one way down the GWT pipeline, so producer/consumer roles map cleanly onto @Provided/@Expected fields"
+        },
+        {
+          "key": "B",
+          "text": "Method parameters are forbidden in Java test methods"
+        },
+        {
+          "key": "C",
+          "text": "JGiven cannot call methods with arguments"
+        },
+        {
+          "key": "D",
+          "text": "The diagram shows state flowing upward from Then to Given"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Because state flows downward Given→When→Then, each value has a clear producer and consumer, which the directional field annotations express without threading parameters through every call. Java permits parameters (JGiven uses them too), and the diagram shows downward, not upward, flow. (BDD p.12-13)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 12
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q067",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What two report formats does JGiven generate from a run?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Console output and an HTML5 app report"
+        },
+        {
+          "key": "B",
+          "text": "PDF and Word documents"
+        },
+        {
+          "key": "C",
+          "text": "A CSV file and an Excel sheet"
+        },
+        {
+          "key": "D",
+          "text": "A Gherkin .feature file and a JSON dump"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven generates console output plus a browsable HTML5 app report. It does not produce PDF/Word, CSV/Excel, or a Gherkin .feature file as its primary reports. (BDD p.17-18)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 17
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q068",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "When JGiven prints the pancake scenario to the console, how does the output read?",
+      "options": [
+        {
+          "key": "A",
+          "text": "As Given/And/When/And/Then prose matching the specification"
+        },
+        {
+          "key": "B",
+          "text": "As raw Java stack traces only"
+        },
+        {
+          "key": "C",
+          "text": "As a binary hex dump"
+        },
+        {
+          "key": "D",
+          "text": "As an XML test descriptor"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The console prints the scenario back as Given/And/When/And/Then prose, so the executed test reads like the spec (living documentation). It is not a stack trace, hex dump, or XML descriptor. (BDD p.17)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 17
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q069",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "The JGiven HTML5 report is described as what kind of artefact?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A browsable web report with summary counts, tags and classes"
+        },
+        {
+          "key": "B",
+          "text": "A static printout that cannot be navigated"
+        },
+        {
+          "key": "C",
+          "text": "A spreadsheet of raw timing data"
+        },
+        {
+          "key": "D",
+          "text": "A command-line-only text log"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The HTML5 'JGiven Report' is a browsable web app with All/Failed/Pending counts, tags and classes. It is navigable (not a static printout), not a spreadsheet, and distinct from the console text log. (BDD p.18)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 18
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q070",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "In the deck's HTML5 report screenshot, what is the headline result?",
+      "options": [
+        {
+          "key": "A",
+          "text": "53 Successful, 0 Failed, 0 Pending, 53 Total"
+        },
+        {
+          "key": "B",
+          "text": "0 Successful, 53 Failed"
+        },
+        {
+          "key": "C",
+          "text": "53 Pending, 0 Total"
+        },
+        {
+          "key": "D",
+          "text": "70 Failed, 3000 Total"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The screenshot shows 53 Successful, 0 Failed, 0 Pending, 53 Total. The all-failed, all-pending, and 70/3000 figures are distractors (70 and 3000 come from the TNG report, not the report screenshot). (BDD p.18)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 18
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q071",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which extra capability is mentioned for the JGiven HTML5 report?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Support for data tables, tags, AsciiDoc reports and German-language scenarios"
+        },
+        {
+          "key": "B",
+          "text": "Live editing of production source code"
+        },
+        {
+          "key": "C",
+          "text": "Automatic code refactoring"
+        },
+        {
+          "key": "D",
+          "text": "Built-in database administration"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The HTML5 report supports data tables, tags, AsciiDoc output and German-language scenarios. It does not edit production code, refactor automatically, or administer databases. (BDD p.18)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 18
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q072",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "How do the JGiven console and HTML5 reports satisfy the test-issue 'tests cannot be used as documentation'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The executed scenario reads identically to the spec, so it doubles as living documentation"
+        },
+        {
+          "key": "B",
+          "text": "They hide all scenario text so nothing can be misread"
+        },
+        {
+          "key": "C",
+          "text": "They export the source code as a PDF manual"
+        },
+        {
+          "key": "D",
+          "text": "They replace tests with prose written by hand"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Because the executed scenario reads like the specification, the report is itself readable documentation that stays in sync — addressing the 'unusable as documentation' issue. They do not hide text, export source PDFs, or replace tests with hand prose. (BDD p.3-4, p.17-18)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 17
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q073",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "The TNG experience report covers how many years on a large Java Enterprise project?",
+      "options": [
+        {
+          "key": "A",
+          "text": "3 years"
+        },
+        {
+          "key": "B",
+          "text": "1 year"
+        },
+        {
+          "key": "C",
+          "text": "7 years"
+        },
+        {
+          "key": "D",
+          "text": "10 years"
+        }
+      ],
+      "answer": "A",
+      "explanation": "TNG reports 3 years of experience. One, seven and ten years are not the figure the deck gives. (BDD p.19)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 19
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q074",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In the TNG report, how many developers were involved at peak?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Up to 70 developers"
+        },
+        {
+          "key": "B",
+          "text": "Up to 7 developers"
+        },
+        {
+          "key": "C",
+          "text": "Up to 700 developers"
+        },
+        {
+          "key": "D",
+          "text": "Exactly 3 developers"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The TNG project involved up to 70 developers. Seven, 700 and exactly three are distractors. (BDD p.19)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 19
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q075",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "Roughly how many scenarios did the TNG project accumulate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Over 3000 scenarios"
+        },
+        {
+          "key": "B",
+          "text": "About 30 scenarios"
+        },
+        {
+          "key": "C",
+          "text": "About 300 scenarios"
+        },
+        {
+          "key": "D",
+          "text": "Over 300,000 scenarios"
+        }
+      ],
+      "answer": "A",
+      "explanation": "TNG reports over 3000 scenarios. Thirty, three hundred and three-hundred-thousand are wrong by orders of magnitude. (BDD p.19)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 19
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q076",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What did the TNG report say happened to readability and reusability of test code with JGiven?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They greatly improved"
+        },
+        {
+          "key": "B",
+          "text": "They greatly worsened"
+        },
+        {
+          "key": "C",
+          "text": "They stayed exactly the same"
+        },
+        {
+          "key": "D",
+          "text": "They became impossible to measure"
+        }
+      ],
+      "answer": "A",
+      "explanation": "TNG reports readability and reusability greatly improved. The deck does not claim they worsened, stayed identical, or were unmeasurable. (BDD p.19)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 19
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q077",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "What caveat accompanies TNG's claim that maintenance costs of automated tests were reduced?",
+      "options": [
+        {
+          "key": "A",
+          "text": "There were no hard numbers to quantify the reduction"
+        },
+        {
+          "key": "B",
+          "text": "The reduction only applied to GUI tests"
+        },
+        {
+          "key": "C",
+          "text": "Maintenance costs actually rose for new developers"
+        },
+        {
+          "key": "D",
+          "text": "The reduction required abandoning JUnit"
+        }
+      ],
+      "answer": "A",
+      "explanation": "TNG reports reduced maintenance costs but with 'no hard numbers' — a qualitative claim. It was not limited to GUI tests, did not raise costs for newcomers (it was easy to learn), and did not require dropping JUnit. (BDD p.19)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 19
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q078",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "According to TNG, how did developers respond to JGiven?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Well accepted and easy to learn for new developers"
+        },
+        {
+          "key": "B",
+          "text": "Widely rejected as too hard to learn"
+        },
+        {
+          "key": "C",
+          "text": "Accepted only after a paid licence was bought"
+        },
+        {
+          "key": "D",
+          "text": "Ignored in favour of plain JUnit"
+        }
+      ],
+      "answer": "A",
+      "explanation": "TNG found JGiven well accepted and easy for new developers to learn. It was not rejected, not gated behind a paid licence (Apache 2), and not abandoned for plain JUnit. (BDD p.19)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 19
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q079",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "The JGiven summary slide highlights easy integration with which existing test infrastructures?",
+      "options": [
+        {
+          "key": "A",
+          "text": "JUnit and TestNG"
+        },
+        {
+          "key": "B",
+          "text": "Cucumber and JBehave"
+        },
+        {
+          "key": "C",
+          "text": "Selenium and Cypress"
+        },
+        {
+          "key": "D",
+          "text": "Maven and Gradle as test runners"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven integrates easily with JUnit and TestNG. Cucumber/JBehave are competing BDD frameworks, Selenium/Cypress are web UI tools, and Maven/Gradle are build tools (JGiven has Maven and Jenkins plugins, but the test infrastructures named are JUnit/TestNG). (BDD p.20)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q080",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which plugins does the JGiven summary cite for CI integration?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Maven and Jenkins plugins"
+        },
+        {
+          "key": "B",
+          "text": "npm and Webpack plugins"
+        },
+        {
+          "key": "C",
+          "text": "Docker and Kubernetes plugins"
+        },
+        {
+          "key": "D",
+          "text": "Eclipse and IntelliJ plugins"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven ships Maven and Jenkins plugins, tying Verification to the CI/Conclusion phase. npm/Webpack, Docker/Kubernetes and IDE plugins are not the cited CI integrations. (BDD p.20)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q081",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What is the single biggest limitation of JGiven stressed on the summary slide?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Domain experts cannot write scenarios in JGiven"
+        },
+        {
+          "key": "B",
+          "text": "JGiven cannot produce any reports"
+        },
+        {
+          "key": "C",
+          "text": "JGiven cannot run on a CI server"
+        },
+        {
+          "key": "D",
+          "text": "JGiven requires a commercial licence"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven's key trade-off is that domain experts cannot author scenarios (they can only read the reports). JGiven does produce reports, runs on CI via Jenkins/Maven plugins, and is Apache-2 licensed — so those are false. (BDD p.20)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q082",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "What can domain experts do with JGiven, and what can they NOT do?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They can READ the generated reports but CANNOT author the scenarios"
+        },
+        {
+          "key": "B",
+          "text": "They can author scenarios but cannot read the reports"
+        },
+        {
+          "key": "C",
+          "text": "They can both author and read everything"
+        },
+        {
+          "key": "D",
+          "text": "They can do neither — JGiven is invisible to them"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck's central tension: experts can read JGiven's reports but cannot write the Java scenarios. The reversed and 'both/neither' options contradict the explicit limitation slide. (BDD p.20)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q083",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "How does JGiven's expert-authoring limitation contrast with classical Cucumber/Gherkin?",
+      "options": [
+        {
+          "key": "A",
+          "text": "In Cucumber a domain expert could in principle author the plain-text .feature file; in JGiven they cannot author the Java scenario"
+        },
+        {
+          "key": "B",
+          "text": "In Cucumber experts also cannot author anything"
+        },
+        {
+          "key": "C",
+          "text": "In JGiven experts author Java but Cucumber forbids it"
+        },
+        {
+          "key": "D",
+          "text": "Both tools let experts author freely"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Because Cucumber scenarios are plain-text Gherkin, a non-developer could in principle author them; JGiven's Java scenarios require a developer. The other options deny Cucumber's authorability, reverse the situation, or wrongly claim both allow free authoring. (BDD p.20, p.6)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q084",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "very-hard",
+      "stem": "JGiven 'buys low maintenance and reuse by living in Java, but the price is...'. What completes the deck's central trade-off?",
+      "options": [
+        {
+          "key": "A",
+          "text": "...non-developers can read the reports yet cannot author the scenarios"
+        },
+        {
+          "key": "B",
+          "text": "...the tests can no longer run on CI servers"
+        },
+        {
+          "key": "C",
+          "text": "...the reports are no longer readable by anyone"
+        },
+        {
+          "key": "D",
+          "text": "...the framework becomes closed-source and paid"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Living in Java lowers maintenance and boosts reuse, but at the cost that non-developers can read reports yet not author scenarios. CI still works, reports stay readable, and JGiven remains open-source Apache 2 — so the other completions are false. (BDD p.20)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q085",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Which of the following is NOT a JGiven strength claimed on the summary slide?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Domain experts can author scenarios"
+        },
+        {
+          "key": "B",
+          "text": "Just Java with no further language"
+        },
+        {
+          "key": "C",
+          "text": "Highly modular and reusable test code"
+        },
+        {
+          "key": "D",
+          "text": "Nice reports for domain experts"
+        }
+      ],
+      "answer": "A",
+      "explanation": "'Domain experts can author scenarios' is the opposite of the slide — they explicitly cannot. 'Just Java', 'modular/reusable test code', and 'nice reports for domain experts' are all genuine listed strengths. (BDD p.20)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q086",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What kind of library is AssertJ?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A fluent assertion library used inside Then steps"
+        },
+        {
+          "key": "B",
+          "text": "A mocking framework for stubbing dependencies"
+        },
+        {
+          "key": "C",
+          "text": "A build tool for compiling Java"
+        },
+        {
+          "key": "D",
+          "text": "A dependency-injection container"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ is a fluent assertion library used inside the Then steps of BDD scenarios. It is not a mocking framework, build tool, or DI container. (BDD p.22-24)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 22
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q087",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which problem with JUnit's own assertions motivated reaching for AssertJ?",
+      "options": [
+        {
+          "key": "A",
+          "text": "JUnit assertions were underpowered from the start"
+        },
+        {
+          "key": "B",
+          "text": "JUnit assertions were too fluent and readable"
+        },
+        {
+          "key": "C",
+          "text": "JUnit assertions could not be compiled"
+        },
+        {
+          "key": "D",
+          "text": "JUnit assertions were closed-source"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck says JUnit's assertions were 'underpowered from the start', pushing developers to Hamcrest and Fest, then AssertJ. They were not overly fluent, uncompilable, or closed-source. (BDD p.22)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 22
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q088",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "According to the deck, what is the status of Fest as an assertion library?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It looks to be abandonware"
+        },
+        {
+          "key": "B",
+          "text": "It is the actively maintained standard"
+        },
+        {
+          "key": "C",
+          "text": "It is a paid commercial product"
+        },
+        {
+          "key": "D",
+          "text": "It is part of the JDK"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck describes Fest as looking like abandonware. It is not the maintained standard (that is AssertJ), not a paid product, and not part of the JDK. (BDD p.22)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 22
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q089",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "How does the deck characterise Hamcrest?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Stagnant and ugly"
+        },
+        {
+          "key": "B",
+          "text": "Modern and actively evolving"
+        },
+        {
+          "key": "C",
+          "text": "The cleanest fluent API available"
+        },
+        {
+          "key": "D",
+          "text": "A GUI testing tool"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck calls Hamcrest 'stagnant and ugly'. It is explicitly not modern/evolving or the cleanest API (that praise goes to AssertJ), and it is an assertion/matcher library, not a GUI tool. (BDD p.22)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 22
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q090",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "The deck says developers ended up with 'a confusion of' which three libraries before AssertJ?",
+      "options": [
+        {
+          "key": "A",
+          "text": "JUnit, Hamcrest and Fest"
+        },
+        {
+          "key": "B",
+          "text": "JUnit, TestNG and Spock"
+        },
+        {
+          "key": "C",
+          "text": "Cucumber, JBehave and Concordion"
+        },
+        {
+          "key": "D",
+          "text": "Mockito, EasyMock and PowerMock"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The motivation slide describes a confusion of JUnit, Hamcrest and Fest. TestNG/Spock are test runners/BDD tools, the Cucumber group are BDD frameworks, and the Mockito group are mocking libraries — none is the cited assertion trio. (BDD p.22)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 22
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q091",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which reason does the deck give for choosing AssertJ over the alternatives?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It is still actively maintained and a near-complete superset of the others"
+        },
+        {
+          "key": "B",
+          "text": "It is the oldest and most stagnant option"
+        },
+        {
+          "key": "C",
+          "text": "It removes the need for any assertions at all"
+        },
+        {
+          "key": "D",
+          "text": "It only works with Groovy"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ is chosen because it is actively maintained, a near-complete superset of JUnit/Hamcrest/Fest, well designed and readable. It is not stagnant, does not eliminate assertions, and is not Groovy-only. (BDD p.23)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 23
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q092",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which qualities does the deck attribute to AssertJ on the 'Why AssertJ' slide?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Easy to get started, to enhance, and to read"
+        },
+        {
+          "key": "B",
+          "text": "Hard to read but very fast"
+        },
+        {
+          "key": "C",
+          "text": "Closed-source but free"
+        },
+        {
+          "key": "D",
+          "text": "Identical in design to Hamcrest"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ is praised as easy to start, enhance and read. It is not hard to read, it is open and well designed (not 'identical to Hamcrest', which the deck calls ugly). (BDD p.23)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 23
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q093",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What is the AssertJ factory method that returns the right assertion object for a value's type?",
+      "options": [
+        {
+          "key": "A",
+          "text": "assertThat()"
+        },
+        {
+          "key": "B",
+          "text": "assertEquals()"
+        },
+        {
+          "key": "C",
+          "text": "verifyThat()"
+        },
+        {
+          "key": "D",
+          "text": "expect()"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ uses assertThat() as a type-specific factory. assertEquals() is JUnit's classic assertion, and verifyThat()/expect() are not AssertJ's entry point. (BDD p.24)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 24
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q094",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Why are AssertJ's assertThat() methods called 'type-specific factory methods'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They are overloaded so you get the correct assert object for the type you pass"
+        },
+        {
+          "key": "B",
+          "text": "They can only assert on the String type"
+        },
+        {
+          "key": "C",
+          "text": "They generate a new class file per assertion"
+        },
+        {
+          "key": "D",
+          "text": "They require a separate factory class per test"
+        }
+      ],
+      "answer": "A",
+      "explanation": "assertThat() is overloaded by argument type, returning a String-assert, array-assert, etc., matching the value. It is not String-only, does not emit class files, and needs no per-test factory class. (BDD p.24)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 24
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q095",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which AssertJ base class do type-specific assertions extend?",
+      "options": [
+        {
+          "key": "A",
+          "text": "AbstractAssert"
+        },
+        {
+          "key": "B",
+          "text": "Stage"
+        },
+        {
+          "key": "C",
+          "text": "Condition"
+        },
+        {
+          "key": "D",
+          "text": "TestCase"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ's type-specific assertions extend AbstractAssert. Stage is JGiven's base, Condition is AssertJ's predicate functor base, and TestCase is JUnit 3. (BDD p.24)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 24
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q096",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "AssertJ's design is described as making 'good use of' which OO feature?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Polymorphism"
+        },
+        {
+          "key": "B",
+          "text": "Reflection metaprogramming"
+        },
+        {
+          "key": "C",
+          "text": "Operator overloading"
+        },
+        {
+          "key": "D",
+          "text": "Multiple inheritance of state"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck credits AssertJ with good use of polymorphism (e.g. contains/startsWith on both String and array). Reflection, operator overloading and multiple state inheritance are not the highlighted feature (and the latter two are not even Java features). (BDD p.24)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 24
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q097",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "In the basic example, which fluent assertion chain is shown for a String?",
+      "options": [
+        {
+          "key": "A",
+          "text": "assertThat(actual).contains(\"is\").startsWith(\"This\")"
+        },
+        {
+          "key": "B",
+          "text": "assertEquals(actual, \"This is a test\")"
+        },
+        {
+          "key": "C",
+          "text": "assertThat(actual).isFried().isPancake()"
+        },
+        {
+          "key": "D",
+          "text": "verify(actual).matches(\"This\")"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The example chains assertThat(actual).contains(\"is\").startsWith(\"This\"). assertEquals is JUnit, the pancake methods are JGiven-style steps, and verify().matches() is not AssertJ syntax. (BDD p.25)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q098",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "In the basic-use example, the same contains() and startsWith() methods work on both a String and a String[]. What does this demonstrate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Polymorphism — assertThat returns the appropriate type-specific assert, so the method names are shared"
+        },
+        {
+          "key": "B",
+          "text": "That String and String[] are the same type in Java"
+        },
+        {
+          "key": "C",
+          "text": "That AssertJ has separate, unrelated APIs for each type"
+        },
+        {
+          "key": "D",
+          "text": "That arrays are converted to Strings before assertion"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Shared method names across String and array assertions demonstrate AssertJ's polymorphism: assertThat yields the right type-specific assert. String and String[] are distinct types, the APIs are unified (not separate/unrelated), and arrays are not stringified. (BDD p.25)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q099",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Why does AssertJ's fluent, sentence-like style pair well with BDD's living-documentation goal?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The assertion reads like a sentence, keeping even the Then step in readable language"
+        },
+        {
+          "key": "B",
+          "text": "It hides the assertion from the report entirely"
+        },
+        {
+          "key": "C",
+          "text": "It forces every assertion onto a separate line of XML"
+        },
+        {
+          "key": "D",
+          "text": "It replaces Then steps with Given steps"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Fluent assertions read like sentences, so the Then step stays readable — reinforcing the readable-documentation aim. They do not hide assertions, use XML, or replace Then with Given. (BDD p.25)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q100",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "What does the fluent API style let you do in a single statement?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Chain assertions like .contains().startsWith()"
+        },
+        {
+          "key": "B",
+          "text": "Compile the test to bytecode"
+        },
+        {
+          "key": "C",
+          "text": "Launch the GUI under test"
+        },
+        {
+          "key": "D",
+          "text": "Generate the HTML report"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The fluent API lets you chain assertions (e.g. .contains().startsWith()) in one statement. Compilation, launching the GUI, and report generation are not what fluent chaining does. (BDD p.25)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q101",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "What do AssertJ custom Conditions allow you to do?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Write more elaborate, reusable tests applied via .is()/.isNot()"
+        },
+        {
+          "key": "B",
+          "text": "Replace the JGiven stage classes"
+        },
+        {
+          "key": "C",
+          "text": "Compile Gherkin into Java"
+        },
+        {
+          "key": "D",
+          "text": "Generate the HTML report"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Custom Conditions enable more elaborate, reusable assertion logic, used with .is(...) and .isNot(...). They do not replace stage classes, compile Gherkin, or generate reports. (BDD p.26-27)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 26
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q102",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "An AssertJ Condition is implemented by overriding which method?",
+      "options": [
+        {
+          "key": "A",
+          "text": "matches()"
+        },
+        {
+          "key": "B",
+          "text": "assertThat()"
+        },
+        {
+          "key": "C",
+          "text": "isInMiddleSchool()"
+        },
+        {
+          "key": "D",
+          "text": "given()"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A Condition functor overrides matches() to return a boolean. assertThat() is the factory, isInMiddleSchool() is an example custom assertion, and given() is a JGiven call. (BDD p.27)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 27
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q103",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which AssertJ methods apply a custom Condition to an actual value?",
+      "options": [
+        {
+          "key": "A",
+          "text": ".is() and .isNot()"
+        },
+        {
+          "key": "B",
+          "text": ".contains() and .startsWith()"
+        },
+        {
+          "key": "C",
+          "text": ".given() and .then()"
+        },
+        {
+          "key": "D",
+          "text": ".matches() and .filter()"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A Condition is applied via .is(...) and .isNot(...) (e.g. assertThat(12).is(evenDivBySix)). contains/startsWith are built-in String/array assertions, given/then are JGiven, and matches is the Condition's own override, not the application method. (BDD p.27)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 27
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q104",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "In the deck's example, the Condition<Integer> evenDivBySix returns true when?",
+      "options": [
+        {
+          "key": "A",
+          "text": "(value % 6) == 0"
+        },
+        {
+          "key": "B",
+          "text": "(value % 2) == 0"
+        },
+        {
+          "key": "C",
+          "text": "value > 6"
+        },
+        {
+          "key": "D",
+          "text": "value contains the digit 6"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The example's matches() returns (value % 6) == 0, i.e. evenly divisible by six (assertThat(12).is(evenDivBySix)). Divisible-by-two, greater-than-six, and 'contains digit 6' are not the predicate shown. (BDD p.27)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 27
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q105",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "An AssertJ Condition is most analogous to which concept from another library?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A Hamcrest matcher, but in AssertJ's fluent style"
+        },
+        {
+          "key": "B",
+          "text": "A JGiven stage class"
+        },
+        {
+          "key": "C",
+          "text": "A Spring @Autowired bean"
+        },
+        {
+          "key": "D",
+          "text": "A Cucumber .feature file"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A reusable Condition (override matches) is analogous to a Hamcrest matcher, expressed in AssertJ's fluent style. It is not a JGiven stage, a Spring bean, or a Gherkin feature file. (BDD p.27)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 27
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q106",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "To create a domain-specific assertion like assertThat(student).isInMiddleSchool(), what is step 1 of the recipe?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Subclass AbstractAssert for Student and implement isInMiddleSchool()"
+        },
+        {
+          "key": "B",
+          "text": "Write a Gherkin .feature file for the student"
+        },
+        {
+          "key": "C",
+          "text": "Add a @ProvidedScenarioState field"
+        },
+        {
+          "key": "D",
+          "text": "Override the matches() method of a Condition"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Step 1 is subclassing AbstractAssert (e.g. StudentAssert) and implementing isInMiddleSchool(). A .feature file, a scenario-state field, and overriding matches() (the Condition route) are not the custom-assertion recipe. (BDD p.28)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q107",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "In the custom-assertion recipe, what is step 2 after subclassing AbstractAssert?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Subclass Assertions to add a new assertThat factory returning your StudentAssert"
+        },
+        {
+          "key": "B",
+          "text": "Delete the original assertThat method"
+        },
+        {
+          "key": "C",
+          "text": "Write the scenario in Gherkin"
+        },
+        {
+          "key": "D",
+          "text": "Annotate the field with @ExpectedScenarioState"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Step 2 subclasses Assertions to add an assertThat factory returning your StudentAssert. You do not delete the original assertThat, write Gherkin, or annotate scenario state for this. (BDD p.28)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q108",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "What is the conceptual point of AssertJ custom assertions in relation to BDD?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They push domain/ubiquitous language all the way into the assertion API, so even the Then step reads in the domain's vocabulary"
+        },
+        {
+          "key": "B",
+          "text": "They eliminate the need for any Then step"
+        },
+        {
+          "key": "C",
+          "text": "They make assertions run faster on the EDT"
+        },
+        {
+          "key": "D",
+          "text": "They convert Java assertions into plain-text Gherkin"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Custom assertions extend the ubiquitous language into the assertion layer, so the Then step reads in domain terms (assertThat(student).isInMiddleSchool()). They do not remove Then steps, change EDT performance, or generate Gherkin. (BDD p.28)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q109",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Which pairing of AssertJ extension mechanism to its base class/usage is correct?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Custom Condition → override matches(), use with .is()/.isNot(); Custom assertion → subclass AbstractAssert + Assertions"
+        },
+        {
+          "key": "B",
+          "text": "Custom Condition → subclass Assertions; Custom assertion → override matches()"
+        },
+        {
+          "key": "C",
+          "text": "Both mechanisms → subclass Stage<SELF>"
+        },
+        {
+          "key": "D",
+          "text": "Both mechanisms → edit a Gherkin .feature file"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Conditions override matches() and are applied with .is()/.isNot(); custom assertions subclass AbstractAssert plus Assertions. Swapping these, using JGiven's Stage, or editing Gherkin are all incorrect. (BDD p.27-28)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q110",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What is AssertJ-Swing used for?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Automating GUI (Swing) tests"
+        },
+        {
+          "key": "B",
+          "text": "Compiling Swing applications"
+        },
+        {
+          "key": "C",
+          "text": "Designing Swing layouts visually"
+        },
+        {
+          "key": "D",
+          "text": "Generating Swing source code"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ-Swing automates functional GUI tests for Swing applications. It does not compile, visually design, or code-generate Swing apps. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q111",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "Which user-interaction capability does AssertJ-Swing explicitly simulate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Drag 'n drop"
+        },
+        {
+          "key": "B",
+          "text": "Voice commands"
+        },
+        {
+          "key": "C",
+          "text": "Multi-touch gestures on mobile"
+        },
+        {
+          "key": "D",
+          "text": "Eye-tracking input"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ-Swing simulates user interaction such as drag 'n drop. Voice, mobile multi-touch and eye-tracking are not Swing-desktop interactions it provides. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q112",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "How does AssertJ-Swing locate GUI components for assertions?",
+      "options": [
+        {
+          "key": "A",
+          "text": "By reliable component lookup — by type, by name, or by custom search criteria"
+        },
+        {
+          "key": "B",
+          "text": "Only by absolute screen pixel coordinates"
+        },
+        {
+          "key": "C",
+          "text": "Only by reading the source file line numbers"
+        },
+        {
+          "key": "D",
+          "text": "By querying a remote database of components"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ-Swing offers reliable component lookup by type, name or custom criteria. It does not rely solely on pixel coordinates, source line numbers, or a remote database. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q113",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What does AssertJ-Swing embed in HTML reports when a GUI test fails?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Screenshots of the failed GUI test"
+        },
+        {
+          "key": "B",
+          "text": "The full source code of the app"
+        },
+        {
+          "key": "C",
+          "text": "A video recording of the whole session"
+        },
+        {
+          "key": "D",
+          "text": "A memory dump of the JVM"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ-Swing can embed screenshots of failed GUI tests in HTML reports. It does not embed full source, video recordings, or JVM memory dumps. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q114",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "Which test frameworks can AssertJ-Swing be used with?",
+      "options": [
+        {
+          "key": "A",
+          "text": "TestNG or JUnit"
+        },
+        {
+          "key": "B",
+          "text": "Cucumber or JBehave only"
+        },
+        {
+          "key": "C",
+          "text": "Spock only"
+        },
+        {
+          "key": "D",
+          "text": "No framework — it runs standalone"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ-Swing works with TestNG or JUnit. It is not limited to Cucumber/JBehave or Spock, and it is not a standalone-only runner. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q115",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "AssertJ-Swing can test violations of which Swing rule, important for GUI correctness?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Swing's threading rules (the Event Dispatch Thread / EDT)"
+        },
+        {
+          "key": "B",
+          "text": "Swing's licensing rules"
+        },
+        {
+          "key": "C",
+          "text": "Swing's pixel-density rules"
+        },
+        {
+          "key": "D",
+          "text": "Swing's file-naming rules"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ-Swing supports testing violations of Swing's threading rules (the EDT), i.e. that GUI mutations occur on the Event Dispatch Thread. Licensing, pixel-density and file-naming are not Swing threading concerns. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q116",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "AssertJ-Swing supports which set of Swing components?",
+      "options": [
+        {
+          "key": "A",
+          "text": "All Swing components included in the JDK"
+        },
+        {
+          "key": "B",
+          "text": "Only JButton and JLabel"
+        },
+        {
+          "key": "C",
+          "text": "Only third-party non-JDK widgets"
+        },
+        {
+          "key": "D",
+          "text": "Only AWT components, not Swing"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ-Swing supports all Swing components included in the JDK. It is not limited to a couple of widgets, to non-JDK widgets, or to AWT. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q117",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "AssertJ-Swing is described as offering what kind of API for functional GUI tests?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A compact and powerful API"
+        },
+        {
+          "key": "B",
+          "text": "A verbose XML-only API"
+        },
+        {
+          "key": "C",
+          "text": "A read-only inspection API"
+        },
+        {
+          "key": "D",
+          "text": "A deprecated legacy API"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck calls AssertJ-Swing a compact and powerful API for creating and maintaining functional GUI tests. It is not XML-only, read-only, or deprecated. (BDD p.29)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q118",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "The closing AssertJ slide points readers to which resources?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The 'one minute starting guide' and the 'getting started guide'"
+        },
+        {
+          "key": "B",
+          "text": "A paid certification course"
+        },
+        {
+          "key": "C",
+          "text": "The JGiven source repository"
+        },
+        {
+          "key": "D",
+          "text": "A Cucumber tutorial"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The closing slide points to AssertJ's 'one minute starting guide' and 'getting started guide'. It does not advertise a paid course, the JGiven repo, or a Cucumber tutorial. (BDD p.30)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 30
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q119",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What is the standard template for a user story used in the lab?",
+      "options": [
+        {
+          "key": "A",
+          "text": "As a [user type], I want [goal] so that [reason]"
+        },
+        {
+          "key": "B",
+          "text": "Given [context], When [action], Then [outcome]"
+        },
+        {
+          "key": "C",
+          "text": "Input [data], Process [logic], Output [result]"
+        },
+        {
+          "key": "D",
+          "text": "Class [name] extends [base] implements [interface]"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The lab's user-story template is 'As a [user type], I want [goal] so that [reason]'. Given/When/Then is the scenario format the story maps TO, and the other two are unrelated to user stories. (BDDLab p.1)",
+      "source": {
+        "deck": "BDDLab.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q120",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In the lab portfolio, what is the required first move for each user story?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Write its Given/When/Then scenario"
+        },
+        {
+          "key": "B",
+          "text": "Refactor the production code first"
+        },
+        {
+          "key": "C",
+          "text": "Deploy the application to production"
+        },
+        {
+          "key": "D",
+          "text": "Delete the existing unit tests"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The lab requires mapping each user story to a Given/When/Then scenario first, then automating it. Refactoring, deploying, and deleting tests are not the prescribed first move. (BDDLab p.1)",
+      "source": {
+        "deck": "BDDLab.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q121",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "Which tools does the lab ask you to use to automate the BDD scenarios?",
+      "options": [
+        {
+          "key": "A",
+          "text": "JGiven and AssertJ (and AssertJ-Swing for Swing)"
+        },
+        {
+          "key": "B",
+          "text": "Cucumber and Hamcrest"
+        },
+        {
+          "key": "C",
+          "text": "Selenium and Mockito"
+        },
+        {
+          "key": "D",
+          "text": "Spock and Fest"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The lab specifies JGiven + AssertJ, plus AssertJ-Swing for Swing applications. Cucumber/Hamcrest, Selenium/Mockito and Spock/Fest are not the lab's required toolchain. (BDDLab p.1)",
+      "source": {
+        "deck": "BDDLab.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q122",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "A user story describes a capability from whose perspective?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The user's perspective"
+        },
+        {
+          "key": "B",
+          "text": "The compiler's perspective"
+        },
+        {
+          "key": "C",
+          "text": "The database administrator's perspective"
+        },
+        {
+          "key": "D",
+          "text": "The build server's perspective"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A user story is a short capability description from the user's perspective ('As a [user]...'). It is not framed from the compiler, DBA, or build server viewpoint. (BDDLab p.1)",
+      "source": {
+        "deck": "BDDLab.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q123",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "For the calculator user story 'As a calculator user, I want to add two numbers...', which is a correct Given/When/Then mapping?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Given two numbers 500 & 500 / When I add them up / Then I should get result 1000"
+        },
+        {
+          "key": "B",
+          "text": "Given the result 1000 / When I subtract / Then I get two numbers"
+        },
+        {
+          "key": "C",
+          "text": "When two numbers / Given I add them / Then 500"
+        },
+        {
+          "key": "D",
+          "text": "Then two numbers / Given 1000 / When add"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The lab maps it to Given two numbers 500 & 500, When I add them up, Then result 1000. The other options scramble the clause order or invert pre-condition and outcome. (BDDLab p.1)",
+      "source": {
+        "deck": "BDDLab.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q124",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "In the lab, for Swing applications specifically, which tool automates the scenarios?",
+      "options": [
+        {
+          "key": "A",
+          "text": "AssertJ-Swing"
+        },
+        {
+          "key": "B",
+          "text": "AssertJ Core only"
+        },
+        {
+          "key": "C",
+          "text": "JUnit alone"
+        },
+        {
+          "key": "D",
+          "text": "Hamcrest"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The lab says: 'For Swing applications use the AssertJ-swing to automate the Scenarios.' Plain AssertJ Core, JUnit alone, and Hamcrest are not the Swing-specific automation tool. (BDDLab p.1)",
+      "source": {
+        "deck": "BDDLab.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q125",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "How does the lab connect BDD to the Initiation phase of the change process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The change request / user story is turned into Given/When/Then before coding, so the acceptance criterion exists up front"
+        },
+        {
+          "key": "B",
+          "text": "BDD scenarios are written only after the code ships"
+        },
+        {
+          "key": "C",
+          "text": "Initiation skips scenarios entirely"
+        },
+        {
+          "key": "D",
+          "text": "The scenario is generated automatically from the finished code"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD turns the Initiation user story into a GWT scenario before coding, so the acceptance criterion exists up front. Writing scenarios after shipping, skipping them, or auto-generating from finished code all contradict the lab's up-front approach. (BDDLab p.1)",
+      "source": {
+        "deck": "BDDLab.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q126",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "At which phase of the software-change process does this lecture's BDD tooling primarily apply?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Verification"
+        },
+        {
+          "key": "B",
+          "text": "Concept Location"
+        },
+        {
+          "key": "C",
+          "text": "Impact Analysis"
+        },
+        {
+          "key": "D",
+          "text": "Prefactoring"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD and its JGiven/AssertJ tooling apply at the Verification phase — the closing check that the change is correct. Concept Location, Impact Analysis and Prefactoring are earlier phases. (course frame; [Raj13])",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q127",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In the change process, BDD scenarios serve as which kind of criteria for the Verification phase?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Executable acceptance criteria"
+        },
+        {
+          "key": "B",
+          "text": "Compilation criteria"
+        },
+        {
+          "key": "C",
+          "text": "Licensing criteria"
+        },
+        {
+          "key": "D",
+          "text": "Deployment rollback criteria"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD scenarios are the executable acceptance criteria the Verification phase checks. They are not compilation, licensing, or rollback criteria. (course frame; [Raj13])",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q128",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "The Verification phase sits at which end of the eight-phase change process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "At the end, as the closing correctness check"
+        },
+        {
+          "key": "B",
+          "text": "At the very start, before Initiation"
+        },
+        {
+          "key": "C",
+          "text": "In the middle, replacing Actualization"
+        },
+        {
+          "key": "D",
+          "text": "Outside the process entirely"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Verification is the closing phase that asks whether the change is correct and regression-free. It is not the first phase, does not replace Actualization, and is part of the process, not outside it. (course frame; [Raj13])",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q129",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "What question does the Verification phase ask, which BDD answers?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Is the change correct, complete, and free of regressions?"
+        },
+        {
+          "key": "B",
+          "text": "Which concept in the code must be changed?"
+        },
+        {
+          "key": "C",
+          "text": "What is the ripple effect of the change?"
+        },
+        {
+          "key": "D",
+          "text": "How should the code be cleaned up before changing?"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Verification asks whether the change is correct, complete and regression-free — answered by BDD scenarios going green. The other questions belong to Concept Location, Impact Analysis and Prefactoring respectively. (course frame; [Raj13])",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q130",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "When is the Verification phase considered 'passed' using JGiven?",
+      "options": [
+        {
+          "key": "A",
+          "text": "When all scenarios are green and the HTML report shows 0 Failed / 0 Pending"
+        },
+        {
+          "key": "B",
+          "text": "When the code compiles without warnings"
+        },
+        {
+          "key": "C",
+          "text": "When the user story is first written"
+        },
+        {
+          "key": "D",
+          "text": "When the impact set has been computed"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Verification passes when all scenarios go green and the report shows 0 Failed / 0 Pending. Compilation, story authoring, and impact-set computation are different milestones. (BDD p.18; course frame)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 18
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q131",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "How does JGiven tie the Verification phase to the Conclusion / CI phase?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Its Maven and Jenkins plugins run the scenarios automatically on every integration"
+        },
+        {
+          "key": "B",
+          "text": "It manually emails the report to managers"
+        },
+        {
+          "key": "C",
+          "text": "It blocks all commits until experts author scenarios"
+        },
+        {
+          "key": "D",
+          "text": "It replaces the CI server with a local script"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven's Maven/Jenkins plugins run scenarios automatically in CI, linking Verification to Conclusion/CI. It does not rely on manual emailing, expert authoring gates, or replacing the CI server. (BDD p.20; course frame)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q132",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Within the change process, how do Actualization and BDD scenarios relate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Actualization writes the production code, and the BDD scenarios are the target it must satisfy"
+        },
+        {
+          "key": "B",
+          "text": "Actualization deletes the scenarios after coding"
+        },
+        {
+          "key": "C",
+          "text": "BDD scenarios replace the Actualization phase"
+        },
+        {
+          "key": "D",
+          "text": "Actualization runs before the user story exists"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Actualization writes the code that must satisfy the pre-existing BDD scenarios. The scenarios are not deleted, do not replace Actualization, and the story (and scenario) exist before Actualization. (course frame; [Raj13])",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q133",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "very-hard",
+      "stem": "Why is BDD described as the 'natural fit' for the Verification phase specifically?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The scenarios ARE the acceptance criteria and 'executed like normal tests' makes verification automated and repeatable"
+        },
+        {
+          "key": "B",
+          "text": "Because BDD is the only phase that uses Java"
+        },
+        {
+          "key": "C",
+          "text": "Because Verification cannot use any other kind of test"
+        },
+        {
+          "key": "D",
+          "text": "Because BDD removes the need for Actualization"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD fits Verification because the scenarios are the acceptance criteria and being executed like tests makes verification automatic and repeatable. Java is not unique to one phase, Verification can use other tests too, and BDD does not remove Actualization. (BDD p.4; course frame)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q134",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "How does the guide relate BDD to TDD?",
+      "options": [
+        {
+          "key": "A",
+          "text": "BDD reframes test-first discipline around externally observable behaviour in ubiquitous language shared with non-developers"
+        },
+        {
+          "key": "B",
+          "text": "BDD abandons the test-first idea entirely"
+        },
+        {
+          "key": "C",
+          "text": "BDD is identical to TDD with no differences"
+        },
+        {
+          "key": "D",
+          "text": "BDD is only for performance testing, unlike TDD"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD keeps TDD's test-first discipline but reframes it around externally observable behaviour described in ubiquitous/domain language. It does not abandon test-first, is not identical to TDD, and is not performance-specific. ([Nor06]; reading-level context)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q135",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "BDD is sometimes summarised as which of the following?",
+      "options": [
+        {
+          "key": "A",
+          "text": "TDD done with the customer's vocabulary"
+        },
+        {
+          "key": "B",
+          "text": "Testing done without any assertions"
+        },
+        {
+          "key": "C",
+          "text": "Documentation written after release"
+        },
+        {
+          "key": "D",
+          "text": "A replacement for version control"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD is summarised as 'TDD done with the customer's vocabulary' — behaviour in ubiquitous language. It still uses assertions, is written before/with code (living docs), and is unrelated to version control. ([Nor06]; reading-level context)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q136",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What is 'ubiquitous language' in the BDD context?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The shared vocabulary of domain experts and developers in which scenarios are written"
+        },
+        {
+          "key": "B",
+          "text": "A formal grammar for parsing Java"
+        },
+        {
+          "key": "C",
+          "text": "The English-only requirement of all reports"
+        },
+        {
+          "key": "D",
+          "text": "A networking protocol for distributed tests"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Ubiquitous/domain language is the shared vocabulary of experts and developers in which scenarios (and ideally assertions) are written. It is not a Java grammar, an English-only rule, or a network protocol. (BDD p.4; [Nor06])",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q137",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "A single concrete behaviour written in Given/When/Then is called what?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A scenario"
+        },
+        {
+          "key": "B",
+          "text": "A stage"
+        },
+        {
+          "key": "C",
+          "text": "A condition"
+        },
+        {
+          "key": "D",
+          "text": "A matcher"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A single concrete GWT behaviour is a scenario (in JGiven, one Java test method). A stage is a JGiven step class, a condition is an AssertJ predicate, and a matcher is a Hamcrest concept. (BDD p.5, p.10)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q138",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What is the relationship between BDD the practice and JGiven the tool?",
+      "options": [
+        {
+          "key": "A",
+          "text": "BDD is the practice; JGiven and AssertJ are tools that implement it"
+        },
+        {
+          "key": "B",
+          "text": "BDD and JGiven are exactly the same thing"
+        },
+        {
+          "key": "C",
+          "text": "JGiven is the practice; BDD is one of its tools"
+        },
+        {
+          "key": "D",
+          "text": "Both are assertion libraries"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD is the practice (behaviour in domain language, GWT, collaboration, living docs); JGiven and AssertJ are tools that implement it. Equating them, reversing the relationship, or calling both assertion libraries is wrong. (BDD p.4; guide gotchas)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q139",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "Who is Dan North in relation to BDD?",
+      "options": [
+        {
+          "key": "A",
+          "text": "He coined BDD as an evolution of TDD focused on behaviour and ubiquitous language"
+        },
+        {
+          "key": "B",
+          "text": "He authored the JGiven framework"
+        },
+        {
+          "key": "C",
+          "text": "He wrote the AssertJ library"
+        },
+        {
+          "key": "D",
+          "text": "He invented the Swing toolkit"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Dan North coined BDD as an evolution of TDD focused on behaviour and ubiquitous language ([Nor06]). He did not author JGiven or AssertJ, and Swing is a Java GUI toolkit unrelated to him. (BDD p.4; [Nor06])",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q140",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Why is it a mistake to equate 'BDD' with 'Cucumber' or 'JGiven'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "BDD is a practice; Cucumber and JGiven are particular tool implementations of it"
+        },
+        {
+          "key": "B",
+          "text": "Cucumber and JGiven are not BDD tools at all"
+        },
+        {
+          "key": "C",
+          "text": "BDD is a programming language, not a practice"
+        },
+        {
+          "key": "D",
+          "text": "JGiven predates the concept of BDD"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD is the practice; Cucumber and JGiven are specific tools that implement it, so equating them confuses practice with tooling. Both ARE BDD tools, BDD is not a language, and the predates claim is irrelevant/false. (guide gotchas; BDD p.4)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q141",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "The BDD deck itself — does it mention JHotDraw or walk the eight-phase change process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "No; the JHotDraw and eight-phase links are course-frame synthesis, not deck claims"
+        },
+        {
+          "key": "B",
+          "text": "Yes; the deck dedicates a slide to JHotDraw figures"
+        },
+        {
+          "key": "C",
+          "text": "Yes; the deck names all eight phases explicitly"
+        },
+        {
+          "key": "D",
+          "text": "Yes; JHotDraw is the deck's running example instead of pancakes"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck does NOT mention JHotDraw or name the eight phases; those connections are course-frame synthesis. The deck's running example is the pancake scenario, not JHotDraw. (guide gotchas; BDD p.5)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q142",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "Why is AssertJ-Swing the relevant BDD tool for verifying a JHotDraw change at the GUI level?",
+      "options": [
+        {
+          "key": "A",
+          "text": "JHotDraw is a Swing drawing editor, and AssertJ-Swing automates Swing GUI tests"
+        },
+        {
+          "key": "B",
+          "text": "JHotDraw is a web app, and AssertJ-Swing drives browsers"
+        },
+        {
+          "key": "C",
+          "text": "JHotDraw is a database, and AssertJ-Swing runs SQL"
+        },
+        {
+          "key": "D",
+          "text": "JHotDraw is a CLI tool needing no GUI testing"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JHotDraw is a Java Swing drawing editor, so AssertJ-Swing (which automates Swing GUI tests) is the natural verification tool. JHotDraw is not a web app, database, or CLI tool. (BDD p.29; course frame)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L09-Q143",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "For a JHotDraw scenario 'Given a drawing with one rectangle, When the user drags it 50px right, Then x increases by 50', which tool plays which role?",
+      "options": [
+        {
+          "key": "A",
+          "text": "JGiven implements the scenario in Java; AssertJ-Swing drives the drag; AssertJ asserts the new coordinate"
+        },
+        {
+          "key": "B",
+          "text": "Cucumber implements it; Hamcrest drives the GUI; Fest asserts"
+        },
+        {
+          "key": "C",
+          "text": "AssertJ-Swing writes the scenario; JGiven drives the GUI; JUnit asserts only"
+        },
+        {
+          "key": "D",
+          "text": "The scenario cannot be automated because JHotDraw is Swing"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven expresses the scenario in Java, AssertJ-Swing simulates the drag, and AssertJ asserts the coordinate. The Cucumber/Hamcrest/Fest combo is not the course toolchain, the roles in option C are scrambled, and Swing GUIs are automatable (that is AssertJ-Swing's purpose). (BDD p.10-16, p.29; course frame)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 29
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L09-Q144",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "How does JGiven's stage reuse pay off on a large case study like JHotDraw?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A stage such as GivenADrawing can be reused across many figure scenarios"
+        },
+        {
+          "key": "B",
+          "text": "Each scenario must rewrite all stages from scratch"
+        },
+        {
+          "key": "C",
+          "text": "Stages can only be used once and then discarded"
+        },
+        {
+          "key": "D",
+          "text": "Stages must be authored by domain experts"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Because stages are ordinary reusable classes, a GivenADrawing stage is reused across many JHotDraw figure scenarios. Stages are not rewritten per scenario, not single-use, and authored by developers, not experts. (BDD p.11; course frame)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 11
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L09-Q145",
+      "lecture_id": "L09",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "very-hard",
+      "stem": "JHotDraw is built on GoF patterns (Composite, Observer, Strategy). How do BDD scenarios relate to these patterns?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They verify the behaviour the patterns produce (e.g. an Observer refreshing the view) without coupling to the pattern's internal structure"
+        },
+        {
+          "key": "B",
+          "text": "They replace the patterns with simpler procedural code"
+        },
+        {
+          "key": "C",
+          "text": "They assert directly on each pattern's private fields"
+        },
+        {
+          "key": "D",
+          "text": "They forbid the use of design patterns in tested code"
+        }
+      ],
+      "answer": "A",
+      "explanation": "BDD verifies observable behaviour (e.g. the Observer refreshing the view) without coupling to internal structure — behaviour over implementation. It does not replace patterns, assert on private fields, or forbid patterns. (course frame; [GHJV94])",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L09-Q146",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Which statement about JGiven's 'given()/when()/then()' is correct?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They are Java method calls, not parsed Gherkin keywords"
+        },
+        {
+          "key": "B",
+          "text": "They are Gherkin keywords parsed from a .feature file"
+        },
+        {
+          "key": "C",
+          "text": "They are AssertJ assertion methods"
+        },
+        {
+          "key": "D",
+          "text": "They are Spring annotations"
+        }
+      ],
+      "answer": "A",
+      "explanation": "In JGiven, given()/when()/then()/and() are Java method calls (not parsed Gherkin, not AssertJ assertions, not Spring annotations). That is how JGiven avoids a separate plain-text file. (guide gotchas; BDD p.10)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 10
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q147",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "very-hard",
+      "stem": "A teammate claims 'classical frameworks are better because plain text is simpler to maintain.' Per the deck, what is the rebuttal?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The deck's verdict on classical plain-text frameworks is 'Additional Maintenance Cost' from keeping the scenario file and step-glue in sync"
+        },
+        {
+          "key": "B",
+          "text": "The deck says plain text has zero maintenance cost"
+        },
+        {
+          "key": "C",
+          "text": "The deck recommends classical frameworks over JGiven"
+        },
+        {
+          "key": "D",
+          "text": "The deck says plain text cannot be executed at all"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck assigns 'Additional Maintenance Cost' to classical plain-text frameworks because the separate file plus regex glue must be synchronised — refuting the 'simpler' claim. It does not call plain text cost-free, prefer classical tools, or deny execution. (guide gotchas; BDD p.6)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q148",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "very-hard",
+      "stem": "A student claims Cucumber and JBehave also have 'stage classes.' Why is this wrong?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Stage classes are a unique feature of JGiven, not present in other BDD frameworks"
+        },
+        {
+          "key": "B",
+          "text": "Cucumber and JBehave have even more stage classes than JGiven"
+        },
+        {
+          "key": "C",
+          "text": "Stage classes are a Gherkin keyword shared by all tools"
+        },
+        {
+          "key": "D",
+          "text": "Stage classes were removed from JGiven years ago"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck states stage classes are unique to JGiven. They are not shared by Cucumber/JBehave, not a Gherkin keyword, and not removed from JGiven. (guide gotchas; BDD p.11)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q149",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "very-hard",
+      "stem": "A reviewer writes 'the deck recommends Hamcrest as the assertion library.' What is the correct claim?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The deck recommends AssertJ; it calls Hamcrest stagnant/ugly and Fest abandonware"
+        },
+        {
+          "key": "B",
+          "text": "The deck recommends Hamcrest over AssertJ for readability"
+        },
+        {
+          "key": "C",
+          "text": "The deck recommends Fest because it is actively maintained"
+        },
+        {
+          "key": "D",
+          "text": "The deck recommends JUnit's built-in assertions as sufficient"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck recommends AssertJ specifically because Hamcrest is stagnant/ugly, Fest is abandonware, and JUnit is underpowered. So Hamcrest, Fest and bare JUnit are not the recommendation. (guide gotchas; BDD p.22-23)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 22
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q150",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "very-hard",
+      "stem": "Which JGiven detail is the EASIEST to overstate, per the gotchas, and what is the accurate version?",
+      "options": [
+        {
+          "key": "A",
+          "text": "That experts can write JGiven scenarios — accurate version: experts can only READ the reports"
+        },
+        {
+          "key": "B",
+          "text": "That JGiven generates reports — accurate version: it generates none"
+        },
+        {
+          "key": "C",
+          "text": "That JGiven uses Java — accurate version: it uses Groovy"
+        },
+        {
+          "key": "D",
+          "text": "That JGiven is open source — accurate version: it is proprietary"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The common overstatement is that experts can write JGiven scenarios; accurately, they can only read the reports. JGiven does generate reports, uses Java, and is open source (Apache 2) — so those 'corrections' are false. (guide gotchas; BDD p.20)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q151",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "very-hard",
+      "stem": "Why does the 'pancake' vs 'pan cake' spelling vary across the slides, and how should a question treat it?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The slides use both forms (method names vs prose); reproduce whichever the question shows"
+        },
+        {
+          "key": "B",
+          "text": "It is a typo that invalidates the scenario"
+        },
+        {
+          "key": "C",
+          "text": "Only 'pan cake' is correct and 'pancake' is wrong"
+        },
+        {
+          "key": "D",
+          "text": "The spelling determines whether the test passes"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck uses both 'pancake' (method names) and 'pan cake' (prose) — not a bug; reproduce whichever the source shows. It does not invalidate the scenario, neither form is uniquely correct, and spelling does not control test outcome. (guide gotchas; BDD p.5, p.10)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q152",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Which everyday detail makes JGiven's fluent chain work and what breaks it?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Each step returns 'this' (self-type Stage<SELF>); a void step breaks the chain"
+        },
+        {
+          "key": "B",
+          "text": "Each step is static; a non-static step breaks the chain"
+        },
+        {
+          "key": "C",
+          "text": "Each step is annotated @Test; a missing annotation breaks the chain"
+        },
+        {
+          "key": "D",
+          "text": "Each step throws an exception; catching it breaks the chain"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Fluent chaining relies on every chained step returning 'this' via the self-type; a void step breaks it (Then steps may be void because nothing follows). Staticness, @Test on steps, and exception-throwing are not the mechanism. (guide gotchas; BDD p.14, p.16)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q153",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which annotation in the WhenCook stage shows JGiven integrating with Spring, and what does Spring provide?",
+      "options": [
+        {
+          "key": "A",
+          "text": "@Autowired — it injects the Cook collaborator"
+        },
+        {
+          "key": "B",
+          "text": "@ProvidedScenarioState — it injects the Spring context"
+        },
+        {
+          "key": "C",
+          "text": "@Test — it autowires the report"
+        },
+        {
+          "key": "D",
+          "text": "@ExpectedScenarioState — it provides the database"
+        }
+      ],
+      "answer": "A",
+      "explanation": "@Autowired shows Spring DI injecting the Cook collaborator into the When stage. @Provided/@Expected are state-transfer annotations, and @Test marks the scenario method — none of those is the Spring-injection annotation. (BDD p.15)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 15
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q154",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which best captures the role split: BDD scenario vs AssertJ?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The scenario states the behaviour (Given/When/Then); AssertJ performs the assertion inside the Then step"
+        },
+        {
+          "key": "B",
+          "text": "AssertJ writes the scenario; the scenario performs the assertion"
+        },
+        {
+          "key": "C",
+          "text": "Both write the scenario and neither asserts"
+        },
+        {
+          "key": "D",
+          "text": "AssertJ replaces Given and When steps entirely"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The GWT scenario states the behaviour; AssertJ provides the fluent assertion inside the Then step. The reversed and 'both/neither' options misassign roles, and AssertJ does not replace Given/When. (BDD p.16, p.24)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q155",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "How does the custom-assertion recipe complete BDD's domain-language idea at the assertion level?",
+      "options": [
+        {
+          "key": "A",
+          "text": "assertThat(student).isInMiddleSchool() reads in the domain's vocabulary, mirroring domain-language scenarios"
+        },
+        {
+          "key": "B",
+          "text": "It hides the assertion so the report shows no domain terms"
+        },
+        {
+          "key": "C",
+          "text": "It forces the assertion into Gherkin plain text"
+        },
+        {
+          "key": "D",
+          "text": "It moves the assertion out of the Then step into the Given step"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Custom assertions like assertThat(student).isInMiddleSchool() carry domain vocabulary into the assertion, the counterpart to domain-language scenarios. They do not hide terms, become Gherkin, or relocate the assertion to Given. (BDD p.28)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q156",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "AssertJ is used inside which clause/step of a BDD scenario?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The Then step"
+        },
+        {
+          "key": "B",
+          "text": "The Given step only"
+        },
+        {
+          "key": "C",
+          "text": "The When step only"
+        },
+        {
+          "key": "D",
+          "text": "Outside the scenario entirely"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AssertJ provides the assertions inside the Then step (e.g. assertThat(meal).isEqualTo(\"pancake\")). It may appear as sanity checks elsewhere, but its primary BDD role is the Then assertion, not Given/When-only or outside the scenario. (BDD p.16, p.24)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q157",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "Which is a genuine 'typical test issue' the deck lists (choose the real one)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Tests cannot be used as documentation"
+        },
+        {
+          "key": "B",
+          "text": "Tests are too readable by experts"
+        },
+        {
+          "key": "C",
+          "text": "Tests have too few technical details"
+        },
+        {
+          "key": "D",
+          "text": "Tests run on too many machines"
+        }
+      ],
+      "answer": "A",
+      "explanation": "'Tests cannot be used as documentation' is one of the listed issues. The others invert reality: too-readable, too-few-details and too-many-machines are not the deck's complaints (it complains of irrelevant detail and developer-only readability). (BDD p.3)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q158",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which sequence correctly orders the deck's three movements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Why/what BDD is -> JGiven -> AssertJ"
+        },
+        {
+          "key": "B",
+          "text": "AssertJ -> JGiven -> Why BDD is"
+        },
+        {
+          "key": "C",
+          "text": "JGiven -> AssertJ -> Why BDD is"
+        },
+        {
+          "key": "D",
+          "text": "Why BDD is -> AssertJ -> JGiven"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck moves: motivation/definition of BDD (p.3-5), then JGiven (p.6-20), then AssertJ (p.21-30). The other orderings reshuffle these three movements. (BDD p.3-30)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q159",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "What does 'living documentation' mean in practice with JGiven?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The executed scenario reads like the specification, so the running test IS the documentation"
+        },
+        {
+          "key": "B",
+          "text": "A printed manual is shipped with every release"
+        },
+        {
+          "key": "C",
+          "text": "Documentation is written by hand after each sprint"
+        },
+        {
+          "key": "D",
+          "text": "The code comments are exported nightly"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Living documentation means the executed scenario reads like the spec, so the running test doubles as up-to-date documentation. It is not a printed manual, hand-written post-sprint docs, or exported comments. (BDD p.4, p.17-18)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 17
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q160",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What is the title of the BDD deck for this lecture?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Software Verification — Pragmatic BDD for Java"
+        },
+        {
+          "key": "B",
+          "text": "Clean Code and Design Patterns"
+        },
+        {
+          "key": "C",
+          "text": "Impact Analysis and Continuous Integration"
+        },
+        {
+          "key": "D",
+          "text": "Refactoring for Maintainable Code"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck is titled 'Software Verification — Pragmatic BDD for Java' (by Jan Corfixen Sørensen, USD). The other titles belong to different lectures in the course. (BDD p.1)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q161",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In the deck's running example, what dish is being prepared in the scenario?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A pancake"
+        },
+        {
+          "key": "B",
+          "text": "A pizza"
+        },
+        {
+          "key": "C",
+          "text": "A cake"
+        },
+        {
+          "key": "D",
+          "text": "An omelette"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck's running example is the pancake scenario (egg, milk, flour -> dough -> pancake). It is not a pizza, plain cake, or omelette. (BDD p.5)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q162",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In the pancake scenario, which three ingredients are the Given pre-conditions?",
+      "options": [
+        {
+          "key": "A",
+          "text": "An egg, some milk, and flour"
+        },
+        {
+          "key": "B",
+          "text": "Flour, water, and yeast"
+        },
+        {
+          "key": "C",
+          "text": "Eggs, sugar, and butter"
+        },
+        {
+          "key": "D",
+          "text": "Milk, sugar, and salt"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The Given steps are 'an egg', 'some milk', and 'the ingredient flour'. The other ingredient sets are not used in the deck's scenario. (BDD p.5)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q163",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In the GivenIngredients stage, which Java collection type holds the ingredients?",
+      "options": [
+        {
+          "key": "A",
+          "text": "List<String>"
+        },
+        {
+          "key": "B",
+          "text": "Set<Integer>"
+        },
+        {
+          "key": "C",
+          "text": "Map<String, Cook>"
+        },
+        {
+          "key": "D",
+          "text": "Queue<Object>"
+        }
+      ],
+      "answer": "A",
+      "explanation": "GivenIngredients holds a @ProvidedScenarioState List<String> ingredients. The dough is a Set<String>, but ingredients is a List<String> — not a Set<Integer>, Map, or Queue. (BDD p.14)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q164",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In the WhenCook stage, what type is the 'dough' field that the cook produces?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Set<String>"
+        },
+        {
+          "key": "B",
+          "text": "List<String>"
+        },
+        {
+          "key": "C",
+          "text": "String"
+        },
+        {
+          "key": "D",
+          "text": "Map<String,String>"
+        }
+      ],
+      "answer": "A",
+      "explanation": "WhenCook provides a @ProvidedScenarioState Set<String> dough. The ingredients are a List<String> and the meal is a String — dough is specifically a Set<String>. (BDD p.15)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 15
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q165",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "In the ThenMeal stage, the final assertion uses which AssertJ method?",
+      "options": [
+        {
+          "key": "A",
+          "text": "isEqualTo"
+        },
+        {
+          "key": "B",
+          "text": "isNotNull only"
+        },
+        {
+          "key": "C",
+          "text": "contains"
+        },
+        {
+          "key": "D",
+          "text": "startsWith"
+        }
+      ],
+      "answer": "A",
+      "explanation": "ThenMeal asserts assertThat(meal).isEqualTo(expectedMeal). isNotNull is used as a When-stage sanity check, while contains/startsWith appear in the basic String example — not the final pancake assertion. (BDD p.16)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q166",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "easy",
+      "stem": "What is the static import used in the ThenMeal stage to bring in assertThat?",
+      "options": [
+        {
+          "key": "A",
+          "text": "import static org.assertj.core.api.Assertions.assertThat"
+        },
+        {
+          "key": "B",
+          "text": "import static org.junit.Assert.assertEquals"
+        },
+        {
+          "key": "C",
+          "text": "import static org.hamcrest.Matchers.is"
+        },
+        {
+          "key": "D",
+          "text": "import static com.tngtech.jgiven.Stage.given"
+        }
+      ],
+      "answer": "A",
+      "explanation": "ThenMeal statically imports org.assertj.core.api.Assertions.assertThat. The JUnit, Hamcrest, and (non-existent) JGiven static imports are not what the deck shows. (BDD p.16)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q167",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "What is the meal's expected value in the pancake Then assertion?",
+      "options": [
+        {
+          "key": "A",
+          "text": "\"pancake\""
+        },
+        {
+          "key": "B",
+          "text": "\"dough\""
+        },
+        {
+          "key": "C",
+          "text": "\"egg\""
+        },
+        {
+          "key": "D",
+          "text": "\"flour\""
+        }
+      ],
+      "answer": "A",
+      "explanation": "the_resulting_meal_is_a_pan_cake() delegates to the_resulting_meal_is_a(\"pancake\"), asserting meal equals \"pancake\". Dough, egg and flour are intermediate or input values, not the asserted meal. (BDD p.16)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q168",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "What is the home URL given for JGiven on its intro slide?",
+      "options": [
+        {
+          "key": "A",
+          "text": "http://jgiven.org"
+        },
+        {
+          "key": "B",
+          "text": "http://assertj.org"
+        },
+        {
+          "key": "C",
+          "text": "http://cucumber.io"
+        },
+        {
+          "key": "D",
+          "text": "http://junit.org"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JGiven's intro slide cites http://jgiven.org as its open-source home. assertj.org, cucumber.io and junit.org are other tools' sites. (BDD p.9)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 9
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q169",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which class does AssertJ's custom-assertion recipe subclass to add a new assertThat factory method?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Assertions"
+        },
+        {
+          "key": "B",
+          "text": "AbstractAssert"
+        },
+        {
+          "key": "C",
+          "text": "Condition"
+        },
+        {
+          "key": "D",
+          "text": "Stage"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Step 2 subclasses Assertions to add a new assertThat factory returning the custom assert. AbstractAssert is subclassed in step 1 for the assertion itself, Condition is the functor route, and Stage is JGiven's class. (BDD p.28)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q170",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "In the deck's Condition example, which two AssertJ calls test the divisibility predicate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "assertThat(12).is(evenDivBySix) and assertThat(8).isNot(evenDivBySix)"
+        },
+        {
+          "key": "B",
+          "text": "assertThat(12).contains(6) and assertThat(8).startsWith(6)"
+        },
+        {
+          "key": "C",
+          "text": "assertThat(12).given(evenDivBySix) and assertThat(8).then(evenDivBySix)"
+        },
+        {
+          "key": "D",
+          "text": "assertThat(12).matches(6) and assertThat(8).filter(6)"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The example asserts assertThat(12).is(evenDivBySix) and assertThat(8).isNot(evenDivBySix). contains/startsWith are String/array methods, given/then are JGiven, and matches/filter are not the application calls. (BDD p.27)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 27
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q171",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "Which two report-related promises does JGiven fulfil through its console and HTML5 output?",
+      "options": [
+        {
+          "key": "A",
+          "text": "'Reports for domain experts' and 'living documentation'"
+        },
+        {
+          "key": "B",
+          "text": "'Expert-authored scenarios' and 'zero maintenance'"
+        },
+        {
+          "key": "C",
+          "text": "'No reports needed' and 'developer-only output'"
+        },
+        {
+          "key": "D",
+          "text": "'Gherkin generation' and 'plain-text glue'"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The reports deliver 'reports for domain experts' and 'living documentation'. Expert authoring is impossible in JGiven, the reports are not developer-only, and JGiven does not generate Gherkin or plain-text glue. (BDD p.9, p.4, p.17-18)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 18
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q172",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Which pairing of framework to its scenario-storage format is entirely correct?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Cucumber -> Gherkin .feature; Concordion -> HTML; Fitnesse -> Wiki"
+        },
+        {
+          "key": "B",
+          "text": "Cucumber -> HTML; Concordion -> Wiki; Fitnesse -> Gherkin"
+        },
+        {
+          "key": "C",
+          "text": "Cucumber -> Wiki; Concordion -> Gherkin; Fitnesse -> HTML"
+        },
+        {
+          "key": "D",
+          "text": "All three -> compiled Java only"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Cucumber uses Gherkin .feature files, Concordion uses HTML, and Fitnesse uses a Wiki. The other options scramble these mappings or wrongly claim compiled-Java storage. (BDD p.6)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q173",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "hard",
+      "stem": "Which pairing of developer-friendly framework to language is entirely correct?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Spock -> Groovy; ScalaTest -> Scala; Jnario -> Xtend; JGiven -> Java"
+        },
+        {
+          "key": "B",
+          "text": "Spock -> Scala; ScalaTest -> Groovy; Jnario -> Java; JGiven -> Xtend"
+        },
+        {
+          "key": "C",
+          "text": "Spock -> Java; ScalaTest -> Xtend; Jnario -> Groovy; JGiven -> Scala"
+        },
+        {
+          "key": "D",
+          "text": "All four -> plain-text Gherkin"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The correct mapping is Spock/Groovy, ScalaTest/Scala, Jnario/Xtend, JGiven/Java. The other options swap the languages or wrongly claim all use Gherkin (these frameworks live in their production language). (BDD p.7)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q174",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "medium",
+      "stem": "What does the deck mean by AssertJ being a 'near-complete superset' of JUnit, Hamcrest and Fest?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It covers nearly all their functionality in one maintained library"
+        },
+        {
+          "key": "B",
+          "text": "It is a strict subset offering fewer features"
+        },
+        {
+          "key": "C",
+          "text": "It can only be used together with all three at once"
+        },
+        {
+          "key": "D",
+          "text": "It removes assertions to simplify tests"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A near-complete superset means AssertJ covers almost all the others' functionality in one actively-maintained library. It is not a subset, does not require the others, and does not remove assertions. (BDD p.23)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 23
+      },
+      "tags": []
+    },
+    {
+      "id": "L09-Q175",
+      "lecture_id": "L09",
+      "topic": "BDD / Verification",
+      "difficulty": "very-hard",
+      "stem": "A developer writes a JGiven Then step that returns 'this' and tries to chain another step after it. Compared to the deck's ThenMeal, what is true?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It is allowed but unnecessary, since the deck's ThenMeal uses void because nothing chains after a Then"
+        },
+        {
+          "key": "B",
+          "text": "It is illegal — Then steps must always be void"
+        },
+        {
+          "key": "C",
+          "text": "It converts the Then into a Given automatically"
+        },
+        {
+          "key": "D",
+          "text": "It disables AssertJ assertions in that step"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Returning 'this' from a Then step is permitted but unnecessary; the deck's ThenMeal is void precisely because nothing chains after Then. Then steps are not required to be void, returning this does not change clause type, and it does not disable AssertJ. (BDD p.16)",
+      "source": {
+        "deck": "BDD.pdf",
+        "page": 16
+      },
+      "tags": []
+    }
+  ]
+}

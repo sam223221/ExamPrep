@@ -1,0 +1,1634 @@
+{
+  "lecture_id": "L06",
+  "lecture_num": 6,
+  "lecture_title": "Clean Code & Design Patterns",
+  "generated_from": [
+    "CleanCode.pdf",
+    "DesignPrinciplesAndPatterns.pdf"
+  ],
+  "schema_version": 1,
+  "questions": [
+    {
+      "id": "L06-Q001",
+      "lecture_id": "L06",
+      "topic": "Clean Code",
+      "difficulty": "easy",
+      "stem": "What is the Boy Scout Rule as stated in the Clean Code deck?",
+      "options": [
+        {
+          "key": "A",
+          "text": "You should always leave the code cleaner than you found it"
+        },
+        {
+          "key": "B",
+          "text": "You should never edit code you did not originally write"
+        },
+        {
+          "key": "C",
+          "text": "You should add a comment to every function you touch"
+        },
+        {
+          "key": "D",
+          "text": "You should rewrite any module that lacks unit tests"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The Boy Scout Rule is 'You should always leave the code cleaner than you found it' (CleanCode p.3) - the deck's governing ethic of incremental improvement. Never editing others' code contradicts the call to improve code you pass through; adding comments and rewriting untested modules are not the rule. (CleanCode p.3)",
+      "source": {
+        "deck": "CleanCode.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q002",
+      "lecture_id": "L06",
+      "topic": "Clean Code",
+      "difficulty": "easy",
+      "stem": "According to the opening slides, what are the 'two reasons' the deck gives for caring about clean code?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Your manager requires it, and the customer pays for it"
+        },
+        {
+          "key": "B",
+          "text": "You are a programmer, and you want to be a better programmer"
+        },
+        {
+          "key": "C",
+          "text": "It passes code review, and it improves test coverage"
+        },
+        {
+          "key": "D",
+          "text": "It reduces compile time, and it shrinks binary size"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The two reasons are '1. You are a programmer' and '2. You want to be a better programmer' (CleanCode p.2). The other options name external or technical motivations the deck does not use. (CleanCode p.2)",
+      "source": {
+        "deck": "CleanCode.pdf",
+        "page": 2
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q032",
+      "lecture_id": "L06",
+      "topic": "Clean Code",
+      "difficulty": "hard",
+      "stem": "Why is a boolean flag argument like render(true) considered a code smell?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It announces the function does more than one thing"
+        },
+        {
+          "key": "B",
+          "text": "It prevents the function from being inlined"
+        },
+        {
+          "key": "C",
+          "text": "Booleans cannot be passed by reference"
+        },
+        {
+          "key": "D",
+          "text": "It forces the caller to allocate an object"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A flag argument signals the function does more than one thing; split render(true) into renderForSuite() and renderForSingleTest() (CleanCode p.29). The other claims are technical non-issues. (CleanCode p.29)",
+      "source": {
+        "deck": "CleanCode.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q043",
+      "lecture_id": "L06",
+      "topic": "Clean Code",
+      "difficulty": "medium",
+      "stem": "Replacing a // Check ... eligible comment plus a flag test with employee.isEligibleForFullBenefits() illustrates which principle?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Use a journal comment"
+        },
+        {
+          "key": "B",
+          "text": "Add an informative comment"
+        },
+        {
+          "key": "C",
+          "text": "Explain yourself in code"
+        },
+        {
+          "key": "D",
+          "text": "Use a position marker"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Extracting a named method to replace an explanatory comment is 'explain yourself in code' (CleanCode p.34). Journal comments, informative comments, and position markers are different (and the latter two are not what this does). (CleanCode p.34)",
+      "source": {
+        "deck": "CleanCode.pdf",
+        "page": 34
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q102",
+      "lecture_id": "L06",
+      "topic": "Clean Code",
+      "difficulty": "very-hard",
+      "stem": "Why does the guide call F.I.R.S.T. and the Three Laws the 'micro-foundation' of Verification and CI's self-testing build?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They make the build slower but more thorough"
+        },
+        {
+          "key": "B",
+          "text": "They eliminate the need for a separate Verification phase"
+        },
+        {
+          "key": "C",
+          "text": "Fast, independent, self-validating tests are exactly what make a CI build trustworthy"
+        },
+        {
+          "key": "D",
+          "text": "They replace integration testing entirely"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The guide ties F.I.R.S.T. tests to CI: fast, independent, self-validating tests are what make a CI build trustworthy (CleanCode p.77). They underpin, not replace, Verification, and do not slow the build. (CleanCode p.77)",
+      "source": {
+        "deck": "CleanCode.pdf",
+        "page": 77
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q105",
+      "lecture_id": "L06",
+      "topic": "OO Principles",
+      "difficulty": "easy",
+      "stem": "How does the deck state the Single Responsibility Principle (SRP)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A class or module should have one, and only one, reason to change"
+        },
+        {
+          "key": "B",
+          "text": "A class should have one public method"
+        },
+        {
+          "key": "C",
+          "text": "A class should depend on only one other class"
+        },
+        {
+          "key": "D",
+          "text": "A class should be used by only one client"
+        }
+      ],
+      "answer": "A",
+      "explanation": "SRP: 'a class or module should have one, and only one, reason to change' (CleanCode p.79). It is about reasons to change, not method count, dependency count, or client count. (CleanCode p.79)",
+      "source": {
+        "deck": "CleanCode.pdf",
+        "page": 79
+      },
+      "tags": [
+        "Clean Code"
+      ]
+    },
+    {
+      "id": "L06-Q112",
+      "lecture_id": "L06",
+      "topic": "OO Principles",
+      "difficulty": "medium",
+      "stem": "Which rotting-design symptom is defined as 'the tendency for software to be difficult to change, even in simple ways, where every change cascades into dependent modules'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Rigidity"
+        },
+        {
+          "key": "B",
+          "text": "Immobility"
+        },
+        {
+          "key": "C",
+          "text": "Fragility"
+        },
+        {
+          "key": "D",
+          "text": "Viscosity"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Rigidity is hard-to-change software where changes cascade through dependents, turning a two-day change into a multi-week marathon (DesignPrinciplesAndPatterns p.2). The others describe breakage, non-reuse, and bad-shortcut temptation. (DesignPrinciplesAndPatterns p.2)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 2
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q113",
+      "lecture_id": "L06",
+      "topic": "OO Principles",
+      "difficulty": "medium",
+      "stem": "Which rotting-design symptom is 'the tendency of software to break in many places, often unrelated, every time it is changed'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Fragility"
+        },
+        {
+          "key": "B",
+          "text": "Rigidity"
+        },
+        {
+          "key": "C",
+          "text": "Immobility"
+        },
+        {
+          "key": "D",
+          "text": "Viscosity"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Fragility is breakage in many (often unrelated) places on every change, with breakage probability approaching 1 (DesignPrinciplesAndPatterns p.2). Rigidity is cascade-difficulty; immobility is non-reuse; viscosity is shortcut-temptation. (DesignPrinciplesAndPatterns p.2)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 2
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q115",
+      "lecture_id": "L06",
+      "topic": "OO Principles",
+      "difficulty": "hard",
+      "stem": "Viscosity of design exists when which condition holds?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The build and source-control tooling are slow"
+        },
+        {
+          "key": "B",
+          "text": "Modules break unexpectedly when changed"
+        },
+        {
+          "key": "C",
+          "text": "The design-preserving way to make a change is harder than the hack"
+        },
+        {
+          "key": "D",
+          "text": "A module cannot be reused elsewhere"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Viscosity of design: 'it is easy to do the wrong thing, but hard to do the right thing' - the hack is easier than the design-preserving change (DesignPrinciplesAndPatterns p.3). Slow tooling is viscosity of environment; the others are fragility and immobility. (DesignPrinciplesAndPatterns p.3)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q116",
+      "lecture_id": "L06",
+      "topic": "OO Principles",
+      "difficulty": "hard",
+      "stem": "Viscosity of environment refers to what?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A design that resists the correct change"
+        },
+        {
+          "key": "B",
+          "text": "Modules that break in unrelated places"
+        },
+        {
+          "key": "C",
+          "text": "A package that depends on too many others"
+        },
+        {
+          "key": "D",
+          "text": "Slow builds or slow source control that tempt design-degrading shortcuts"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Viscosity of environment is slow builds/source control tempting shortcuts (DesignPrinciplesAndPatterns p.3). A design that resists the correct change is viscosity of design; the rest describe fragility and coupling. (DesignPrinciplesAndPatterns p.3)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q118",
+      "lecture_id": "L06",
+      "topic": "OO Principles",
+      "difficulty": "hard",
+      "stem": "What does Martin mean by building 'dependency firewalls'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Code reviews that reject new dependencies"
+        },
+        {
+          "key": "B",
+          "text": "Network firewalls that isolate microservices"
+        },
+        {
+          "key": "C",
+          "text": "Boundaries (abstractions) across which dependencies do not propagate"
+        },
+        {
+          "key": "D",
+          "text": "Compiler flags that forbid circular imports"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Dependency firewalls are boundaries across which 'dependencies do not propagate' - the OO principles are those firewalls (DesignPrinciplesAndPatterns p.4). They are not network firewalls, compiler flags, or review gates. (DesignPrinciplesAndPatterns p.4)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q119",
+      "lecture_id": "L06",
+      "topic": "OO Principles",
+      "difficulty": "very-hard",
+      "stem": "Why does the guide warn against treating clean code and these principles as 'mere style/aesthetics'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Aesthetics matter more than correctness in maintenance"
+        },
+        {
+          "key": "B",
+          "text": "Formatting alone determines the impact set"
+        },
+        {
+          "key": "C",
+          "text": "Style is subjective so the rules cannot be tested"
+        },
+        {
+          "key": "D",
+          "text": "The macro narrative is about maintenance cost: messy dependencies cause the four rotting symptoms"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The exam-worthy why is maintenance cost: messy dependencies cause rigidity/fragility/immobility/viscosity, and clean code shrinks the impact set (DesignPrinciplesAndPatterns p.2-3). Style subjectivity, aesthetics-over-correctness, and formatting-determinism are wrong framings. (DesignPrinciplesAndPatterns p.2)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 2
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q120",
+      "lecture_id": "L06",
+      "topic": "OO Principles",
+      "difficulty": "easy",
+      "stem": "How does Martin state the Open/Closed Principle (OCP)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A module should be open for extension but closed for modification"
+        },
+        {
+          "key": "B",
+          "text": "A module should be open to all clients and closed to none"
+        },
+        {
+          "key": "C",
+          "text": "A module should be closed for extension but open for modification"
+        },
+        {
+          "key": "D",
+          "text": "A module should never be extended once released"
+        }
+      ],
+      "answer": "A",
+      "explanation": "OCP: 'open for extension but closed for modification' (DesignPrinciplesAndPatterns p.4). The other phrasings invert or misstate it. (DesignPrinciplesAndPatterns p.4)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q166",
+      "lecture_id": "L06",
+      "topic": "Design Patterns",
+      "difficulty": "easy",
+      "stem": "How does the deck define a design pattern?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A unit test that verifies architecture"
+        },
+        {
+          "key": "B",
+          "text": "A brand-new invention specific to one project"
+        },
+        {
+          "key": "C",
+          "text": "A well-worn, known-good solution to a common design problem"
+        },
+        {
+          "key": "D",
+          "text": "A diagram generated automatically by an IDE"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Design patterns are 'repeating structures of design ... a well-worn and known good solution to a common problem' - old techniques proven over years (DesignPrinciplesAndPatterns p.28). They are not new inventions, diagrams, or tests. (DesignPrinciplesAndPatterns p.28)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q169",
+      "lecture_id": "L06",
+      "topic": "Design Patterns",
+      "difficulty": "medium",
+      "stem": "What problem does the Abstract Server pattern solve?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A client depending directly on a concrete server violates DIP and can't swap servers"
+        },
+        {
+          "key": "B",
+          "text": "A server needs to notify many clients of an event"
+        },
+        {
+          "key": "C",
+          "text": "Two abstractions need to vary independently"
+        },
+        {
+          "key": "D",
+          "text": "Object creation forces a concrete dependency"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Abstract Server addresses a client depending directly on a server (DIP violation): server changes propagate and the client can't swap servers (DesignPrinciplesAndPatterns p.28). Notification is Observer; independent variation is Bridge; creation is Abstract Factory. (DesignPrinciplesAndPatterns p.28)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q170",
+      "lecture_id": "L06",
+      "topic": "Design Patterns",
+      "difficulty": "hard",
+      "stem": "What is the structure of the Abstract Server pattern?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Wrap the server in an Adapter that delegates to it"
+        },
+        {
+          "key": "B",
+          "text": "Insert an abstract interface (a 'hinge point') between the Consumer and the concrete ResourceManager"
+        },
+        {
+          "key": "C",
+          "text": "Register Observers with a Subject that notifies them"
+        },
+        {
+          "key": "D",
+          "text": "Quarantine creation in a single factory"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Abstract Server inserts an abstract interface (ResourceManager_I) between Consumer and concrete server - a hinge point on which the design flexes (DesignPrinciplesAndPatterns p.28). The other structures describe Adapter, Observer, and Abstract Factory. (DesignPrinciplesAndPatterns p.28)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q171",
+      "lecture_id": "L06",
+      "topic": "Design Patterns",
+      "difficulty": "hard",
+      "stem": "Abstract Server is the structural realization of which principle(s)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "ISP - segregate fat interfaces"
+        },
+        {
+          "key": "B",
+          "text": "REP - granule of reuse equals release"
+        },
+        {
+          "key": "C",
+          "text": "OCP/DIP - program to an interface"
+        },
+        {
+          "key": "D",
+          "text": "SDP - depend toward stability"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Abstract Server realizes OCP/DIP by programming to an interface; GoF files the idea under interface-programming rather than one named pattern (DesignPrinciplesAndPatterns p.28). ISP, REP, and SDP address different concerns. (DesignPrinciplesAndPatterns p.28)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q172",
+      "lecture_id": "L06",
+      "topic": "Design Patterns",
+      "difficulty": "medium",
+      "stem": "When should you use the Adapter pattern instead of just inserting an abstract interface (Abstract Server)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "When the server needs to notify many observers"
+        },
+        {
+          "key": "B",
+          "text": "When you must quarantine object creation"
+        },
+        {
+          "key": "C",
+          "text": "When two abstractions must vary independently"
+        },
+        {
+          "key": "D",
+          "text": "When the server is third-party or too heavily depended-upon to change"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Adapter is used when inserting the interface directly is infeasible - the server is third-party or too depended-upon to modify (DesignPrinciplesAndPatterns p.29). The other cases are Observer, Abstract Factory, and Bridge. (DesignPrinciplesAndPatterns p.29)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q176",
+      "lecture_id": "L06",
+      "topic": "Design Patterns",
+      "difficulty": "hard",
+      "stem": "In the Observer structure, which class does Sensor derive from and which interface does Meter implement?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Sensor derives from Subject; Meter implements Observer (Update())"
+        },
+        {
+          "key": "B",
+          "text": "Both derive from Subject"
+        },
+        {
+          "key": "C",
+          "text": "Sensor implements Observer; Meter derives from Subject"
+        },
+        {
+          "key": "D",
+          "text": "Both implement Adapter"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Sensor derives from Subject (holding a list of Observers via Register); Meter implements the Observer interface (Update()) (DesignPrinciplesAndPatterns p.30). The other pairings reverse or confuse the roles. (DesignPrinciplesAndPatterns p.30)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 30
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q177",
+      "lecture_id": "L06",
+      "topic": "Design Patterns",
+      "difficulty": "hard",
+      "stem": "What is the correct sequence of Observer dynamics when the Sensor reading changes?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Sensor detects change, calls Notify on Subject, which cycles registered Observers calling Update"
+        },
+        {
+          "key": "B",
+          "text": "Meter polls the Sensor on a timer and reads the value"
+        },
+        {
+          "key": "C",
+          "text": "Subject queries each Observer for its state before updating"
+        },
+        {
+          "key": "D",
+          "text": "The Observer creates a new Sensor and copies its value"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Dynamics: Sensor detects change, calls Notify, Subject cycles all Observers calling Update, each Meter reads and displays the new value (DesignPrinciplesAndPatterns p.29-30). Polling, reverse-querying, and re-creation are not the flow. (DesignPrinciplesAndPatterns p.29)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q180",
+      "lecture_id": "L06",
+      "topic": "Design Patterns",
+      "difficulty": "medium",
+      "stem": "What is the intent of the Bridge pattern?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Let a Subject notify many Observers of events"
+        },
+        {
+          "key": "B",
+          "text": "Quarantine concrete-class creation in one place"
+        },
+        {
+          "key": "C",
+          "text": "Insert an interface between a client and a server"
+        },
+        {
+          "key": "D",
+          "text": "Decouple an abstraction from its implementation so the two can vary independently"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Bridge decouples an abstraction from its implementation so each varies independently (DesignPrinciplesAndPatterns p.30-31). The others describe Observer, Abstract Factory, and Abstract Server. (DesignPrinciplesAndPatterns p.30)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 30
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q188",
+      "lecture_id": "L06",
+      "topic": "Design Patterns",
+      "difficulty": "very-hard",
+      "stem": "Why is Abstract Factory described as the resolution to a tension within DIP itself?",
+      "options": [
+        {
+          "key": "A",
+          "text": "DIP requires factories for all classes by definition"
+        },
+        {
+          "key": "B",
+          "text": "Abstract Factory replaces DIP entirely"
+        },
+        {
+          "key": "C",
+          "text": "DIP and Abstract Factory address unrelated problems"
+        },
+        {
+          "key": "D",
+          "text": "DIP forbids depending on concretions, yet creation must name one; the factory isolates that one concrete dependency"
+        }
+      ],
+      "answer": "D",
+      "explanation": "DIP says don't depend on concretions, but creating an instance forces exactly that; Abstract Factory 'allows that dependency upon the concrete class to exist in one, and only one, place' (DesignPrinciplesAndPatterns p.32). It complements, not replaces, DIP. (DesignPrinciplesAndPatterns p.32)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 32
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q190",
+      "lecture_id": "L06",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "Which pattern matches JHotDraw's Figure/Drawing model notifying DrawingView and FigureListeners when a figure changes?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Bridge"
+        },
+        {
+          "key": "B",
+          "text": "Adapter"
+        },
+        {
+          "key": "C",
+          "text": "Observer"
+        },
+        {
+          "key": "D",
+          "text": "Abstract Factory"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Figure-notifies-views is the Observer pattern: the figure (Subject) does not know the views (Observers), it just notifies (DesignPrinciplesAndPatterns p.29-30). Adapter, Abstract Factory, and Bridge serve other roles in JHotDraw. (DesignPrinciplesAndPatterns p.29)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 29
+      },
+      "tags": [
+        "Design Patterns"
+      ]
+    },
+    {
+      "id": "L06-Q191",
+      "lecture_id": "L06",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "JHotDraw creating tools and figures through factory abstractions (never hard-coding concrete figure classes) corresponds to which pattern?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Adapter"
+        },
+        {
+          "key": "B",
+          "text": "Bridge"
+        },
+        {
+          "key": "C",
+          "text": "Observer"
+        },
+        {
+          "key": "D",
+          "text": "Abstract Factory"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Creating figures via factory abstractions to avoid hard-coding concrete classes is the Abstract Factory quarantine of concrete-class knowledge (DesignPrinciplesAndPatterns p.32). The others are different patterns. (DesignPrinciplesAndPatterns p.32)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 32
+      },
+      "tags": [
+        "Design Patterns"
+      ]
+    },
+    {
+      "id": "L06-Q192",
+      "lecture_id": "L06",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "JHotDraw wrapping AWT/Swing components and external types to fit its own interfaces is an example of which pattern?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Adapter"
+        },
+        {
+          "key": "B",
+          "text": "Abstract Factory"
+        },
+        {
+          "key": "C",
+          "text": "Observer"
+        },
+        {
+          "key": "D",
+          "text": "Bridge"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Adapting AWT/Swing components and external types to JHotDraw's interfaces is the Adapter pattern (DesignPrinciplesAndPatterns p.29). Observer, Abstract Factory, and Bridge address other concerns. (DesignPrinciplesAndPatterns p.29)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 29
+      },
+      "tags": [
+        "Design Patterns"
+      ]
+    },
+    {
+      "id": "L06-Q193",
+      "lecture_id": "L06",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "Why does adding a new Figure subclass to JHotDraw without editing the framework illustrate OCP?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The framework is open for extension (new subclasses) but closed for modification (no edits)"
+        },
+        {
+          "key": "B",
+          "text": "It proves the framework has no abstractions"
+        },
+        {
+          "key": "C",
+          "text": "It shows the framework violates the Law of Demeter"
+        },
+        {
+          "key": "D",
+          "text": "It demonstrates Hungarian notation in practice"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Adding a Figure subclass without editing the framework is exactly the OCP payoff: open for extension, closed for modification (DesignPrinciplesAndPatterns p.4). The other options are unrelated or false. (DesignPrinciplesAndPatterns p.4)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 4
+      },
+      "tags": [
+        "OO Principles"
+      ]
+    },
+    {
+      "id": "L06-Q247",
+      "lecture_id": "L06",
+      "topic": "OO Principles",
+      "difficulty": "medium",
+      "stem": "A developer says 'making a stable package depend on an instable one is fine as long as both are well tested.' What is wrong?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Stability has no relationship to dependency direction"
+        },
+        {
+          "key": "B",
+          "text": "Only abstract packages may have dependencies"
+        },
+        {
+          "key": "C",
+          "text": "Nothing; testing removes all coupling concerns"
+        },
+        {
+          "key": "D",
+          "text": "SDP requires depending toward stability - a stable package must not depend on an instable one"
+        }
+      ],
+      "answer": "D",
+      "explanation": "SDP says depend in the direction of stability; a stable package depending on an instable one is exactly the violation, regardless of testing (DesignPrinciplesAndPatterns p.22-24). The other claims contradict SDP. (DesignPrinciplesAndPatterns p.22)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 22
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q264",
+      "lecture_id": "L06",
+      "topic": "Clean Code",
+      "difficulty": "medium",
+      "stem": "A method navigates accountManager.getAccount().getOwner().getAddress().getCity(). What refactoring does the Law of Demeter suggest?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Avoid the chain - it couples the caller to every intermediate object's structure"
+        },
+        {
+          "key": "B",
+          "text": "Convert the getters to public fields"
+        },
+        {
+          "key": "C",
+          "text": "Cache getCity() in a static field"
+        },
+        {
+          "key": "D",
+          "text": "Add a flag argument to skip levels"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A deep getter chain is a train wreck violating the Law of Demeter - it couples the caller to every traversed object's structure (CleanCode p.64). Caching, public fields, and flags do not address the coupling. (CleanCode p.64)",
+      "source": {
+        "deck": "CleanCode.pdf",
+        "page": 64
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q289",
+      "lecture_id": "L06",
+      "topic": "Design Patterns",
+      "difficulty": "easy",
+      "stem": "Which five patterns does the DesignPrinciplesAndPatterns deck cover by name?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Abstract Server, Adapter, Observer, Bridge, Abstract Factory"
+        },
+        {
+          "key": "B",
+          "text": "Singleton, Factory Method, Strategy, Decorator, Composite"
+        },
+        {
+          "key": "C",
+          "text": "Visitor, Iterator, Memento, State, Proxy"
+        },
+        {
+          "key": "D",
+          "text": "Facade, Flyweight, Mediator, Command, Template Method"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck names Abstract Server, Adapter, Observer, Bridge, and Abstract Factory (DesignPrinciplesAndPatterns p.28-32). The other patterns exist in GoF but are not the five covered here. (DesignPrinciplesAndPatterns p.28)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q300",
+      "lecture_id": "L06",
+      "topic": "Design Patterns",
+      "difficulty": "medium",
+      "stem": "In the Observer pattern, how does a Meter get registered to receive updates from a Sensor's Subject?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The Meter polls the Sensor on a fixed timer"
+        },
+        {
+          "key": "B",
+          "text": "The Sensor constructs the Meter directly"
+        },
+        {
+          "key": "C",
+          "text": "A factory binds them at startup"
+        },
+        {
+          "key": "D",
+          "text": "The Subject exposes Register(Observer*) which adds the Meter to its observer list"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The Subject holds a list of Observers populated via Register(Observer*) (DesignPrinciplesAndPatterns p.30). Polling, direct construction, and factory binding are not the registration mechanism. (DesignPrinciplesAndPatterns p.30)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 30
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q501",
+      "lecture_id": "L06",
+      "topic": "Clean Code",
+      "difficulty": "easy",
+      "stem": "You are reviewing a teammate's code and find a method named handleStuff(). Which naming rule do you cite to ask for a rename?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Use intention-revealing names"
+        },
+        {
+          "key": "B",
+          "text": "Avoid Hungarian notation"
+        },
+        {
+          "key": "C",
+          "text": "Add meaningful context"
+        },
+        {
+          "key": "D",
+          "text": "Pick one word per concept"
+        }
+      ],
+      "answer": "A",
+      "explanation": "'handleStuff' tells the reader nothing about why it exists or what it does, so it fails the intention-revealing-names rule (CleanCode p.11). It is not a type encoding, a synonym clash, or a context issue. (CleanCode p.11)",
+      "source": {
+        "deck": "CleanCode.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q502",
+      "lecture_id": "L06",
+      "topic": "Clean Code",
+      "difficulty": "easy",
+      "stem": "You are about to delete a block of code but worry you might need it later, so you comment it out. What does Clean Code advise?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Wrap it in a TODO comment"
+        },
+        {
+          "key": "B",
+          "text": "Keep it commented with your initials"
+        },
+        {
+          "key": "C",
+          "text": "Delete it — version control remembers it"
+        },
+        {
+          "key": "D",
+          "text": "Move it to a journal comment at the top"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Commented-out code is a smell; delete it because version control preserves history (CleanCode p.47). Attributions, journal comments, and TODOs are themselves discouraged or unrelated. (CleanCode p.47)",
+      "source": {
+        "deck": "CleanCode.pdf",
+        "page": 47
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q517",
+      "lecture_id": "L06",
+      "topic": "OO Principles",
+      "difficulty": "easy",
+      "stem": "Among the package coupling principles, the abbreviation SDP unpacks to which name?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Strict Decoupling Principle"
+        },
+        {
+          "key": "B",
+          "text": "Stable Dependencies Principle"
+        },
+        {
+          "key": "C",
+          "text": "Single Dependency Principle"
+        },
+        {
+          "key": "D",
+          "text": "Static Dependency Principle"
+        }
+      ],
+      "answer": "B",
+      "explanation": "SDP = Stable Dependencies Principle (DesignPrinciplesAndPatterns p.22).",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 22
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q544",
+      "lecture_id": "L06",
+      "topic": "Design Patterns",
+      "difficulty": "easy",
+      "stem": "The Observer pattern's two core roles are:",
+      "options": [
+        {
+          "key": "A",
+          "text": "Adapter and Adaptee"
+        },
+        {
+          "key": "B",
+          "text": "Subject and Observer"
+        },
+        {
+          "key": "C",
+          "text": "Factory and Product"
+        },
+        {
+          "key": "D",
+          "text": "Abstraction and Implementor"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Observer's roles are Subject and Observer (DesignPrinciplesAndPatterns p.30).",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 30
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q552",
+      "lecture_id": "L06",
+      "topic": "Clean Code",
+      "difficulty": "medium",
+      "stem": "While refactoring, you find render(boolean isSuite). You want to remove the boolean. What does Clean Code tell you to do?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Add a Javadoc explaining the two modes"
+        },
+        {
+          "key": "B",
+          "text": "Split it into renderForSuite() and renderForSingleTest()"
+        },
+        {
+          "key": "C",
+          "text": "Wrap the boolean in an argument object"
+        },
+        {
+          "key": "D",
+          "text": "Rename the parameter to a more descriptive name"
+        }
+      ],
+      "answer": "B",
+      "explanation": "A flag argument signals the function does more than one thing; the fix is to split it into two intention-revealing functions (CleanCode p.29). Renaming, wrapping, or documenting the flag leaves the two-jobs smell intact. (CleanCode p.29)",
+      "source": {
+        "deck": "CleanCode.pdf",
+        "page": 29
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q556",
+      "lecture_id": "L06",
+      "topic": "Clean Code",
+      "difficulty": "medium",
+      "stem": "You are renaming variables in a loop that uses a and b as counters. Clean Code says i and j would be better here. Why?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Single letters are always forbidden"
+        },
+        {
+          "key": "B",
+          "text": "a/b are reserved words in Java"
+        },
+        {
+          "key": "C",
+          "text": "i/j are an established convention, so they avoid mental mapping"
+        },
+        {
+          "key": "D",
+          "text": "i/j are more searchable than a/b"
+        }
+      ],
+      "answer": "C",
+      "explanation": "i/j are a recognised loop-counter convention, so they avoid forcing the reader to translate; a/b create mental mapping (CleanCode p.17). They are not reserved, single letters aren't banned outright, and neither is searchable. (CleanCode p.17)",
+      "source": {
+        "deck": "CleanCode.pdf",
+        "page": 17
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q561",
+      "lecture_id": "L06",
+      "topic": "Clean Code",
+      "difficulty": "medium",
+      "stem": "You are cleaning a function with the comment '// Check to see if the employee is eligible for full benefits' above a flag-bit test. The deck's preferred fix is to:",
+      "options": [
+        {
+          "key": "A",
+          "text": "Expand the comment into full Javadoc"
+        },
+        {
+          "key": "B",
+          "text": "Keep the comment as an amplification"
+        },
+        {
+          "key": "C",
+          "text": "Replace it with employee.isEligibleForFullBenefits() and delete the comment"
+        },
+        {
+          "key": "D",
+          "text": "Move the comment below the code"
+        }
+      ],
+      "answer": "C",
+      "explanation": "'Explain yourself in code': extract a self-naming method like isEligibleForFullBenefits() so the comment becomes unnecessary (CleanCode p.34). Expanding, moving, or relabelling the comment misses the point. (CleanCode p.34)",
+      "source": {
+        "deck": "CleanCode.pdf",
+        "page": 34
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q565",
+      "lecture_id": "L06",
+      "topic": "OO Principles",
+      "difficulty": "medium",
+      "stem": "Which of the following is NOT one of Martin's four symptoms of rotting design?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Fragility"
+        },
+        {
+          "key": "B",
+          "text": "Viscosity"
+        },
+        {
+          "key": "C",
+          "text": "Rigidity"
+        },
+        {
+          "key": "D",
+          "text": "Redundancy"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The four symptoms are rigidity, fragility, immobility, and viscosity (DesignPrinciplesAndPatterns p.2-3). Redundancy is not on that list. (DesignPrinciplesAndPatterns p.2)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 2
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q569",
+      "lecture_id": "L06",
+      "topic": "Design Patterns",
+      "difficulty": "medium",
+      "stem": "Which is NOT one of the five patterns named in the DesignPrinciplesAndPatterns deck?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Singleton"
+        },
+        {
+          "key": "B",
+          "text": "Abstract Factory"
+        },
+        {
+          "key": "C",
+          "text": "Adapter"
+        },
+        {
+          "key": "D",
+          "text": "Observer"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The deck names Abstract Server, Adapter, Observer, Bridge, and Abstract Factory; Singleton is not among them (DesignPrinciplesAndPatterns p.28-32). (DesignPrinciplesAndPatterns p.28)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q570",
+      "lecture_id": "L06",
+      "topic": "OO Principles",
+      "difficulty": "medium",
+      "stem": "Which statement is NOT true of the Open/Closed Principle?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Modules are closed for modification"
+        },
+        {
+          "key": "B",
+          "text": "Abstraction is its enabling mechanism"
+        },
+        {
+          "key": "C",
+          "text": "Modules are open for extension"
+        },
+        {
+          "key": "D",
+          "text": "You should modify existing source code to add each new behaviour"
+        }
+      ],
+      "answer": "D",
+      "explanation": "OCP's whole point is to add behaviour without modifying working source; you extend via abstraction (DesignPrinciplesAndPatterns p.4). Modifying source for each new case is the violation it prevents. (DesignPrinciplesAndPatterns p.4)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q621",
+      "lecture_id": "L06",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "JHotDraw's Figure model notifies DrawingView and FigureListeners when a figure changes, without the figure knowing the views. Which pattern is this?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Adapter"
+        },
+        {
+          "key": "B",
+          "text": "Observer"
+        },
+        {
+          "key": "C",
+          "text": "Bridge"
+        },
+        {
+          "key": "D",
+          "text": "Abstract Factory"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Figure (Subject) notifying views (Observers) without knowing them is Observer (DesignPrinciplesAndPatterns p.29-30; guide JHotDraw section). (DesignPrinciplesAndPatterns p.30)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 30
+      },
+      "tags": [
+        "Design Patterns"
+      ]
+    },
+    {
+      "id": "L06-Q622",
+      "lecture_id": "L06",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "JHotDraw creates tools and figures through factory abstractions so the framework never hard-codes concrete figure classes. Which pattern does this illustrate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Bridge"
+        },
+        {
+          "key": "B",
+          "text": "Observer"
+        },
+        {
+          "key": "C",
+          "text": "Adapter"
+        },
+        {
+          "key": "D",
+          "text": "Abstract Factory / factory methods"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Creating figures via factory abstractions to avoid hard-coding concrete classes is Abstract Factory (DesignPrinciplesAndPatterns p.32; guide JHotDraw section). (DesignPrinciplesAndPatterns p.32)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 32
+      },
+      "tags": [
+        "Design Patterns"
+      ]
+    },
+    {
+      "id": "L06-Q651",
+      "lecture_id": "L06",
+      "topic": "Clean Code",
+      "difficulty": "hard",
+      "stem": "You are cleaning a method that returns -1 to signal failure, forcing callers to test the result. Which TWO Clean Code rules push you toward throwing an exception instead?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Command/Query Separation, and DRY"
+        },
+        {
+          "key": "B",
+          "text": "Don't pass null, and use searchable names"
+        },
+        {
+          "key": "C",
+          "text": "Prefer exceptions to error codes, and define the normal flow"
+        },
+        {
+          "key": "D",
+          "text": "One level of abstraction, and the Stepdown Rule"
+        }
+      ],
+      "answer": "C",
+      "explanation": "A magic -1 error code is exactly what 'prefer exceptions to error codes' (CleanCode p.65) and 'define the normal flow' (CleanCode p.69) target. The other pairs concern nulls, names, dual-purpose methods, and abstraction levels. (CleanCode p.65)",
+      "source": {
+        "deck": "CleanCode.pdf",
+        "page": 65
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q653",
+      "lecture_id": "L06",
+      "topic": "Clean Code",
+      "difficulty": "hard",
+      "stem": "You are cleaning a reporting method that has a try/catch around five lines of business logic. To separate concerns, what does Clean Code say to do with the try and catch bodies?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Inline both bodies for speed"
+        },
+        {
+          "key": "B",
+          "text": "Add a comment explaining each branch"
+        },
+        {
+          "key": "C",
+          "text": "Extract each into a one-line call to its own method"
+        },
+        {
+          "key": "D",
+          "text": "Replace the try/catch with nested if (x==E_OK) checks"
+        }
+      ],
+      "answer": "C",
+      "explanation": "'Extract try/catch blocks' says the bodies should be one-line calls to extracted methods so error handling stays separate from logic (CleanCode p.67). Inlining, error codes, and comments do not separate the concerns. (CleanCode p.67)",
+      "source": {
+        "deck": "CleanCode.pdf",
+        "page": 67
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q659",
+      "lecture_id": "L06",
+      "topic": "OO Principles",
+      "difficulty": "hard",
+      "stem": "Which is NOT a way Martin describes for breaking a package dependency cycle?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Create a new package to absorb the shared dependency"
+        },
+        {
+          "key": "B",
+          "text": "Place the inverting interface in the package that uses it"
+        },
+        {
+          "key": "C",
+          "text": "Merge the two packages into one large package"
+        },
+        {
+          "key": "D",
+          "text": "Apply DIP+ISP to invert one dependency via an interface"
+        }
+      ],
+      "answer": "C",
+      "explanation": "ADP cycle-breaking uses (1) a new package or (2) DIP+ISP inversion with the interface in the using package (DesignPrinciplesAndPatterns p.20-22). Merging packages is not the prescribed remedy. (DesignPrinciplesAndPatterns p.20)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 20
+      },
+      "tags": []
+    },
+    {
+      "id": "L06-Q694",
+      "lecture_id": "L06",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "Extending JHotDraw with a new Figure subclass without touching the framework is held up as OCP. What about it makes it OCP?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The framework is extended by new code while existing code stays closed to modification"
+        },
+        {
+          "key": "B",
+          "text": "It demonstrates ADP because no cycles form"
+        },
+        {
+          "key": "C",
+          "text": "It demonstrates LSP because Figure is abstract"
+        },
+        {
+          "key": "D",
+          "text": "It demonstrates ISP because Figure has many interfaces"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Extending behaviour by adding a subclass without modifying the framework is the OCP payoff (DesignPrinciplesAndPatterns p.4; guide JHotDraw section). (DesignPrinciplesAndPatterns p.4)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 4
+      },
+      "tags": [
+        "OO Principles"
+      ]
+    },
+    {
+      "id": "L06-Q695",
+      "lecture_id": "L06",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "Why does the course use JHotDraw to teach Concept Location and Impact Analysis specifically?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It returns null everywhere as a cautionary example"
+        },
+        {
+          "key": "B",
+          "text": "Its interface-based, single-responsibility design keeps impact sets small and dependencies pointed at abstractions"
+        },
+        {
+          "key": "C",
+          "text": "It has no design patterns to distract students"
+        },
+        {
+          "key": "D",
+          "text": "It deliberately violates the Law of Demeter for teaching"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Clean, pattern-rich, interface-based code keeps Concept Location and Impact Analysis tractable (guide JHotDraw section; DesignPrinciplesAndPatterns p.12). (DesignPrinciplesAndPatterns p.12)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 12
+      },
+      "tags": [
+        "Impact Analysis"
+      ]
+    },
+    {
+      "id": "L06-Q696",
+      "lecture_id": "L06",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "JHotDraw uses Bridge-style separation so figure behavior can vary independently of figure structure. Which related GoF patterns does the guide list alongside Bridge for this?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Singleton and Prototype"
+        },
+        {
+          "key": "B",
+          "text": "Memento and Iterator"
+        },
+        {
+          "key": "C",
+          "text": "Strategy and Composite"
+        },
+        {
+          "key": "D",
+          "text": "Flyweight and Proxy"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The guide pairs Bridge-style separation with Strategy and Composite in JHotDraw (guide JHotDraw section; DesignPrinciplesAndPatterns p.30-31). (DesignPrinciplesAndPatterns p.30)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 30
+      },
+      "tags": [
+        "Design Patterns"
+      ]
+    },
+    {
+      "id": "L06-Q728",
+      "lecture_id": "L06",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "very-hard",
+      "stem": "If JHotDraw violated the Law of Demeter, returned nulls, and switched on type codes, which symptoms would it exhibit?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It would land exactly on the Main Sequence"
+        },
+        {
+          "key": "B",
+          "text": "Rigidity and fragility — every maintenance task would become expensive"
+        },
+        {
+          "key": "C",
+          "text": "Immobility only"
+        },
+        {
+          "key": "D",
+          "text": "It would become maximally stable"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Those violations produce the rigidity/fragility symptoms that make maintenance costly (guide JHotDraw section; DesignPrinciplesAndPatterns p.2-3). (DesignPrinciplesAndPatterns p.2)",
+      "source": {
+        "deck": "DesignPrinciplesAndPatterns.pdf",
+        "page": 2
+      },
+      "tags": [
+        "OO Principles"
+      ]
+    },
+    {
+      "id": "L06-Q737",
+      "lecture_id": "L06",
+      "topic": "Clean Code",
+      "difficulty": "very-hard",
+      "stem": "The guide nicknames clean code the 'write the code well companion' to the rest of the course. What earns it that label?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The other lectures find and propagate change; this one makes the code being changed good"
+        },
+        {
+          "key": "B",
+          "text": "It replaces the change process entirely"
+        },
+        {
+          "key": "C",
+          "text": "It is only about unit testing"
+        },
+        {
+          "key": "D",
+          "text": "It is unrelated to maintenance"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Clean code complements the change-process mechanics by making the code itself good (guide overview). (CleanCode p.3)",
+      "source": {
+        "deck": "CleanCode.pdf",
+        "page": 3
+      },
+      "tags": []
+    }
+  ]
+}

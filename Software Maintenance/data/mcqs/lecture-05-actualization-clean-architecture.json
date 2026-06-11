@@ -1,0 +1,1653 @@
+{
+  "lecture_id": "L05",
+  "lecture_num": 5,
+  "lecture_title": "Actualization, Clean Architecture & OO Principles",
+  "generated_from": [
+    "Actualization.pdf",
+    "Clean Architecture.pdf",
+    "OOPrinciples.pdf",
+    "ActualizationLab.pdf"
+  ],
+  "schema_version": 1,
+  "questions": [
+    {
+      "id": "L05-Q001",
+      "lecture_id": "L05",
+      "topic": "Actualization",
+      "difficulty": "easy",
+      "stem": "What does the Actualization phase consist of, according to the lab definition?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Locating the concept, analysing the impact set, and prefactoring the code"
+        },
+        {
+          "key": "B",
+          "text": "Initiation of the change request, verification, and conclusion"
+        },
+        {
+          "key": "C",
+          "text": "Implementation of the new functionality, its incorporation into the old code, and change propagation"
+        },
+        {
+          "key": "D",
+          "text": "Postfactoring the new code, testing it, and releasing it"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The lab defines actualization as implement + incorporate + propagate: 'the implementation of the new functionality, its incorporation into the old code, and change propagation that seeks out and updates all places in the old code that require secondary modification.' A lists earlier phases (Concept Location, Impact Analysis, Prefactoring). B lists the surrounding process steps, not actualization's content. D describes later/parallel activities. [ActLab]",
+      "source": {
+        "deck": "ActualizationLab.pdf",
+        "page": 1
+      },
+      "tags": [
+        "Software Change Process"
+      ]
+    },
+    {
+      "id": "L05-Q005",
+      "lecture_id": "L05",
+      "topic": "Actualization",
+      "difficulty": "medium",
+      "stem": "How are SMALL changes handled during actualization, per the deck?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Implemented only after a full impact-set re-analysis"
+        },
+        {
+          "key": "B",
+          "text": "Written as new classes in isolation and then incorporated"
+        },
+        {
+          "key": "C",
+          "text": "Edited directly into the existing old code"
+        },
+        {
+          "key": "D",
+          "text": "Deferred to the Postfactoring phase"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Small changes are 'done directly in the old code' — the deck's example is widening a ZIP field inside the existing Address class. B describes the technique for LARGER changes. D and A invent steps not tied to change size. (Actualization p.2-4)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 2
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q008",
+      "lecture_id": "L05",
+      "topic": "Actualization",
+      "difficulty": "hard",
+      "stem": "Why does the deck recommend writing the new classes SEPARATELY from the old code before incorporating them?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Because separate classes are exempt from change propagation"
+        },
+        {
+          "key": "B",
+          "text": "So they can be made correct and testable in isolation before wiring them in, after which incorporation begins the ripple"
+        },
+        {
+          "key": "C",
+          "text": "Because the compiler forbids editing two files in the same change"
+        },
+        {
+          "key": "D",
+          "text": "So the impact set can be recomputed from scratch each time"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Building new classes apart from old code lets you get them right and testable before connecting them; only at incorporation do ripple effects begin. C is a fabricated compiler rule. D confuses this with Impact Analysis. A is false — incorporated classes are exactly what triggers propagation. (Actualization p.5)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q031",
+      "lecture_id": "L05",
+      "topic": "Actualization",
+      "difficulty": "very-hard",
+      "stem": "A team adds a new animal type by inserting 'else if (type==PIG)' branches into Farm's existing methods instead of subclassing. Why does this contradict the deck's polymorphic-extension lesson?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It improves recall of the impact analysis automatically"
+        },
+        {
+          "key": "B",
+          "text": "It edits the clients (Farm's code) rather than adding a leaf subclass, so the change ripples and violates Open/Closed"
+        },
+        {
+          "key": "C",
+          "text": "It is a valid small change and matches the ZIP example exactly"
+        },
+        {
+          "key": "D",
+          "text": "It is required because C++ cannot dispatch dynamically"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The deck's point is that polymorphism extends behaviour by adding a subclass while leaving Farm untouched; editing Farm with type conditionals modifies the existing client, makes the change ripple, and violates Open/Closed. C mischaracterises a structural change as the trivial ZIP edit; D is false (D++ supports virtual dispatch, which the example uses); A is unrelated. (Actualization p.6-7; OOPrinciples p.6)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 7
+      },
+      "tags": [
+        "OO Principles"
+      ]
+    },
+    {
+      "id": "L05-Q056",
+      "lecture_id": "L05",
+      "topic": "Impact Analysis",
+      "difficulty": "hard",
+      "stem": "The deck summarises the Ericsson recall result as the programmers estimating that the change would impact roughly what fraction of classes that actually changed?",
+      "options": [
+        {
+          "key": "A",
+          "text": "All of them — they missed none"
+        },
+        {
+          "key": "B",
+          "text": "About two thirds — they missed the other third"
+        },
+        {
+          "key": "C",
+          "text": "About a third — they missed the other two thirds"
+        },
+        {
+          "key": "D",
+          "text": "None of them — they missed all"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The deck states programmers 'estimated that the changes will impact only about a third of all classes that actually changed — missed the other two thirds!' (32% recall). The other fractions contradict the 32% figure. (Actualization p.27)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 27
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q057",
+      "lecture_id": "L05",
+      "topic": "Impact Analysis",
+      "difficulty": "medium",
+      "stem": "Which confusion-matrix category contains the DANGEROUS misses in impact analysis?",
+      "options": [
+        {
+          "key": "A",
+          "text": "True positives (predicted changed and changed)"
+        },
+        {
+          "key": "B",
+          "text": "False positives (predicted changed but unchanged)"
+        },
+        {
+          "key": "C",
+          "text": "False negatives (predicted unchanged but actually changed)"
+        },
+        {
+          "key": "D",
+          "text": "True negatives (predicted unchanged and unchanged)"
+        }
+      ],
+      "answer": "C",
+      "explanation": "False negatives are the dangerous ones — classes you thought were safe but that actually changed; they live in the recall denominator and blow schedules. False positives are merely false alarms; TP and TN are correct predictions. (Actualization p.25-27)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 25
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q061",
+      "lecture_id": "L05",
+      "topic": "Impact Analysis",
+      "difficulty": "easy",
+      "stem": "Why is impact routinely UNDER-estimated, according to the deck?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Because precision is always low"
+        },
+        {
+          "key": "B",
+          "text": "It is a consequence of invisibility — you cannot see all dependencies"
+        },
+        {
+          "key": "C",
+          "text": "Because programmers deliberately inflate estimates"
+        },
+        {
+          "key": "D",
+          "text": "Because the database is a detail"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Under-estimation is 'a consequence of invisibility' — hidden dependencies you cannot see — which makes planning difficult. C is the opposite behaviour, A is false (precision was 100%), and D is an unrelated Clean Architecture point. (Actualization p.28)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q062",
+      "lecture_id": "L05",
+      "topic": "Impact Analysis",
+      "difficulty": "medium",
+      "stem": "According to the deck, how widespread is under-estimation of impact?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A sign that recall was 100%"
+        },
+        {
+          "key": "B",
+          "text": "Caused by writing business rules in stored procedures"
+        },
+        {
+          "key": "C",
+          "text": "Common in software engineering and in other fields, and it makes planning difficult"
+        },
+        {
+          "key": "D",
+          "text": "Unique to the Ericsson study and never seen elsewhere"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The deck says under-estimation is 'common in software engineering, a consequence of invisibility', 'makes planning difficult', and is 'common in other fields also.' D contradicts that, A is false, and B is an unrelated Clean Architecture issue. (Actualization p.28)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 28
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q063",
+      "lecture_id": "L05",
+      "topic": "Impact Analysis",
+      "difficulty": "hard",
+      "stem": "The exam takeaway from the Ericsson study is that which metric is the HARD one to achieve, and what is the cost of doing it poorly?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Recall is hard; the cost of low recall is blown schedules (missed classes)"
+        },
+        {
+          "key": "B",
+          "text": "Accuracy is hard; the cost is too many true negatives"
+        },
+        {
+          "key": "C",
+          "text": "Specificity is hard; the cost is too many false alarms"
+        },
+        {
+          "key": "D",
+          "text": "Precision is hard; the cost of low precision is missed classes"
+        }
+      ],
+      "answer": "A",
+      "explanation": "High precision is easy (Ericsson got 100%); high recall is hard (only 32%), and the cost of low recall is the missed classes that blow schedules. D inverts which metric is hard, and B/C name metrics not emphasised by the study. (Actualization p.27-28)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 27
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q065",
+      "lecture_id": "L05",
+      "topic": "Clean Architecture",
+      "difficulty": "easy",
+      "stem": "What does a 'software architecture' refer to, per the Clean Architecture deck?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A re-usable form of a solution to a local design problem"
+        },
+        {
+          "key": "B",
+          "text": "A class with a single reason to change"
+        },
+        {
+          "key": "C",
+          "text": "The high-level structures of a software system and the discipline of creating such structures"
+        },
+        {
+          "key": "D",
+          "text": "An interface implemented by an interactor"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The deck defines software architecture as 'the high-level structures of a software system and the discipline of creating such structures and systems.' A is the definition of a design pattern, B is SRP, and D is a boundary. (Clean Architecture p.2)",
+      "source": {
+        "deck": "Clean Architecture.pdf",
+        "page": 2
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q072",
+      "lecture_id": "L05",
+      "topic": "Clean Architecture",
+      "difficulty": "medium",
+      "stem": "What does 'independent of the UI' mean as a characteristic of clean architecture?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The UI must be tested exhaustively"
+        },
+        {
+          "key": "B",
+          "text": "The UI can change easily without changing other system components"
+        },
+        {
+          "key": "C",
+          "text": "The UI is the innermost layer"
+        },
+        {
+          "key": "D",
+          "text": "The UI contains all the business rules"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Independent of the UI means 'UI can change easily, without changing other system components.' D contradicts the layering, A contradicts the 'View so stupid you don't test it' idea, and C is wrong — the UI is outermost. (Clean Architecture p.4)",
+      "source": {
+        "deck": "Clean Architecture.pdf",
+        "page": 4
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q078",
+      "lecture_id": "L05",
+      "topic": "Clean Architecture",
+      "difficulty": "very-hard",
+      "stem": "Why does keeping the architecture testable, UI-independent, DB-independent and framework-independent make ACTUALIZATION cheaper?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Because it forces every change to be a small ZIP-style edit"
+        },
+        {
+          "key": "B",
+          "text": "Because it deletes obsolete classes automatically"
+        },
+        {
+          "key": "C",
+          "text": "Because it removes the need for Impact Analysis entirely"
+        },
+        {
+          "key": "D",
+          "text": "Because each independence bounds how far a corresponding change request can ripple, keeping change propagation short"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The independences bound the ripple of each change category, so propagation stays short and actualization is cheap — the architectural reason for low maintenance cost. C is false (Impact Analysis is still needed), A is false, and B is unrelated. (Clean Architecture p.4)",
+      "source": {
+        "deck": "Clean Architecture.pdf",
+        "page": 4
+      },
+      "tags": [
+        "Actualization"
+      ]
+    },
+    {
+      "id": "L05-Q092",
+      "lecture_id": "L05",
+      "topic": "Clean Architecture",
+      "difficulty": "hard",
+      "stem": "Why must source-code dependencies point INWARD in the Clean Architecture?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Because the database must be at the center"
+        },
+        {
+          "key": "B",
+          "text": "Inner layers are stable abstractions and outer layers are volatile details, so pointing inward makes details depend on abstractions, never the reverse"
+        },
+        {
+          "key": "C",
+          "text": "Because inner layers change most often and need protection"
+        },
+        {
+          "key": "D",
+          "text": "Because the UI is the most stable component"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Inner = stable abstractions, outer = volatile details; pointing inward means details depend on abstractions (the Dependency Inversion Principle at architecture scale). C inverts stability, and A/D contradict the layering. (Clean Architecture p.8)",
+      "source": {
+        "deck": "Clean Architecture.pdf",
+        "page": 8
+      },
+      "tags": [
+        "OO Principles"
+      ]
+    },
+    {
+      "id": "L05-Q094",
+      "lecture_id": "L05",
+      "topic": "Clean Architecture",
+      "difficulty": "hard",
+      "stem": "A developer makes the Entities layer import a class from the Frameworks & Drivers layer. Why does this violate Clean Architecture?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It points a source-code dependency outward, breaking the Dependency Rule that inner layers must know nothing about outer layers"
+        },
+        {
+          "key": "B",
+          "text": "It points a dependency inward, which is forbidden"
+        },
+        {
+          "key": "C",
+          "text": "It is allowed because Entities are the most volatile layer"
+        },
+        {
+          "key": "D",
+          "text": "It is fine as long as it compiles"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Entities (inner) importing from Frameworks & Drivers (outer) points a dependency outward, violating the Dependency Rule — inner layers must know nothing about outer layers. B mislabels the direction, C inverts volatility, and D ignores the rule. (Clean Architecture p.8)",
+      "source": {
+        "deck": "Clean Architecture.pdf",
+        "page": 8
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q097",
+      "lecture_id": "L05",
+      "topic": "Clean Architecture",
+      "difficulty": "medium",
+      "stem": "What is a Boundary in the Clean Architecture data flow?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A View that displays strings"
+        },
+        {
+          "key": "B",
+          "text": "A concrete database connection class"
+        },
+        {
+          "key": "C",
+          "text": "The innermost entity object"
+        },
+        {
+          "key": "D",
+          "text": "An interface/protocol through which data enters and leaves the interactor"
+        }
+      ],
+      "answer": "D",
+      "explanation": "A Boundary is an interface/protocol: data comes into interactors through a boundary implemented by the interactor, and goes out to boundaries implemented by other objects. B, C, and A are concrete/other components, not the boundary interface. (Clean Architecture p.9)",
+      "source": {
+        "deck": "Clean Architecture.pdf",
+        "page": 9
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q119",
+      "lecture_id": "L05",
+      "topic": "OO Principles",
+      "difficulty": "medium",
+      "stem": "Who introduced the theory of the SOLID principles, and in which paper?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Craig Larman, in 'Applying UML and Patterns'"
+        },
+        {
+          "key": "B",
+          "text": "Martin Fowler, in 'Refactoring'"
+        },
+        {
+          "key": "C",
+          "text": "Michael Feathers, in 'Working Effectively with Legacy Code'"
+        },
+        {
+          "key": "D",
+          "text": "Robert C. Martin, in his 2000 paper 'Design Principles and Design Patterns'"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The SOLID theory was introduced by Robert C. Martin in his 2000 paper 'Design Principles and Design Patterns.' Larman is GRASP, Feathers coined the SOLID acronym (but didn't introduce the theory), and Fowler wrote Refactoring. (OOPrinciples p.2)",
+      "source": {
+        "deck": "OOPrinciples.pdf",
+        "page": 2
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q127",
+      "lecture_id": "L05",
+      "topic": "OO Principles",
+      "difficulty": "medium",
+      "stem": "In the SRP deck example, which class violates SRP by both changing passwords AND verifying access?",
+      "options": [
+        {
+          "key": "A",
+          "text": "LoanApprovalHandler"
+        },
+        {
+          "key": "B",
+          "text": "SecurityService"
+        },
+        {
+          "key": "C",
+          "text": "UserService (it both changePassword and checkAccess)"
+        },
+        {
+          "key": "D",
+          "text": "Payments"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The 'without S' UserService both changes passwords and verifies access (checkAccess) — two reasons to change. SecurityService is the EXTRACTED class in the fixed version; LoanApprovalHandler is the OCP example, and Payments is the DIP example. (OOPrinciples p.5)",
+      "source": {
+        "deck": "OOPrinciples.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q160",
+      "lecture_id": "L05",
+      "topic": "OO Principles",
+      "difficulty": "very-hard",
+      "stem": "How is DIP the same idea as the Clean Architecture Dependency Rule, and how does the Entity Gateway relate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Both make details depend on abstractions with dependencies pointing toward the stable abstraction; the Entity Gateway is DIP made architectural"
+        },
+        {
+          "key": "B",
+          "text": "DIP is a GRASP pattern, not related to architecture"
+        },
+        {
+          "key": "C",
+          "text": "The Entity Gateway violates DIP by depending on the database"
+        },
+        {
+          "key": "D",
+          "text": "DIP points dependencies outward; the Dependency Rule points them inward, so they conflict"
+        }
+      ],
+      "answer": "A",
+      "explanation": "DIP at class scale and the Dependency Rule at architecture scale both make details depend on abstractions, with dependencies pointing toward the stable abstraction; the Entity Gateway is DIP made architectural. D claims a false conflict, C is wrong, and B miscategorises DIP. (OOPrinciples p.12; Clean Architecture p.8, p.18)",
+      "source": {
+        "deck": "OOPrinciples.pdf",
+        "page": 12
+      },
+      "tags": [
+        "Clean Architecture"
+      ]
+    },
+    {
+      "id": "L05-Q162",
+      "lecture_id": "L05",
+      "topic": "OO Principles",
+      "difficulty": "easy",
+      "stem": "Per the CRP slide, what is described as a 'catastrophic mistake' in OO systems?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Using composition as the primary reuse mechanism"
+        },
+        {
+          "key": "B",
+          "text": "Injecting dependencies through constructors"
+        },
+        {
+          "key": "C",
+          "text": "Using inheritance as the primary reuse mechanism"
+        },
+        {
+          "key": "D",
+          "text": "Using interfaces to decouple classes"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The slide calls 'using inheritance as the primary reuse mechanism' one of the most catastrophic mistakes. Composition (A), interfaces (D), and constructor injection (B) are all good practices the deck endorses. (OOPrinciples p.14)",
+      "source": {
+        "deck": "OOPrinciples.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q196",
+      "lecture_id": "L05",
+      "topic": "OO Principles",
+      "difficulty": "hard",
+      "stem": "Pure Fabrication's PersistentStorage example corresponds to which Clean Architecture idea?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The Request Model — packing primitive input"
+        },
+        {
+          "key": "B",
+          "text": "The Gateway/Repository — keeping persistence out of domain entities"
+        },
+        {
+          "key": "C",
+          "text": "The Dependency Rule arrow pointing outward"
+        },
+        {
+          "key": "D",
+          "text": "The View Model — holding display strings"
+        }
+      ],
+      "answer": "B",
+      "explanation": "A made-up PersistentStorage class keeps persistence out of domain entities — exactly the Clean Architecture Gateway/Repository idea. The View Model and Request Model are data-flow structures, and the Dependency Rule points inward, not outward. (OOPrinciples p.26; Clean Architecture p.7, p.18)",
+      "source": {
+        "deck": "OOPrinciples.pdf",
+        "page": 26
+      },
+      "tags": [
+        "Clean Architecture",
+        "Design Patterns"
+      ]
+    },
+    {
+      "id": "L05-Q210",
+      "lecture_id": "L05",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "easy",
+      "stem": "What is JHotDraw, the course's standard case study?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A Java GUI framework for structured drawing editors"
+        },
+        {
+          "key": "B",
+          "text": "A confusion-matrix calculator"
+        },
+        {
+          "key": "C",
+          "text": "A relational database engine"
+        },
+        {
+          "key": "D",
+          "text": "A version-control system"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JHotDraw is a Java GUI framework for structured drawing editors, used to ground every change-process phase. The other options are unrelated tools. (JHotDraw Connection; [ActLab])",
+      "source": {
+        "deck": "ActualizationLab.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q211",
+      "lecture_id": "L05",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "What does the Actualization lab require you to provide regarding SOLID and Clean Architecture?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Examples of the SOLID principles and Clean Architecture in the context of the CASE study"
+        },
+        {
+          "key": "B",
+          "text": "A migration of JHotDraw to NoSQL"
+        },
+        {
+          "key": "C",
+          "text": "A rewrite of JHotDraw in another language"
+        },
+        {
+          "key": "D",
+          "text": "A proof that JHotDraw has no technical debt"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The lab requires examples of the SOLID principles and Clean Architecture IN CONTEXT OF the CASE study. The other options are not lab deliverables. [ActLab]",
+      "source": {
+        "deck": "ActualizationLab.pdf",
+        "page": 1
+      },
+      "tags": [
+        "OO Principles",
+        "Clean Architecture"
+      ]
+    },
+    {
+      "id": "L05-Q212",
+      "lecture_id": "L05",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "In JHotDraw, which hierarchy is the textbook OCP/GRASP-Polymorphism case?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The Figure hierarchy (RectangleFigure, EllipseFigure, LineFigure extending/implementing Figure)"
+        },
+        {
+          "key": "B",
+          "text": "The confusion-matrix categories"
+        },
+        {
+          "key": "C",
+          "text": "The Cashiers/Store/Inventory model"
+        },
+        {
+          "key": "D",
+          "text": "The Bird/Ostrich hierarchy"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JHotDraw's Figure hierarchy (RectangleFigure, EllipseFigure, LineFigure on a Figure abstraction) is the textbook OCP/GRASP-Polymorphism case: a new figure type is new code plugged in with clients untouched. The other options are from different examples. (JHotDraw Connection)",
+      "source": {
+        "deck": "ActualizationLab.pdf",
+        "page": 1
+      },
+      "tags": [
+        "OO Principles",
+        "Actualization"
+      ]
+    },
+    {
+      "id": "L05-Q214",
+      "lecture_id": "L05",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "In JHotDraw mapped onto Clean Architecture, which classes play the Entities/Use-Cases role?",
+      "options": [
+        {
+          "key": "A",
+          "text": "DrawingView and the Swing components"
+        },
+        {
+          "key": "B",
+          "text": "The HTTP client and database drivers"
+        },
+        {
+          "key": "C",
+          "text": "The drawing model (Drawing, Figure, Handle) — application-independent and application-specific business rules"
+        },
+        {
+          "key": "D",
+          "text": "The Presenter and View Model"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The drawing model (Drawing, Figure, Handle) plays the Entities/Use-Cases role, while DrawingView, Swing components, and tools play the Interface Adapters / Frameworks & Drivers role. A and B are the outer layers, and D are data-flow adapters. (JHotDraw Connection)",
+      "source": {
+        "deck": "ActualizationLab.pdf",
+        "page": 1
+      },
+      "tags": [
+        "Clean Architecture"
+      ]
+    },
+    {
+      "id": "L05-Q219",
+      "lecture_id": "L05",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "very-hard",
+      "stem": "When actualizing a JHotDraw change like 'add a new tool', how do you score your Impact-Analysis prediction afterward?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Build a confusion matrix of predicted vs actually-touched Figure/Tool/View classes and compute precision and recall"
+        },
+        {
+          "key": "B",
+          "text": "Count the number of GRASP patterns used"
+        },
+        {
+          "key": "C",
+          "text": "Check whether the View needed testing"
+        },
+        {
+          "key": "D",
+          "text": "Measure how many stored procedures changed"
+        }
+      ],
+      "answer": "A",
+      "explanation": "After propagation, you score the prediction by building a confusion matrix of predicted vs actually-touched classes and computing precision/recall — the Ericsson method applied to the case study. The other options are not the scoring method. (JHotDraw Connection; Actualization p.24-27)",
+      "source": {
+        "deck": "ActualizationLab.pdf",
+        "page": 1
+      },
+      "tags": [
+        "Impact Analysis",
+        "Actualization"
+      ]
+    },
+    {
+      "id": "L05-Q225",
+      "lecture_id": "L05",
+      "topic": "Actualization",
+      "difficulty": "hard",
+      "stem": "In a clean architecture, where should the new login SCREEN changes be confined during the PoS walkthrough?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The Request Model primitives"
+        },
+        {
+          "key": "B",
+          "text": "The Entity Gateway interface declaration"
+        },
+        {
+          "key": "C",
+          "text": "The innermost Entities layer"
+        },
+        {
+          "key": "D",
+          "text": "The outer Frameworks & Drivers / View layer only"
+        }
+      ],
+      "answer": "D",
+      "explanation": "If the architecture is clean, the login-screen changes are confined to the outer Frameworks & Drivers / View layer. The entities, the gateway interface, and the request model are insulated from UI-look changes. (Actualization p.12-14; Clean Architecture p.4)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 14
+      },
+      "tags": [
+        "Clean Architecture"
+      ]
+    },
+    {
+      "id": "L05-Q230",
+      "lecture_id": "L05",
+      "topic": "Software Change Process",
+      "difficulty": "medium",
+      "stem": "What is the correct order of the seven-phase change process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Initiation, Concept Location, Impact Analysis, Prefactoring, Actualization, Postfactoring, Conclusion"
+        },
+        {
+          "key": "B",
+          "text": "Initiation, Impact Analysis, Concept Location, Actualization, Prefactoring, Postfactoring, Conclusion"
+        },
+        {
+          "key": "C",
+          "text": "Initiation, Prefactoring, Concept Location, Impact Analysis, Actualization, Postfactoring, Conclusion"
+        },
+        {
+          "key": "D",
+          "text": "Concept Location, Initiation, Impact Analysis, Actualization, Prefactoring, Conclusion, Postfactoring"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The order is Initiation -> Concept Location -> Impact Analysis -> Prefactoring -> Actualization -> Postfactoring -> Conclusion, all under Verification. D, B, and C swap the order of Concept Location, Impact Analysis, or Prefactoring. (Actualization p.1)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q231",
+      "lecture_id": "L05",
+      "topic": "Software Change Process",
+      "difficulty": "easy",
+      "stem": "Which continuous activity wraps the entire change process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Verification"
+        },
+        {
+          "key": "B",
+          "text": "Propagation"
+        },
+        {
+          "key": "C",
+          "text": "Incorporation"
+        },
+        {
+          "key": "D",
+          "text": "Concept Location"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Verification is the continuous activity wrapping all seven phases. Incorporation and propagation are parts of actualization, and Concept Location is a single early phase. (Actualization p.1)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 1
+      },
+      "tags": [
+        "BDD / Verification"
+      ]
+    },
+    {
+      "id": "L05-Q233",
+      "lecture_id": "L05",
+      "topic": "OO Principles",
+      "difficulty": "medium",
+      "stem": "Which set lists the four characteristics of clean architecture together with the correct count of SOLID principles and GRASP patterns?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Independent of UI/DB only; 7 SOLID; 7 GRASP"
+        },
+        {
+          "key": "B",
+          "text": "Fast + small + documented + tested; 5 SOLID; 5 GRASP"
+        },
+        {
+          "key": "C",
+          "text": "Testable + independent of UI/DB/frameworks; 5 SOLID; 9 GRASP"
+        },
+        {
+          "key": "D",
+          "text": "Testable + independent of UI/DB/frameworks; 9 SOLID; 5 GRASP"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Clean architecture is testable and independent of UI/DB/frameworks; SOLID has 5 principles and GRASP has 9 patterns. D swaps the counts, B lists wrong characteristics, and A miscounts both. (Clean Architecture p.3; OOPrinciples p.3, p.18)",
+      "source": {
+        "deck": "Clean Architecture.pdf",
+        "page": 3
+      },
+      "tags": [
+        "OO Principles"
+      ]
+    },
+    {
+      "id": "L05-Q234",
+      "lecture_id": "L05",
+      "topic": "OO Principles",
+      "difficulty": "hard",
+      "stem": "How do SOLID and Clean Architecture make actualization cheaper, in one sentence?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They lower coupling and put variation behind stable interfaces, so incorporating new code ripples less, propagation terminates sooner, and impact-analysis recall improves"
+        },
+        {
+          "key": "B",
+          "text": "They remove the need for testing and verification"
+        },
+        {
+          "key": "C",
+          "text": "They move all business rules into the database"
+        },
+        {
+          "key": "D",
+          "text": "They guarantee every change is a one-field edit"
+        }
+      ],
+      "answer": "A",
+      "explanation": "SOLID/Clean Architecture lower coupling and wrap variation behind stable interfaces (OCP/DIP/Protected Variations, Dependency Rule), so new code ripples less, propagation ends sooner, and recall improves. D, B, and C contradict the lecture. (Exam Focus)",
+      "source": {
+        "deck": "OOPrinciples.pdf",
+        "page": 3
+      },
+      "tags": [
+        "Clean Architecture",
+        "Actualization"
+      ]
+    },
+    {
+      "id": "L05-Q273",
+      "lecture_id": "L05",
+      "topic": "Clean Architecture",
+      "difficulty": "medium",
+      "stem": "What is the Repository pattern called in the Clean Architecture deck's Entity Gateway discussion?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The Delivery Mechanism"
+        },
+        {
+          "key": "B",
+          "text": "The Request Model"
+        },
+        {
+          "key": "C",
+          "text": "The Entity Gateway (interface declared with business rules, implemented in the detail layer)"
+        },
+        {
+          "key": "D",
+          "text": "The Presenter"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The Repository is the Entity Gateway: an interface declared with the business rules and implemented in the detail layer to reach the Database API. The Presenter, Request Model, and Delivery Mechanism are data-flow components. (Clean Architecture p.7, p.18)",
+      "source": {
+        "deck": "Clean Architecture.pdf",
+        "page": 18
+      },
+      "tags": [
+        "Design Patterns"
+      ]
+    },
+    {
+      "id": "L05-Q501",
+      "lecture_id": "L05",
+      "topic": "OO Principles",
+      "difficulty": "easy",
+      "stem": "Which of the following is NOT one of the five SOLID principles?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Law of Demeter"
+        },
+        {
+          "key": "B",
+          "text": "Single Responsibility Principle"
+        },
+        {
+          "key": "C",
+          "text": "Open/Closed Principle"
+        },
+        {
+          "key": "D",
+          "text": "Dependency Inversion Principle"
+        }
+      ],
+      "answer": "A",
+      "explanation": "SOLID = SRP, OCP, LSP, ISP, DIP. The Law of Demeter (Principle of Least Knowledge) is a separate supporting principle. (OOPrinciples p.3, p.15)",
+      "source": {
+        "deck": "OOPrinciples.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q502",
+      "lecture_id": "L05",
+      "topic": "Software Change Process",
+      "difficulty": "easy",
+      "stem": "One activity runs continuously, wrapping all seven phases of the change process from start to finish. Which activity is it?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Concept Location"
+        },
+        {
+          "key": "B",
+          "text": "Verification"
+        },
+        {
+          "key": "C",
+          "text": "Refactoring"
+        },
+        {
+          "key": "D",
+          "text": "Conclusion"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Verification is the continuous activity wrapping all seven phases. (Actualization p.1)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q507",
+      "lecture_id": "L05",
+      "topic": "Software Change Process",
+      "difficulty": "easy",
+      "stem": "Actualization is the implementation phase of which overall process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The testing process"
+        },
+        {
+          "key": "B",
+          "text": "The compilation process"
+        },
+        {
+          "key": "C",
+          "text": "The software change process"
+        },
+        {
+          "key": "D",
+          "text": "The release process"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Actualization is the implementation phase of the software change process. (Actualization p.1)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q521",
+      "lecture_id": "L05",
+      "topic": "Actualization",
+      "difficulty": "easy",
+      "stem": "The deck's small-change example widens a ZIP field from how many digits to how many?",
+      "options": [
+        {
+          "key": "A",
+          "text": "5 to 9"
+        },
+        {
+          "key": "B",
+          "text": "3 to 5"
+        },
+        {
+          "key": "C",
+          "text": "9 to 12"
+        },
+        {
+          "key": "D",
+          "text": "5 to 7"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The Address ZIP field is widened from zip[5] to zip[9]. (Actualization p.2-4)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q547",
+      "lecture_id": "L05",
+      "topic": "Actualization",
+      "difficulty": "medium",
+      "stem": "A developer widens a single Address field from a 5-digit to a 9-digit ZIP, touching only that one class and adding no new structure. Which actualization technique is in play?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Writing a new class separately and incorporating it as a supplier"
+        },
+        {
+          "key": "B",
+          "text": "Polymorphic extension of a composite responsibility via a new subclass"
+        },
+        {
+          "key": "C",
+          "text": "A small change edited directly into the existing old code"
+        },
+        {
+          "key": "D",
+          "text": "Replacement of an obsolete class and rerouting all references"
+        }
+      ],
+      "answer": "C",
+      "explanation": "A localized one-field edit with no new structure is the deck's canonical SMALL change, done directly in old code. The other options describe larger-change shapes. (Actualization p.2-4)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q550",
+      "lecture_id": "L05",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "A maintainer adds a new TriangleFigure to JHotDraw by writing a class that extends the Figure abstraction; DrawingView and DrawingEditor are untouched. Which principle does this exemplify?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Interface Segregation Principle"
+        },
+        {
+          "key": "B",
+          "text": "Open/Closed Principle (with GRASP Polymorphism)"
+        },
+        {
+          "key": "C",
+          "text": "Single Responsibility Principle"
+        },
+        {
+          "key": "D",
+          "text": "Law of Demeter"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Adding a Figure subclass without editing clients is the textbook OCP / GRASP-Polymorphism case in JHotDraw. (Actualization p.6-7; OOPrinciples p.6-7)",
+      "source": {
+        "deck": "OOPrinciples.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q551",
+      "lecture_id": "L05",
+      "topic": "Impact Analysis",
+      "difficulty": "medium",
+      "stem": "In the Ericsson result, how did precision and recall compare?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Both were perfect at 100%"
+        },
+        {
+          "key": "B",
+          "text": "Precision was low (32%) while recall was perfect (100%)"
+        },
+        {
+          "key": "C",
+          "text": "Precision was perfect (100%) while recall was low (32%)"
+        },
+        {
+          "key": "D",
+          "text": "Both were low at 32%"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Ericsson achieved 100% precision (no false alarms) but only 32% recall (missed two-thirds of changed classes). (Actualization p.26-27)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 27
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q552",
+      "lecture_id": "L05",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "What is the practical meaning difference between high precision and high recall for an impact prediction?",
+      "options": [
+        {
+          "key": "A",
+          "text": "High precision means no missed classes; high recall means no false alarms"
+        },
+        {
+          "key": "B",
+          "text": "Both mean the same thing"
+        },
+        {
+          "key": "C",
+          "text": "High recall means the prediction was small"
+        },
+        {
+          "key": "D",
+          "text": "High precision means no false alarms; high recall means no missed classes"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Precision = no false alarms (everything flagged really changed); recall = no misses (everything that changed was flagged). (Actualization p.26-27)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 26
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q553",
+      "lecture_id": "L05",
+      "topic": "Software Change Process",
+      "difficulty": "medium",
+      "stem": "Just before Actualization, one phase readies a clean insertion point for the new code. Which phase plays that setup role?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Prefactoring"
+        },
+        {
+          "key": "B",
+          "text": "Postfactoring"
+        },
+        {
+          "key": "C",
+          "text": "Conclusion"
+        },
+        {
+          "key": "D",
+          "text": "Concept Location"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Prefactoring precedes Actualization and prepares a clean place to plug the new code in; Postfactoring follows. (Actualization p.1)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q554",
+      "lecture_id": "L05",
+      "topic": "Actualization",
+      "difficulty": "medium",
+      "stem": "A change request adds an entirely new authentication responsibility that did not exist before. A programmer wants to write and test it cleanly before wiring it in. Which strategy matches the deck?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Edit the launch code in place because it is a one-line guard"
+        },
+        {
+          "key": "B",
+          "text": "Write the new class separately, then incorporate it into the existing code"
+        },
+        {
+          "key": "C",
+          "text": "Delete the old launch class and let propagation rebuild it"
+        },
+        {
+          "key": "D",
+          "text": "Add an if/else branch to every existing client class"
+        }
+      ],
+      "answer": "B",
+      "explanation": "A brand-new responsibility is a LARGER change: implement the new class separately, then plug it in (incorporation). Building it in isolation lets you get it right and testable first. (Actualization p.5)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q559",
+      "lecture_id": "L05",
+      "topic": "Software Change Process",
+      "difficulty": "medium",
+      "stem": "During Actualization, the predicted impact set from Impact Analysis corresponds to what?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The classes that can never change"
+        },
+        {
+          "key": "B",
+          "text": "The Entities layer only"
+        },
+        {
+          "key": "C",
+          "text": "The set of classes you now expect to touch during incorporation and propagation"
+        },
+        {
+          "key": "D",
+          "text": "The deleted classes"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The predicted impact set is exactly the classes expected to be touched during incorporation and propagation. (Actualization p.1, p.23)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q565",
+      "lecture_id": "L05",
+      "topic": "Clean Architecture",
+      "difficulty": "medium",
+      "stem": "Which of the following is NOT listed as a design PATTERN in the Clean Architecture deck?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Onion"
+        },
+        {
+          "key": "B",
+          "text": "Singleton"
+        },
+        {
+          "key": "C",
+          "text": "Observer"
+        },
+        {
+          "key": "D",
+          "text": "MVC"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Onion is an architecture, not a design pattern. The deck's pattern examples are Singleton, Observer, MVC, MVVM, MVP. (Clean Architecture p.2)",
+      "source": {
+        "deck": "Clean Architecture.pdf",
+        "page": 2
+      },
+      "tags": [
+        "Design Patterns"
+      ]
+    },
+    {
+      "id": "L05-Q632",
+      "lecture_id": "L05",
+      "topic": "Actualization",
+      "difficulty": "hard",
+      "stem": "After plugging a new Cashiers class into the Point-of-Sale launch path, the old 'anyone can launch' code is now inconsistent. What must the programmer do next?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Stop, since incorporation completes the actualization phase"
+        },
+        {
+          "key": "B",
+          "text": "Re-run Concept Location to find the starting class again"
+        },
+        {
+          "key": "C",
+          "text": "Immediately delete the Store and Inventory classes"
+        },
+        {
+          "key": "D",
+          "text": "Walk the dependency graph updating every inconsistent dependent until consistency is restored"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Incorporation makes dependents inconsistent; change propagation then visits and updates each one until no inconsistent class remains. (Actualization p.16-21)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q633",
+      "lecture_id": "L05",
+      "topic": "Clean Architecture",
+      "difficulty": "hard",
+      "stem": "A product owner requests switching the persistence store from a relational DB to NoSQL. In a Clean Architecture, where is this change actualized?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Entirely in the Entity Gateway Implementation in the detail layer"
+        },
+        {
+          "key": "B",
+          "text": "In the Entities layer, since they own the data"
+        },
+        {
+          "key": "C",
+          "text": "In the Use Cases / interactors, which control the data"
+        },
+        {
+          "key": "D",
+          "text": "Spread across all four layers equally"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Because the DB is a plug-in behind a gateway interface, the swap is confined to the Entity Gateway Implementation; propagation cannot reach entities or use cases. (Clean Architecture p.16-18)",
+      "source": {
+        "deck": "Clean Architecture.pdf",
+        "page": 18
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q645",
+      "lecture_id": "L05",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "Mapping JHotDraw onto Clean Architecture, the drawing model (Drawing, Figure, Handle) plays which role?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Entities / Use-Cases (the business rules)"
+        },
+        {
+          "key": "B",
+          "text": "Frameworks & Drivers"
+        },
+        {
+          "key": "C",
+          "text": "Interface Adapters only"
+        },
+        {
+          "key": "D",
+          "text": "The Delivery Mechanism"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The drawing model holds the application rules, playing the Entities/Use-Cases role; the Swing GUI plays the outer layers. (Clean Architecture p.5-8 applied)",
+      "source": {
+        "deck": "Clean Architecture.pdf",
+        "page": 7
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q646",
+      "lecture_id": "L05",
+      "topic": "Impact Analysis",
+      "difficulty": "hard",
+      "stem": "Given a prediction that flagged every changed class but also flagged many unchanged ones, which metric is degraded?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Recall is low"
+        },
+        {
+          "key": "B",
+          "text": "Precision is low (many false positives)"
+        },
+        {
+          "key": "C",
+          "text": "Both are perfect"
+        },
+        {
+          "key": "D",
+          "text": "Neither metric is affected"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Flagging unchanged classes creates false positives, which lowers precision = TP/(TP+FP). Recall stays high since all changed classes were caught. (Actualization p.26)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 26
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q660",
+      "lecture_id": "L05",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "Why does the Actualization lab make the JHotDraw/CASE-study link mandatory for SOLID and Clean Architecture?",
+      "options": [
+        {
+          "key": "A",
+          "text": "To test memorisation of slide page numbers"
+        },
+        {
+          "key": "B",
+          "text": "Because JHotDraw replaces the change process"
+        },
+        {
+          "key": "C",
+          "text": "Because the lab forbids using JHotDraw"
+        },
+        {
+          "key": "D",
+          "text": "Because the portfolio deliverable requires concrete CASE-study examples of each SOLID principle and of Clean Architecture layering"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The lab requires SOLID examples and a Clean Architecture explanation in the context of the CASE study as a portfolio deliverable. (ActLab p.1)",
+      "source": {
+        "deck": "ActualizationLab.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L05-Q676",
+      "lecture_id": "L05",
+      "topic": "OO Principles",
+      "difficulty": "hard",
+      "stem": "How does the Presenter differ from the View in the Clean Architecture data flow?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The Presenter just displays data; the View translates the response model"
+        },
+        {
+          "key": "B",
+          "text": "Both translate and display"
+        },
+        {
+          "key": "C",
+          "text": "Neither touches the Response Model"
+        },
+        {
+          "key": "D",
+          "text": "The Presenter translates the Response Model into a View Model (strings/flags); the View only displays the View Model"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The Presenter (MVP) translates the Response Model into a View Model of display-ready strings/flags; the View just shows it. (Clean Architecture p.15)",
+      "source": {
+        "deck": "Clean Architecture.pdf",
+        "page": 15
+      },
+      "tags": [
+        "Clean Architecture"
+      ]
+    },
+    {
+      "id": "L05-Q716",
+      "lecture_id": "L05",
+      "topic": "Impact Analysis",
+      "difficulty": "very-hard",
+      "stem": "Two teams predict the same change. Team A: TP=20, FP=0, FN=30. Team B: TP=20, FP=30, FN=0. Which statement is correct?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Team A has better recall than Team B"
+        },
+        {
+          "key": "B",
+          "text": "Both teams have identical precision and recall"
+        },
+        {
+          "key": "C",
+          "text": "Team B missed more changed classes than Team A"
+        },
+        {
+          "key": "D",
+          "text": "Team A matches the Ericsson profile (perfect precision, low recall); Team B has perfect recall but poor precision"
+        }
+      ],
+      "answer": "D",
+      "explanation": "A: precision=100%, recall=40%; B: precision=40%, recall=100%. A mirrors Ericsson's no-false-alarms/many-misses profile. (Actualization p.26-27)",
+      "source": {
+        "deck": "Actualization.pdf",
+        "page": 27
+      },
+      "tags": []
+    }
+  ]
+}

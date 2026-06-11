@@ -1,0 +1,1687 @@
+{
+  "lecture_id": "L03",
+  "lecture_num": 3,
+  "lecture_title": "Impact Analysis, Software Processes & Continuous Integration",
+  "generated_from": [
+    "ImpactAnalysis.pdf",
+    "IntroSwProcesses.pdf",
+    "TeamProcesses.pdf",
+    "ContinuesIntegration.pdf",
+    "AnalysisLab1.pdf",
+    "CILab.pdf"
+  ],
+  "schema_version": 1,
+  "questions": [
+    {
+      "id": "L03-Q001",
+      "lecture_id": "L03",
+      "topic": "Impact Analysis",
+      "difficulty": "easy",
+      "stem": "What is the primary purpose of the Impact Analysis phase?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Identifying the potential consequences of a change and estimating what needs to be modified to accomplish it"
+        },
+        {
+          "key": "B",
+          "text": "Locating the first class where the change must begin"
+        },
+        {
+          "key": "C",
+          "text": "Writing the new behaviour required by the change request"
+        },
+        {
+          "key": "D",
+          "text": "Confirming that all tests pass after the change is complete"
+        }
+      ],
+      "answer": "A",
+      "explanation": "IA determines the strategy and impact of change: 'identifying the potential consequences of a change, or estimating what needs to be modified to accomplish a change.' B is Concept Location, C is Actualization, D is Verification. (AnalysisLab p.1; ImpactAnalysis p.3)",
+      "source": {
+        "deck": "AnalysisLab1.pdf",
+        "page": 1
+      },
+      "tags": [
+        "definition"
+      ]
+    },
+    {
+      "id": "L03-Q006",
+      "lecture_id": "L03",
+      "topic": "Impact Analysis",
+      "difficulty": "medium",
+      "stem": "Why is the result of Impact Analysis called the 'estimated' impact set?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It is a prediction of what will change, made before the code is edited, and may be wrong"
+        },
+        {
+          "key": "B",
+          "text": "It is calculated by a statistical estimator over historical commits"
+        },
+        {
+          "key": "C",
+          "text": "It estimates the monetary cost of the change in developer-hours"
+        },
+        {
+          "key": "D",
+          "text": "It is an approximation that is always larger than the true impact set"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The word 'estimated' signals it is a prediction made before editing; it can be too large or too small, and Verification later catches gaps. B/C invent mechanisms not in the deck; D is wrong because the estimate can be too small as well as too large. (ImpactAnalysis p.3-4)",
+      "source": {
+        "deck": "ImpactAnalysis.pdf",
+        "page": 4
+      },
+      "tags": [
+        "impact-set"
+      ]
+    },
+    {
+      "id": "L03-Q011",
+      "lecture_id": "L03",
+      "topic": "Impact Analysis",
+      "difficulty": "medium",
+      "stem": "The deck gives two flavors of interaction between classes. What are they?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Dependency and coordination"
+        },
+        {
+          "key": "B",
+          "text": "Aggregation and composition"
+        },
+        {
+          "key": "C",
+          "text": "Inheritance and delegation"
+        },
+        {
+          "key": "D",
+          "text": "Coupling and cohesion"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Interactions come as a dependency (a contract: one depends on the other) or coordination (they share coding/schedule/dataflow). B/C/D are real OO terms but are not the deck's two interaction flavors. (ImpactAnalysis p.5)",
+      "source": {
+        "deck": "ImpactAnalysis.pdf",
+        "page": 5
+      },
+      "tags": [
+        "interaction"
+      ]
+    },
+    {
+      "id": "L03-Q014",
+      "lecture_id": "L03",
+      "topic": "Impact Analysis",
+      "difficulty": "hard",
+      "stem": "Why is bidirectionality the defining property of an interaction for Impact Analysis?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Change can propagate from A to B or from B to A, so IA cannot just follow dependency arrows one way"
+        },
+        {
+          "key": "B",
+          "text": "Because every dependency is automatically mutual in Java"
+        },
+        {
+          "key": "C",
+          "text": "Because the interaction graph stores each edge twice for performance"
+        },
+        {
+          "key": "D",
+          "text": "Because undirected graphs are easier to draw than directed ones"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Interactions propagate change in both directions, which is why IA walks the interaction graph rather than following dependency arrows one way. B is false (dependencies are directional); C/D are irrelevant rationalizations. (ImpactAnalysis p.5)",
+      "source": {
+        "deck": "ImpactAnalysis.pdf",
+        "page": 5
+      },
+      "tags": [
+        "interaction"
+      ]
+    },
+    {
+      "id": "L03-Q024",
+      "lecture_id": "L03",
+      "topic": "Impact Analysis",
+      "difficulty": "very-hard",
+      "stem": "Why would marking a true mailman class as UNCHANGED be a mistake?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It would wrongly stop propagation, leaving its other neighbors uninspected even though change passes through it"
+        },
+        {
+          "key": "B",
+          "text": "It would cause the loop to never terminate"
+        },
+        {
+          "key": "C",
+          "text": "UNCHANGED classes still expand the frontier, so nothing would change"
+        },
+        {
+          "key": "D",
+          "text": "It would add the class to the estimated impact set incorrectly"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A mailman needs no code change yet still forces neighbors to be inspected; marking it UNCHANGED stops that propagation prematurely. The loop still terminates (B wrong); UNCHANGED does NOT expand the frontier (C wrong); UNCHANGED is excluded from the impact set, so D is the opposite error. (ImpactAnalysis p.10, p.12)",
+      "source": {
+        "deck": "ImpactAnalysis.pdf",
+        "page": 10
+      },
+      "tags": [
+        "gotcha"
+      ]
+    },
+    {
+      "id": "L03-Q049",
+      "lecture_id": "L03",
+      "topic": "Impact Analysis",
+      "difficulty": "medium",
+      "stem": "Besides finding impacted classes, what additional decision does Impact Analysis support?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Weighing alternative places to make the change"
+        },
+        {
+          "key": "B",
+          "text": "Choosing which programmer is assigned the change"
+        },
+        {
+          "key": "C",
+          "text": "Scheduling the next baseline"
+        },
+        {
+          "key": "D",
+          "text": "Writing the unit tests for the change"
+        }
+      ],
+      "answer": "A",
+      "explanation": "IA also weighs alternative locations for the change, surfacing the trade-offs. Assignment (B) and baselines (C) are process concerns; test-writing (D) belongs to later phases. (ImpactAnalysis p.14)",
+      "source": {
+        "deck": "ImpactAnalysis.pdf",
+        "page": 14
+      },
+      "tags": [
+        "criteria"
+      ]
+    },
+    {
+      "id": "L03-Q055",
+      "lecture_id": "L03",
+      "topic": "Impact Analysis",
+      "difficulty": "hard",
+      "stem": "In the Fahrenheit-to-Celsius decision, which option favors long-term clarity at the cost of higher immediate effort?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Converting temperature centrally so all calculations live in one place"
+        },
+        {
+          "key": "B",
+          "text": "Changing only the user interface display"
+        },
+        {
+          "key": "C",
+          "text": "Adding a second display widget for Celsius"
+        },
+        {
+          "key": "D",
+          "text": "Leaving the code unchanged and documenting the difference"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Central conversion costs more now but keeps temperature logic in one place, improving long-term clarity and cheapening future changes. The UI-only patch (B) is the low-effort/low-clarity option; C/D are not the deck's alternatives. (ImpactAnalysis p.15)",
+      "source": {
+        "deck": "ImpactAnalysis.pdf",
+        "page": 15
+      },
+      "tags": [
+        "criteria"
+      ]
+    },
+    {
+      "id": "L03-Q059",
+      "lecture_id": "L03",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "In the SB5-MAI labs, the Analysis Lab applies the IA marking algorithm to which target codebase?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A real Java codebase (in this course, the JHotDraw-based project)"
+        },
+        {
+          "key": "B",
+          "text": "The cash-register store program from the slides"
+        },
+        {
+          "key": "C",
+          "text": "A throwaway pseudocode example"
+        },
+        {
+          "key": "D",
+          "text": "The Bugzilla issue tracker"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The cash-register names are pedagogical stand-ins on the slides; the lab runs the same mechanics over the real JHotDraw-based Java codebase. The store program is only illustrative (B); the lab uses real code not pseudocode (C); Bugzilla appears only as an interruption example (D). (AnalysisLab p.1)",
+      "source": {
+        "deck": "AnalysisLab1.pdf",
+        "page": 1
+      },
+      "tags": [
+        "lab"
+      ]
+    },
+    {
+      "id": "L03-Q060",
+      "lecture_id": "L03",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "easy",
+      "stem": "What running example domain do the Lecture-3 slides actually use to illustrate interactions and processes?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A cash-register / store domain (Store, Inventory, Item, Price, Cashiers)"
+        },
+        {
+          "key": "B",
+          "text": "The JHotDraw drawing editor"
+        },
+        {
+          "key": "C",
+          "text": "A banking system"
+        },
+        {
+          "key": "D",
+          "text": "An air-traffic control system"
+        }
+      ],
+      "answer": "A",
+      "explanation": "None of the Lecture-3 decks name JHotDraw on a slide; the running example is the cash-register/store domain. JHotDraw is the lab's applied target, not the slide example. (ImpactAnalysis p.7-8)",
+      "source": {
+        "deck": "ImpactAnalysis.pdf",
+        "page": 7
+      },
+      "tags": [
+        "jhotdraw"
+      ]
+    },
+    {
+      "id": "L03-Q061",
+      "lecture_id": "L03",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "In the Analysis Lab portfolio table, what does each student record after running concept location and IA?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Packages visited and the number of classes visited"
+        },
+        {
+          "key": "B",
+          "text": "The exact LOC of every changed file"
+        },
+        {
+          "key": "C",
+          "text": "The defect density of the codebase"
+        },
+        {
+          "key": "D",
+          "text": "The Agile Manifesto value statements"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The lab's Table 1 tabulates package name, number of classes, and comments for the classes visited. LOC (B), defect density (C), and the Manifesto (D) are not what this table records. (AnalysisLab p.2)",
+      "source": {
+        "deck": "AnalysisLab1.pdf",
+        "page": 2
+      },
+      "tags": [
+        "lab"
+      ]
+    },
+    {
+      "id": "L03-Q071",
+      "lecture_id": "L03",
+      "topic": "Software Change Process",
+      "difficulty": "hard",
+      "stem": "On the granularity hierarchy, at what level is 'software change' classified?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Task"
+        },
+        {
+          "key": "B",
+          "text": "Process"
+        },
+        {
+          "key": "C",
+          "text": "Subtask/phase"
+        },
+        {
+          "key": "D",
+          "text": "Step/action"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A software change is a task (alongside acceptance testing). Processes are SIP/AIP/DIP; subtasks/phases are concept location/actualization; steps/actions are class inspections. (IntroSwProcesses p.4)",
+      "source": {
+        "deck": "IntroSwProcesses.pdf",
+        "page": 4
+      },
+      "tags": [
+        "granularity"
+      ]
+    },
+    {
+      "id": "L03-Q072",
+      "lecture_id": "L03",
+      "topic": "Software Change Process",
+      "difficulty": "hard",
+      "stem": "On the granularity hierarchy, at what level are 'concept location' and 'actualization' classified?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Subtask/phase"
+        },
+        {
+          "key": "B",
+          "text": "Task"
+        },
+        {
+          "key": "C",
+          "text": "Process"
+        },
+        {
+          "key": "D",
+          "text": "Step/action"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Concept location and actualization are subtasks/phases of the software-change task. The change itself is a task; SIP/AIP/DIP are processes; class inspection is a step. (IntroSwProcesses p.4)",
+      "source": {
+        "deck": "IntroSwProcesses.pdf",
+        "page": 4
+      },
+      "tags": [
+        "granularity"
+      ]
+    },
+    {
+      "id": "L03-Q078",
+      "lecture_id": "L03",
+      "topic": "Software Processes / CI",
+      "difficulty": "hard",
+      "stem": "An exam answer labels 'acceptance testing' as a process. Why is that a granularity error?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Acceptance testing is a task, not a process; processes are SIP/AIP/DIP"
+        },
+        {
+          "key": "B",
+          "text": "Acceptance testing is a lifecycle, not a process"
+        },
+        {
+          "key": "C",
+          "text": "Acceptance testing is a step, not a process"
+        },
+        {
+          "key": "D",
+          "text": "It is correctly a process"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Acceptance testing is listed at the task level alongside software change; processes are SIP/AIP/DIP. It is neither a lifecycle (B) nor a single step (C), so D is wrong too. (IntroSwProcesses p.4)",
+      "source": {
+        "deck": "IntroSwProcesses.pdf",
+        "page": 4
+      },
+      "tags": [
+        "gotcha"
+      ]
+    },
+    {
+      "id": "L03-Q093",
+      "lecture_id": "L03",
+      "topic": "Software Change Process",
+      "difficulty": "medium",
+      "stem": "In the SIP enactment table, which phase produces the comment 'Estimated set has 4 classes'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "IA (impact analysis)"
+        },
+        {
+          "key": "B",
+          "text": "CL (concept location)"
+        },
+        {
+          "key": "C",
+          "text": "Act (actualization)"
+        },
+        {
+          "key": "D",
+          "text": "Base (baseline)"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The estimated set with 4 classes is the output of IA. CL located CashierRecord; Act replaces the class; Base produces the baseline. (IntroSwProcesses p.11)",
+      "source": {
+        "deck": "IntroSwProcesses.pdf",
+        "page": 11
+      },
+      "tags": [
+        "enactment"
+      ]
+    },
+    {
+      "id": "L03-Q094",
+      "lecture_id": "L03",
+      "topic": "Software Change Process",
+      "difficulty": "medium",
+      "stem": "In the SIP enactment table, the 'CL' step lands on which class?",
+      "options": [
+        {
+          "key": "A",
+          "text": "CashierRecord"
+        },
+        {
+          "key": "B",
+          "text": "Session"
+        },
+        {
+          "key": "C",
+          "text": "Item"
+        },
+        {
+          "key": "D",
+          "text": "Price"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Concept location lands on CashierRecord. Session is the class extracted in Ref and replaced in Act; Item and Price belong to the IA example, not this CL step. (IntroSwProcesses p.11)",
+      "source": {
+        "deck": "IntroSwProcesses.pdf",
+        "page": 11
+      },
+      "tags": [
+        "enactment"
+      ]
+    },
+    {
+      "id": "L03-Q095",
+      "lecture_id": "L03",
+      "topic": "Software Change Process",
+      "difficulty": "hard",
+      "stem": "In the SIP enactment table, the step 'Ref - Extract class Session' demonstrates that refactoring happens where relative to actualization?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Before actualization (prefactoring), preparing the code to receive the change"
+        },
+        {
+          "key": "B",
+          "text": "After actualization only"
+        },
+        {
+          "key": "C",
+          "text": "Instead of actualization"
+        },
+        {
+          "key": "D",
+          "text": "During verification only"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Ref (extract class Session) precedes Act (replace class Session), i.e. prefactoring prepares a clean landing site before the actual change. B/C/D contradict the table's ordering. (IntroSwProcesses p.11)",
+      "source": {
+        "deck": "IntroSwProcesses.pdf",
+        "page": 11
+      },
+      "tags": [
+        "enactment"
+      ]
+    },
+    {
+      "id": "L03-Q109",
+      "lecture_id": "L03",
+      "topic": "Software Processes / CI",
+      "difficulty": "hard",
+      "stem": "How many significant digits of a LOC measure are meaningful, per the deck?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only the one or two most significant digits (e.g. 900 LOC, 23 KLOC, 3.2 MLOC)"
+        },
+        {
+          "key": "B",
+          "text": "All digits are exact"
+        },
+        {
+          "key": "C",
+          "text": "At least five significant digits"
+        },
+        {
+          "key": "D",
+          "text": "None; LOC carries no information"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Only the one or two most significant digits are meaningful, so you write 23 KLOC, not 23,418 LOC. B/C overstate precision; D understates LOC's usefulness. (IntroSwProcesses p.16-17)",
+      "source": {
+        "deck": "IntroSwProcesses.pdf",
+        "page": 17
+      },
+      "tags": [
+        "size",
+        "gotcha"
+      ]
+    },
+    {
+      "id": "L03-Q152",
+      "lecture_id": "L03",
+      "topic": "Software Processes / CI",
+      "difficulty": "medium",
+      "stem": "In AIP, how are decisions made?",
+      "options": [
+        {
+          "key": "A",
+          "text": "By consensus"
+        },
+        {
+          "key": "B",
+          "text": "By the architect alone"
+        },
+        {
+          "key": "C",
+          "text": "By the build server"
+        },
+        {
+          "key": "D",
+          "text": "By management directive"
+        }
+      ],
+      "answer": "A",
+      "explanation": "AIP decisions are made by consensus. Management directive characterizes DIP; the architect and build server do not decide in AIP. (TeamProcesses p.4)",
+      "source": {
+        "deck": "TeamProcesses.pdf",
+        "page": 4
+      },
+      "tags": [
+        "aip"
+      ]
+    },
+    {
+      "id": "L03-Q166",
+      "lecture_id": "L03",
+      "topic": "Software Processes / CI",
+      "difficulty": "hard",
+      "stem": "In CIP, before developers commit, whose permission must they obtain?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Architects and code owners"
+        },
+        {
+          "key": "B",
+          "text": "The product manager only"
+        },
+        {
+          "key": "C",
+          "text": "All users"
+        },
+        {
+          "key": "D",
+          "text": "No one; commits are unrestricted"
+        }
+      ],
+      "answer": "A",
+      "explanation": "CIP requires permission to commit from architects and code owners. The product manager handles strategy; users don't gate commits; D describes an unsafeguarded process. (TeamProcesses p.16)",
+      "source": {
+        "deck": "TeamProcesses.pdf",
+        "page": 16
+      },
+      "tags": [
+        "cip"
+      ]
+    },
+    {
+      "id": "L03-Q170",
+      "lecture_id": "L03",
+      "topic": "Software Processes / CI",
+      "difficulty": "very-hard",
+      "stem": "How does CI's stance on code ownership contrast with the team-processes notion of code ownership?",
+      "options": [
+        {
+          "key": "A",
+          "text": "CI says the team owns the code, not the individual, whereas code ownership has programmers specialize in parts of the code"
+        },
+        {
+          "key": "B",
+          "text": "They are identical positions"
+        },
+        {
+          "key": "C",
+          "text": "CI requires individual ownership of every file"
+        },
+        {
+          "key": "D",
+          "text": "Code ownership means no one owns the code"
+        }
+      ],
+      "answer": "A",
+      "explanation": "CI holds that the team owns the code (not the individual), contrasting with code ownership where programmers specialize in parts of the code. B/C/D misstate the contrast. (ContinuousIntegration p.5; TeamProcesses p.17)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 5
+      },
+      "tags": [
+        "code-ownership",
+        "cross-link"
+      ]
+    },
+    {
+      "id": "L03-Q171",
+      "lecture_id": "L03",
+      "topic": "Software Processes / CI",
+      "difficulty": "easy",
+      "stem": "How does the deck define Continuous Integration?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Teams integrate their work multiple times per day, each integration verified by an automated build"
+        },
+        {
+          "key": "B",
+          "text": "Teams integrate once at the end of the project"
+        },
+        {
+          "key": "C",
+          "text": "Each developer keeps a private branch indefinitely"
+        },
+        {
+          "key": "D",
+          "text": "Integration is done manually by a release manager monthly"
+        }
+      ],
+      "answer": "A",
+      "explanation": "CI means integrating many times per day with each integration verified by an automated build. B/C/D describe the opposite of CI. (ContinuousIntegration p.2)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 2
+      },
+      "tags": [
+        "ci-def"
+      ]
+    },
+    {
+      "id": "L03-Q193",
+      "lecture_id": "L03",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Which does the CI deck name as the MOST effective defect-discovery methods?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Design inspections, code inspections, and testing"
+        },
+        {
+          "key": "B",
+          "text": "Documentation review and pair naming"
+        },
+        {
+          "key": "C",
+          "text": "Static typing and compilation"
+        },
+        {
+          "key": "D",
+          "text": "Code formatting and linting only"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The most effective methods are design inspections, code inspections, and testing. B/C/D are not the deck's named most-effective methods. (ContinuousIntegration p.8)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 8
+      },
+      "tags": [
+        "testing-in-build"
+      ]
+    },
+    {
+      "id": "L03-Q194",
+      "lecture_id": "L03",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Why does the CI deck recommend multiple quality methods rather than relying on one?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Multiple quality methods discover more defects than any single method"
+        },
+        {
+          "key": "B",
+          "text": "One method is always sufficient"
+        },
+        {
+          "key": "C",
+          "text": "Multiple methods are cheaper than one"
+        },
+        {
+          "key": "D",
+          "text": "It satisfies a legal requirement"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Multiple methods discover more defects, since individuals are under 50% efficient alone. B contradicts the data; C/D are not stated. (ContinuousIntegration p.8)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 8
+      },
+      "tags": [
+        "testing-in-build"
+      ]
+    },
+    {
+      "id": "L03-Q195",
+      "lecture_id": "L03",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "According to the deck, why are unit tests the best method for verifying builds?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They are fast (no database or file system), focused (pinpoint problems)"
+        },
+        {
+          "key": "B",
+          "text": "They are slow but thorough end-to-end checks"
+        },
+        {
+          "key": "C",
+          "text": "They require a full production environment"
+        },
+        {
+          "key": "D",
+          "text": "They replace all design inspections"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Unit tests are fast (no I/O) and focused, making them best for verifying builds. End-to-end/slow describes system tests (B); C/D are false. (ContinuousIntegration p.9)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 9
+      },
+      "tags": [
+        "self-testing"
+      ]
+    },
+    {
+      "id": "L03-Q196",
+      "lecture_id": "L03",
+      "topic": "Software Testing",
+      "difficulty": "hard",
+      "stem": "How do system tests differ from unit tests in the CI deck's self-testing-build discussion?",
+      "options": [
+        {
+          "key": "A",
+          "text": "System tests are end-to-end and often take minutes to hours; unit tests are fast and focused"
+        },
+        {
+          "key": "B",
+          "text": "System tests are faster than unit tests"
+        },
+        {
+          "key": "C",
+          "text": "Unit tests are end-to-end; system tests are focused"
+        },
+        {
+          "key": "D",
+          "text": "They are the same thing"
+        }
+      ],
+      "answer": "A",
+      "explanation": "System tests are end-to-end and slow (minutes to hours); unit tests are fast and focused. B/C reverse the properties; D is false. (ContinuousIntegration p.9)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 9
+      },
+      "tags": [
+        "self-testing"
+      ]
+    },
+    {
+      "id": "L03-Q197",
+      "lecture_id": "L03",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "What is a 'self-testing build' in CI?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A build that runs its own tests (especially unit tests) and is the best method for verifying builds"
+        },
+        {
+          "key": "B",
+          "text": "A build that skips all tests for speed"
+        },
+        {
+          "key": "C",
+          "text": "A build that only compiles, never tests"
+        },
+        {
+          "key": "D",
+          "text": "A build run only on the developer's laptop"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A self-testing build runs its own tests (especially unit tests) and is the best way to verify a build. B/C remove testing; D misplaces it. (ContinuousIntegration p.9)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 9
+      },
+      "tags": [
+        "self-testing"
+      ]
+    },
+    {
+      "id": "L03-Q205",
+      "lecture_id": "L03",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "Which of these is listed as a test framework in the CI deck?",
+      "options": [
+        {
+          "key": "A",
+          "text": "JUnit"
+        },
+        {
+          "key": "B",
+          "text": "Cobertura"
+        },
+        {
+          "key": "C",
+          "text": "Checkstyle"
+        },
+        {
+          "key": "D",
+          "text": "Findbugs"
+        }
+      ],
+      "answer": "A",
+      "explanation": "JUnit is a test framework (with NUnit, MSTest, Selenium, FitNesse). Cobertura is coverage; Checkstyle and Findbugs are static analysis. (ContinuousIntegration p.12)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 12
+      },
+      "tags": [
+        "test-frameworks"
+      ]
+    },
+    {
+      "id": "L03-Q206",
+      "lecture_id": "L03",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "Which set are all named as test frameworks in the deck?",
+      "options": [
+        {
+          "key": "A",
+          "text": "JUnit, NUnit, MSTest, Selenium, FitNesse"
+        },
+        {
+          "key": "B",
+          "text": "Findbugs, PMD, Checkstyle, Sonar, FXCop"
+        },
+        {
+          "key": "C",
+          "text": "Emma, Cobertura, Clover, GCC/GCOV"
+        },
+        {
+          "key": "D",
+          "text": "Maven, Java, GitHub, Bugzilla"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A lists the test frameworks. B lists static-analysis tools; C lists coverage tools; D mixes build tools and a tracker. (ContinuousIntegration p.12)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 12
+      },
+      "tags": [
+        "test-frameworks"
+      ]
+    },
+    {
+      "id": "L03-Q247",
+      "lecture_id": "L03",
+      "topic": "Software Testing",
+      "difficulty": "very-hard",
+      "stem": "Combining the CI deck's figures, why is a self-testing build with multiple quality methods recommended over trusting the author's own checking?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Individuals are under 50% efficient at finding their own bugs, but 3+ methods reach over 90% defect removal"
+        },
+        {
+          "key": "B",
+          "text": "Authors find 100% of their own bugs, so methods are redundant"
+        },
+        {
+          "key": "C",
+          "text": "A single method already removes over 90% of defects"
+        },
+        {
+          "key": "D",
+          "text": "Self-testing builds remove the need for any inspection"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Because individuals are under 50% efficient alone, combining 3 or more methods (inspections + testing) reaches over 90% defect removal. B/C contradict the figures; D ignores that inspections remain a top method. (ContinuousIntegration p.8)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 8
+      },
+      "tags": [
+        "testing-in-build",
+        "synthesis"
+      ]
+    },
+    {
+      "id": "L03-Q249",
+      "lecture_id": "L03",
+      "topic": "Software Change Process",
+      "difficulty": "easy",
+      "stem": "Where does Impact Analysis sit in the eight-phase change process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Third, after Concept Location and before Prefactoring"
+        },
+        {
+          "key": "B",
+          "text": "First, before Initiation"
+        },
+        {
+          "key": "C",
+          "text": "Last, after Verification"
+        },
+        {
+          "key": "D",
+          "text": "Second, before Concept Location"
+        }
+      ],
+      "answer": "A",
+      "explanation": "IA is the third phase: Initiation, Concept Location, Impact Analysis, Prefactoring, and so on. B/C/D misplace it. (ImpactAnalysis p.3)",
+      "source": {
+        "deck": "ImpactAnalysis.pdf",
+        "page": 3
+      },
+      "tags": [
+        "process-order"
+      ]
+    },
+    {
+      "id": "L03-Q250",
+      "lecture_id": "L03",
+      "topic": "Software Change Process",
+      "difficulty": "easy",
+      "stem": "In the SIP enactment table, which abbreviation denotes the impact-analysis task?",
+      "options": [
+        {
+          "key": "A",
+          "text": "IA"
+        },
+        {
+          "key": "B",
+          "text": "CL"
+        },
+        {
+          "key": "C",
+          "text": "Act"
+        },
+        {
+          "key": "D",
+          "text": "Base"
+        }
+      ],
+      "answer": "A",
+      "explanation": "IA denotes impact analysis. CL is concept location, Act is actualization, Base is baseline. (IntroSwProcesses p.11)",
+      "source": {
+        "deck": "IntroSwProcesses.pdf",
+        "page": 11
+      },
+      "tags": [
+        "enactment"
+      ]
+    },
+    {
+      "id": "L03-Q506",
+      "lecture_id": "L03",
+      "topic": "Software Processes / CI",
+      "difficulty": "hard",
+      "stem": "You join a large project where managers direct work, programmers hold specialised roles (tester, architect), and additionally nobody may commit without an architect's or code owner's permission. Which process is this?",
+      "options": [
+        {
+          "key": "A",
+          "text": "AIP"
+        },
+        {
+          "key": "B",
+          "text": "SIP"
+        },
+        {
+          "key": "C",
+          "text": "CIP"
+        },
+        {
+          "key": "D",
+          "text": "DIP"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The explicit 'permission to commit' gate via architects/code owners is CIP's signature feature on top of DIP-style direction and specialisation. (TeamProcesses p.15-16)",
+      "source": {
+        "deck": "TeamProcesses.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L03-Q508",
+      "lecture_id": "L03",
+      "topic": "Impact Analysis",
+      "difficulty": "hard",
+      "stem": "You are the programmer in the Interactive IA swimlane. The computer hands you a NEXT class. Which decision is yours to make rather than the computer's?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Whether the class is INSPECTED, PROPAGATING, or CHANGED"
+        },
+        {
+          "key": "B",
+          "text": "Initialising every class to BLANK"
+        },
+        {
+          "key": "C",
+          "text": "Maintaining the queue of NEXT classes"
+        },
+        {
+          "key": "D",
+          "text": "Drawing the interaction diagram"
+        }
+      ],
+      "answer": "A",
+      "explanation": "In Interactive IA the computer manages state (BLANK init, the NEXT queue, applying marks) while the programmer supplies the judgement of each selected class. (ImpactAnalysis p.16)",
+      "source": {
+        "deck": "ImpactAnalysis.pdf",
+        "page": 16
+      },
+      "tags": []
+    },
+    {
+      "id": "L03-Q514",
+      "lecture_id": "L03",
+      "topic": "Software Processes / CI",
+      "difficulty": "medium",
+      "stem": "Which of the following is NOT one of the five principles of Continuous Integration?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Make the build self-testing"
+        },
+        {
+          "key": "B",
+          "text": "Keep the build fast"
+        },
+        {
+          "key": "C",
+          "text": "Deploy automatically to production after every commit"
+        },
+        {
+          "key": "D",
+          "text": "Maintain a code repository"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The five principles are stability-based environments, maintain a repository, commit frequently/build every commit, self-testing build, keep the build fast. Auto-deploy to prod is not among them. (ContinuousIntegration p.3)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L03-Q548",
+      "lecture_id": "L03",
+      "topic": "Software Processes / CI",
+      "difficulty": "very-hard",
+      "stem": "A developer keeps saying 'but it builds on my box.' Which CI arrangement is designed precisely to settle this dispute?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The build server, which only takes code from the repo and is the final authority"
+        },
+        {
+          "key": "B",
+          "text": "Letting each developer self-certify their machine"
+        },
+        {
+          "key": "C",
+          "text": "Disabling the central repository"
+        },
+        {
+          "key": "D",
+          "text": "Running builds only weekly to reduce conflicts"
+        }
+      ],
+      "answer": "A",
+      "explanation": "CI makes the repo the source of record and the build server the final authority, defeating the 'works on my machine' excuse. (ContinuousIntegration p.6)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L03-Q573",
+      "lecture_id": "L03",
+      "topic": "Impact Analysis",
+      "difficulty": "very-hard",
+      "stem": "A student claims 'IA should always pick the lowest-effort change location.' Why is this mistaken?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Clarity is never a criterion"
+        },
+        {
+          "key": "B",
+          "text": "The two criteria (effort and clarity) genuinely conflict; least effort often scatters logic and hurts long-term clarity"
+        },
+        {
+          "key": "C",
+          "text": "Lowest effort is always best for clarity too"
+        },
+        {
+          "key": "D",
+          "text": "IA never considers alternatives"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Effort and clarity conflict; the lowest-effort patch (e.g. UI-only) often harms clarity, so IA surfaces both options with costs. (ImpactAnalysis p.15)",
+      "source": {
+        "deck": "ImpactAnalysis.pdf",
+        "page": 15
+      },
+      "tags": []
+    },
+    {
+      "id": "L03-Q581",
+      "lecture_id": "L03",
+      "topic": "Software Change Process",
+      "difficulty": "medium",
+      "stem": "In the SIP enactment table, which ordering of phase abbreviations is correct for one change?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Ini, Pri, IA, CL, Ref, Act, Ex, Base"
+        },
+        {
+          "key": "B",
+          "text": "Pri, Ini, CL, IA, Ref, Ex, Act, Base"
+        },
+        {
+          "key": "C",
+          "text": "CL, Pri, IA, Ini, Act, Ref, Base, Ex"
+        },
+        {
+          "key": "D",
+          "text": "IA, CL, Ini, Pri, Base, Act, Ref, Ex"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The enactment sequence is Pri (prioritise), Ini, CL, IA, Ref, Ex, Act, Base. (IntroSwProcesses p.11)",
+      "source": {
+        "deck": "IntroSwProcesses.pdf",
+        "page": 11
+      },
+      "tags": [
+        "Software Processes / CI"
+      ]
+    },
+    {
+      "id": "L03-Q592",
+      "lecture_id": "L03",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "In the SB5-MAI labs, against which target codebase do students run the IA marking algorithm?",
+      "options": [
+        {
+          "key": "A",
+          "text": "JHotDraw"
+        },
+        {
+          "key": "B",
+          "text": "The cash-register store system"
+        },
+        {
+          "key": "C",
+          "text": "Bugzilla"
+        },
+        {
+          "key": "D",
+          "text": "The CI build server"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The Analysis Lab runs the Fig 7.9 IA algorithm against the JHotDraw Java codebase; the store names on slides are pedagogical stand-ins. (AnalysisLab p.1)",
+      "source": {
+        "deck": "AnalysisLab1.pdf",
+        "page": 1
+      },
+      "tags": [
+        "Impact Analysis"
+      ]
+    },
+    {
+      "id": "L03-Q598",
+      "lecture_id": "L03",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "In the CI Lab, what infrastructure do students stand up for their (JHotDraw-based) project?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A local-only shell script"
+        },
+        {
+          "key": "B",
+          "text": "A ChromaDB vector index"
+        },
+        {
+          "key": "C",
+          "text": "GitHub Actions workflow (.yml) plus a Maven build with tests"
+        },
+        {
+          "key": "D",
+          "text": "A Jenkins pipeline with Gradle"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The CI Lab has students add a GitHub Actions .yml and Maven build/tests, plus .maven-settings.xml for shared jars. (CILab p.1)",
+      "source": {
+        "deck": "CILab.pdf",
+        "page": 1
+      },
+      "tags": [
+        "Software Processes / CI"
+      ]
+    },
+    {
+      "id": "L03-Q610",
+      "lecture_id": "L03",
+      "topic": "Software Processes / CI",
+      "difficulty": "easy",
+      "stem": "You want to commit small, functional changes with unit tests and remember that the team, not you, owns the code. Which CI principle are you practising?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Maintain a code repository"
+        },
+        {
+          "key": "B",
+          "text": "Environments based on stability"
+        },
+        {
+          "key": "C",
+          "text": "Commit frequently and build every commit"
+        },
+        {
+          "key": "D",
+          "text": "Keep the build fast"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Committing small functional changes with unit tests, team-owned code, is the 'commit frequently / build every commit' principle. (ContinuousIntegration p.5)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 5
+      },
+      "tags": []
+    },
+    {
+      "id": "L03-Q613",
+      "lecture_id": "L03",
+      "topic": "Impact Analysis",
+      "difficulty": "easy",
+      "stem": "Which is NOT an input or output of Impact Analysis?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Class dependencies analysed to add impacted classes"
+        },
+        {
+          "key": "B",
+          "text": "The compiled binary artifact"
+        },
+        {
+          "key": "C",
+          "text": "The initial impact set (input)"
+        },
+        {
+          "key": "D",
+          "text": "The estimated impact set (output)"
+        }
+      ],
+      "answer": "B",
+      "explanation": "IA consumes the initial set and produces the estimated set by analysing dependencies; it does not take or produce a compiled binary. (ImpactAnalysis p.3)",
+      "source": {
+        "deck": "ImpactAnalysis.pdf",
+        "page": 3
+      },
+      "tags": []
+    },
+    {
+      "id": "L03-Q668",
+      "lecture_id": "L03",
+      "topic": "Software Change Process",
+      "difficulty": "hard",
+      "stem": "The SIP enactment step 'Ref - Extract class Session' demonstrates that refactoring of this kind occurs at what point relative to actualization?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Before actualization (as prefactoring)"
+        },
+        {
+          "key": "B",
+          "text": "After actualization, to clean up"
+        },
+        {
+          "key": "C",
+          "text": "Instead of actualization"
+        },
+        {
+          "key": "D",
+          "text": "During verification only"
+        }
+      ],
+      "answer": "A",
+      "explanation": "'Ref - Extract class Session' precedes 'Act - Replace class Session', i.e. prefactoring before actualization. (IntroSwProcesses p.11)",
+      "source": {
+        "deck": "IntroSwProcesses.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L03-Q708",
+      "lecture_id": "L03",
+      "topic": "Software Change Process",
+      "difficulty": "hard",
+      "stem": "The SIP enactment table walks one change through eight abbreviations. What does this demonstrate about the change process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A software change is a repeatable task composed of ordered phases including IA"
+        },
+        {
+          "key": "B",
+          "text": "Impact Analysis is optional"
+        },
+        {
+          "key": "C",
+          "text": "Concept Location comes after Actualization"
+        },
+        {
+          "key": "D",
+          "text": "Verification replaces the baseline"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The Pri/Ini/CL/IA/Ref/Ex/Act/Base walk shows the change as an ordered, repeatable task with IA as one phase. (IntroSwProcesses p.11)",
+      "source": {
+        "deck": "IntroSwProcesses.pdf",
+        "page": 11
+      },
+      "tags": []
+    },
+    {
+      "id": "L03-Q709",
+      "lecture_id": "L03",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "medium",
+      "stem": "In the Analysis Lab, after concept location students tabulate what about the codebase they explored?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Unit-test pass rates"
+        },
+        {
+          "key": "B",
+          "text": "Packages and the number of classes visited"
+        },
+        {
+          "key": "C",
+          "text": "Lines of code per method"
+        },
+        {
+          "key": "D",
+          "text": "Git commit counts"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The portfolio table records package names and the number of classes visited (with comments). (AnalysisLab p.1-2)",
+      "source": {
+        "deck": "AnalysisLab1.pdf",
+        "page": 2
+      },
+      "tags": []
+    },
+    {
+      "id": "L03-Q710",
+      "lecture_id": "L03",
+      "topic": "JHotDraw Case Study",
+      "difficulty": "hard",
+      "stem": "Why does the guide treat the cash-register class names on the slides as stand-ins when applying IA to JHotDraw?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The store domain replaces JHotDraw in the exam"
+        },
+        {
+          "key": "B",
+          "text": "JHotDraw is not a Java codebase"
+        },
+        {
+          "key": "C",
+          "text": "The slides use the store domain pedagogically; the lab runs the same algorithm on the real JHotDraw graph"
+        },
+        {
+          "key": "D",
+          "text": "JHotDraw literally contains Store and Cashier classes"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Store/Cashier names are pedagogical; the Analysis Lab transfers the same marking mechanics to JHotDraw's interaction graph. (AnalysisLab p.1)",
+      "source": {
+        "deck": "AnalysisLab1.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L03-Q711",
+      "lecture_id": "L03",
+      "topic": "Software Testing",
+      "difficulty": "medium",
+      "stem": "In the CI deck, which methods are named as the MOST effective for discovering defects?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only unit testing"
+        },
+        {
+          "key": "B",
+          "text": "Only static analysis"
+        },
+        {
+          "key": "C",
+          "text": "Manual code reading by the author alone"
+        },
+        {
+          "key": "D",
+          "text": "Design inspections, code inspections, and testing"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The most effective defect-discovery methods are design inspections, code inspections, and testing. (ContinuousIntegration p.8)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 8
+      },
+      "tags": []
+    },
+    {
+      "id": "L03-Q713",
+      "lecture_id": "L03",
+      "topic": "Software Testing",
+      "difficulty": "easy",
+      "stem": "What does code-coverage tooling measure in a CI build?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The number of commits per day"
+        },
+        {
+          "key": "B",
+          "text": "How much of the code the tests exercise (e.g. covered vs uncovered lines/branches)"
+        },
+        {
+          "key": "C",
+          "text": "How many bugs are guaranteed remaining"
+        },
+        {
+          "key": "D",
+          "text": "The compile time of the project"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Coverage tools (Emma, Cobertura, Clover) measure how much code the tests exercise. (ContinuousIntegration p.14)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 14
+      },
+      "tags": []
+    },
+    {
+      "id": "L03-Q714",
+      "lecture_id": "L03",
+      "topic": "Version Control / Git",
+      "difficulty": "medium",
+      "stem": "In CI, why is the source-code repository called the 'source of record'?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It grants commit permission automatically"
+        },
+        {
+          "key": "B",
+          "text": "It runs the unit tests itself"
+        },
+        {
+          "key": "C",
+          "text": "The build server only takes code from it, so it is the authoritative version, not any laptop"
+        },
+        {
+          "key": "D",
+          "text": "It stores the defect log only"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The repo is the source of record; the build server only pulls from it, defeating 'works on my box'. (ContinuousIntegration p.6)",
+      "source": {
+        "deck": "ContinuesIntegration.pdf",
+        "page": 6
+      },
+      "tags": []
+    },
+    {
+      "id": "L03-Q715",
+      "lecture_id": "L03",
+      "topic": "Version Control / Git",
+      "difficulty": "medium",
+      "stem": "The CI definition centres on merging working copies to which target several times a day?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Each developer's private branch only"
+        },
+        {
+          "key": "B",
+          "text": "A read-only archive"
+        },
+        {
+          "key": "C",
+          "text": "The defect log"
+        },
+        {
+          "key": "D",
+          "text": "A shared mainline"
+        }
+      ],
+      "answer": "D",
+      "explanation": "CI merges all developers' working copies to a shared mainline several times a day. (CILab p.1; ContinuousIntegration p.2)",
+      "source": {
+        "deck": "CILab.pdf",
+        "page": 1
+      },
+      "tags": []
+    },
+    {
+      "id": "L03-Q716",
+      "lecture_id": "L03",
+      "topic": "Version Control / Git",
+      "difficulty": "hard",
+      "stem": "In CIP, the 'permission to commit' gate is enforced before code reaches which shared resource?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The repository/mainline that the build server reads from"
+        },
+        {
+          "key": "B",
+          "text": "The developer's local working copy"
+        },
+        {
+          "key": "C",
+          "text": "The defect log"
+        },
+        {
+          "key": "D",
+          "text": "The release plan document"
+        }
+      ],
+      "answer": "A",
+      "explanation": "CIP gates commits (via architects/code owners) before code lands in the shared repo the build server uses. (TeamProcesses p.16; ContinuousIntegration p.6)",
+      "source": {
+        "deck": "TeamProcesses.pdf",
+        "page": 16
+      },
+      "tags": []
+    }
+  ]
+}
