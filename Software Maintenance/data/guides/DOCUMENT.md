@@ -4,14 +4,16 @@
 
 The per-lecture study-guide markdown — the **embedded search corpus** for Lookup
 mode. One file per lecture, kebab-case and zero-padded, plus an overview/appendix
-and five `9N-*` exam-preparation guides (three exam guides + two lab deep-dives).
+and six `9N-*` exam-preparation guides (three exam guides + two lab deep-dives +
+a diagram index).
 
-## Current state (Shipped 2026-06-09; deepened in place 2026-06-10; exam guides added 2026-06-10; lab deep-dives added 2026-06-11)
+## Current state (Shipped 2026-06-09; deepened in place 2026-06-10; exam guides added 2026-06-10; lab deep-dives added 2026-06-11; diagram index added 2026-06-12)
 
 Landed: **`00-overview.md` + 10 per-lecture guides + 3 exam guides + 2 lab
-deep-dive guides** (~274k words across the lecture guides, ~3.4k in the overview,
-~44k across the exam guides, ~30.4k across the lab deep-dives — **16 content
-files, ~352k words total**), fully cited. Each lecture guide keeps the original
+deep-dive guides + 1 diagram index** (~274k words across the lecture guides,
+~3.4k in the overview, ~44k across the exam guides, ~30.4k across the lab
+deep-dives, 4,555 in the diagram index — **17 content files, ~356.5k words
+total**), fully cited. Each lecture guide keeps the original
 9 core H2 sections and adds deep-dive H2 sections on top (9–19 H2s per guide).
 Present:
 
@@ -33,16 +35,19 @@ Present:
 | `92-exam-copy-paste-library.md` | Exam copy-paste library (~25.5k words) — catalogs of reusable definitions, examples, comparisons and citations |
 | `93-lab-deep-dives-1.md` | Lab deep-dives 1 (17,245 words) — Lectures 1–3 labs (Intro, Git, Change Request, Concept Location, Impact Analysis, CI): one H2 per lab with 7 fixed H3s (assignment, walkthrough, justifications, copy-paste reflection, likely exam questions, pitfalls, theory links) |
 | `94-lab-deep-dives-2.md` | Lab deep-dives 2 (13,200 words) — Lectures 4–9 labs (Refactoring, Actualization, Testing, BDD), same H2-per-lab structure, exam-heaviest labs covered deepest |
+| `95-diagram-index.md` | Diagram index (4,555 words) — searchable index of the 11 editable `.drawio` lab diagrams in `diagrams/`: one H2 per diagram with 4 fixed H3s (What it shows / Use it in the report when / Key elements explained / File & how to edit, the last carrying the exact `diagrams/<file>.drawio` path) |
 
 Lectures 8 and 12 have no source materials, so there is **no** `lecture-08-*.md` /
-`lecture-12-*.md` (out of scope, by user decision). These 16 files are embedded into
-the `software_maintenance` ChromaDB collection (**2,130 chunks**, re-ingested
-2026-06-11) by `ingest.py`.
+`lecture-12-*.md` (out of scope, by user decision). These 17 files are embedded into
+the `software_maintenance` ChromaDB collection (**2,176 chunks**, re-ingested
+2026-06-12) by `ingest.py`.
 
-The five `9N-*` guides (90/91/92 exam series + 93/94 lab deep-dives) are **not tied
-to a lecture**: their filenames do not match `lecture-NN-*`, so the ingest identity
-rule falls back to slug-derived deck titles ("Lab Deep Dives 1", "Lab Deep Dives 2",
-…) and their Lookup result cards carry **no lecture badge** (by design).
+The six `9N-*` guides (90/91/92 exam series + 93/94 lab deep-dives + 95 diagram
+index) are **not tied to a lecture**: their filenames do not match `lecture-NN-*`,
+so the ingest identity rule falls back to slug-derived deck titles ("Lab Deep
+Dives 1", "Diagram Index", …) and their Lookup result cards carry **no lecture
+badge** (by design). The `.drawio` files themselves under `diagrams/` are **not
+ingested** — only the index guide is.
 
 ## Content corrections
 
@@ -57,6 +62,23 @@ rule falls back to slug-derived deck titles ("Lab Deep Dives 1", "Lab Deep Dives
   line itself is byte-identical (plan §7 requirement), the paragraph stays within
   the 450-token chunk budget (one chunk, not split), and no other section was
   touched. Verified live post-re-ingest: the chunk ranks #1 for its own query.
+
+- **2026-06-12 — `95-diagram-index.md` "File & how to edit" retrievability (same
+  pattern as the 91 Q5 fix).** Each diagram's `### File & how to edit` body opened
+  with the bare file path, so the short, path-led chunk embedded weakly:
+  "clean architecture diagram" missed the top 20; "impact analysis diagram"
+  surfaced its first index chunk only at rank 8 (below the UI's k=6 cut). Fix:
+  in **all 11** "File & how to edit" sections, the body's first sentence now
+  names the diagram subject explicitly and densely (e.g. "The impact analysis
+  propagation diagram (the class interaction graph with CHANGED / PROPAGATING /
+  NEXT / UNCHANGED marks…) lives at `diagrams/impact-analysis-propagation.drawio`
+  — an editable, uncompressed draw.io XML file…"). H3 lines byte-identical;
+  paths, editability notes, and tailoring tips preserved; no other section
+  touched. Verified live post-re-ingest (2,176 chunks): "impact analysis
+  diagram" → File-&-how-to-edit chunk rank 1 (0.845); "clean architecture
+  diagram" → rank 3 (0.786) with the `.drawio` path visible; regression queries
+  "diagram software change process" (rank 1), "pipeline diagram" (ranks 1–3),
+  "where are the diagrams" (ranks 1–2) all still surface index chunks.
 
 ## Conventions (from architecture §3)
 
